@@ -1,4 +1,23 @@
 site_name: Superphenix documentation
 site_url: https://docs.superphenix.net
+repo_url: https://github.com/squidfunk/mkdocs-material
+repo_name: super-phenix/superphenix
+extra_css:
+  - stylesheets/extra.css
 theme:
   name: material
+  logo: assets/SPX_white.svg
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: black
+      toggle:
+        icon: material/weather-sunny 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: black
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
