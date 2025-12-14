@@ -1,0 +1,4 @@
+site_name: Superphenix documentation
+site_url: https://docs.superphenix.net
+theme:
+  name: material
