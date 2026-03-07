@@ -1,6 +1,67 @@
+/* Home page logo: fixed width */
+.md-content img.index-logo,
+.md-typeset img.index-logo {
+  width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+/* Justified paragraphs */
+.justify {
+  text-align: justify;
+}
+
 .md-header__button.md-logo img, .md-header__button.md-logo svg {
   display: block;
   width: 4rem;
   height: 1.2rem;
   fill: currentColor;
+}
+
+/* Slate (dark) theme: use white logo in header and sidebar */
+[data-md-color-scheme="slate"] .md-header__button.md-logo,
+[data-md-color-scheme="slate"] .md-nav__button.md-logo {
+  background: url(../assets/SPX_white.svg) no-repeat center / contain;
+  min-width: 4rem;
+  min-height: 1.2rem;
+}
+[data-md-color-scheme="slate"] .md-header__button.md-logo img,
+[data-md-color-scheme="slate"] .md-header__button.md-logo svg,
+[data-md-color-scheme="slate"] .md-nav__button.md-logo img,
+[data-md-color-scheme="slate"] .md-nav__button.md-logo svg {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* Slate theme: home page / article logo (SPX_black.svg) shown as white */
+[data-md-color-scheme="slate"] .md-content img[src*="SPX_black.svg"],
+[data-md-color-scheme="slate"] .md-typeset img[src*="SPX_black.svg"] {
+  filter: invert(1);
+}
+
+/* Rayshift logo: black in default theme, white in slate */
+.rayshift-logo {
+  display: inline-block;
+  height: 1.75rem;
+  width: auto;
+  vertical-align: middle;
+}
+[data-md-color-scheme="default"] .md-content img.rayshift-logo,
+[data-md-color-scheme="default"] .md-typeset img.rayshift-logo {
+  filter: invert(1);
+}
+
+/* Enterprise support: center logo and button */
+.enterprise-support-hero {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.enterprise-support-hero .rayshift-logo {
+  display: block;
+  margin: 0 auto 1rem;
+}
+.enterprise-support-hero .md-button {
+  margin-top: 0.5rem;
 }
