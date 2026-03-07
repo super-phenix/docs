@@ -1,0 +1,75 @@
+[project]
+site_name = "Superphenix documentation"
+site_url = "https://docs.superphenix.net"
+site_description = "Superphenix: Build your own Cloud Service Provider on Kubernetes"
+repo_url = "https://github.com/super-phenix/superphenix"
+repo_name = "super-phenix/superphenix"
+docs_dir = "docs"
+site_dir = "site"
+extra_css = ["stylesheets/extra.css"]
+copyright = "Copyright &copy; 2026 The Superphenix authors"
+
+# Navigation (same structure as mkdocs.yml)
+nav = [
+  { "Home" = "index.md" },
+  { "Introduction" = "introduction.md" },
+  { "Architecture" = "architecture.md" },
+  { "Features" = [
+    { "Overview" = "features/index.md" },
+    { "Virtualization" = "features/virtualization.md" },
+    { "Network" = "features/network.md" },
+    { "Storage" = "features/storage.md" },
+    { "Tooling" = "features/tooling.md" },
+    { "PaaS" = "features/paas.md" },
+    { "SaaS" = "features/saas.md" }
+  ]},
+  { "Operations" = [
+    { "Testing" = "testing.md" },
+    { "Web console" = "console.md" }
+  ]},
+  { "Contributing" = "contributing.md" },
+  { "Enterprise support" = "enterprise-support.md" }
+]
+
+# SEO and meta tags
+[[project.extra.meta]]
+name = "description"
+content = "Superphenix documentation: Build your own Cloud Service Provider on Kubernetes"
+
+[[project.extra.meta]]
+name = "keywords"
+content = "Kubernetes, KubeVirt, CNI, CSI, hypervisor, Superphenix, CNCF, cloud-native, Ceph, Rook, Kube-OVN, cloud service provider"
+
+# Markdown extensions (grids, icons, content tabs)
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.pymdownx.emoji]
+emoji_index = "zensical.extensions.emoji.twemoji"
+emoji_generator = "zensical.extensions.emoji.to_svg"
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+
+# Theme
+[project.theme]
+# variant = "classic"
+custom_dir = "overrides"
+logo = "assets/SPX_black.svg"
+features = ["announce.dismiss"]
+
+# Light/dark palette toggle (same as Material)
+[[project.theme.palette]]
+scheme = "default"
+primary = "black"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "black"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/super-phenix/superphenix"
