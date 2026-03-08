@@ -13,7 +13,10 @@ copyright = "Copyright &copy; 2026 The Superphenix authors"
 nav = [
   { "Home" = "index.md" },
   { "Introduction" = "introduction.md" },
-  { "Architecture" = "architecture.md" },
+  { "Architecture" = [
+    { "Overview" = "architecture.md" },
+    { "Deployment modes" = "architecture/deployment-modes.md" }
+  ]},
   { "Features" = [
     { "Overview" = "features/index.md" },
     { "Virtualization" = "features/virtualization.md" },
@@ -40,8 +43,9 @@ content = "Superphenix documentation: Build your own Cloud Service Provider on K
 name = "keywords"
 content = "Kubernetes, KubeVirt, CNI, CSI, hypervisor, Superphenix, CNCF, cloud-native, Ceph, Rook, Kube-OVN, cloud service provider"
 
-# Markdown extensions (grids, icons, content tabs)
+# Markdown extensions (grids, icons, content tabs, admonitions)
 [project.markdown_extensions.attr_list]
+[project.markdown_extensions.admonition]
 [project.markdown_extensions.md_in_html]
 [project.markdown_extensions.pymdownx.emoji]
 emoji_index = "zensical.extensions.emoji.twemoji"
