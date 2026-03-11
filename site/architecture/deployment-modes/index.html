@@ -1261,7 +1261,7 @@
 <h2 id="choosing-your-deployment">Choosing your deployment</h2>
 <p>The combination of AZ mode (hyperconverged or decoupled) and management placement (on an AZ or outside) defines four deployment types. The matrix below summarizes them; the paragraphs that follow help you pick one and clarify what can be changed later.</p>
 <h3 id="deployment-matrix">Deployment matrix</h3>
-<p>Combining AZ mode and management placement gives four deployment types:</p>
+<p>The <strong>choice between hyperconverged and decoupled is made per AZ</strong>: you can have some AZs that are hyperconverged and others that are decoupled. A single management cluster can manage AZs of <strong>different types</strong>. By contrast, <strong>where the management cluster runs</strong> (on one of the AZs or outside all of them) is a <strong>single decision for the whole deployment</strong>: it applies at the scale of all AZs, not per AZ. The matrix below combines the two dimensions (AZ mode and management placement) into four deployment types:</p>
 <table>
 <thead>
 <tr>
