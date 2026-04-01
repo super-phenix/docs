@@ -15,7 +15,7 @@ nav = [
   { "Introduction" = "introduction.md" },
   { "Architecture" = [
     { "Overview" = "architecture.md" },
-    { "Deployment modes" = "architecture/deployment-modes.md" }
+    { "Deployment topology" = "architecture/deployment-topology.md" }
   ]},
   { "Features" = [
     { "Overview" = "features/index.md" },

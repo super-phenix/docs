@@ -1,6 +1,6 @@
 # Architecture overview
 
-This page describes how Superphenix is organized: organizations and projects, where resources live, how availability zones (AZs) work, and how disaster recovery fits in. For how AZs and the management cluster can be deployed, see [Deployment modes](architecture/deployment-modes.md).
+This page describes how Superphenix is organized: organizations and projects, where resources live, how availability zones (AZs) work, and how disaster recovery fits in. For how AZs and the management cluster can be deployed, see [Deployment topology](architecture/deployment-topology.md).
 
 ## Availability zones
 
