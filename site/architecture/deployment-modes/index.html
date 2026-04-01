@@ -1159,7 +1159,7 @@
 <div class="justify">
 <p>This page covers how availability zones (AZs) and the management cluster can be deployed: storage and virtualization (hyperconverged vs decoupled), and management placement (inside an AZ vs outside).</p>
 <h2 id="management-cluster">Management cluster</h2>
-<p>A <strong>management cluster</strong> runs the control plane that operates Superphenix: the <strong>web console</strong>, <strong>GitOps</strong> (e.g. deployment and sync from Git), <strong>bootstrap</strong>, <strong>installation</strong>, and <strong>upgrades</strong>; i.e. the full <strong>lifecycle</strong> of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.</p>
+<p>The <strong>management cluster</strong> runs the control plane that operates Superphenix: the <strong>web console</strong>, <strong>GitOps</strong> (e.g. deployment and sync from Git), <strong>bootstrap</strong>, <strong>installation</strong>, and <strong>upgrades</strong>; i.e. the full <strong>lifecycle</strong> of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.</p>
 <p>The management cluster can run <strong>inside an AZ</strong> (the same Kubernetes cluster as one of your AZs hosts both workloads and the management components) or be <strong>completely separate</strong>. When separate, it can even run on <strong>another cloud or provider</strong>: you can operate Superphenix AZs in your own datacenters from a management cluster hosted elsewhere, as long as it has the necessary connectivity to the AZs for API and GitOps.</p>
 <h3 id="comparison">Comparison</h3>
 <table>
@@ -1201,7 +1201,7 @@
 <h3 id="recommendation">Recommendation</h3>
 <ul>
 <li><strong>Management on an AZ</strong> — A good fit for organizations that want <strong>isolated AZs</strong>: each AZ has its own management cluster, and the control plane manages only that AZ (not multiple AZs). Suited to <strong>security</strong> requirements where strict isolation between AZs is needed.</li>
-<li><strong>Management outside the AZ</strong> — A good fit for <strong>orchestrating multiple AZs at scale</strong> from a single control plane, and for <strong>redundancy</strong> (management is independent of any one workload AZ).</li>
+<li><strong>Management outside the AZ</strong> — A good fit for <strong>orchestrating multiple AZs at scale</strong> from a single control plane, and for <strong>redundancy</strong> (management is independent of any workload AZ).</li>
 </ul>
 <hr />
 <h2 id="hyperconverged-vs-decoupled">Hyperconverged vs decoupled</h2>
@@ -1261,7 +1261,9 @@
 <h2 id="choosing-your-deployment">Choosing your deployment</h2>
 <p>The combination of AZ mode (hyperconverged or decoupled) and management placement (on an AZ or outside) defines four deployment types. The matrix below summarizes them; the paragraphs that follow help you pick one and clarify what can be changed later.</p>
 <h3 id="deployment-matrix">Deployment matrix</h3>
-<p>The <strong>choice between hyperconverged and decoupled is made per AZ</strong>: you can have some AZs that are hyperconverged and others that are decoupled. A single management cluster can manage AZs of <strong>different types</strong>. By contrast, <strong>where the management cluster runs</strong> (on one of the AZs or outside all of them) is a <strong>single decision for the whole deployment</strong>: it applies at the scale of all AZs, not per AZ. The matrix below combines the two dimensions (AZ mode and management placement) into four deployment types:</p>
+<p>The <strong>choice between hyperconverged and decoupled is made per AZ</strong>: you can have some AZs that are hyperconverged and others that are decoupled. The management cluster can manage AZs of <strong>different types</strong>. </p>
+<p>By contrast, <strong>where the management cluster runs</strong> (on one of the AZs or outside all of them) is a <strong>single decision for the whole deployment</strong>.</p>
+<p>The matrix below combines the two dimensions (AZ mode and management placement) into four deployment types:</p>
 <table>
 <thead>
 <tr>

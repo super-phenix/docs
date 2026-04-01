@@ -6,7 +6,7 @@ This page covers how availability zones (AZs) and the management cluster can be 
 
 ## Management cluster
 
-A **management cluster** runs the control plane that operates Superphenix: the **web console**, **GitOps** (e.g. deployment and sync from Git), **bootstrap**, **installation**, and **upgrades**; i.e. the full **lifecycle** of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.
+The **management cluster** runs the control plane that operates Superphenix: the **web console**, **GitOps** (e.g. deployment and sync from Git), **bootstrap**, **installation**, and **upgrades**; i.e. the full **lifecycle** of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.
 
 The management cluster can run **inside an AZ** (the same Kubernetes cluster as one of your AZs hosts both workloads and the management components) or be **completely separate**. When separate, it can even run on **another cloud or provider**: you can operate Superphenix AZs in your own datacenters from a management cluster hosted elsewhere, as long as it has the necessary connectivity to the AZs for API and GitOps.
 
@@ -23,7 +23,7 @@ The management cluster can run **inside an AZ** (the same Kubernetes cluster as 
 ### Recommendation
 
 - **Management on an AZ** — A good fit for organizations that want **isolated AZs**: each AZ has its own management cluster, and the control plane manages only that AZ (not multiple AZs). Suited to **security** requirements where strict isolation between AZs is needed.
-- **Management outside the AZ** — A good fit for **orchestrating multiple AZs at scale** from a single control plane, and for **redundancy** (management is independent of any one workload AZ).
+- **Management outside the AZ** — A good fit for **orchestrating multiple AZs at scale** from a single control plane, and for **redundancy** (management is independent of any workload AZ).
 
 ---
 
@@ -58,7 +58,11 @@ The combination of AZ mode (hyperconverged or decoupled) and management placemen
 
 ### Deployment matrix
 
-The **choice between hyperconverged and decoupled is made per AZ**: you can have some AZs that are hyperconverged and others that are decoupled. A single management cluster can manage AZs of **different types**. By contrast, **where the management cluster runs** (on one of the AZs or outside all of them) is a **single decision for the whole deployment**: it applies at the scale of all AZs, not per AZ. The matrix below combines the two dimensions (AZ mode and management placement) into four deployment types:
+The **choice between hyperconverged and decoupled is made per AZ**: you can have some AZs that are hyperconverged and others that are decoupled. The management cluster can manage AZs of **different types**. 
+
+By contrast, **where the management cluster runs** (on one of the AZs or outside all of them) is a **single decision for the whole deployment**.
+
+The matrix below combines the two dimensions (AZ mode and management placement) into four deployment types:
 
 |  | Management on an AZ | Management outside the AZ |
 |---|---------------------|---------------------------|
