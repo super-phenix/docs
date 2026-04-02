@@ -16,7 +16,8 @@ nav = [
   { "Architecture" = [
     { "Overview" = "architecture.md" },
     { "Deployment topology" = "architecture/deployment-topology.md" },
-    { "Hardware requirements" = "architecture/deployment-requirements.md" }
+    { "Hardware requirements" = "architecture/deployment-requirements.md" },
+    { "Network requirements" = "architecture/network-requirements.md" }
   ]},
   { "Features" = [
     { "Overview" = "features/index.md" },
