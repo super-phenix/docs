@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/architecture/deployment-topology/">
+        <link rel="canonical" href="https://docs.superphenix.net/architecture/deployment-requirements/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../deployment-topology/">
       
       
-        <link rel="next" href="../deployment-requirements/">
+        <link rel="next" href="../../features/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Deployment topology - Superphenix documentation</title>
+        <title>Hardware requirements - Superphenix documentation</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deployment-topology" class="md-skip">
+        <a href="#hardware-requirements_1" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Deployment topology
+              Hardware requirements
             
           </span>
         </div>
@@ -383,6 +383,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment-topology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment topology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -402,7 +430,7 @@
   <span class="md-ellipsis">
     
   
-    Deployment topology
+    Hardware requirements
   
 
     
@@ -420,7 +448,7 @@
   <span class="md-ellipsis">
     
   
-    Deployment topology
+    Hardware requirements
   
 
     
@@ -447,22 +475,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#management-cluster" class="md-nav__link">
+  <a href="#alignment-with-ceph" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Management cluster
+        Alignment with Ceph
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Management cluster">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware requirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware requirements">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#comparison" class="md-nav__link">
+  <a href="#hyperconverged-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Comparison
+        Hyperconverged setup
       
     </span>
   </a>
@@ -470,10 +509,33 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
+  <a href="#decoupled-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommendation
+        Decoupled setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decoupled setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage-node-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtualization-nodes-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtualization nodes
       
     </span>
   </a>
@@ -484,63 +546,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#hyperconverged-vs-decoupled" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hyperconverged vs decoupled
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Hyperconverged vs decoupled">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#comparison_1" class="md-nav__link">
+  <a href="#management-cluster-decoupled" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Comparison
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommendation_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Recommendation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choosing-your-deployment-topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Choosing your deployment topology
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Choosing your deployment topology">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deployment-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deployment matrix
+        Management cluster (decoupled)
       
     </span>
   </a>
@@ -567,34 +578,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../deployment-requirements/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Hardware requirements
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1062,22 +1045,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#management-cluster" class="md-nav__link">
+  <a href="#alignment-with-ceph" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Management cluster
+        Alignment with Ceph
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Management cluster">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware requirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware requirements">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#comparison" class="md-nav__link">
+  <a href="#hyperconverged-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Comparison
+        Hyperconverged setup
       
     </span>
   </a>
@@ -1085,10 +1079,33 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
+  <a href="#decoupled-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Recommendation
+        Decoupled setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decoupled setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage-node-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtualization-nodes-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtualization nodes
       
     </span>
   </a>
@@ -1099,63 +1116,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#hyperconverged-vs-decoupled" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hyperconverged vs decoupled
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Hyperconverged vs decoupled">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#comparison_1" class="md-nav__link">
+  <a href="#management-cluster-decoupled" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Comparison
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommendation_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Recommendation
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choosing-your-deployment-topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Choosing your deployment topology
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Choosing your deployment topology">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deployment-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deployment matrix
+        Management cluster (decoupled)
       
     </span>
   </a>
@@ -1196,154 +1162,558 @@
   
 
 
-<h1 id="deployment-topology">Deployment topology</h1>
+<h1 id="hardware-requirements_1">Hardware requirements</h1>
 <div class="justify">
-<p>This page covers how availability zones (AZs) and the management cluster can be deployed: storage and virtualization (hyperconverged vs decoupled), and management placement (inside an AZ vs outside).</p>
-<h2 id="management-cluster">Management cluster</h2>
-<p>The <strong>management cluster</strong> runs the control plane that operates Superphenix: the <strong>web console</strong>, <strong>GitOps</strong> (e.g. deployment and sync from Git), <strong>bootstrap</strong>, <strong>installation</strong>, and <strong>upgrades</strong>; i.e. the full <strong>lifecycle</strong> of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.</p>
-<p>The management cluster can run <strong>inside an AZ</strong> (the same Kubernetes cluster as one of your AZs hosts both workloads and the management components) or be <strong>completely separate</strong>. When separate, it can even run on <strong>another cloud or provider</strong>: you can operate Superphenix AZs in your own datacenters from a management cluster hosted elsewhere, as long as it has the necessary connectivity to the AZs for API and GitOps.</p>
-<h3 id="comparison">Comparison</h3>
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Management on an AZ</th>
-<th>Management outside the AZ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Deployment</strong></td>
-<td>Easier to deploy</td>
-<td>Harder (separate cluster to provision)</td>
-</tr>
-<tr>
-<td><strong>Maintenance</strong></td>
-<td>Easier to maintain</td>
-<td>Harder (additional cluster to operate)</td>
-</tr>
-<tr>
-<td><strong>Multiple AZs</strong></td>
-<td>If management controls multiple AZs, the hosting AZ is a <strong>single point of failure (SPOF)</strong></td>
-<td>Easier to manage multiple AZs from a single, neutral control plane</td>
-</tr>
-<tr>
-<td><strong>Failover</strong></td>
-<td>Management is tied to one AZ; failover is harder</td>
-<td>Easier to failover; management is not tied to any workload AZ</td>
-</tr>
-<tr>
-<td><strong>Dependency</strong></td>
-<td>Management runs on Superphenix (same stack as the AZ)</td>
-<td>Does not depend on Superphenix (no chicken-and-egg; can run on vanilla Kubernetes or another cloud)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="recommendation">Recommendation</h3>
+<p>Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in <a href="../deployment-topology/">Deployment topology</a>. The same <strong>cluster</strong> can imply very different server counts and configurations depending on whether you run a <strong>hyperconverged</strong> stack (storage and virtualization together) or a <strong>decoupled</strong> stack (dedicated storage and dedicated virtualization clusters).</p>
 <ul>
-<li><strong>Management on an AZ</strong> — A good fit for organizations that want <strong>isolated AZs</strong>: each AZ has its own management cluster, and the control plane manages only that AZ (not multiple AZs). Suited to <strong>security</strong> requirements where strict isolation between AZs is needed.</li>
-<li><strong>Management outside the AZ</strong> — A good fit for <strong>orchestrating multiple AZs at scale</strong> from a single control plane, and for <strong>redundancy</strong> (management is independent of any workload AZ).</li>
+<li><strong><a href="#hyperconverged-setup">Hyperconverged</a></strong> — Storage and virtualization on the same nodes. Size hosts for combined Ceph and hypervisor needs, plus headroom for failure and recovery.</li>
+<li><strong><a href="#decoupled-setup">Decoupled</a></strong> — Requirements are split by role:<ul>
+<li><strong><a href="#storage-node-setup">Storage node</a></strong> — Dedicated Ceph / storage tier in a decoupled topology. Same hardware floors as hyperconverged storage roles, sized for OSD throughput and replication.</li>
+<li><strong><a href="#virtualization-nodes-setup">Virtualization nodes</a></strong> — Dedicated hypervisor tier in a decoupled topology. Same CPU, RAM, and boot-disk expectations as hyperconverged compute roles, sized for VM density and migration.</li>
 </ul>
-<hr />
-<h2 id="hyperconverged-vs-decoupled">Hyperconverged vs decoupled</h2>
-<p>AZs can be deployed in two ways:</p>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Choose your topology first</p>
+<p>Decide which <strong>deployment topology</strong> you want (hyperconverged or decoupled) <strong>before</strong> sizing hardware. The <a href="#hardware-requirements">hardware requirements</a> tabs below depend on that choice.</p>
+</div>
+<p>Deployment topology is the main factor that influences the requirements:</p>
 <ul>
-<li><strong>Hyperconverged</strong> — Both <strong>storage</strong> and <strong>virtualization</strong> run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.</li>
-<li><strong>Decoupled (traditional)</strong> — <strong>Storage</strong> runs on separate, dedicated clusters; <strong>virtualization</strong> (hypervisor) runs on one or more other clusters that consume that storage. Multiple private virtualization AZs can <strong>share the same storage</strong> backend. This model is useful when you want to run several hypervisor AZs (e.g. in different racks or sites) against a single, shared storage pool.</li>
+<li><strong>Hyperconverged</strong> — Each node contributes to both storage and virtualization. Disk, CPU, and memory requirements are <strong>combined</strong> on the same machines: size hosts for the sum of what the Ceph storage and the hypervisor need, plus headroom for failure and recovery</li>
+<li><strong>Decoupled</strong> — Requirements <strong>split by role</strong>. The storage tier must satisfy Ceph expectations for OSD throughput, replication, and recovery; the virtualization tier is sized separately for VM density, live migration, and control-plane overhead. You plan distinct footprints for storage hosts, for hypervisor hosts, and for the <strong>management cluster</strong> that runs the platform control plane (see <a href="#management-cluster-decoupled">Management cluster (decoupled)</a>)</li>
 </ul>
-<h3 id="comparison_1">Comparison</h3>
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Hyperconverged</th>
-<th>Decoupled</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Deployment</strong></td>
-<td>Easy to deploy</td>
-<td>Harder to deploy (twice the clusters)</td>
-</tr>
-<tr>
-<td><strong>Maintenance</strong></td>
-<td>Easy to maintain</td>
-<td>Harder to maintain (twice the clusters)</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>Less costly; hardware is mutualized (compute and storage share the same servers)</td>
-<td>Higher cost; dedicated hardware for storage and for hypervisor</td>
-</tr>
-<tr>
-<td><strong>Scaling</strong></td>
-<td>Easier to scale horizontally: add servers to grow both storage and compute</td>
-<td>Scale storage and hypervisor clusters independently</td>
-</tr>
-<tr>
-<td><strong>Performance</strong></td>
-<td>Shared resources between storage and compute</td>
-<td>Better performance; hardware is dedicated (storage arrays vs hypervisor nodes)</td>
-</tr>
-<tr>
-<td><strong>Multi-AZ / shared storage</strong></td>
-<td>Each AZ typically has its own storage</td>
-<td>Easier to share storage among many private-cloud AZs; multiple hypervisor clusters use the same storage backend</td>
-</tr>
-</tbody>
-</table>
-<h3 id="recommendation_1">Recommendation</h3>
-<ul>
-<li><strong>Hyperconverged</strong> is a good fit for organizations that want to <strong>scale horizontally</strong> (grow by adding servers), for <strong>proofs of concept (PoCs)</strong>, and for <strong>single-AZ deployments</strong> where storage does not need to be shared with other clusters.</li>
-<li><strong>Decoupled</strong> is a better fit when <strong>performance</strong> is a priority (dedicated storage and hypervisor hardware), when storage must be <strong>shared with other Superphenix clusters</strong> (multiple private-cloud AZs), or when storage must be <strong>shared with external systems</strong> (e.g. a VMware cluster or other non-SPX workloads).</li>
-</ul>
-<hr />
-<h2 id="choosing-your-deployment-topology">Choosing your deployment topology</h2>
-<p>The combination of AZ mode (hyperconverged or decoupled) and management placement (on an AZ or outside) defines four deployment types. The matrix below summarizes them; the paragraphs that follow help you pick one and clarify what can be changed later.</p>
-<h3 id="deployment-matrix">Deployment matrix</h3>
-<p>The <strong>choice between hyperconverged and decoupled is made per AZ</strong>: you can have some AZs that are hyperconverged and others that are decoupled. The management cluster can manage AZs of <strong>different types</strong>. </p>
-<p>By contrast, <strong>where the management cluster runs</strong> (on one of the AZs or outside all of them) is a <strong>single decision for the whole deployment</strong>.</p>
-<p>The matrix below combines the two dimensions (AZ mode and management placement) into four deployment types:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Management on an AZ</th>
-<th>Management outside the AZ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Hyperconverged</strong></td>
-<td><strong>Fully integrated</strong> — Storage, virtualization, and management run on a single cluster; the simplest deployment, with one AZ and its control plane colocated.</td>
-<td><strong>Centrally managed hyperconverged</strong> — Each AZ is a self-contained hyperconverged cluster; a separate management cluster orchestrates multiple AZs from a single control plane.</td>
-</tr>
-<tr>
-<td><strong>Decoupled</strong></td>
-<td><strong>Decoupled with local management</strong> — Storage and hypervisor are on separate clusters; management runs on one of them (e.g. the hypervisor AZ), so that AZ hosts both workloads and the control plane.</td>
-<td><strong>Fully decoupled</strong> — Storage, hypervisor, and management are each on separate clusters; the management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration.</td>
-</tr>
-</tbody>
-</table>
 <div class="admonition warning">
-<p class="admonition-title">Supported deployment types</p>
-<p>Currently, the only <strong>supported and tested</strong> installation method is <strong>Fully decoupled</strong> (decoupled AZs with management outside the AZ). Work is ongoing to support <strong>Fully integrated</strong> (hyperconverged with management on the AZ) and <strong>Centrally managed hyperconverged</strong> (hyperconverged AZs with management outside the AZ).</p>
+<p class="admonition-title">Multi-AZ and disaster recovery</p>
+<p>If you deploy <strong>multiple availability zones</strong> and expect <strong>disaster recovery</strong> between them, plan <strong>additional capacity</strong> on each AZ beyond steady-state workload. You need room for <strong>cross-AZ backup and replication</strong> traffic and retention. When an AZ is impaired, you also need room for <strong>absorbing or restarting workloads</strong> that you fail over or relocate from another zone. Without that margin, a zone sized only for its local peak can become overloaded during recovery or when it must temporarily carry part of a neighbor’s load.</p>
+</div>
+<hr />
+<h2 id="alignment-with-ceph">Alignment with Ceph</h2>
+<p>Superphenix relies on Ceph for block and distributed storage. Treat the official documentation as authoritative for storage nodes:</p>
+<ul>
+<li><a href="https://docs.ceph.com/en/latest/start/hardware-recommendations/">Ceph Hardware Recommendations</a> — CPU per OSD (especially with NVMe), RAM and <code>osd_memory_target</code> headroom, OS vs data devices, enterprise-class SSDs/NVMe and endurance, minimum OSD sizes, and network bandwidth so replication and client I/O do not contend</li>
+<li><a href="https://docs.ceph.com/en/latest/rados/configuration/network-config-ref/">Ceph network configuration reference</a> — <strong>Public</strong> vs <strong>cluster</strong> networks, separating client traffic from OSD heartbeat, replication, and recovery</li>
+</ul>
+<p>For production performance, prefer <strong>enterprise-tier</strong> SSDs or NVMe suitable for sustained writes and failure handling, consistent with Ceph’s guidance to avoid consumer-grade drives under heavy or mixed workloads.</p>
+<div class="admonition warning">
+<p class="admonition-title">Choose your disks carefully</p>
+<p>Deploying Ceph on <strong>consumer-grade SSDs</strong> can lead to reduced performance and high latency. Ceph is very <strong>sensitive</strong> to how disks acknowledge writes.
+Always make sure the disks you select are <strong>fit</strong> for intensive storage usage. Running high-I/O workloads on consumer SSDs can also wear them out quickly.</p>
+</div>
+<hr />
+<h2 id="hardware-requirements">Hardware requirements</h2>
+<p>Use the <strong>Minimal</strong>, <strong>Recommended</strong>, and <strong>Optimal</strong> tabs below to compare tiers.</p>
+<ul>
+<li><strong>Minimal</strong> — Floor for labs and early validation; not a long-term production target on its own</li>
+<li><strong>Recommended</strong> — Default production-oriented sizing for typical deployments</li>
+<li><strong>Optimal</strong> — More headroom, higher-bandwidth networking, for when you expect dense storage, large VM counts, aggressive recovery SLAs, or rapid growth</li>
+</ul>
+<h3 id="hyperconverged-setup">Hyperconverged setup</h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Minimal</label><label for="__tabbed_1_2">Recommended</label><label for="__tabbed_1_3">Optimal</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chassis</strong></td>
+<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
+</tr>
+<tr>
+<td><strong>Node count</strong></td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>≥ <strong>32 GiB</strong> per server</td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td>≥ <strong>8</strong></td>
+</tr>
+<tr>
+<td><strong>CPU architecture</strong></td>
+<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
+</tr>
+<tr>
+<td><strong>Disks (storage)</strong></td>
+<td>≥ <strong>1</strong> raw disk per node where storage services run; this can't be the boot disk</td>
+</tr>
+<tr>
+<td><strong>NIC / link speed</strong></td>
+<td><strong>10 Gb/s</strong> Ethernet</td>
+</tr>
+<tr>
+<td><strong>Boot / OS</strong></td>
+<td>Fast enterprise SSD acceptable</td>
+</tr>
+<tr>
+<td><strong>Storage media</strong></td>
+<td><strong>Enterprise</strong> SSD or NVMe</td>
+</tr>
+<tr>
+<td><strong>MTU</strong></td>
+<td>1500</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chassis</strong></td>
+<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
+</tr>
+<tr>
+<td><strong>Node count</strong></td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>On the order of <strong>512 GiB</strong> for nodes with a lot of VMs; also plan roughly <strong>1 GiB RAM per 1 TiB</strong> of <strong>Ceph-managed</strong> capacity (plus Ceph OSD/daemon RAM per upstream guidance)</td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td>≥ <strong>32</strong></td>
+</tr>
+<tr>
+<td><strong>CPU architecture</strong></td>
+<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
+</tr>
+<tr>
+<td><strong>Disks (storage)</strong></td>
+<td>≥ <strong>3</strong> raw disks per node</td>
+</tr>
+<tr>
+<td><strong>NIC / link speed</strong></td>
+<td><strong>2x25Gb/s</strong> through active/active bonding</td>
+</tr>
+<tr>
+<td><strong>Boot / OS</strong></td>
+<td><strong>2× NVMe in RAID 1</strong> for OS</td>
+</tr>
+<tr>
+<td><strong>Storage media</strong></td>
+<td>Enterprise disks, NVMe for VM storage, and HDDs for backups</td>
+</tr>
+<tr>
+<td><strong>MTU</strong></td>
+<td>9000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chassis</strong></td>
+<td>Redundant PSUs and clear <strong>failure-domain</strong> separation (rack/row) where possible</td>
+</tr>
+<tr>
+<td><strong>Node count</strong></td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>Extra headroom for growth, peak recovery, and large OSD counts; align with Ceph guidance for <strong>mon/mgr</strong> RAM as the cluster grows</td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td><strong>≥ 96</strong> on nodes with very high VM density; favor <strong>higher clock</strong></td>
+</tr>
+<tr>
+<td><strong>CPU architecture</strong></td>
+<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
+</tr>
+<tr>
+<td><strong>Disks (storage)</strong></td>
+<td>≥ <strong>8</strong> raw disks per node</td>
+</tr>
+<tr>
+<td><strong>NIC / link speed</strong></td>
+<td>2 NICs with <strong>dual 25Gb/s ports</strong> (active/active bonding), with 2 ports dedicated to the storage and 2 dedicated to the data</td>
+</tr>
+<tr>
+<td><strong>Boot / OS</strong></td>
+<td><strong>2× NVMe in RAID 1</strong> for OS</td>
+</tr>
+<tr>
+<td><strong>Storage media</strong></td>
+<td>Enterprise disks, NVMe for VM storage, and HDDs for backups, with high DWPD</td>
+</tr>
+<tr>
+<td><strong>MTU</strong></td>
+<td>9000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<h3 id="decoupled-setup">Decoupled setup</h3>
+<h4 id="storage-node-setup">Storage node</h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Minimal</label><label for="__tabbed_2_2">Recommended</label><label for="__tabbed_2_3">Optimal</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chassis</strong></td>
+<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
+</tr>
+<tr>
+<td><strong>Node count</strong></td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>≥ <strong>80 GiB</strong> per server</td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td>≥ <strong>16</strong></td>
+</tr>
+<tr>
+<td><strong>Disks (storage)</strong></td>
+<td>≥ <strong>8</strong> raw disk per node</td>
+</tr>
+<tr>
+<td><strong>NIC / link speed</strong></td>
+<td><strong>10 Gb/s</strong> Ethernet</td>
+</tr>
+<tr>
+<td><strong>Boot / OS</strong></td>
+<td>Fast enterprise SSD acceptable</td>
+</tr>
+<tr>
+<td><strong>Storage media</strong></td>
+<td><strong>Enterprise</strong> SSD or NVMe</td>
+</tr>
+<tr>
+<td><strong>MTU</strong></td>
+<td>1500</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chassis</strong></td>
+<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
+</tr>
+<tr>
+<td><strong>Node count</strong></td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>≥ <strong>128 GiB</strong> per server</td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td>≥ <strong>32</strong></td>
+</tr>
+<tr>
+<td><strong>Disks (storage)</strong></td>
+<td>≥ <strong>16</strong> raw disk per node</td>
+</tr>
+<tr>
+<td><strong>NIC / link speed</strong></td>
+<td><strong>2x25Gb/s</strong> through active/active bonding</td>
+</tr>
+<tr>
+<td><strong>Boot / OS</strong></td>
+<td>Fast enterprise SSD acceptable</td>
+</tr>
+<tr>
+<td><strong>Storage media</strong></td>
+<td><strong>Enterprise</strong> SSD or NVMe</td>
+</tr>
+<tr>
+<td><strong>MTU</strong></td>
+<td>9000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chassis</strong></td>
+<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
+</tr>
+<tr>
+<td><strong>Node count</strong></td>
+<td>12</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>≥ <strong>128 GiB</strong> per server</td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td>≥ <strong>32</strong></td>
+</tr>
+<tr>
+<td><strong>Disks (storage)</strong></td>
+<td>≥ <strong>16</strong> raw disk per node</td>
+</tr>
+<tr>
+<td><strong>NIC / link speed</strong></td>
+<td>2 NICs with <strong>dual 25Gb/s ports</strong> (active/active bonding), with 2 ports dedicated to the storage and 2 dedicated to the data</td>
+</tr>
+<tr>
+<td><strong>Boot / OS</strong></td>
+<td>Fast enterprise SSD acceptable</td>
+</tr>
+<tr>
+<td><strong>Storage media</strong></td>
+<td><strong>Enterprise</strong> SSD or NVMe</td>
+</tr>
+<tr>
+<td><strong>MTU</strong></td>
+<td>9000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<h4 id="virtualization-nodes-setup">Virtualization nodes</h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Minimal</label><label for="__tabbed_3_2">Recommended</label><label for="__tabbed_3_3">Optimal</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chassis</strong></td>
+<td>Physical servers</td>
+</tr>
+<tr>
+<td><strong>Node count</strong></td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>≥ <strong>32 GiB</strong> per server</td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td>≥ <strong>8</strong></td>
+</tr>
+<tr>
+<td><strong>CPU architecture</strong></td>
+<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
+</tr>
+<tr>
+<td><strong>NIC / link speed</strong></td>
+<td><strong>10 Gb/s</strong> Ethernet</td>
+</tr>
+<tr>
+<td><strong>Boot / OS</strong></td>
+<td>Fast enterprise SSD acceptable</td>
+</tr>
+<tr>
+<td><strong>MTU</strong></td>
+<td>1500</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chassis</strong></td>
+<td>Physical servers</td>
+</tr>
+<tr>
+<td><strong>Node count</strong></td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>On the order of <strong>1 TiB</strong> for nodes with a lot of VMs; also plan roughly <strong>1 GiB RAM per 1 TiB</strong> of <strong>Ceph-managed</strong> capacity (plus Ceph OSD/daemon RAM per upstream guidance)</td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td>≥ <strong>32</strong></td>
+</tr>
+<tr>
+<td><strong>CPU architecture</strong></td>
+<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
+</tr>
+<tr>
+<td><strong>NIC / link speed</strong></td>
+<td><strong>2x25 Gb/s</strong> (or faster) for inter-node traffic and storage access</td>
+</tr>
+<tr>
+<td><strong>Boot / OS</strong></td>
+<td><strong>2× NVMe in RAID 1</strong> for OS</td>
+</tr>
+<tr>
+<td><strong>MTU</strong></td>
+<td>9000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chassis</strong></td>
+<td>Redundant PSUs and clear <strong>failure-domain</strong> separation (rack/row) where possible</td>
+</tr>
+<tr>
+<td><strong>Node count</strong></td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>Extra headroom for growth, peak recovery, and large OSD counts; align with Ceph guidance for <strong>mon/mgr</strong> RAM as the cluster grows</td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td><strong>≥ 96</strong> on nodes with very high VM density; favor <strong>higher clock</strong></td>
+</tr>
+<tr>
+<td><strong>CPU architecture</strong></td>
+<td>Same as recommended</td>
+</tr>
+<tr>
+<td><strong>NIC / link speed</strong></td>
+<td>2 NICs with <strong>dual 25Gb/s ports</strong> (active/active bonding), with 2 ports dedicated to the storage and 2 dedicated to the data</td>
+</tr>
+<tr>
+<td><strong>Boot / OS</strong></td>
+<td>Enterprise disks, NVMe for VM storage, and HDDs for backups</td>
+</tr>
+<tr>
+<td><strong>MTU</strong></td>
+<td>9000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<h3 id="management-cluster-decoupled">Management cluster (decoupled)</h3>
+<p>In a <strong>decoupled</strong> topology, the <strong>management cluster</strong> is the small <strong>Kubernetes</strong> cluster that hosts the Superphenix control-plane and operational services <strong>separate</strong> from your storage and workload virtualization nodes. It does not replace sizing for Ceph or hypervisors; it is an additional slice of machines sized for API controllers, GitOps, monitoring, and related components at modest density.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Minimal</label><label for="__tabbed_4_2">Recommended</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Node count</strong></td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td><strong>4</strong> per node</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td><strong>16 GiB</strong> per node</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Node count</strong></td>
+<td><strong>3</strong></td>
+</tr>
+<tr>
+<td><strong>CPU cores</strong></td>
+<td><strong>4</strong> per node</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td><strong>16 GiB</strong> per node</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <h3 id="recommendations">Recommendations</h3>
-<div class="admonition important">
-<p class="admonition-title">Choose before you install</p>
-<p>Deployment topology (hyperconverged vs decoupled) and management placement (on an AZ or outside) are <strong>fundamental choices</strong>; decide which combination fits your use case <strong>before installation</strong>. Changing the AZ topology or management placement later is limited or unsupported (see below).</p>
-</div>
-<p><strong>Use cases and who they target:</strong></p>
-<ul>
-<li><strong>Fully integrated</strong> — Targets <strong>single-AZ</strong> deployments, <strong>proofs of concept</strong>, and teams that want the <strong>simplest</strong> setup: one cluster for storage, virtualization, and management. Best for low cost and minimal operational footprint.</li>
-<li><strong>Centrally managed hyperconverged</strong> — Targets organizations that want <strong>multiple hyperconverged AZs</strong> with <strong>one control plane</strong>: horizontal scaling by adding AZs, each AZ self-contained, orchestration from a separate management cluster.</li>
-<li><strong>Decoupled with local management</strong> — Targets <strong>security-focused</strong> or <strong>isolated</strong> environments: each AZ has its own management, storage and hypervisor are separate, and the control plane only manages that AZ. Good when strict isolation between AZs is required.</li>
-<li><strong>Fully decoupled</strong> — Targets <strong>multi-AZ at scale</strong>, <strong>redundancy</strong>, and <strong>shared storage</strong>: storage and hypervisor are separate, management sits outside all workload AZs. Suited to performance-sensitive workloads, shared storage across AZs or with external systems (e.g. VMware), and operators who need a single, resilient control plane for many AZs.</li>
-</ul>
-<p><strong>Changing your deployment later:</strong> Switching between hyperconverged and decoupled (recoupling or decoupling the infrastructure) is <strong>not supported</strong>. It is theoretically possible with significant downtime and manual migration, but it is not a supported path. <strong>Moving the management cluster</strong> from one cluster to another (e.g. from an AZ to a dedicated management cluster, or the reverse) <strong>is possible</strong> and can be done as an operational procedure.</p>
-<p>See the <a href="../../architecture/">Architecture overview</a> for organizations, projects, resources, and disaster recovery.</p>
+<p>Plan capacity with horizontal growth in mind: Superphenix scales by <strong>adding nodes</strong>, so when compute nodes or storage nodes become overloaded, expanding the cluster with additional nodes is often the safest and most predictable way to recover headroom. </p>
+<p>How large <strong>virtualization</strong> nodes are should still depend on <strong>how many VMs</strong> (and other workloads, such as databases, web servers, and inference services) you run and what each VM requests. <strong>KSM</strong> can reduce effective RAM usage, but treat it as an optimization rather than a sizing baseline. It is enabled by default on all nodes to deduplicate memory between VMs.</p>
+<p>Node fleets also do not need to be perfectly uniform: you can safely operate clusters with <strong>mixed node configurations</strong>, as long as overall capacity and failure-domain planning are respected.</p>
+<p>You do not need to get the exact sizing of your clusters right the first time. Superphenix uses the Kubernetes scheduling engine to place workloads across available CPU and RAM on each node as efficiently as possible.</p>
 </div>
 
 
