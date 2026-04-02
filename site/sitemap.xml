@@ -10,7 +10,10 @@
         <loc>https://docs.superphenix.net/architecture/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/architecture/deployment-modes/</loc>
+        <loc>https://docs.superphenix.net/architecture/deployment-topology/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/architecture/deployment-requirements/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/features/</loc>
