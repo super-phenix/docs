@@ -13,6 +13,10 @@ copyright = "Copyright &copy; 2026 The Superphenix authors"
 nav = [
   { "Home" = "index.md" },
   { "Introduction" = "introduction.md" },
+  { "Installation" = [
+    { "Getting started" = "getting-started.md" },
+    { "Full installations" = "installation/full-installations.md" }
+  ]},
   { "Architecture" = [
     { "Overview" = "architecture.md" },
     { "Deployment topology" = "architecture/deployment-topology.md" },
