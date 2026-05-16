@@ -356,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/" class="md-nav__link">
+      <a href="../../installation/getting-started/" class="md-nav__link">
         
   
   
@@ -392,6 +392,34 @@
     
   
     Full installations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/production-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production setup
   
 
     
@@ -662,6 +690,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../tenancy-and-console/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenancy & console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../virtualization/" class="md-nav__link">
         
   
@@ -807,10 +863,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#how-resources-are-configured" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        How resources are configured
       
     </span>
   </a>
@@ -818,10 +874,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#central-administration" class="md-nav__link">
+  <a href="#gitops" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Central administration
+        GitOps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web console
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-key-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH key store
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-and-quotas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security and quotas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-and-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing and lifecycle
       
     </span>
   </a>
@@ -1092,10 +1203,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#how-resources-are-configured" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        How resources are configured
       
     </span>
   </a>
@@ -1103,10 +1214,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#central-administration" class="md-nav__link">
+  <a href="#gitops" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Central administration
+        GitOps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#web-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web console
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-key-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH key store
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-and-quotas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security and quotas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-and-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing and lifecycle
       
     </span>
   </a>
@@ -1132,19 +1298,69 @@
 
 
 <h1 id="tooling">Tooling</h1>
-<p>Superphenix is operated through <strong>GitOps</strong> and a <strong>web console</strong>. Together they let you deploy, upgrade, and manage the whole platform and all availability zones from a single place.</p>
-<h2 id="what-you-get">What you get</h2>
+<p>Superphenix is operated through <strong>GitOps</strong> and a <strong>multi-tenant web console</strong>. Tenant-facing features (instances, disks, networks, SSH keys) are grouped as <strong>products</strong> in the sidebar; platform teams use GitOps to install and upgrade the stack itself.</p>
+<h2 id="how-resources-are-configured">How resources are configured</h2>
+<p>You can manage almost all tenant resources in two ways:</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Web console</strong></td>
+<td>Interactive creation, edits, day-2 operations (snapshots, attach NICs, firewall tweaks).</td>
+</tr>
+<tr>
+<td><strong>GitOps</strong></td>
+<td>Declarative source of truth, review via merge requests, promotion across environments, drift correction.</td>
+</tr>
+</tbody>
+</table>
+<p>The same objects (VMs, disks, networks, policies) are represented in the API and in Git; pick the workflow that fits your team. See <a href="../tenancy-and-console/">Tenancy and console</a> for org/project context.</p>
+<h2 id="gitops">GitOps</h2>
 <ul>
-<li><strong>GitOps</strong> — The stack and tenant resources are defined in Git and applied automatically. Deploy or update an entire AZ (or many AZs) from charts and manifests. Changes are tracked, reviewable, and rollbackable. Full AZ deployment in a short time on real or virtualized hardware.</li>
-<li><strong>Web console</strong> — Multi-tenant console to create and manage VMs, networks, and storage across multiple AZs. Access serial and VNC consoles through a proxy with permissions and audit logging. View usage and billing-related information. Resources created in the console can be reflected in Git, and resources defined in Git appear in the console.</li>
-<li><strong>Observability</strong> — Metrics and logs for the whole platform: VMs, storage, and network. Dashboards for health and capacity. Usage data for billing and planning.</li>
-<li><strong>Security and quotas</strong> — Admission rules and quotas (CPU, memory, storage) per tenant or namespace. RBAC for API and console access. Firewall and network policies for tenant isolation.</li>
-<li><strong>Testing</strong> — Run the full stack in virtualized or physical labs. Test changes in branches and promote via merge requests. Optional chaos engineering to simulate failures.</li>
-<li><strong>OS and cluster lifecycle</strong> — Immutable OS and cluster lifecycle driven by configuration and GitOps, so the platform is declarative from the OS up.</li>
+<li>Declarative manifests and charts define <strong>clusters</strong>, <strong>AZs</strong>, and often <strong>tenant resources</strong>.</li>
+<li>Changes are <strong>reviewed</strong>, <strong>versioned</strong>, and <strong>rolled back</strong> like application code.</li>
+<li>The same workflow can manage <strong>one AZ</strong> or <strong>many AZs</strong> from a single repository (or a structured set of repos).</li>
 </ul>
-<h2 id="central-administration">Central administration</h2>
-<p>GitOps and the console provide a <strong>single control plane</strong> over all AZs: one Git repo (or hierarchy) and one console to deploy, configure, and operate the platform. Each AZ remains an independent cluster for isolation and resilience.</p>
-<p>See <a href="../../architecture/">Architecture</a> for AZs, regions, and central administration, and <a href="../../testing/">Testing</a> for the testing approach.</p>
+<p>See <a href="../../architecture/">Architecture overview</a> for how administration spans regions and AZs.</p>
+<h2 id="web-console">Web console</h2>
+<p>The console is where users:</p>
+<ul>
+<li>Pick <strong>organization</strong> and <strong>project</strong> (see <a href="../tenancy-and-console/">Tenancy and console</a>).</li>
+<li>Open <strong>products</strong>: Compute, Storage, Network, SSH keys, and (when enabled) PaaS/SaaS.</li>
+<li>Filter resources by <strong>availability zone</strong> and use <strong>auto-refresh</strong> timers on list views.</li>
+<li>Open <strong>resource details</strong>, <strong>share links</strong> for support, and run <strong>quick actions</strong> from row menus.</li>
+</ul>
+<h2 id="ssh-key-store">SSH key store</h2>
+<p>The <strong>SSH keys</strong> product is a <strong>key repository</strong> you maintain for your organization. When you create a <strong>VM</strong>, you can attach keys from this store so cloud-init (or equivalent) can install them on first boot—see <a href="../virtualization/">Virtualization</a>.</p>
+<p><strong>Typical workflow</strong></p>
+<ol>
+<li>Import or paste a public key in <strong>SSH keys</strong> (name it for easy reference).</li>
+<li>When creating an instance, <strong>select</strong> one or more stored keys.</li>
+<li>Ensure the image supports cloud-init if you rely on automatic injection.</li>
+</ol>
+<p>Illustrative manifest (names vary by API):</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">compute.superphenix.example/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SSHPublicKey</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ops-team-default</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">publicKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI...</span>
+</code></pre></div>
+<h2 id="observability">Observability</h2>
+<p>Metrics, logs, and dashboards cover <strong>platform health</strong> and <strong>tenant usage</strong> (capacity, quotas, billing-related signals). Exact integrations depend on your deployment.</p>
+<h2 id="security-and-quotas">Security and quotas</h2>
+<ul>
+<li><strong>RBAC</strong> ties console and API access to <strong>IAM roles</strong> (organization vs project scopes).</li>
+<li><strong>Quotas</strong> limit CPU, memory, storage, and counts of resources per tenant or project.</li>
+</ul>
+<h2 id="testing-and-lifecycle">Testing and lifecycle</h2>
+<p>Platform teams often validate changes in <strong>lab AZs</strong> before promoting Git revisions. <strong>Immutable</strong> OS images (for example <strong>Talos</strong> on the management or workload plane) keep node configuration reproducible—see <a href="../../installation/getting-started/">Getting started</a> for the operator install path.</p>
+<p>See <a href="../../testing/">Testing</a> for project testing practices and <a href="../tenancy-and-console/">Tenancy and console</a> for support information to include when opening tickets.</p>
 
 
 

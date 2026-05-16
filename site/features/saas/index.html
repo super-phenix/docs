@@ -356,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/" class="md-nav__link">
+      <a href="../../installation/getting-started/" class="md-nav__link">
         
   
   
@@ -392,6 +392,34 @@
     
   
     Full installations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/production-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production setup
   
 
     
@@ -662,6 +690,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../tenancy-and-console/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenancy & console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../virtualization/" class="md-nav__link">
         
   
@@ -863,10 +919,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#current-status" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        Current status
       
     </span>
   </a>
@@ -874,10 +930,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#who-its-for" class="md-nav__link">
+  <a href="#target-direction" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Who it’s for
+        Target direction
       
     </span>
   </a>
@@ -1103,10 +1159,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#current-status" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        Current status
       
     </span>
   </a>
@@ -1114,10 +1170,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#who-its-for" class="md-nav__link">
+  <a href="#target-direction" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Who it’s for
+        Target direction
       
     </span>
   </a>
@@ -1154,20 +1210,19 @@
 
 
 <h1 id="saas-software-as-a-service">SaaS (Software as a Service)</h1>
-<p>Superphenix can host <strong>ready-to-run applications</strong> (SaaS) that your customers use directly: databases, container registries, Git hosting, file sync, and more. These services run on the platform and consume its storage, networking, and optionally <a href="../paas/">PaaS</a> or <a href="../virtualization/">virtualization</a>.</p>
-<h2 id="what-you-get">What you get</h2>
+<p>Superphenix aims to host <strong>managed applications</strong> (databases, registries, Git, file sync, and similar services) so operators can offer turnkey software to their customers on the same platform as IaaS.</p>
+<h2 id="current-status">Current status</h2>
+<p>In the SPX console, the <strong>SaaS</strong> dimension is still a <strong>placeholder</strong> in some releases: the full <strong>application catalog</strong> may not be exposed yet. When your deployment enables it, services will appear alongside <strong>Compute</strong>, <strong>Storage</strong>, and <strong>Network</strong> in the product sidebar.</p>
+<p>Until then, use <strong><a href="../virtualization/">Virtualization</a></strong> and <strong><a href="../paas/">PaaS</a></strong> (when available) to run the workloads you need, and manage applications with your own GitOps pipelines.</p>
+<h2 id="target-direction">Target direction</h2>
+<p>When the catalog is available, typical examples include:</p>
 <ul>
-<li><strong>Managed applications</strong> — Deploy and operate common applications so tenants don’t have to install or maintain them. Examples include:</li>
-<li><strong>Databases</strong> — Managed PostgreSQL, MySQL, or other DBs with backups and replication.</li>
-<li><strong>Container registry</strong> — Harbor (or similar) for container images, with replication and access control.</li>
-<li><strong>Git hosting</strong> — GitLab (or similar) for source code, CI/CD, and collaboration.</li>
-<li><strong>File sync and sharing</strong> — Nextcloud (or similar) for files, calendars, and contacts.</li>
-<li><strong>Platform consumption</strong> — SaaS workloads use the same <a href="../storage/">storage</a> (block, file, object), <a href="../network/">network</a> (VPCs, subnets, NAT), and <a href="../tooling/">tooling</a> (GitOps, console, observability) as the rest of the platform.</li>
-<li><strong>Deployment models</strong> — Run SaaS on tenant <a href="../paas/">PaaS</a> clusters (one app per cluster or shared) or on dedicated <a href="../virtualization/">VMs</a>, depending on isolation and operational preferences.</li>
-<li><strong>Multi-tenancy</strong> — Offer the same application to multiple tenants with isolated data and quotas, using the platform’s RBAC, quotas, and networking.</li>
+<li><strong>Databases</strong> — Managed relational or NoSQL engines with backups and replication.</li>
+<li><strong>Container registry</strong> — Harbor or equivalent for images and policies.</li>
+<li><strong>Git hosting</strong> — GitLab or similar for source control and CI/CD.</li>
+<li><strong>File sync</strong> — Nextcloud or similar for files and collaboration.</li>
 </ul>
-<h2 id="who-its-for">Who it’s for</h2>
-<p>SaaS is for operators who want to provide turnkey applications (DB, registry, Git, files) to their customers without each customer deploying and operating the stack themselves. Tenants consume the service; you operate it on top of the foundation.</p>
+<p>Those services will consume the same <strong><a href="../storage/">storage</a></strong>, <strong><a href="../network/">network</a></strong>, and <strong><a href="../tooling/">tooling</a></strong> primitives as the rest of the platform, with <strong>multi-tenancy</strong> enforced via organizations, projects, and quotas.</p>
 <h2 id="foundation-used">Foundation used</h2>
 <table>
 <thead>
@@ -1179,23 +1234,23 @@
 <tbody>
 <tr>
 <td>Virtualization</td>
-<td>Optional: dedicated VMs per tenant or per app</td>
+<td>Dedicated VMs per tenant or shared node pools</td>
 </tr>
 <tr>
 <td>Network</td>
-<td>VPCs, subnets, and firewalling for app traffic</td>
+<td>VPCs, subnets, EIPs, and load balancers for traffic</td>
 </tr>
 <tr>
 <td>Storage</td>
-<td>Block, file, and object storage for app data</td>
+<td>Block, file, or object storage for application data</td>
 </tr>
 <tr>
 <td>Tooling</td>
-<td>GitOps, console, and observability to deploy and run apps</td>
+<td>GitOps, console, and observability</td>
 </tr>
 </tbody>
 </table>
-<p>See the <a href="../">Features overview</a> for the split between foundation and managed services.</p>
+<p>See the <a href="../">Features overview</a>.</p>
 
 
 

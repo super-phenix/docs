@@ -1,26 +1,43 @@
 # PaaS (Platform as a Service)
 
-Superphenix offers **Kubernetes as a Service (KaaS)** as a core PaaS capability: you provision **tenant Kubernetes clusters** that run on the platform and consume its virtualization, storage, and networking.
+Superphenix is designed to offer **Kubernetes as a Service (KaaS)** so tenants can run **managed Kubernetes clusters** on the same **virtualization**, **storage**, and **network** stack as your IaaS workloads.
 
-## What you get
+## Current status
 
-- **Tenant clusters** — Each tenant (or project) gets one or more dedicated Kubernetes clusters with their own control plane and node pools. Full isolation and self-service.
-- **Nodes as VMs** — Cluster nodes are virtual machines provisioned by the platform. They use the same [virtualization](virtualization.md) layer: live migration, snapshots, and placement controls.
-- **Storage for workloads** — Tenant clusters use the platform’s [storage](storage.md): block and file volumes (PVCs) with replication, snapshots, and cross-AZ mirroring where configured.
-- **Networking** — Tenant clusters attach to the platform’s [network](network.md): VPCs, subnets, NAT, and firewalling so workloads get the same CSP-style networking as bare VMs.
-- **Lifecycle** — Create, scale, upgrade, and delete clusters via the same [tooling](tooling.md) (GitOps and web console) you use for the rest of the platform.
+In some console releases the **SaaS / PaaS** area is still a **placeholder**: **KaaS may not yet appear** as a selectable product. When enabled in your environment, you create and manage tenant clusters from the console and/or GitOps like other resources.
 
-## Who it’s for
+The sections below describe the **intended** Kubernetes feature set on Superphenix.
 
-PaaS is for tenants who want to run containerized workloads without managing the underlying infrastructure. They get a standard Kubernetes API and can deploy Helm charts, operators, and custom apps, while the platform handles nodes, storage, and network.
+## Kubernetes on Superphenix
+
+### VM pools (worker and control nodes)
+
+Tenant clusters are backed by **pools of VMs** you define:
+
+- **Custom VM sizing** — CPU, memory, and disk for control-plane and worker **machine types**.
+- **Networking** — Node pools are attached to your **[VPCs and subnets](network.md)**; pods and services use the integrated **CNI** on top of that underlay.
+
+### Platform integration
+
+| Capability | Behavior |
+|------------|-----------|
+| **CNI** | **Integrated CNI** — cluster networking is provided by the platform stack (same SDN as VMs where applicable). |
+| **CSI** | **Integrated CSI** — persistent volumes map to the platform **[storage](storage.md)** layer. |
+| **Live migration** | Worker **VMs** can be **live-migrated** like any other instance when policy allows, for node maintenance without hard downtime for stateless workloads. |
+| **Upgrades** | **Automatic upgrades** of cluster components (Kubernetes patch/minor versions per policy) reduce manual toil—exact knobs depend on your release. |
+
+### Operations
+
+- Create, scale, upgrade, and delete clusters via **[Tooling](tooling.md)** (GitOps and console).
+- Use the same **organization / project** RBAC as the rest of the platform—see [Tenancy and console](tenancy-and-console.md).
 
 ## Foundation used
 
-| Foundation    | How PaaS uses it |
-|---------------|------------------|
-| Virtualization | VM nodes for each tenant cluster |
-| Network        | VPCs and subnets for cluster and workload traffic |
-| Storage        | Block and file volumes for PVCs |
-| Tooling       | GitOps and console to provision and manage clusters |
+| Foundation    | How Kubernetes uses it |
+|---------------|-------------------------|
+| Virtualization | **VM pools** for nodes ([Virtualization](virtualization.md)) |
+| Network        | VPCs, subnets, NAT, LB, firewall ([Network](network.md)) |
+| Storage        | CSI-backed volumes ([Storage](storage.md)) |
+| Tooling        | GitOps and console ([Tooling](tooling.md)) |
 
-See the [Features overview](index.md) for the split between foundation and managed services.
+See the [Features overview](index.md).

@@ -20,7 +20,7 @@ A CSP delivers on-demand, scalable compute, storage, and applications. The usual
 
 Superphenix focuses on all those layers to provide **high resiliency**, **high availability**, **high performance** services to the end customers of the platform.
 
-To install a first cluster, see [Getting started](getting-started.md). For complete and advanced deployment paths (all installation modes and operating patterns), see [Full installations guide](installation/full-installations.md).
+To install a first cluster, see [Getting started](installation/getting-started.md). For complete and advanced deployment paths (all installation modes and operating patterns), see [Full installations guide](installation/full-installations.md).
 
 ## Summary of features
 

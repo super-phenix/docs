@@ -16,7 +16,7 @@
         <link rel="prev" href="../architecture/network-requirements/">
       
       
-        <link rel="next" href="./virtualization/">
+        <link rel="next" href="./tenancy-and-console/">
       
       
         
@@ -356,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
+      <a href="../installation/getting-started/" class="md-nav__link">
         
   
   
@@ -392,6 +392,34 @@
     
   
     Full installations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/production-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production setup
   
 
     
@@ -731,6 +759,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./tenancy-and-console/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenancy & console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1154,61 +1210,62 @@
 
 
 <h1 id="features">Features</h1>
-<p>Superphenix is organized in two layers: the <strong>foundation</strong> provides the infrastructure platform (IaaS and operations), and <strong>managed services</strong> consume it to deliver higher-level offerings such as Kubernetes-as-a-Service and ready-to-run applications.</p>
+<p>Superphenix is organized in two layers: the <strong>foundation</strong> provides the infrastructure platform (IaaS and operations), and <strong>managed services</strong> consume it to deliver higher-level offerings. The <strong>web console</strong> exposes these capabilities as <strong>products</strong> (compute, storage, network, SSH keys, and more), scoped by <strong>organization</strong>, <strong>project</strong>, and <strong>availability zone (AZ)</strong>.</p>
+<p>Read <strong><a href="tenancy-and-console/">Tenancy and console</a></strong> first for organizations, projects, IAM, and how to navigate resources.</p>
 <h2 id="foundation">Foundation</h2>
-<p>The foundation provides the core capabilities that the rest of the platform relies on. Everything else is built on these four pillars.</p>
+<p>The foundation provides the core capabilities that the rest of the platform relies on.</p>
 <div class="grid cards">
 <ul>
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-server" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><path d="M6 6h.01M6 18h.01"/></svg></span> <strong>Virtualization</strong></p>
 <hr />
-<p>Run virtual machines with live migration, snapshots, and templates. VMs are managed like any other workload and can use multiple networks and persistent or ephemeral disks.</p>
+<p><strong>Instances (VMs)</strong>, <strong>live migration</strong>, <strong>snapshots</strong> (VM and scheduled volume), <strong>restores</strong>, <strong>cloud-init</strong>, SSH, serial, and VNC.</p>
 <p><a href="virtualization/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Virtualization</a></p>
 </li>
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-network" viewBox="0 0 24 24"><rect width="6" height="6" x="16" y="16" rx="1"/><rect width="6" height="6" x="2" y="16" rx="1"/><rect width="6" height="6" x="9" y="2" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3M12 12V8"/></svg></span> <strong>Network</strong></p>
 <hr />
-<p>Software-defined networking: VPCs, subnets, NAT gateways, BGP, and firewalling. Tenant isolation, overlapping private IPs, and stable IPs across VM migration.</p>
+<p><strong>VPCs</strong>, <strong>subnets</strong>, <strong>NAT gateways</strong>, <strong>load balancers</strong>, <strong>Elastic IPs (EIPs)</strong>, and <strong>firewalls</strong>: CSP-style networking with IPAM and optional Internet exposure.</p>
 <p><a href="network/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Network</a></p>
 </li>
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-hard-drive" viewBox="0 0 24 24"><path d="M22 12H2M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11M6 16h.01M10 16h.01"/></svg></span> <strong>Storage</strong></p>
 <hr />
-<p>Block, file, and object storage with replication and disaster recovery. VM disks, shared volumes, thin provisioning, and cross-AZ mirroring.</p>
+<p><strong>Disks</strong> and <strong>disk snapshots</strong>: block volumes (and classes such as high-speed), create from <strong>blank</strong>, <strong>HTTP image</strong>, <strong>snapshot</strong>, or <strong>clone</strong>; online resize.</p>
 <p><a href="storage/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Storage</a></p>
 </li>
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-settings" viewBox="0 0 24 24"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg></span> <strong>Tooling</strong></p>
 <hr />
-<p>GitOps-driven deployment, observability, and a multi-tenant web console. Deploy and manage the whole platform and all AZs from a single place.</p>
+<p><strong>GitOps</strong>, <strong>web console</strong>, <strong>SSH key store</strong>, observability, and quotas—deploy and operate the platform and tenant resources from one place.</p>
 <p><a href="tooling/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Tooling</a></p>
 </li>
 </ul>
 </div>
 <h2 id="managed-services">Managed services</h2>
-<p>These services run on the foundation. They consume virtualization, network, and storage to deliver platform and application offerings to your customers.</p>
+<p>These services run on the foundation. Availability depends on your Superphenix version and configuration.</p>
 <div class="grid cards">
 <ul>
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span> <strong>PaaS</strong></p>
 <hr />
-<p>Kubernetes as a Service (KaaS): provision tenant Kubernetes clusters that use the platform’s VMs, storage, and networking. Each cluster gets its own control plane and nodes, with isolation and self-service.</p>
+<p><strong>Kubernetes (KaaS)</strong> — VM node pools, <strong>integrated CNI/CSI</strong>, upgrades, and the same VPCs and storage as IaaS. <em>Console availability varies by release.</em></p>
 <p><a href="paas/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> PaaS</a></p>
 </li>
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-package" viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73zM12 22V12"/><path d="M3.29 7 12 12l8.71-5M7.5 4.27l9 5.15"/></svg></span> <strong>SaaS</strong></p>
 <hr />
-<p>Ready-to-run applications on the platform: databases, container registries (Harbor), Git hosting (GitLab), file sync (Nextcloud), and more. They consume storage, networking, and optionally PaaS or VMs.</p>
+<p><strong>Managed applications</strong> (databases, registries, Git, file sync, …) — the service catalog is evolving; see the SaaS page.</p>
 <p><a href="saas/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> SaaS</a></p>
 </li>
 </ul>
 </div>
 <h2 id="how-they-fit-together">How they fit together</h2>
 <ul>
-<li><strong>Foundation</strong> — Virtualization runs VMs; the network layer gives them VPCs and subnets; storage provides disks and shared volumes; tooling deploys and operates everything via GitOps and the web console.</li>
-<li><strong>Managed services</strong> — PaaS provisions tenant Kubernetes clusters whose nodes are VMs and whose workloads use the same storage and network. SaaS offerings run on those clusters or on VMs, using the same storage and networking.</li>
+<li><strong>Tenancy</strong> — Organizations and projects isolate resources and access; see <a href="tenancy-and-console/">Tenancy and console</a>.</li>
+<li><strong>Foundation</strong> — Virtualization runs VMs; the network layer provides VPCs and subnets; storage backs disks; tooling drives GitOps and the console.</li>
+<li><strong>Managed services</strong> — When enabled, PaaS and SaaS consume the same virtualization, storage, and network primitives.</li>
 </ul>
-<p>The <strong>foundation</strong> is your IaaS and operations layer; <strong>managed services</strong> are what you offer on top of it (KaaS, databases, registries, etc.). Both are managed from the same console and GitOps workflow.</p>
 <p>See <a href="../architecture/">Architecture overview</a> for AZs, regions, and central administration.</p>
 
 

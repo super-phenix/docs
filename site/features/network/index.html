@@ -356,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/" class="md-nav__link">
+      <a href="../../installation/getting-started/" class="md-nav__link">
         
   
   
@@ -392,6 +392,34 @@
     
   
     Full installations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/production-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production setup
   
 
     
@@ -662,6 +690,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../tenancy-and-console/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenancy & console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../virtualization/" class="md-nav__link">
         
   
@@ -751,10 +807,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#vpcs-virtual-private-cloud" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        VPCs (Virtual Private Cloud)
       
     </span>
   </a>
@@ -762,13 +818,180 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#subnets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        Subnets
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Subnets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-subnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a subnet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat-gateway-and-fully-private-subnets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NAT gateway and “fully private” subnets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load balancers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load balancers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-ip-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual IP range
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mapping (backends)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elastic-ips-eips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic IPs (EIPs)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Elastic IPs (EIPs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-and-attach-an-eip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create and attach an EIP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewalls-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firewalls (network policies)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-examples-illustrative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration examples (illustrative)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration examples (illustrative)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subnet-with-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subnet with NAT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-balancer-with-static-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load balancer with static backends
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elastic-ip-with-dnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic IP with DNAT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1092,10 +1315,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#vpcs-virtual-private-cloud" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        VPCs (Virtual Private Cloud)
       
     </span>
   </a>
@@ -1103,13 +1326,180 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
+  <a href="#subnets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scope
+        Subnets
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Subnets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-subnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a subnet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IPAM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nat-gateway-and-fully-private-subnets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NAT gateway and “fully private” subnets
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-balancers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load balancers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Load balancers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#virtual-ip-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virtual IP range
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mapping (backends)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elastic-ips-eips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic IPs (EIPs)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Elastic IPs (EIPs)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-and-attach-an-eip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create and attach an EIP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firewalls-network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Firewalls (network policies)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-examples-illustrative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration examples (illustrative)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration examples (illustrative)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subnet-with-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subnet with NAT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-balancer-with-static-backends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load balancer with static backends
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elastic-ip-with-dnat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Elastic IP with DNAT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1132,22 +1522,174 @@
 
 
 <h1 id="network">Network</h1>
-<p>Superphenix provides <strong>software-defined networking (SDN)</strong> so that VMs and workloads get CSP-style networking: private and public IPs, tenant isolation, and firewalling—all managed from the same control plane as the rest of the platform.</p>
-<h2 id="what-you-get">What you get</h2>
+<p>Superphenix provides <strong>VPC-style</strong> networking for VMs: <strong>VPCs</strong>, <strong>subnets</strong>, optional <strong>NAT gateways</strong>, <strong>load balancers</strong>, <strong>Elastic IPs (EIPs)</strong>, and <strong>firewalls</strong>. All are scoped to an <strong>availability zone (AZ)</strong> and to your <strong>organization</strong> and <strong>project</strong> (see <a href="../tenancy-and-console/">Tenancy and console</a>).</p>
+<h2 id="vpcs-virtual-private-cloud">VPCs (Virtual Private Cloud)</h2>
+<p>A <strong>VPC</strong> is an <strong>L3 routing domain</strong> that <strong>contains subnets</strong>. Subnets inside the <strong>same</strong> VPC can reach each other according to routing and firewall rules—similar to placing multiple VLANs behind one router that interconnects them.</p>
 <ul>
-<li><strong>VPCs (Virtual Private Clouds)</strong> — Isolated L3 domains per tenant or project. Each VPC contains subnets and has its own routing. Different VPCs can use overlapping private IP ranges.</li>
-<li><strong>Subnets</strong> — L2 networks inside a VPC. VMs and pods get IPs from the subnet (via DHCP/DHCPv6 or static). IPs are stable across restarts and live migration. A VM can be attached to multiple subnets.</li>
-<li><strong>NAT gateways</strong> — Private subnets reach the Internet through NAT. Optional floating IPs to map a public IP to a VM or service. Gateways can be highly available and load-balanced.</li>
-<li><strong>BGP</strong> — Advertise public IPs to your upstream network for direct exposure (e.g. load balancers, DNS). Modes for local (single node) or resilient (multiple nodes) announcement.</li>
-<li><strong>Firewalling</strong> — Ingress and egress rules per tenant or subnet. Port security to limit spoofing. Rules are managed declaratively and applied across the SDN.</li>
-<li><strong>Self-service</strong> — Tenants create VPCs and subnets, attach VMs, and get addressing without manual VLAN or firewall configuration.</li>
-<li><strong>Dual stack</strong> — IPv4 and IPv6 where supported.</li>
+<li><strong>L3 routing</strong> — The VPC owns <strong>route tables</strong> and can host <strong>custom static routes</strong> to steer traffic between subnets, toward NAT, or to other next hops as you define.</li>
+<li><strong>Isolation</strong> — Two subnets in <strong>different</strong> VPCs <strong>cannot</strong> talk privately; communication would go via the <strong>Internet</strong> (unless you add future <strong>VPC peering</strong> when available).</li>
 </ul>
-<h2 id="scope">Scope</h2>
+<h2 id="subnets">Subnets</h2>
+<p>A <strong>subnet</strong> is an <strong>L2 segment</strong> with an IP range (<strong>CIDR</strong>) where you place instances. Think of it like a VLAN behind a router in a traditional design.</p>
 <ul>
-<li><strong>Per-AZ</strong> — VPCs, subnets, and gateways are scoped to an Availability Zone. You manage multiple AZs from the same console and GitOps.</li>
+<li>A subnet <strong>belongs to one VPC</strong>. The <strong>VPC</strong> routes traffic to other subnets in the same VPC and toward the <strong>Internet</strong> when configured.</li>
+<li><strong>Custom gateway</strong> — You can define how the subnet’s <strong>default gateway</strong> relates to the VPC router (advanced layouts).</li>
+<li><strong>Custom CIDR</strong> — The subnet’s <strong>CIDR block</strong> is fully under your control within platform limits.</li>
+<li><strong>Exclude IPs from IPAM</strong> — Reserve addresses (for gateways, load balancers, or static services) so <strong>DHCP/IPAM</strong> never hands them out.</li>
 </ul>
-<p>See <a href="../../architecture/">Architecture</a> for how AZs and regions relate.</p>
+<h3 id="create-a-subnet">Create a subnet</h3>
+<ol>
+<li>Choose <strong>IP family</strong>: <strong>IPv4</strong>, <strong>IPv6</strong>, or <strong>Dual stack</strong> (both).</li>
+<li>Set the <strong>CIDR</strong> — defines which IPs IPAM may assign to VMs.</li>
+<li>Prefer <strong>reasonably sized</strong> prefixes (for example <strong><code>/24</code></strong> for IPv4) to avoid overlap and keep address plans manageable. Use <strong>private</strong> ranges appropriate to your environment (for example <code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>).</li>
+</ol>
+<h3 id="ipam">IPAM</h3>
+<p>If you <strong>do not</strong> set a static IP on a VM, <strong>IPAM</strong> picks a free address <strong>inside the subnet CIDR</strong> (DHCP-style allocation). <strong>Static</strong> assignments bypass IPAM for that address.</p>
+<h3 id="nat-gateway-and-fully-private-subnets">NAT gateway and “fully private” subnets</h3>
+<p>When creating a subnet you can:</p>
+<ul>
+<li><strong>Enable NAT gateway</strong> — Instantiates a <strong>NAT gateway</strong> in the subnet so <strong>outbound</strong> traffic can reach the <strong>Internet</strong>. The subnet’s <strong>routing table</strong> is updated so traffic flows:</li>
+</ul>
+<p><code>VM → default gateway → NAT gateway → Internet</code></p>
+<ul>
+<li><strong>Fully private / isolated</strong> — A stricter mode that <strong>isolates</strong> the subnet so it is <strong>not reachable</strong> even from other subnets in the same VPC. Use <strong>firewall</strong> rules for finer control when you only need to restrict access, not full isolation.</li>
+</ul>
+<p>Subnets <strong>host NAT gateways</strong> when you enable them: the gateway is a resource in that subnet that provides <strong>SNAT</strong>, <strong>DNAT</strong>, and <strong>1:1 NAT</strong> (floating IP / <strong>FIP</strong>) patterns toward the Internet or peer networks.</p>
+<p>After creation, the subnet detail shows <strong>CIDR</strong>, <strong>gateway</strong>, <strong>VPC</strong>, and (if enabled) the <strong>NAT gateway</strong> IP.</p>
+<h2 id="load-balancers">Load balancers</h2>
+<p>A Superphenix load balancer is an <strong>L3/L4</strong> balancer. It exposes a <strong>custom VIP</strong> (virtual IP) that forwards to backends using <strong>TCP</strong>, <strong>UDP</strong>, or <strong>SCTP</strong> (protocol availability may vary by release). Listeners can reference <strong>named ports</strong> for clarity in larger configs.</p>
+<h3 id="virtual-ip-range">Virtual IP range</h3>
+<ul>
+<li>The front <strong>virtual IP</strong> is chosen by you from <strong><code>198.18.0.0/16</code></strong> (IPv4 only at the time of writing).</li>
+<li><strong>Do not</strong> reuse the same virtual IP on two load balancers.</li>
+</ul>
+<p>A load balancer is tied to a <strong>subnet</strong>; routing inside the <strong>VPC</strong> lets <strong>any VM in that VPC</strong> reach the VIP when the VPC routes to the subnet that owns it. The <strong>subnet</strong> is inferred from <strong>load balancer mapping</strong> (see below).</p>
+<h3 id="mapping-backends">Mapping (backends)</h3>
+<p><strong>Mapping</strong> defines where traffic is sent:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IP backends</strong></td>
+<td>Target backends by <strong>raw IP</strong> (static list).</td>
+</tr>
+<tr>
+<td><strong>Label backends</strong></td>
+<td>Target VMs matching a <strong>label selector</strong>; backends update <strong>dynamically</strong> when new VMs match.</td>
+</tr>
+</tbody>
+</table>
+<p>You then define <strong>ports</strong> (for example <strong>80</strong> / <strong>443</strong>) for forwarding.</p>
+<p><strong>Health checks</strong> probe backends; failing members are removed. Health check <strong>source</strong> addresses come from the <strong>subnet</strong> attached to the load balancer.</p>
+<div class="admonition warning">
+<p class="admonition-title">Same subnet for all backends</p>
+<p>Selector or endpoint configuration must resolve to backends on a <strong>single subnet</strong>. Only the <strong>first network interface</strong> of each VM participates in load balancing—<strong>secondary NICs</strong> are not used. <strong>All VMs behind one load balancer should sit in the same subnet.</strong></p>
+</div>
+<h2 id="elastic-ips-eips">Elastic IPs (EIPs)</h2>
+<p><strong>Elastic IPs</strong> map <strong>public</strong> addresses to <strong>private</strong> addresses in your subnet (NAT / DNAT patterns).</p>
+<p><strong>Prerequisites</strong></p>
+<ul>
+<li>Enable a <strong>NAT gateway</strong> on the <strong>subnet</strong> where you expose workloads. That NAT gateway handles traffic toward your private instances.</li>
+</ul>
+<h3 id="create-and-attach-an-eip">Create and attach an EIP</h3>
+<ol>
+<li>Open the <strong>subnet</strong> where you need Internet access or inbound publishing.</li>
+<li>Use <strong>Attach EIP</strong> (or equivalent in <strong>Options</strong>).</li>
+<li>Name the EIP.</li>
+</ol>
+<p>Then choose how NAT behaves:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Internal IP</strong></td>
+<td><strong>1:1 NAT</strong> between one <strong>private</strong> VM IP and the EIP. Inbound to the EIP hits that VM; outbound from that VM uses the EIP on the Internet.</td>
+</tr>
+<tr>
+<td><strong>Internal CIDR</strong></td>
+<td><strong>SNAT</strong> a whole <strong>CIDR</strong> inside the subnet (often the <strong>full subnet CIDR</strong>) so outbound connections use the EIP as source.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DNAT (port forwarding)</strong> — Map <strong>external</strong> ports on the EIP to an <strong>internal</strong> IP and <strong>port</strong> on a VM inside the CIDR (open a service to the Internet).</p>
+<div class="admonition note">
+<p class="admonition-title">One NAT gateway per subnet (today)</p>
+<p>A subnet’s <strong>VPC NAT gateway</strong> currently serves <strong>that subnet’s</strong> outbound path. If a subnet needs Internet access or inbound reachability, it needs <strong>its own</strong> NAT gateway and <strong>its own</strong> EIPs. <strong>Sharing</strong> one NAT gateway across multiple subnets may come in a future release to save public IPs.</p>
+</div>
+<p>Created EIPs appear under <strong>Network → EIPs</strong> (or equivalent).</p>
+<h2 id="firewalls-network-policies">Firewalls (network policies)</h2>
+<p>Firewall rules are expressed as <strong>network policies</strong> (Kubernetes-style semantics):</p>
+<ul>
+<li><strong>Default deny</strong> — Traffic that is <strong>not explicitly allowed</strong> is <strong>dropped</strong> (allow-only model).</li>
+<li><strong>Match criteria</strong> — Rules can target <strong>CIDRs</strong> and/or <strong>label selectors</strong> (for VMs or workloads).</li>
+<li><strong>Protocols</strong> — <strong>TCP</strong>, <strong>UDP</strong>, and <strong>SCTP</strong> where supported.</li>
+</ul>
+<p>The console UX may still evolve; power users can mirror the same rules in <strong>GitOps</strong> for review and audit.</p>
+<h2 id="configuration-examples-illustrative">Configuration examples (illustrative)</h2>
+<p>These snippets illustrate the <strong>ideas</strong> behind console fields. <strong>Field names and APIs</strong> may differ in your release—use them as a checklist when translating to your GitOps manifests or API calls.</p>
+<h3 id="subnet-with-nat">Subnet with NAT</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Illustrative — align with your Superphenix API / CRDs</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.superphenix.example/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subnet</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-net-a</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">vpcRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tenant-vpc</span>
+<span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fr01-als01</span>
+<span class="w">  </span><span class="nt">ipFamily</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
+<span class="w">  </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.0/24</span>
+<span class="w">  </span><span class="nt">natGateway</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<h3 id="load-balancer-with-static-backends">Load balancer with static backends</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Illustrative</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loadbalancer.superphenix.example/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-frontend</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">subnetRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-net-a</span>
+<span class="w">  </span><span class="nt">vip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">198.18.10.50</span>
+<span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+<span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+<span class="w">      </span><span class="nt">backends</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">staticIPs</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.20</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.21</span>
+<span class="w">  </span><span class="nt">healthCheck</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">tcp</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+</code></pre></div>
+<h3 id="elastic-ip-with-dnat">Elastic IP with DNAT</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Illustrative</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">network.superphenix.example/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElasticIP</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public-web</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">subnetRef</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-net-a</span>
+<span class="w">  </span><span class="nt">snat</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">internalCidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.0/24</span>
+<span class="w">  </span><span class="nt">dnat</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">externalPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+<span class="w">      </span><span class="nt">internalIp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.20</span>
+<span class="w">      </span><span class="nt">internalPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+</code></pre></div>
+<p>See <a href="../virtualization/">Virtualization</a> for attaching VMs to subnets and <a href="../../architecture/">Architecture overview</a> for AZ scope.</p>
 
 
 

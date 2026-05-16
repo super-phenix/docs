@@ -1,18 +1,67 @@
 # Tooling
 
-Superphenix is operated through **GitOps** and a **web console**. Together they let you deploy, upgrade, and manage the whole platform and all availability zones from a single place.
+Superphenix is operated through **GitOps** and a **multi-tenant web console**. Tenant-facing features (instances, disks, networks, SSH keys) are grouped as **products** in the sidebar; platform teams use GitOps to install and upgrade the stack itself.
 
-## What you get
+## How resources are configured
 
-- **GitOps** — The stack and tenant resources are defined in Git and applied automatically. Deploy or update an entire AZ (or many AZs) from charts and manifests. Changes are tracked, reviewable, and rollbackable. Full AZ deployment in a short time on real or virtualized hardware.
-- **Web console** — Multi-tenant console to create and manage VMs, networks, and storage across multiple AZs. Access serial and VNC consoles through a proxy with permissions and audit logging. View usage and billing-related information. Resources created in the console can be reflected in Git, and resources defined in Git appear in the console.
-- **Observability** — Metrics and logs for the whole platform: VMs, storage, and network. Dashboards for health and capacity. Usage data for billing and planning.
-- **Security and quotas** — Admission rules and quotas (CPU, memory, storage) per tenant or namespace. RBAC for API and console access. Firewall and network policies for tenant isolation.
-- **Testing** — Run the full stack in virtualized or physical labs. Test changes in branches and promote via merge requests. Optional chaos engineering to simulate failures.
-- **OS and cluster lifecycle** — Immutable OS and cluster lifecycle driven by configuration and GitOps, so the platform is declarative from the OS up.
+You can manage almost all tenant resources in two ways:
 
-## Central administration
+| Channel | Typical use |
+|---------|-------------|
+| **Web console** | Interactive creation, edits, day-2 operations (snapshots, attach NICs, firewall tweaks). |
+| **GitOps** | Declarative source of truth, review via merge requests, promotion across environments, drift correction. |
 
-GitOps and the console provide a **single control plane** over all AZs: one Git repo (or hierarchy) and one console to deploy, configure, and operate the platform. Each AZ remains an independent cluster for isolation and resilience.
+The same objects (VMs, disks, networks, policies) are represented in the API and in Git; pick the workflow that fits your team. See [Tenancy and console](tenancy-and-console.md) for org/project context.
 
-See [Architecture](../architecture.md) for AZs, regions, and central administration, and [Testing](../testing.md) for the testing approach.
+## GitOps
+
+- Declarative manifests and charts define **clusters**, **AZs**, and often **tenant resources**.
+- Changes are **reviewed**, **versioned**, and **rolled back** like application code.
+- The same workflow can manage **one AZ** or **many AZs** from a single repository (or a structured set of repos).
+
+See [Architecture overview](../architecture.md) for how administration spans regions and AZs.
+
+## Web console
+
+The console is where users:
+
+- Pick **organization** and **project** (see [Tenancy and console](tenancy-and-console.md)).
+- Open **products**: Compute, Storage, Network, SSH keys, and (when enabled) PaaS/SaaS.
+- Filter resources by **availability zone** and use **auto-refresh** timers on list views.
+- Open **resource details**, **share links** for support, and run **quick actions** from row menus.
+
+## SSH key store
+
+The **SSH keys** product is a **key repository** you maintain for your organization. When you create a **VM**, you can attach keys from this store so cloud-init (or equivalent) can install them on first boot—see [Virtualization](virtualization.md).
+
+**Typical workflow**
+
+1. Import or paste a public key in **SSH keys** (name it for easy reference).
+2. When creating an instance, **select** one or more stored keys.
+3. Ensure the image supports cloud-init if you rely on automatic injection.
+
+Illustrative manifest (names vary by API):
+
+```yaml
+apiVersion: compute.superphenix.example/v1alpha1
+kind: SSHPublicKey
+metadata:
+  name: ops-team-default
+spec:
+  publicKey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI...
+```
+
+## Observability
+
+Metrics, logs, and dashboards cover **platform health** and **tenant usage** (capacity, quotas, billing-related signals). Exact integrations depend on your deployment.
+
+## Security and quotas
+
+- **RBAC** ties console and API access to **IAM roles** (organization vs project scopes).
+- **Quotas** limit CPU, memory, storage, and counts of resources per tenant or project.
+
+## Testing and lifecycle
+
+Platform teams often validate changes in **lab AZs** before promoting Git revisions. **Immutable** OS images (for example **Talos** on the management or workload plane) keep node configuration reproducible—see [Getting started](../installation/getting-started.md) for the operator install path.
+
+See [Testing](../testing.md) for project testing practices and [Tenancy and console](tenancy-and-console.md) for support information to include when opening tickets.

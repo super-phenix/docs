@@ -14,8 +14,9 @@ nav = [
   { "Home" = "index.md" },
   { "Introduction" = "introduction.md" },
   { "Installation" = [
-    { "Getting started" = "getting-started.md" },
-    { "Full installations" = "installation/full-installations.md" }
+    { "Getting started" = "installation/getting-started.md" },
+    { "Full installations" = "installation/full-installations.md" },
+    { "Production setup" = "installation/production-setup.md" }
   ]},
   { "Architecture" = [
     { "Overview" = "architecture.md" },
@@ -25,6 +26,7 @@ nav = [
   ]},
   { "Features" = [
     { "Overview" = "features/index.md" },
+    { "Tenancy & console" = "features/tenancy-and-console.md" },
     { "Virtualization" = "features/virtualization.md" },
     { "Network" = "features/network.md" },
     { "Storage" = "features/storage.md" },

@@ -1,10 +1,12 @@
 # Features
 
-Superphenix is organized in two layers: the **foundation** provides the infrastructure platform (IaaS and operations), and **managed services** consume it to deliver higher-level offerings such as Kubernetes-as-a-Service and ready-to-run applications.
+Superphenix is organized in two layers: the **foundation** provides the infrastructure platform (IaaS and operations), and **managed services** consume it to deliver higher-level offerings. The **web console** exposes these capabilities as **products** (compute, storage, network, SSH keys, and more), scoped by **organization**, **project**, and **availability zone (AZ)**.
+
+Read **[Tenancy and console](tenancy-and-console.md)** first for organizations, projects, IAM, and how to navigate resources.
 
 ## Foundation
 
-The foundation provides the core capabilities that the rest of the platform relies on. Everything else is built on these four pillars.
+The foundation provides the core capabilities that the rest of the platform relies on.
 
 <div class="grid cards" markdown>
 
@@ -12,7 +14,7 @@ The foundation provides the core capabilities that the rest of the platform reli
 
     ---
 
-    Run virtual machines with live migration, snapshots, and templates. VMs are managed like any other workload and can use multiple networks and persistent or ephemeral disks.
+    **Instances (VMs)**, **live migration**, **snapshots** (VM and scheduled volume), **restores**, **cloud-init**, SSH, serial, and VNC.
 
     [:octicons-arrow-right-24: Virtualization](virtualization.md)
 
@@ -20,7 +22,7 @@ The foundation provides the core capabilities that the rest of the platform reli
 
     ---
 
-    Software-defined networking: VPCs, subnets, NAT gateways, BGP, and firewalling. Tenant isolation, overlapping private IPs, and stable IPs across VM migration.
+    **VPCs**, **subnets**, **NAT gateways**, **load balancers**, **Elastic IPs (EIPs)**, and **firewalls**: CSP-style networking with IPAM and optional Internet exposure.
 
     [:octicons-arrow-right-24: Network](network.md)
 
@@ -28,7 +30,7 @@ The foundation provides the core capabilities that the rest of the platform reli
 
     ---
 
-    Block, file, and object storage with replication and disaster recovery. VM disks, shared volumes, thin provisioning, and cross-AZ mirroring.
+    **Disks** and **disk snapshots**: block volumes (and classes such as high-speed), create from **blank**, **HTTP image**, **snapshot**, or **clone**; online resize.
 
     [:octicons-arrow-right-24: Storage](storage.md)
 
@@ -36,7 +38,7 @@ The foundation provides the core capabilities that the rest of the platform reli
 
     ---
 
-    GitOps-driven deployment, observability, and a multi-tenant web console. Deploy and manage the whole platform and all AZs from a single place.
+    **GitOps**, **web console**, **SSH key store**, observability, and quotas—deploy and operate the platform and tenant resources from one place.
 
     [:octicons-arrow-right-24: Tooling](tooling.md)
 
@@ -44,7 +46,7 @@ The foundation provides the core capabilities that the rest of the platform reli
 
 ## Managed services
 
-These services run on the foundation. They consume virtualization, network, and storage to deliver platform and application offerings to your customers.
+These services run on the foundation. Availability depends on your Superphenix version and configuration.
 
 <div class="grid cards" markdown>
 
@@ -52,7 +54,7 @@ These services run on the foundation. They consume virtualization, network, and 
 
     ---
 
-    Kubernetes as a Service (KaaS): provision tenant Kubernetes clusters that use the platform’s VMs, storage, and networking. Each cluster gets its own control plane and nodes, with isolation and self-service.
+    **Kubernetes (KaaS)** — VM node pools, **integrated CNI/CSI**, upgrades, and the same VPCs and storage as IaaS. *Console availability varies by release.*
 
     [:octicons-arrow-right-24: PaaS](paas.md)
 
@@ -60,7 +62,7 @@ These services run on the foundation. They consume virtualization, network, and 
 
     ---
 
-    Ready-to-run applications on the platform: databases, container registries (Harbor), Git hosting (GitLab), file sync (Nextcloud), and more. They consume storage, networking, and optionally PaaS or VMs.
+    **Managed applications** (databases, registries, Git, file sync, …) — the service catalog is evolving; see the SaaS page.
 
     [:octicons-arrow-right-24: SaaS](saas.md)
 
@@ -68,9 +70,8 @@ These services run on the foundation. They consume virtualization, network, and 
 
 ## How they fit together
 
-- **Foundation** — Virtualization runs VMs; the network layer gives them VPCs and subnets; storage provides disks and shared volumes; tooling deploys and operates everything via GitOps and the web console.
-- **Managed services** — PaaS provisions tenant Kubernetes clusters whose nodes are VMs and whose workloads use the same storage and network. SaaS offerings run on those clusters or on VMs, using the same storage and networking.
-
-The **foundation** is your IaaS and operations layer; **managed services** are what you offer on top of it (KaaS, databases, registries, etc.). Both are managed from the same console and GitOps workflow.
+- **Tenancy** — Organizations and projects isolate resources and access; see [Tenancy and console](tenancy-and-console.md).
+- **Foundation** — Virtualization runs VMs; the network layer provides VPCs and subnets; storage backs disks; tooling drives GitOps and the console.
+- **Managed services** — When enabled, PaaS and SaaS consume the same virtualization, storage, and network primitives.
 
 See [Architecture overview](../architecture.md) for AZs, regions, and central administration.

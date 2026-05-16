@@ -356,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/" class="md-nav__link">
+      <a href="../../installation/getting-started/" class="md-nav__link">
         
   
   
@@ -392,6 +392,34 @@
     
   
     Full installations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/production-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production setup
   
 
     
@@ -662,6 +690,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../tenancy-and-console/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenancy & console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../virtualization/" class="md-nav__link">
         
   
@@ -835,10 +891,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#current-status" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        Current status
       
     </span>
   </a>
@@ -846,13 +902,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#who-its-for" class="md-nav__link">
+  <a href="#kubernetes-on-superphenix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Who it’s for
+        Kubernetes on Superphenix
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes on Superphenix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-pools-worker-and-control-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM pools (worker and control nodes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1103,10 +1198,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-you-get" class="md-nav__link">
+  <a href="#current-status" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you get
+        Current status
       
     </span>
   </a>
@@ -1114,13 +1209,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#who-its-for" class="md-nav__link">
+  <a href="#kubernetes-on-superphenix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Who it’s for
+        Kubernetes on Superphenix
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Kubernetes on Superphenix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-pools-worker-and-control-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VM pools (worker and control nodes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1154,45 +1288,77 @@
 
 
 <h1 id="paas-platform-as-a-service">PaaS (Platform as a Service)</h1>
-<p>Superphenix offers <strong>Kubernetes as a Service (KaaS)</strong> as a core PaaS capability: you provision <strong>tenant Kubernetes clusters</strong> that run on the platform and consume its virtualization, storage, and networking.</p>
-<h2 id="what-you-get">What you get</h2>
+<p>Superphenix is designed to offer <strong>Kubernetes as a Service (KaaS)</strong> so tenants can run <strong>managed Kubernetes clusters</strong> on the same <strong>virtualization</strong>, <strong>storage</strong>, and <strong>network</strong> stack as your IaaS workloads.</p>
+<h2 id="current-status">Current status</h2>
+<p>In some console releases the <strong>SaaS / PaaS</strong> area is still a <strong>placeholder</strong>: <strong>KaaS may not yet appear</strong> as a selectable product. When enabled in your environment, you create and manage tenant clusters from the console and/or GitOps like other resources.</p>
+<p>The sections below describe the <strong>intended</strong> Kubernetes feature set on Superphenix.</p>
+<h2 id="kubernetes-on-superphenix">Kubernetes on Superphenix</h2>
+<h3 id="vm-pools-worker-and-control-nodes">VM pools (worker and control nodes)</h3>
+<p>Tenant clusters are backed by <strong>pools of VMs</strong> you define:</p>
 <ul>
-<li><strong>Tenant clusters</strong> — Each tenant (or project) gets one or more dedicated Kubernetes clusters with their own control plane and node pools. Full isolation and self-service.</li>
-<li><strong>Nodes as VMs</strong> — Cluster nodes are virtual machines provisioned by the platform. They use the same <a href="../virtualization/">virtualization</a> layer: live migration, snapshots, and placement controls.</li>
-<li><strong>Storage for workloads</strong> — Tenant clusters use the platform’s <a href="../storage/">storage</a>: block and file volumes (PVCs) with replication, snapshots, and cross-AZ mirroring where configured.</li>
-<li><strong>Networking</strong> — Tenant clusters attach to the platform’s <a href="../network/">network</a>: VPCs, subnets, NAT, and firewalling so workloads get the same CSP-style networking as bare VMs.</li>
-<li><strong>Lifecycle</strong> — Create, scale, upgrade, and delete clusters via the same <a href="../tooling/">tooling</a> (GitOps and web console) you use for the rest of the platform.</li>
+<li><strong>Custom VM sizing</strong> — CPU, memory, and disk for control-plane and worker <strong>machine types</strong>.</li>
+<li><strong>Networking</strong> — Node pools are attached to your <strong><a href="../network/">VPCs and subnets</a></strong>; pods and services use the integrated <strong>CNI</strong> on top of that underlay.</li>
 </ul>
-<h2 id="who-its-for">Who it’s for</h2>
-<p>PaaS is for tenants who want to run containerized workloads without managing the underlying infrastructure. They get a standard Kubernetes API and can deploy Helm charts, operators, and custom apps, while the platform handles nodes, storage, and network.</p>
+<h3 id="platform-integration">Platform integration</h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CNI</strong></td>
+<td><strong>Integrated CNI</strong> — cluster networking is provided by the platform stack (same SDN as VMs where applicable).</td>
+</tr>
+<tr>
+<td><strong>CSI</strong></td>
+<td><strong>Integrated CSI</strong> — persistent volumes map to the platform <strong><a href="../storage/">storage</a></strong> layer.</td>
+</tr>
+<tr>
+<td><strong>Live migration</strong></td>
+<td>Worker <strong>VMs</strong> can be <strong>live-migrated</strong> like any other instance when policy allows, for node maintenance without hard downtime for stateless workloads.</td>
+</tr>
+<tr>
+<td><strong>Upgrades</strong></td>
+<td><strong>Automatic upgrades</strong> of cluster components (Kubernetes patch/minor versions per policy) reduce manual toil—exact knobs depend on your release.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="operations">Operations</h3>
+<ul>
+<li>Create, scale, upgrade, and delete clusters via <strong><a href="../tooling/">Tooling</a></strong> (GitOps and console).</li>
+<li>Use the same <strong>organization / project</strong> RBAC as the rest of the platform—see <a href="../tenancy-and-console/">Tenancy and console</a>.</li>
+</ul>
 <h2 id="foundation-used">Foundation used</h2>
 <table>
 <thead>
 <tr>
 <th>Foundation</th>
-<th>How PaaS uses it</th>
+<th>How Kubernetes uses it</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Virtualization</td>
-<td>VM nodes for each tenant cluster</td>
+<td><strong>VM pools</strong> for nodes (<a href="../virtualization/">Virtualization</a>)</td>
 </tr>
 <tr>
 <td>Network</td>
-<td>VPCs and subnets for cluster and workload traffic</td>
+<td>VPCs, subnets, NAT, LB, firewall (<a href="../network/">Network</a>)</td>
 </tr>
 <tr>
 <td>Storage</td>
-<td>Block and file volumes for PVCs</td>
+<td>CSI-backed volumes (<a href="../storage/">Storage</a>)</td>
 </tr>
 <tr>
 <td>Tooling</td>
-<td>GitOps and console to provision and manage clusters</td>
+<td>GitOps and console (<a href="../tooling/">Tooling</a>)</td>
 </tr>
 </tbody>
 </table>
-<p>See the <a href="../">Features overview</a> for the split between foundation and managed services.</p>
+<p>See the <a href="../">Features overview</a>.</p>
 
 
 
