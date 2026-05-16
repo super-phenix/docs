@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/architecture/deployment-requirements/">
+        <link rel="canonical" href="https://docs.superphenix.net/features/tenancy-and-console/">
       
       
-        <link rel="prev" href="../deployment-topology/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../network-requirements/">
+        <link rel="next" href="../virtualization/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Hardware requirements - Superphenix documentation</title>
+        <title>Tenancy and console - Superphenix documentation</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hardware-requirements_1" class="md-skip">
+        <a href="#tenancy-and-console" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hardware requirements
+              Tenancy and console
             
           </span>
         </div>
@@ -437,20 +437,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -470,12 +468,174 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
   Architecture
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/deployment-topology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Deployment topology
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/deployment-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Hardware requirements
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/network-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Network requirements
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Features
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Features
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -511,33 +671,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../deployment-topology/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Deployment topology
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -557,7 +690,7 @@
   <span class="md-ellipsis">
     
   
-  Hardware requirements
+  Tenancy & console
 
     
   </span>
@@ -574,7 +707,7 @@
   <span class="md-ellipsis">
     
   
-  Hardware requirements
+  Tenancy & console
 
     
   </span>
@@ -600,10 +733,143 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#alignment-with-ceph" class="md-nav__link">
+  <a href="#organizations-and-projects" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Alignment with Ceph
+        Organizations and projects
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organizations and projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#organizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Organizations
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Projects
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolation-and-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Isolation and networking
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Disaster recovery
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Working context
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organization-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Organization settings
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organization settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        General
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projects_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Projects
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Users
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-roles-and-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        IAM (roles and permissions)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Account
       </span>
     </span>
   </a>
@@ -611,22 +877,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hardware-requirements" class="md-nav__link">
+  <a href="#products-and-the-resource-list" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Hardware requirements
+        Products and the resource list
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Hardware requirements">
+    <nav class="md-nav" aria-label="Products and the resource list">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#hyperconverged-setup" class="md-nav__link">
+  <a href="#mental-model-organization-project-product-az" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Hyperconverged setup
+        Mental model: Organization → Project → Product → AZ
       </span>
     </span>
   </a>
@@ -634,33 +900,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#decoupled-setup" class="md-nav__link">
+  <a href="#browsing-resources" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Decoupled setup
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Decoupled setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#storage-node-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Storage node
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#virtualization-nodes-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Virtualization nodes
+        Browsing resources
       </span>
     </span>
   </a>
@@ -671,31 +914,15 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#management-cluster-decoupled" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#getting-help-support" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Management cluster (decoupled)
+        Getting help (support)
       </span>
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Recommendations
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -715,140 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../network-requirements/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Network requirements
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Features
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-  Features
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Overview
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/tenancy-and-console/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Tenancy & console
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/virtualization/" class="md-nav__link">
+      <a href="../virtualization/" class="md-nav__link">
         
   
   
@@ -875,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/network/" class="md-nav__link">
+      <a href="../network/" class="md-nav__link">
         
   
   
@@ -902,7 +996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/storage/" class="md-nav__link">
+      <a href="../storage/" class="md-nav__link">
         
   
   
@@ -929,7 +1023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/tooling/" class="md-nav__link">
+      <a href="../tooling/" class="md-nav__link">
         
   
   
@@ -956,7 +1050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/paas/" class="md-nav__link">
+      <a href="../paas/" class="md-nav__link">
         
   
   
@@ -983,7 +1077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../features/saas/" class="md-nav__link">
+      <a href="../saas/" class="md-nav__link">
         
   
   
@@ -1209,10 +1303,143 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#alignment-with-ceph" class="md-nav__link">
+  <a href="#organizations-and-projects" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Alignment with Ceph
+        Organizations and projects
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organizations and projects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#organizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Organizations
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Projects
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isolation-and-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Isolation and networking
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Disaster recovery
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Working context
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organization-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Organization settings
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organization settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        General
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projects_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Projects
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Users
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iam-roles-and-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        IAM (roles and permissions)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Account
       </span>
     </span>
   </a>
@@ -1220,22 +1447,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hardware-requirements" class="md-nav__link">
+  <a href="#products-and-the-resource-list" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Hardware requirements
+        Products and the resource list
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Hardware requirements">
+    <nav class="md-nav" aria-label="Products and the resource list">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#hyperconverged-setup" class="md-nav__link">
+  <a href="#mental-model-organization-project-product-az" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Hyperconverged setup
+        Mental model: Organization → Project → Product → AZ
       </span>
     </span>
   </a>
@@ -1243,33 +1470,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#decoupled-setup" class="md-nav__link">
+  <a href="#browsing-resources" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Decoupled setup
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Decoupled setup">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#storage-node-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Storage node
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#virtualization-nodes-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Virtualization nodes
+        Browsing resources
       </span>
     </span>
   </a>
@@ -1280,31 +1484,15 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#management-cluster-decoupled" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#getting-help-support" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Management cluster (decoupled)
+        Getting help (support)
       </span>
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Recommendations
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1326,559 +1514,137 @@
   
 
 
-<h1 id="hardware-requirements_1">Hardware requirements</h1>
-<div class="justify">
-<p>Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in <a href="../deployment-topology/">Deployment topology</a>. The same <strong>cluster</strong> can imply very different server counts and configurations depending on whether you run a <strong>hyperconverged</strong> stack (storage and virtualization together) or a <strong>decoupled</strong> stack (dedicated storage and dedicated virtualization clusters).</p>
+<h1 id="tenancy-and-console">Tenancy and console</h1>
+<p>Superphenix separates work into <strong>organizations</strong> and <strong>projects</strong>. The <strong>web console</strong> is where you pick that context, manage access, and open each <strong>product</strong> (compute, storage, network, and more).</p>
+<h2 id="organizations-and-projects">Organizations and projects</h2>
+<h3 id="organizations">Organizations</h3>
 <ul>
-<li><strong><a href="#hyperconverged-setup">Hyperconverged</a></strong> — Storage and virtualization on the same nodes. Size hosts for combined Ceph and hypervisor needs, plus headroom for failure and recovery.</li>
-<li><strong><a href="#decoupled-setup">Decoupled</a></strong> — Requirements are split by role:<ul>
-<li><strong><a href="#storage-node-setup">Storage node</a></strong> — Dedicated Ceph / storage tier in a decoupled topology. Same hardware floors as hyperconverged storage roles, sized for OSD throughput and replication.</li>
-<li><strong><a href="#virtualization-nodes-setup">Virtualization nodes</a></strong> — Dedicated hypervisor tier in a decoupled topology. Same CPU, RAM, and boot-disk expectations as hyperconverged compute roles, sized for VM density and migration.</li>
+<li><strong>Groups projects</strong> — An organization is the top-level container for one or more <strong>projects</strong>.</li>
+<li><strong>Administrators</strong> — Organization-level admins manage settings, users, IAM, and billing for that tenant.</li>
+<li><strong>Billing</strong> — Usage and billing can be tracked at <strong>organization</strong> scope (exact metering depends on your deployment).</li>
 </ul>
-</li>
-</ul>
-<div class="admonition important">
-<p class="admonition-title">Choose your topology first</p>
-<p>Decide which <strong>deployment topology</strong> you want (hyperconverged or decoupled) <strong>before</strong> sizing hardware. The <a href="#hardware-requirements">hardware requirements</a> tabs below depend on that choice.</p>
-</div>
-<p>Deployment topology is the main factor that influences the requirements:</p>
+<h3 id="projects">Projects</h3>
 <ul>
-<li><strong>Hyperconverged</strong> — Each node contributes to both storage and virtualization. Disk, CPU, and memory requirements are <strong>combined</strong> on the same machines: size hosts for the sum of what the Ceph storage and the hypervisor need, plus headroom for failure and recovery</li>
-<li><strong>Decoupled</strong> — Requirements <strong>split by role</strong>. The storage tier must satisfy Ceph expectations for OSD throughput, replication, and recovery; the virtualization tier is sized separately for VM density, live migration, and control-plane overhead. You plan distinct footprints for storage hosts, for hypervisor hosts, and for the <strong>management cluster</strong> that runs the platform control plane (see <a href="#management-cluster-decoupled">Management cluster (decoupled)</a>)</li>
+<li><strong>Contains resources</strong> — All IaaS objects (VMs, disks, VPCs, subnets, snapshots, etc.) belong to a <strong>project</strong>. This is the main workspace boundary.</li>
+<li><strong>Users and RBAC</strong> — Projects are where <strong>role-based access</strong> applies: you assign <strong>custom roles</strong> (defined in IAM) so users can create, view, or manage resources only where allowed.</li>
+<li><strong>Billing</strong> — Usage can also be attributed at <strong>project</strong> level for chargeback or internal allocation.</li>
+<li><strong>Replication (roadmap)</strong> — <strong>Cross-site or cross-AZ replication</strong> for a project is planned to be coordinated at <strong>project</strong> level (not yet universally available in all releases).</li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Multi-AZ and disaster recovery</p>
-<p>If you deploy <strong>multiple availability zones</strong> and expect <strong>disaster recovery</strong> between them, plan <strong>additional capacity</strong> on each AZ beyond steady-state workload. You need room for <strong>cross-AZ backup and replication</strong> traffic and retention. When an AZ is impaired, you also need room for <strong>absorbing or restarting workloads</strong> that you fail over or relocate from another zone. Without that margin, a zone sized only for its local peak can become overloaded during recovery or when it must temporarily carry part of a neighbor’s load.</p>
-</div>
-<hr />
-<h2 id="alignment-with-ceph">Alignment with Ceph</h2>
-<p>Superphenix relies on Ceph for block and distributed storage. Treat the official documentation as authoritative for storage nodes:</p>
+<p>At a glance:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Organization</th>
+<th>Project</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Tenant / customer boundary</td>
+<td>Resource and access boundary</td>
+</tr>
+<tr>
+<td><strong>Contains</strong></td>
+<td>Projects, org admins, org settings</td>
+<td>VMs, networks, disks, snapshots, …</td>
+</tr>
+<tr>
+<td><strong>Access</strong></td>
+<td>Org-wide IAM, invitations</td>
+<td>Per-project permissions via roles</td>
+</tr>
+</tbody>
+</table>
+<h3 id="isolation-and-networking">Isolation and networking</h3>
 <ul>
-<li><a href="https://docs.ceph.com/en/latest/start/hardware-recommendations/">Ceph Hardware Recommendations</a> — CPU per OSD (especially with NVMe), RAM and <code>osd_memory_target</code> headroom, OS vs data devices, enterprise-class SSDs/NVMe and endurance, minimum OSD sizes, and network bandwidth so replication and client I/O do not contend</li>
-<li><a href="https://docs.ceph.com/en/latest/rados/configuration/network-config-ref/">Ceph network configuration reference</a> — <strong>Public</strong> vs <strong>cluster</strong> networks, separating client traffic from OSD heartbeat, replication, and recovery</li>
+<li>Resources in <strong>different projects</strong> cannot talk to each other <strong>except via the Internet</strong> (no private peering between projects by default).</li>
+<li>Inside <strong>one project</strong>, you can attach resources to <strong>shared networks</strong> (VPCs and subnets). At the network level, a <strong>project is an isolation boundary</strong>.</li>
 </ul>
-<p>For production performance, prefer <strong>enterprise-tier</strong> SSDs or NVMe suitable for sustained writes and failure handling, consistent with Ceph’s guidance to avoid consumer-grade drives under heavy or mixed workloads.</p>
-<div class="admonition warning">
-<p class="admonition-title">Choose your disks carefully</p>
-<p>Deploying Ceph on <strong>consumer-grade SSDs</strong> can lead to reduced performance and high latency. Ceph is very <strong>sensitive</strong> to how disks acknowledge writes.
-Always make sure the disks you select are <strong>fit</strong> for intensive storage usage. Running high-I/O workloads on consumer SSDs can also wear them out quickly.</p>
-</div>
-<hr />
-<h2 id="hardware-requirements">Hardware requirements</h2>
-<p>Use the <strong>Minimal</strong>, <strong>Recommended</strong>, and <strong>Optimal</strong> tabs below to compare tiers.</p>
+<h3 id="disaster-recovery">Disaster recovery</h3>
+<p><strong>DR (disaster recovery) is scoped to a project.</strong> In a failover scenario, the <strong>entire project</strong> is switched over.</p>
+<h3 id="working-context">Working context</h3>
+<p>Your user account can belong to <strong>several organizations</strong> and see different projects. Use the <strong>organization</strong> and <strong>project</strong> dropdowns at the top of the console to switch context. By default, new accounts get an organization named <strong>My organization</strong> and a project named <strong>default</strong>.</p>
+<h2 id="organization-settings">Organization settings</h2>
+<p>Open <strong>Settings</strong> on the organization to manage structure and access. Tabs:</p>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>General</strong></td>
+<td>Organization ID, customer contacts (free-form: phone, name, address, etc.), <strong>transfer ownership</strong>, <strong>delete organization</strong></td>
+</tr>
+<tr>
+<td><strong>Projects</strong></td>
+<td>Create, edit, delete projects; view project IDs</td>
+</tr>
+<tr>
+<td><strong>Users</strong></td>
+<td>Invite users and assign roles (roles are defined under <strong>IAM</strong>)</td>
+</tr>
+<tr>
+<td><strong>IAM</strong></td>
+<td>Create and edit <strong>roles</strong> and their permissions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="general">General</h3>
 <ul>
-<li><strong>Minimal</strong> — Floor for labs and early validation; not a long-term production target on its own</li>
-<li><strong>Recommended</strong> — Default production-oriented sizing for typical deployments</li>
-<li><strong>Optimal</strong> — More headroom, higher-bandwidth networking, for when you expect dense storage, large VM counts, aggressive recovery SLAs, or rapid growth</li>
+<li><strong>Organization ID</strong> — Technical identifier (useful for support and automation).</li>
+<li><strong>Contacts</strong> — Optional fields to store how to reach the customer (any text you find useful).</li>
+<li><strong>Transfer ownership</strong> — The organization always has a <strong>primary owner</strong> (super-admin). Transfer moves that ownership to another user.</li>
+<li><strong>Delete organization</strong> — Triggers <strong>recursive</strong> deletion of all resources in all projects. For safety, deletion is <strong>soft</strong>: consuming resources are stopped and <strong>marked</strong> for deletion; a garbage collector <strong>permanently</strong> removes them after <strong>about two days</strong>, which gives you time to recover if the delete was a mistake.</li>
 </ul>
-<h3 id="hyperconverged-setup">Hyperconverged setup</h3>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Minimal</label><label for="__tabbed_1_2">Recommended</label><label for="__tabbed_1_3">Optimal</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chassis</strong></td>
-<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
-</tr>
-<tr>
-<td><strong>Node count</strong></td>
-<td>1</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td>≥ <strong>32 GiB</strong> per server</td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td>≥ <strong>8</strong></td>
-</tr>
-<tr>
-<td><strong>CPU architecture</strong></td>
-<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
-</tr>
-<tr>
-<td><strong>Disks (storage)</strong></td>
-<td>≥ <strong>1</strong> raw disk per node where storage services run; this can't be the boot disk</td>
-</tr>
-<tr>
-<td><strong>NIC / link speed</strong></td>
-<td><strong>10 Gb/s</strong> Ethernet</td>
-</tr>
-<tr>
-<td><strong>Boot / OS</strong></td>
-<td>Fast enterprise SSD acceptable</td>
-</tr>
-<tr>
-<td><strong>Storage media</strong></td>
-<td><strong>Enterprise</strong> SSD or NVMe</td>
-</tr>
-<tr>
-<td><strong>MTU</strong></td>
-<td>1500</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chassis</strong></td>
-<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
-</tr>
-<tr>
-<td><strong>Node count</strong></td>
-<td>3</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td>On the order of <strong>512 GiB</strong> for nodes with a lot of VMs; also plan roughly <strong>1 GiB RAM per 1 TiB</strong> of <strong>Ceph-managed</strong> capacity (plus Ceph OSD/daemon RAM per upstream guidance)</td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td>≥ <strong>32</strong></td>
-</tr>
-<tr>
-<td><strong>CPU architecture</strong></td>
-<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
-</tr>
-<tr>
-<td><strong>Disks (storage)</strong></td>
-<td>≥ <strong>3</strong> raw disks per node</td>
-</tr>
-<tr>
-<td><strong>NIC / link speed</strong></td>
-<td><strong>2x25Gb/s</strong> through active/active bonding</td>
-</tr>
-<tr>
-<td><strong>Boot / OS</strong></td>
-<td><strong>2× NVMe in RAID 1</strong> for OS</td>
-</tr>
-<tr>
-<td><strong>Storage media</strong></td>
-<td>Enterprise disks, NVMe for VM storage, and HDDs for backups</td>
-</tr>
-<tr>
-<td><strong>MTU</strong></td>
-<td>9000</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chassis</strong></td>
-<td>Redundant PSUs and clear <strong>failure-domain</strong> separation (rack/row) where possible</td>
-</tr>
-<tr>
-<td><strong>Node count</strong></td>
-<td>6</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td>Extra headroom for growth, peak recovery, and large OSD counts; align with Ceph guidance for <strong>mon/mgr</strong> RAM as the cluster grows</td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td><strong>≥ 96</strong> on nodes with very high VM density; favor <strong>higher clock</strong></td>
-</tr>
-<tr>
-<td><strong>CPU architecture</strong></td>
-<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
-</tr>
-<tr>
-<td><strong>Disks (storage)</strong></td>
-<td>≥ <strong>8</strong> raw disks per node</td>
-</tr>
-<tr>
-<td><strong>NIC / link speed</strong></td>
-<td>2 NICs with <strong>dual 25Gb/s ports</strong> (active/active bonding), with 2 ports dedicated to the storage and 2 dedicated to the data</td>
-</tr>
-<tr>
-<td><strong>Boot / OS</strong></td>
-<td><strong>2× NVMe in RAID 1</strong> for OS</td>
-</tr>
-<tr>
-<td><strong>Storage media</strong></td>
-<td>Enterprise disks, NVMe for VM storage, and HDDs for backups, with high DWPD</td>
-</tr>
-<tr>
-<td><strong>MTU</strong></td>
-<td>9000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<h3 id="decoupled-setup">Decoupled setup</h3>
-<h4 id="storage-node-setup">Storage node</h4>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Minimal</label><label for="__tabbed_2_2">Recommended</label><label for="__tabbed_2_3">Optimal</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chassis</strong></td>
-<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
-</tr>
-<tr>
-<td><strong>Node count</strong></td>
-<td>3</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td>≥ <strong>80 GiB</strong> per server</td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td>≥ <strong>16</strong></td>
-</tr>
-<tr>
-<td><strong>Disks (storage)</strong></td>
-<td>≥ <strong>8</strong> raw disk per node</td>
-</tr>
-<tr>
-<td><strong>NIC / link speed</strong></td>
-<td><strong>10 Gb/s</strong> Ethernet</td>
-</tr>
-<tr>
-<td><strong>Boot / OS</strong></td>
-<td>Fast enterprise SSD acceptable</td>
-</tr>
-<tr>
-<td><strong>Storage media</strong></td>
-<td><strong>Enterprise</strong> SSD or NVMe</td>
-</tr>
-<tr>
-<td><strong>MTU</strong></td>
-<td>1500</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chassis</strong></td>
-<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
-</tr>
-<tr>
-<td><strong>Node count</strong></td>
-<td>6</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td>≥ <strong>128 GiB</strong> per server</td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td>≥ <strong>32</strong></td>
-</tr>
-<tr>
-<td><strong>Disks (storage)</strong></td>
-<td>≥ <strong>16</strong> raw disk per node</td>
-</tr>
-<tr>
-<td><strong>NIC / link speed</strong></td>
-<td><strong>2x25Gb/s</strong> through active/active bonding</td>
-</tr>
-<tr>
-<td><strong>Boot / OS</strong></td>
-<td>Fast enterprise SSD acceptable</td>
-</tr>
-<tr>
-<td><strong>Storage media</strong></td>
-<td><strong>Enterprise</strong> SSD or NVMe</td>
-</tr>
-<tr>
-<td><strong>MTU</strong></td>
-<td>9000</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chassis</strong></td>
-<td>Physical servers with <strong>disks integrated</strong> in the chassis</td>
-</tr>
-<tr>
-<td><strong>Node count</strong></td>
-<td>12</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td>≥ <strong>128 GiB</strong> per server</td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td>≥ <strong>32</strong></td>
-</tr>
-<tr>
-<td><strong>Disks (storage)</strong></td>
-<td>≥ <strong>16</strong> raw disk per node</td>
-</tr>
-<tr>
-<td><strong>NIC / link speed</strong></td>
-<td>2 NICs with <strong>dual 25Gb/s ports</strong> (active/active bonding), with 2 ports dedicated to the storage and 2 dedicated to the data</td>
-</tr>
-<tr>
-<td><strong>Boot / OS</strong></td>
-<td>Fast enterprise SSD acceptable</td>
-</tr>
-<tr>
-<td><strong>Storage media</strong></td>
-<td><strong>Enterprise</strong> SSD or NVMe</td>
-</tr>
-<tr>
-<td><strong>MTU</strong></td>
-<td>9000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<h4 id="virtualization-nodes-setup">Virtualization nodes</h4>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Minimal</label><label for="__tabbed_3_2">Recommended</label><label for="__tabbed_3_3">Optimal</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chassis</strong></td>
-<td>Physical servers</td>
-</tr>
-<tr>
-<td><strong>Node count</strong></td>
-<td>1</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td>≥ <strong>32 GiB</strong> per server</td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td>≥ <strong>8</strong></td>
-</tr>
-<tr>
-<td><strong>CPU architecture</strong></td>
-<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
-</tr>
-<tr>
-<td><strong>NIC / link speed</strong></td>
-<td><strong>10 Gb/s</strong> Ethernet</td>
-</tr>
-<tr>
-<td><strong>Boot / OS</strong></td>
-<td>Fast enterprise SSD acceptable</td>
-</tr>
-<tr>
-<td><strong>MTU</strong></td>
-<td>1500</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chassis</strong></td>
-<td>Physical servers</td>
-</tr>
-<tr>
-<td><strong>Node count</strong></td>
-<td>3</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td>On the order of <strong>1 TiB</strong> for nodes with a lot of VMs; also plan roughly <strong>1 GiB RAM per 1 TiB</strong> of <strong>Ceph-managed</strong> capacity (plus Ceph OSD/daemon RAM per upstream guidance)</td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td>≥ <strong>32</strong></td>
-</tr>
-<tr>
-<td><strong>CPU architecture</strong></td>
-<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
-</tr>
-<tr>
-<td><strong>NIC / link speed</strong></td>
-<td><strong>2x25 Gb/s</strong> (or faster) for inter-node traffic and storage access</td>
-</tr>
-<tr>
-<td><strong>Boot / OS</strong></td>
-<td><strong>2× NVMe in RAID 1</strong> for OS</td>
-</tr>
-<tr>
-<td><strong>MTU</strong></td>
-<td>9000</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Chassis</strong></td>
-<td>Redundant PSUs and clear <strong>failure-domain</strong> separation (rack/row) where possible</td>
-</tr>
-<tr>
-<td><strong>Node count</strong></td>
-<td>6</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td>Extra headroom for growth, peak recovery, and large OSD counts; align with Ceph guidance for <strong>mon/mgr</strong> RAM as the cluster grows</td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td><strong>≥ 96</strong> on nodes with very high VM density; favor <strong>higher clock</strong></td>
-</tr>
-<tr>
-<td><strong>CPU architecture</strong></td>
-<td>Same as recommended</td>
-</tr>
-<tr>
-<td><strong>NIC / link speed</strong></td>
-<td>2 NICs with <strong>dual 25Gb/s ports</strong> (active/active bonding), with 2 ports dedicated to the storage and 2 dedicated to the data</td>
-</tr>
-<tr>
-<td><strong>Boot / OS</strong></td>
-<td>Enterprise disks, NVMe for VM storage, and HDDs for backups</td>
-</tr>
-<tr>
-<td><strong>MTU</strong></td>
-<td>9000</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<h3 id="management-cluster-decoupled">Management cluster (decoupled)</h3>
-<p>In a <strong>decoupled</strong> topology, the <strong>management cluster</strong> is the small <strong>Kubernetes</strong> cluster that hosts the Superphenix control-plane and operational services <strong>separate</strong> from your storage and workload virtualization nodes. It does not replace sizing for Ceph or hypervisors; it is an additional slice of machines sized for API controllers, GitOps, monitoring, and related components at modest density.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Minimal</label><label for="__tabbed_4_2">Recommended</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Node count</strong></td>
-<td><strong>1</strong></td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td><strong>4</strong> per node</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td><strong>16 GiB</strong> per node</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="tabbed-block">
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Specification</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Node count</strong></td>
-<td><strong>3</strong></td>
-</tr>
-<tr>
-<td><strong>CPU cores</strong></td>
-<td><strong>4</strong> per node</td>
-</tr>
-<tr>
-<td><strong>RAM</strong></td>
-<td><strong>16 GiB</strong> per node</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<h3 id="recommendations">Recommendations</h3>
-<p>Plan capacity with horizontal growth in mind: Superphenix scales by <strong>adding nodes</strong>, so when compute nodes or storage nodes become overloaded, expanding the cluster with additional nodes is often the safest and most predictable way to recover headroom. </p>
-<p>How large <strong>virtualization</strong> nodes are should still depend on <strong>how many VMs</strong> (and other workloads, such as databases, web servers, and inference services) you run and what each VM requests. <strong>KSM</strong> can reduce effective RAM usage, but treat it as an optimization rather than a sizing baseline. It is enabled by default on all nodes to deduplicate memory between VMs.</p>
-<p>Node fleets also do not need to be perfectly uniform: you can safely operate clusters with <strong>mixed node configurations</strong>, as long as overall capacity and failure-domain planning are respected.</p>
-<p>You do not need to get the exact sizing of your clusters right the first time. Superphenix uses the Kubernetes scheduling engine to place workloads across available CPU and RAM on each node as efficiently as possible.</p>
-</div>
+<h3 id="projects_1">Projects</h3>
+<p>Create projects from this tab and read their <strong>IDs</strong>. Project deletion follows the <strong>same soft-delete rules</strong> as organization deletion.</p>
+<h3 id="users">Users</h3>
+<p>To add someone, ask for their <strong>invitation code</strong> from their user profile (see <a href="#account">Account</a>). You can assign <strong>multiple roles</strong> cumulatively; roles are maintained in <strong>IAM</strong>.</p>
+<h3 id="iam-roles-and-permissions">IAM (roles and permissions)</h3>
+<p>IAM manages <strong>roles</strong>. Default roles often include <strong>admin</strong>, <strong>billing</strong>, and <strong>developer</strong> (exact names may vary).</p>
+<p>Each role has:</p>
+<ul>
+<li>A <strong>name</strong></li>
+<li><strong>Permissions</strong> on two <strong>scopes</strong>:</li>
+<li><strong>Organization</strong> — Managing roles, organization settings, inviting users, etc.</li>
+<li><strong>Project</strong> — Create/read/update/delete <strong>resources</strong> inside projects (many fine-grained permissions).</li>
+</ul>
+<p>Project permissions can apply to <strong>specific projects</strong> or <strong>all projects</strong> in the organization.</p>
+<h2 id="account">Account</h2>
+<p>Your account has a name, email, and password. Open the <strong>account</strong> entry (top-right of the console) to:</p>
+<ul>
+<li>View and edit profile information (you may be redirected to the account management UI).</li>
+<li>Copy your <strong>invitation code</strong> — give this code to organization admins who should add you to their organization.</li>
+<li><strong>Organizations</strong> — List organizations you belong to and create new ones.</li>
+</ul>
+<h2 id="products-and-the-resource-list">Products and the resource list</h2>
+<p><strong>Products</strong> are the main Superphenix capabilities. They appear in the <strong>left sidebar</strong>. Each product corresponds to <strong>billable or non-billable resources</strong> for your customers, grouped by category.</p>
+<h3 id="mental-model-organization-project-product-az">Mental model: Organization → Project → Product → AZ</h3>
+<p>Most resources are deployed in a specific <strong>availability zone (AZ)</strong>. Without extra configuration, <strong>two AZs are isolated</strong>: a VM in one AZ cannot use a disk from another, and networks in different AZs do not communicate privately. Keep <strong>organization</strong>, <strong>project</strong>, <strong>product</strong>, and <strong>AZ</strong> in mind when you create resources.</p>
+<h3 id="browsing-resources">Browsing resources</h3>
+<p>When you open a product, you see a <strong>table</strong> of resources:</p>
+<ul>
+<li>Columns depend on the resource type for <strong>relevant</strong> information.</li>
+<li>Rows are filtered by the <strong>organization and project</strong> selected at the top.</li>
+<li>Use <strong>Location</strong> to filter by <strong>AZ</strong>.</li>
+<li>Enable <strong>automatic refresh</strong> to poll on a timer.</li>
+<li>Use the <strong>row menu</strong> (⋮) to <strong>edit</strong> the resource or run <strong>quick actions</strong> (for example, stop a VM).</li>
+</ul>
+<p>Example AZ identifiers (as of the internal SPX 101 guide): <code>FR01-AGC01</code>, <code>FR01-ALS01</code> — your deployment may use different names.</p>
+<h2 id="getting-help-support">Getting help (support)</h2>
+<p>When reporting an issue, include:</p>
+<ol>
+<li>What went wrong (error message or unexpected behavior).</li>
+<li>What you expected instead.</li>
+<li><strong>Steps to reproduce</strong>.</li>
+<li>A <strong>link to the resource</strong> (use <strong>Share</strong> on the resource detail page).</li>
+</ol>
+<p>See also <a href="../tooling/">Tooling</a> for GitOps and platform operations.</p>
 
 
 

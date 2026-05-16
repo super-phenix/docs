@@ -7,10 +7,13 @@
         <loc>https://docs.superphenix.net/introduction/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/getting-started/</loc>
+        <loc>https://docs.superphenix.net/installation/getting-started/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/installation/full-installations/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/production-setup/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/architecture/</loc>
@@ -26,6 +29,9 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/features/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/tenancy-and-console/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/features/virtualization/</loc>
