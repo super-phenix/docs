@@ -67,6 +67,7 @@ alternate_style = true
 # variant = "classic"
 custom_dir = "overrides"
 logo = "assets/SPX_black.svg"
+favicon = "assets/SPX_white.svg"
 features = ["announce.dismiss"]
 
 # Light/dark palette toggle (same as Material)
