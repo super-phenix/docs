@@ -13,16 +13,16 @@ copyright = "Copyright &copy; 2026 The Superphenix authors"
 nav = [
   { "Home" = "index.md" },
   { "Introduction" = "introduction.md" },
-  { "Installation" = [
-    { "Getting started" = "installation/getting-started.md" },
-    { "Full installations" = "installation/full-installations.md" },
-    { "Production setup" = "installation/production-setup.md" }
-  ]},
   { "Architecture" = [
     { "Overview" = "architecture.md" },
     { "Deployment topology" = "architecture/deployment-topology.md" },
     { "Hardware requirements" = "architecture/deployment-requirements.md" },
     { "Network requirements" = "architecture/network-requirements.md" }
+  ]},
+  { "Installation" = [
+    { "Getting started" = "installation/getting-started.md" },
+    { "Full installations" = "installation/full-installations.md" },
+    { "Production recommendations" = "installation/production-recommendations.md" }
   ]},
   { "Features" = [
     { "Overview" = "features/index.md" },

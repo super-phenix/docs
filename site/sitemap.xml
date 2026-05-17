@@ -7,15 +7,6 @@
         <loc>https://docs.superphenix.net/introduction/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/getting-started/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/full-installations/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/production-setup/</loc>
-      </url>
-      <url>
         <loc>https://docs.superphenix.net/architecture/</loc>
       </url>
       <url>
@@ -26,6 +17,15 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/architecture/network-requirements/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/getting-started/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/full-installations/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/production-recommendations/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/features/</loc>

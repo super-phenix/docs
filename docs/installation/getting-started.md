@@ -13,7 +13,7 @@ Before installation, review architecture planning documents so topology and infr
 
 For complete and advanced deployment paths (all installation modes and operating patterns), see [Full installations guide](full-installations.md).
 
-For production-oriented configuration and performance guidance, see [Production setup](production-setup.md).
+For production-oriented configuration and performance guidance, see [Production recommendations](production-recommendations.md).
 
 ## Reference lab setup
 

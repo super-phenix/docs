@@ -1,6 +1,6 @@
-# Production setup
+# Production recommendation
 
-This section gives advice on how to configure Superphenix clusters for a **production** setup: topology and sizing choices, network and storage design, and day-2 practices that go beyond a first lab install.
+This section gives recommendations on how to configure Superphenix clusters for a **production** setup: topology and sizing choices, network and storage design, and day-2 practices that go beyond a first lab install.
 
 If you are still on your first cluster, start with [Getting started](getting-started.md). Use the architecture guides for detailed requirements:
 
