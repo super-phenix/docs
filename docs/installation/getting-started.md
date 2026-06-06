@@ -49,7 +49,7 @@ Use this baseline for a first deployment:
    ```bash
    helm upgrade --install superphenix-operator \
      ghcr.io/super-phenix/charts/superphenix-operator \
-     --namespace superphenix \
+     --namespace superphenix-system \
      --create-namespace
    ```
 

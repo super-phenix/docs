@@ -1,7 +1,7 @@
 [project]
 site_name = "Superphenix documentation"
 site_url = "https://docs.superphenix.net"
-site_description = "Superphenix: Build your own Cloud Service Provider on Kubernetes"
+site_description = "Superphenix: A full cloud stack running on your own hardware" 
 repo_url = "https://github.com/super-phenix/superphenix"
 repo_name = "super-phenix/superphenix"
 docs_dir = "docs"
@@ -45,7 +45,7 @@ nav = [
 # SEO and meta tags
 [[project.extra.meta]]
 name = "description"
-content = "Superphenix documentation: Build your own Cloud Service Provider on Kubernetes"
+content = "Superphenix documentation: A full cloud stack running on your own hardware"
 
 [[project.extra.meta]]
 name = "keywords"

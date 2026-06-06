@@ -1,4 +1,4 @@
-# Superphenix: Build Your Own Cloud on Kubernetes
+# Superphenix: A full cloud stack running on your own hardware
 
 ![Superphenix](assets/SPX_black.svg){ .index-logo }
 
