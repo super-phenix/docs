@@ -6,8 +6,8 @@ Superphenix exposes **compute** as **instances** (VMs) and **instance snapshots*
 
 An instance is always created in:
 
-- One **availability zone (AZ)** — pick the location where the VM should run.
-- One or more **networks** — L2 subnets with a defined IP range (see [Network](network.md)).
+- One **availability zone (AZ)**: pick the location where the VM should run.
+- One or more **networks**: L2 subnets with a defined IP range (see [Network](network.md)).
 
 Resource **names do not need to be globally unique**; identify resources by ID when automating.
 
@@ -31,9 +31,9 @@ After creation you can change many aspects of a running VM from the console or G
 2. Click **Create instance** (top right).
 3. Set:
    - **Name**
-   - **AZ** — must match where you want the VM and any disks you attach.
-   - **Run strategy** — whether the VM **starts automatically** or stays stopped until you start it.
-   - **CPU and memory** — size of the VM.
+   - **AZ**: must match where you want the VM and any disks you attach.
+   - **Run strategy**: whether the VM **starts automatically** or stays stopped until you start it.
+   - **CPU and memory**: size of the VM.
 
 ### Cloud-init
 
@@ -58,8 +58,8 @@ If you added keys to the **SSH key** product, you can attach them at VM creation
 
 Attach the VM to **one or more** L2 networks (subnets). Each subnet has an IP range.
 
-- **Static IP** — set it explicitly if required.
-- **No static IP** — **IPAM** allocates an address from the subnet CIDR (see [Network](network.md)).
+- **Static IP**: set it explicitly if required.
+- **No static IP**: **IPAM** allocates an address from the subnet CIDR (see [Network](network.md)).
 
 ## Start, stop, and access
 
@@ -81,8 +81,8 @@ The **Details** page shows the effective configuration (CPU, RAM, networks, disk
 
 Create a snapshot from the instance **Options** menu. An instance snapshot captures:
 
-- **VM definition** — CPU, RAM, attached disks, etc.
-- **Disk data** — contents of attached volumes
+- **VM definition**: CPU, RAM, attached disks, etc.
+- **Disk data**: contents of attached volumes
 
 ### Restore
 
@@ -105,8 +105,8 @@ Individual **disk** snapshots can be scheduled on a **cron**-style timetable so 
 
 ## Related views on the instance
 
-- **Storage** — Cloud-init configuration and attached disks.
-- **Network** — Subnets attached to the VM and assigned **IP addresses**.
-- **Instance snapshots** — List of snapshots for this VM and restore actions.
+- **Storage**: Cloud-init configuration and attached disks.
+- **Network**: Subnets attached to the VM and assigned **IP addresses**.
+- **Instance snapshots**: List of snapshots for this VM and restore actions.
 
 See [Storage](storage.md) for disks and disk snapshots, [Network](network.md) for VPCs, subnets, and public access, and [Tenancy and console](tenancy-and-console.md) for project and AZ context.

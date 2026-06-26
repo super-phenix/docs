@@ -6,22 +6,22 @@ Superphenix provides **VPC-style** networking for VMs: **VPCs**, **subnets**, op
 
 A **VPC** is an **L3 routing domain** that **contains subnets**. Subnets inside the **same** VPC can reach each other according to routing and firewall rules—similar to placing multiple VLANs behind one router that interconnects them.
 
-- **L3 routing** — The VPC owns **route tables** and can host **custom static routes** to steer traffic between subnets, toward NAT, or to other next hops as you define.
-- **Isolation** — Two subnets in **different** VPCs **cannot** talk privately; communication would go via the **Internet** (unless you add future **VPC peering** when available).
+- **L3 routing**: The VPC owns **route tables** and can host **custom static routes** to steer traffic between subnets, toward NAT, or to other next hops as you define.
+- **Isolation**: Two subnets in **different** VPCs **cannot** talk privately; communication would go via the **Internet** (unless you add future **VPC peering** when available).
 
 ## Subnets
 
 A **subnet** is an **L2 segment** with an IP range (**CIDR**) where you place instances. Think of it like a VLAN behind a router in a traditional design.
 
 - A subnet **belongs to one VPC**. The **VPC** routes traffic to other subnets in the same VPC and toward the **Internet** when configured.
-- **Custom gateway** — You can define how the subnet’s **default gateway** relates to the VPC router (advanced layouts).
-- **Custom CIDR** — The subnet’s **CIDR block** is fully under your control within platform limits.
-- **Exclude IPs from IPAM** — Reserve addresses (for gateways, load balancers, or static services) so **DHCP/IPAM** never hands them out.
+- **Custom gateway**: You can define how the subnet’s **default gateway** relates to the VPC router (advanced layouts).
+- **Custom CIDR**: The subnet’s **CIDR block** is fully under your control within platform limits.
+- **Exclude IPs from IPAM**: Reserve addresses (for gateways, load balancers, or static services) so **DHCP/IPAM** never hands them out.
 
 ### Create a subnet
 
 1. Choose **IP family**: **IPv4**, **IPv6**, or **Dual stack** (both).
-2. Set the **CIDR** — defines which IPs IPAM may assign to VMs.
+2. Set the **CIDR**: defines which IPs IPAM may assign to VMs.
 3. Prefer **reasonably sized** prefixes (for example **`/24`** for IPv4) to avoid overlap and keep address plans manageable. Use **private** ranges appropriate to your environment (for example `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`).
 
 ### IPAM
@@ -32,11 +32,11 @@ If you **do not** set a static IP on a VM, **IPAM** picks a free address **insid
 
 When creating a subnet you can:
 
-- **Enable NAT gateway** — Instantiates a **NAT gateway** in the subnet so **outbound** traffic can reach the **Internet**. The subnet’s **routing table** is updated so traffic flows:
+- **Enable NAT gateway**: Instantiates a **NAT gateway** in the subnet so **outbound** traffic can reach the **Internet**. The subnet’s **routing table** is updated so traffic flows:
 
   `VM → default gateway → NAT gateway → Internet`
 
-- **Fully private / isolated** — A stricter mode that **isolates** the subnet so it is **not reachable** even from other subnets in the same VPC. Use **firewall** rules for finer control when you only need to restrict access, not full isolation.
+- **Fully private / isolated**: A stricter mode that **isolates** the subnet so it is **not reachable** even from other subnets in the same VPC. Use **firewall** rules for finer control when you only need to restrict access, not full isolation.
 
 Subnets **host NAT gateways** when you enable them: the gateway is a resource in that subnet that provides **SNAT**, **DNAT**, and **1:1 NAT** (floating IP / **FIP**) patterns toward the Internet or peer networks.
 
@@ -91,7 +91,7 @@ Then choose how NAT behaves:
 | **Internal IP** | **1:1 NAT** between one **private** VM IP and the EIP. Inbound to the EIP hits that VM; outbound from that VM uses the EIP on the Internet. |
 | **Internal CIDR** | **SNAT** a whole **CIDR** inside the subnet (often the **full subnet CIDR**) so outbound connections use the EIP as source. |
 
-**DNAT (port forwarding)** — Map **external** ports on the EIP to an **internal** IP and **port** on a VM inside the CIDR (open a service to the Internet).
+**DNAT (port forwarding)**: Map **external** ports on the EIP to an **internal** IP and **port** on a VM inside the CIDR (open a service to the Internet).
 
 !!! note "One NAT gateway per subnet (today)"
 
@@ -103,9 +103,9 @@ Created EIPs appear under **Network → EIPs** (or equivalent).
 
 Firewall rules are expressed as **network policies** (Kubernetes-style semantics):
 
-- **Default deny** — Traffic that is **not explicitly allowed** is **dropped** (allow-only model).
-- **Match criteria** — Rules can target **CIDRs** and/or **label selectors** (for VMs or workloads).
-- **Protocols** — **TCP**, **UDP**, and **SCTP** where supported.
+- **Default deny**: Traffic that is **not explicitly allowed** is **dropped** (allow-only model).
+- **Match criteria**: Rules can target **CIDRs** and/or **label selectors** (for VMs or workloads).
+- **Protocols**: **TCP**, **UDP**, and **SCTP** where supported.
 
 The console UX may still evolve; power users can mirror the same rules in **GitOps** for review and audit.
 

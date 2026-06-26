@@ -1,4 +1,4 @@
-# Superphenix: A full cloud stack running on your own hardware
+# Build your own cloud platform with Superphenix 
 
 ![Superphenix](assets/SPX_black.svg){ .index-logo }
 
@@ -14,14 +14,14 @@ It turns Kubernetes into a platform capable of handling **virtual machines, netw
 
 ## A few examples of what SPX has to offer
 
-- **Hypervisor** — VMs, live migration, snapshots, node autoscaling
-- **Storage** — Block, file and S3 storage with replication and disaster recovery
-- **Software-defined network** — VPCs, NAT gateways, BGP, load balancers, QoS, firewalling
-- **PaaS** — Kubernetes as a Service
-- **SaaS** — Databases, Harbor, Gitlab, Nextcloud
-- **GitOps** — Installs, upgrades, and resource provisioning via GitOps
-- **Web Console** — Multi-tenant console to manage multiple AZs from one place
-- **Backup and disaster recovery** — Cross-AZ mirroring, disk, VM and metadata backups, automated disaster recovery
+- **Hypervisor**: VMs, live migration, snapshots, node autoscaling
+- **Storage**: Block, file and S3 storage with replication and disaster recovery
+- **Software-defined network**: VPCs, NAT gateways, BGP, load balancers, QoS, firewalling
+- **PaaS**: Kubernetes as a Service
+- **SaaS**: Databases, Harbor, Gitlab, Nextcloud
+- **GitOps**: Installs, upgrades, and resource provisioning via GitOps
+- **Web Console**: Multi-tenant console to manage multiple AZs from one place
+- **Backup and disaster recovery**: Cross-AZ mirroring, disk, VM and metadata backups, automated disaster recovery
 
 ## Philosophy
 
@@ -37,6 +37,6 @@ The project authors chose to make it **open source** because we believe it can b
 
 ## Quick links
 
-- [**Introduction**](introduction.md) — Goals, architecture, and design choices
-- [**Features**](components/virtualization.md) — Virtualization, network, storage, and tooling
-- [**Contributing**](contributing.md) — How to contribute code, docs, and feedback
+- [**Introduction**](introduction.md): Goals, architecture, and design choices
+- [**Features**](features/virtualization.md): Virtualization, network, storage, and tooling
+- [**Installation**](installation/getting-started.md): How to install Superphenix on your own infrastructure

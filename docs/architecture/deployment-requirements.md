@@ -4,10 +4,10 @@
 
 Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in [Deployment topology](deployment-topology.md). The same **cluster** can imply very different server counts and configurations depending on whether you run a **hyperconverged** stack (storage and virtualization together) or a **decoupled** stack (dedicated storage and dedicated virtualization clusters).
 
-- **[Hyperconverged](#hyperconverged-setup)** — Storage and virtualization on the same nodes. Size hosts for combined Ceph and hypervisor needs, plus headroom for failure and recovery.
-- **[Decoupled](#decoupled-setup)** — Requirements are split by role:
-    - **[Storage node](#storage-node-setup)** — Dedicated Ceph / storage tier in a decoupled topology. Same hardware floors as hyperconverged storage roles, sized for OSD throughput and replication.
-    - **[Virtualization nodes](#virtualization-nodes-setup)** — Dedicated hypervisor tier in a decoupled topology. Same CPU, RAM, and boot-disk expectations as hyperconverged compute roles, sized for VM density and migration.
+- **[Hyperconverged](#hyperconverged-setup)**: Storage and virtualization on the same nodes. Size hosts for combined Ceph and hypervisor needs, plus headroom for failure and recovery.
+- **[Decoupled](#decoupled-setup)**: Requirements are split by role:
+    - **[Storage node](#storage-node-setup)**: Dedicated Ceph / storage tier in a decoupled topology. Same hardware floors as hyperconverged storage roles, sized for OSD throughput and replication.
+    - **[Virtualization nodes](#virtualization-nodes-setup)**: Dedicated hypervisor tier in a decoupled topology. Same CPU, RAM, and boot-disk expectations as hyperconverged compute roles, sized for VM density and migration.
 
 !!! important "Choose your topology first"
 
@@ -15,8 +15,8 @@ Hardware planning for Superphenix starts from how you deploy availability zones 
 
 Deployment topology is the main factor that influences the requirements:
 
-- **Hyperconverged** — Each node contributes to both storage and virtualization. Disk, CPU, and memory requirements are **combined** on the same machines: size hosts for the sum of what the Ceph storage and the hypervisor need, plus headroom for failure and recovery
-- **Decoupled** — Requirements **split by role**. The storage tier must satisfy Ceph expectations for OSD throughput, replication, and recovery; the virtualization tier is sized separately for VM density, live migration, and control-plane overhead. You plan distinct footprints for storage hosts, for hypervisor hosts, and for the **management cluster** that runs the platform control plane (see [Management cluster (decoupled)](#management-cluster-decoupled))
+- **Hyperconverged**: Each node contributes to both storage and virtualization. Disk, CPU, and memory requirements are **combined** on the same machines: size hosts for the sum of what the Ceph storage and the hypervisor need, plus headroom for failure and recovery
+- **Decoupled**: Requirements **split by role**. The storage tier must satisfy Ceph expectations for OSD throughput, replication, and recovery; the virtualization tier is sized separately for VM density, live migration, and control-plane overhead. You plan distinct footprints for storage hosts, for hypervisor hosts, and for the **management cluster** that runs the platform control plane (see [Management cluster (decoupled)](#management-cluster-decoupled))
 
 !!! warning "Multi-AZ and disaster recovery"
 
@@ -28,8 +28,8 @@ Deployment topology is the main factor that influences the requirements:
 
 Superphenix relies on Ceph for block and distributed storage. Treat the official documentation as authoritative for storage nodes:
 
-- [Ceph Hardware Recommendations](https://docs.ceph.com/en/latest/start/hardware-recommendations/) — CPU per OSD (especially with NVMe), RAM and `osd_memory_target` headroom, OS vs data devices, enterprise-class SSDs/NVMe and endurance, minimum OSD sizes, and network bandwidth so replication and client I/O do not contend
-- [Ceph network configuration reference](https://docs.ceph.com/en/latest/rados/configuration/network-config-ref/) — **Public** vs **cluster** networks, separating client traffic from OSD heartbeat, replication, and recovery
+- [Ceph Hardware Recommendations](https://docs.ceph.com/en/latest/start/hardware-recommendations/): CPU per OSD (especially with NVMe), RAM and `osd_memory_target` headroom, OS vs data devices, enterprise-class SSDs/NVMe and endurance, minimum OSD sizes, and network bandwidth so replication and client I/O do not contend
+- [Ceph network configuration reference](https://docs.ceph.com/en/latest/rados/configuration/network-config-ref/): **Public** vs **cluster** networks, separating client traffic from OSD heartbeat, replication, and recovery
 
 For production performance, prefer **enterprise-tier** SSDs or NVMe suitable for sustained writes and failure handling, consistent with Ceph’s guidance to avoid consumer-grade drives under heavy or mixed workloads.
 
@@ -44,9 +44,9 @@ For production performance, prefer **enterprise-tier** SSDs or NVMe suitable for
 
 Use the **Minimal**, **Recommended**, and **Optimal** tabs below to compare tiers.
 
-- **Minimal** — Floor for labs and early validation; not a long-term production target on its own
-- **Recommended** — Default production-oriented sizing for typical deployments
-- **Optimal** — More headroom, higher-bandwidth networking, for when you expect dense storage, large VM counts, aggressive recovery SLAs, or rapid growth
+- **Minimal**: Floor for labs and early validation; not a long-term production target on its own
+- **Recommended**: Default production-oriented sizing for typical deployments
+- **Optimal**: More headroom, higher-bandwidth networking, for when you expect dense storage, large VM counts, aggressive recovery SLAs, or rapid growth
 
 ### Hyperconverged setup {#hyperconverged-setup}
 

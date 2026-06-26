@@ -54,7 +54,7 @@ These services run on the foundation. Availability depends on your Superphenix v
 
     ---
 
-    **Kubernetes (KaaS)** — VM node pools, **integrated CNI/CSI**, upgrades, and the same VPCs and storage as IaaS. *Console availability varies by release.*
+    **Kubernetes (KaaS)**: VM node pools, **integrated CNI/CSI**, upgrades, and the same VPCs and storage as IaaS. *Console availability varies by release.*
 
     [:octicons-arrow-right-24: PaaS](paas.md)
 
@@ -62,7 +62,7 @@ These services run on the foundation. Availability depends on your Superphenix v
 
     ---
 
-    **Managed applications** (databases, registries, Git, file sync, …) — the service catalog is evolving; see the SaaS page.
+    **Managed applications** (databases, registries, Git, file sync, …): the service catalog is evolving; see the SaaS page.
 
     [:octicons-arrow-right-24: SaaS](saas.md)
 
@@ -70,8 +70,8 @@ These services run on the foundation. Availability depends on your Superphenix v
 
 ## How they fit together
 
-- **Tenancy** — Organizations and projects isolate resources and access; see [Tenancy and console](tenancy-and-console.md).
-- **Foundation** — Virtualization runs VMs; the network layer provides VPCs and subnets; storage backs disks; tooling drives GitOps and the console.
-- **Managed services** — When enabled, PaaS and SaaS consume the same virtualization, storage, and network primitives.
+- **Tenancy**: Organizations and projects isolate resources and access; see [Tenancy and console](tenancy-and-console.md).
+- **Foundation**: Virtualization runs VMs; the network layer provides VPCs and subnets; storage backs disks; tooling drives GitOps and the console.
+- **Managed services**: When enabled, PaaS and SaaS consume the same virtualization, storage, and network primitives.
 
 See [Architecture overview](../architecture.md) for AZs, regions, and central administration.

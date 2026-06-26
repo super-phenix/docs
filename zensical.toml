@@ -1,7 +1,7 @@
 [project]
 site_name = "Superphenix documentation"
 site_url = "https://docs.superphenix.net"
-site_description = "Superphenix: A full cloud stack running on your own hardware" 
+site_description = "Build your own cloud platform with Superphenix"
 repo_url = "https://github.com/super-phenix/superphenix"
 repo_name = "super-phenix/superphenix"
 docs_dir = "docs"
@@ -9,7 +9,6 @@ site_dir = "site"
 extra_css = ["stylesheets/extra.css"]
 copyright = "Copyright &copy; 2026 The Superphenix authors"
 
-# Navigation (same structure as mkdocs.yml)
 nav = [
   { "Home" = "index.md" },
   { "Introduction" = "introduction.md" },

@@ -14,8 +14,8 @@ An AZ can **span multiple datacenters** as long as latency between them is low (
 
 Superphenix uses a two-level hierarchy for tenant isolation and resource grouping:
 
-- **Organizations** — Top-level container. Users are assigned to organizations and receive roles that apply to the projects within that organization.
-- **Projects** — Live inside an organization. Projects are where **resources** (VMs, networks, volumes, etc.) are created and stored. All resources are scoped to a project.
+- **Organizations**: Top-level container. Users are assigned to organizations and receive roles that apply to the projects within that organization.
+- **Projects**: Live inside an organization. Projects are where **resources** (VMs, networks, volumes, etc.) are created and stored. All resources are scoped to a project.
 
 Users are assigned to **organizations** and have **roles on projects** (e.g. viewer, editor, admin). Access control and quotas are applied at the project level, so teams can share an organization while keeping project boundaries clear.
 

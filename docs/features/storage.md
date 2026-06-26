@@ -19,10 +19,10 @@ A **disk** has:
 2. Use **Create** (top right).
 3. Set:
    - **Name**
-   - **AZ** — must match the AZ of any VM you later attach to (a disk cannot be used cross-AZ).
+   - **AZ**: must match the AZ of any VM you later attach to (a disk cannot be used cross-AZ).
    - **Size**
-   - **Storage class** — for example **block** or **high-speed** (names depend on your platform).
-   - **Source** — how the disk gets its initial content (see below).
+   - **Storage class**: for example **block** or **high-speed** (names depend on your platform).
+   - **Source**: how the disk gets its initial content (see below).
 
 Wait until the disk is **Ready** before attaching it or booting from it.
 
@@ -32,7 +32,7 @@ Disks are used either as an **OS boot disk** or as **additional** data volumes.
 
 #### Blank (`blank`)
 
-Empty disk with **no** data — **not bootable** until you install an OS or copy an image onto it.
+Empty disk with **no** data: **not bootable** until you install an OS or copy an image onto it.
 
 #### HTTP source (`http`)
 

@@ -12,10 +12,10 @@ Until then, use **[Virtualization](virtualization.md)** and **[PaaS](paas.md)** 
 
 When the catalog is available, typical examples include:
 
-- **Databases** — Managed relational or NoSQL engines with backups and replication.
-- **Container registry** — Harbor or equivalent for images and policies.
-- **Git hosting** — GitLab or similar for source control and CI/CD.
-- **File sync** — Nextcloud or similar for files and collaboration.
+- **Databases**: Managed relational or NoSQL engines with backups and replication.
+- **Container registry**: Harbor or equivalent for images and policies.
+- **Git hosting**: GitLab or similar for source control and CI/CD.
+- **File sync**: Nextcloud or similar for files and collaboration.
 
 Those services will consume the same **[storage](storage.md)**, **[network](network.md)**, and **[tooling](tooling.md)** primitives as the rest of the platform, with **multi-tenancy** enforced via organizations, projects, and quotas.
 

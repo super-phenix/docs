@@ -6,16 +6,16 @@ Superphenix separates work into **organizations** and **projects**. The **web co
 
 ### Organizations
 
-- **Groups projects** — An organization is the top-level container for one or more **projects**.
-- **Administrators** — Organization-level admins manage settings, users, IAM, and billing for that tenant.
-- **Billing** — Usage and billing can be tracked at **organization** scope (exact metering depends on your deployment).
+- **Groups projects**: An organization is the top-level container for one or more **projects**.
+- **Administrators**: Organization-level admins manage settings, users, IAM, and billing for that tenant.
+- **Billing**: Usage and billing can be tracked at **organization** scope (exact metering depends on your deployment).
 
 ### Projects
 
-- **Contains resources** — All IaaS objects (VMs, disks, VPCs, subnets, snapshots, etc.) belong to a **project**. This is the main workspace boundary.
-- **Users and RBAC** — Projects are where **role-based access** applies: you assign **custom roles** (defined in IAM) so users can create, view, or manage resources only where allowed.
-- **Billing** — Usage can also be attributed at **project** level for chargeback or internal allocation.
-- **Replication (roadmap)** — **Cross-site or cross-AZ replication** for a project is planned to be coordinated at **project** level (not yet universally available in all releases).
+- **Contains resources**: All IaaS objects (VMs, disks, VPCs, subnets, snapshots, etc.) belong to a **project**. This is the main workspace boundary.
+- **Users and RBAC**: Projects are where **role-based access** applies: you assign **custom roles** (defined in IAM) so users can create, view, or manage resources only where allowed.
+- **Billing**: Usage can also be attributed at **project** level for chargeback or internal allocation.
+- **Replication (roadmap)**: **Cross-site or cross-AZ replication** for a project is planned to be coordinated at **project** level (not yet universally available in all releases).
 
 At a glance:
 
@@ -51,10 +51,10 @@ Open **Settings** on the organization to manage structure and access. Tabs:
 
 ### General
 
-- **Organization ID** — Technical identifier (useful for support and automation).
-- **Contacts** — Optional fields to store how to reach the customer (any text you find useful).
-- **Transfer ownership** — The organization always has a **primary owner** (super-admin). Transfer moves that ownership to another user.
-- **Delete organization** — Triggers **recursive** deletion of all resources in all projects. For safety, deletion is **soft**: consuming resources are stopped and **marked** for deletion; a garbage collector **permanently** removes them after **about two days**, which gives you time to recover if the delete was a mistake.
+- **Organization ID**: Technical identifier (useful for support and automation).
+- **Contacts**: Optional fields to store how to reach the customer (any text you find useful).
+- **Transfer ownership**: The organization always has a **primary owner** (super-admin). Transfer moves that ownership to another user.
+- **Delete organization**: Triggers **recursive** deletion of all resources in all projects. For safety, deletion is **soft**: consuming resources are stopped and **marked** for deletion; a garbage collector **permanently** removes them after **about two days**, which gives you time to recover if the delete was a mistake.
 
 ### Projects
 
@@ -72,8 +72,8 @@ Each role has:
 
 - A **name**
 - **Permissions** on two **scopes**:
-  - **Organization** — Managing roles, organization settings, inviting users, etc.
-  - **Project** — Create/read/update/delete **resources** inside projects (many fine-grained permissions).
+  - **Organization**: Managing roles, organization settings, inviting users, etc.
+  - **Project**: Create/read/update/delete **resources** inside projects (many fine-grained permissions).
 
 Project permissions can apply to **specific projects** or **all projects** in the organization.
 
@@ -82,8 +82,8 @@ Project permissions can apply to **specific projects** or **all projects** in th
 Your account has a name, email, and password. Open the **account** entry (top-right of the console) to:
 
 - View and edit profile information (you may be redirected to the account management UI).
-- Copy your **invitation code** — give this code to organization admins who should add you to their organization.
-- **Organizations** — List organizations you belong to and create new ones.
+- Copy your **invitation code**: give this code to organization admins who should add you to their organization.
+- **Organizations**: List organizations you belong to and create new ones.
 
 ## Products and the resource list
 
@@ -103,7 +103,7 @@ When you open a product, you see a **table** of resources:
 - Enable **automatic refresh** to poll on a timer.
 - Use the **row menu** (⋮) to **edit** the resource or run **quick actions** (for example, stop a VM).
 
-Example AZ identifiers (as of the internal SPX 101 guide): `FR01-AGC01`, `FR01-ALS01` — your deployment may use different names.
+Example AZ identifiers (as of the internal SPX 101 guide): `FR01-AGC01`, `FR01-ALS01`: your deployment may use different names.
 
 ## Getting help (support)
 
