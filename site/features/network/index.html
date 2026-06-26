@@ -557,7 +557,7 @@
   <span class="md-ellipsis">
     
   
-  Guide
+  Deployment guide
 
     
   </span>
@@ -572,7 +572,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Guide
+  Deployment guide
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -584,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/full-installations/" class="md-nav__link">
+      <a href="../../installation/deployment-guide/" class="md-nav__link">
         
   
   
@@ -611,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/talos-manual-installation/" class="md-nav__link">
+      <a href="../../installation/manual-os-installation/" class="md-nav__link">
         
   
   
@@ -638,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/operator-physical-installation/" class="md-nav__link">
+      <a href="../../installation/automated-os-installation/" class="md-nav__link">
         
   
   
@@ -658,14 +658,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -673,14 +665,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/installation-management/" class="md-nav__link">
+      <a href="../../installation/installing-management/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Installation management
+  Installing management
 
     
   </span>
@@ -708,10 +700,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
             
   
   
@@ -728,8 +720,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -772,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/configure-cluster/" class="md-nav__link">
+      <a href="../../installation/configuring-a-cluster/" class="md-nav__link">
         
   
   
@@ -814,6 +806,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1775,7 +1775,7 @@
 <h1 id="network">Network</h1>
 <p>Superphenix provides <strong>VPC-style</strong> networking for VMs: <strong>VPCs</strong>, <strong>subnets</strong>, optional <strong>NAT gateways</strong>, <strong>load balancers</strong>, <strong>Elastic IPs (EIPs)</strong>, and <strong>firewalls</strong>. All are scoped to an <strong>availability zone (AZ)</strong> and to your <strong>organization</strong> and <strong>project</strong> (see <a href="../tenancy-and-console/">Tenancy and console</a>).</p>
 <h2 id="vpcs-virtual-private-cloud">VPCs (Virtual Private Cloud)</h2>
-<p>A <strong>VPC</strong> is an <strong>L3 routing domain</strong> that <strong>contains subnets</strong>. Subnets inside the <strong>same</strong> VPC can reach each other according to routing and firewall rules—similar to placing multiple VLANs behind one router that interconnects them.</p>
+<p>A <strong>VPC</strong> is an <strong>L3 routing domain</strong> that <strong>contains subnets</strong>. Subnets inside the <strong>same</strong> VPC can reach each other according to routing and firewall rules, similar to placing multiple VLANs behind one router that interconnects them.</p>
 <ul>
 <li><strong>L3 routing</strong>: The VPC owns <strong>route tables</strong> and can host <strong>custom static routes</strong> to steer traffic between subnets, toward NAT, or to other next hops as you define.</li>
 <li><strong>Isolation</strong>: Two subnets in <strong>different</strong> VPCs <strong>cannot</strong> talk privately; communication would go via the <strong>Internet</strong> (unless you add future <strong>VPC peering</strong> when available).</li>
@@ -1839,7 +1839,7 @@
 <p><strong>Health checks</strong> probe backends; failing members are removed. Health check <strong>source</strong> addresses come from the <strong>subnet</strong> attached to the load balancer.</p>
 <div class="admonition warning">
 <p class="admonition-title">Same subnet for all backends</p>
-<p>Selector or endpoint configuration must resolve to backends on a <strong>single subnet</strong>. Only the <strong>first network interface</strong> of each VM participates in load balancing—<strong>secondary NICs</strong> are not used. <strong>All VMs behind one load balancer should sit in the same subnet.</strong></p>
+<p>Selector or endpoint configuration must resolve to backends on a <strong>single subnet</strong>. Only the <strong>first network interface</strong> of each VM participates in load balancing: <strong>secondary NICs</strong> are not used. <strong>All VMs behind one load balancer should sit in the same subnet.</strong></p>
 </div>
 <h2 id="elastic-ips-eips">Elastic IPs (EIPs)</h2>
 <p><strong>Elastic IPs</strong> map <strong>public</strong> addresses to <strong>private</strong> addresses in your subnet (NAT / DNAT patterns).</p>
@@ -1887,9 +1887,9 @@
 </ul>
 <p>The console UX may still evolve; power users can mirror the same rules in <strong>GitOps</strong> for review and audit.</p>
 <h2 id="configuration-examples-illustrative">Configuration examples (illustrative)</h2>
-<p>These snippets illustrate the <strong>ideas</strong> behind console fields. <strong>Field names and APIs</strong> may differ in your release—use them as a checklist when translating to your GitOps manifests or API calls.</p>
+<p>These snippets illustrate the <strong>ideas</strong> behind console fields. <strong>Field names and APIs</strong> may differ in your release; use them as a checklist when translating to your GitOps manifests or API calls.</p>
 <h3 id="subnet-with-nat">Subnet with NAT</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Illustrative — align with your Superphenix API / CRDs</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Illustrative: align with your Superphenix API / CRDs</span>
 <span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.superphenix.example/v1alpha1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subnet</span>
 <span class="nt">metadata</span><span class="p">:</span>

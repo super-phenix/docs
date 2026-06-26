@@ -24,12 +24,12 @@ Tenant clusters are backed by **pools of VMs** you define:
 | **CNI** | **Integrated CNI**: cluster networking is provided by the platform stack (same SDN as VMs where applicable). |
 | **CSI** | **Integrated CSI**: persistent volumes map to the platform **[storage](storage.md)** layer. |
 | **Live migration** | Worker **VMs** can be **live-migrated** like any other instance when policy allows, for node maintenance without hard downtime for stateless workloads. |
-| **Upgrades** | **Automatic upgrades** of cluster components (Kubernetes patch/minor versions per policy) reduce manual toil—exact knobs depend on your release. |
+| **Upgrades** | **Automatic upgrades** of cluster components (Kubernetes patch/minor versions per policy) reduce manual toil; exact knobs depend on your release. |
 
 ### Operations
 
 - Create, scale, upgrade, and delete clusters via **[Tooling](tooling.md)** (GitOps and console).
-- Use the same **organization / project** RBAC as the rest of the platform—see [Tenancy and console](tenancy-and-console.md).
+- Use the same **organization / project** RBAC as the rest of the platform; see [Tenancy and console](tenancy-and-console.md).
 
 ## Foundation used
 

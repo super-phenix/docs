@@ -1,8 +1,8 @@
-# Installation management
+# Installing management
 
 This page covers the **management cluster**: how the Superphenix operator is installed, what it provides, and how you configure the management stack.
 
-Part of the [installation guide](full-installations.md). Once the operator is running, continue with [Installing clusters](installing-clusters.md) to define your AZs.
+Part of the [deployment guide](deployment-guide.md). Once the operator is running, continue with [Installing clusters](installing-clusters.md) to define your AZs.
 
 ## How the installation process works
 
@@ -21,7 +21,7 @@ The operator handles the installations, upgrades, and lifecycle management of Su
 
 If you're choosing to install the management cluster outside the AZ, you can install the operator on any Kubernetes cluster, as long as it can reach the control plane of the destination clusters.
 
-If you're installing the management cluster on an AZ, the cluster needs to be a pre-existing Talos Linux cluster — see [Manual OS installation](talos-manual-installation.md).
+If you're installing the management cluster on an AZ, the cluster needs to be a pre-existing Talos Linux cluster. See [Manual OS installation](manual-os-installation.md).
 
 Installation of the operator is typically done via Helm on your chosen management cluster.
 
@@ -40,5 +40,5 @@ The management cluster itself requires configuration to host the web console and
 
 ## Next steps
 
-- [Installing clusters](installing-clusters.md) — define `Cluster` resources and connect workload AZs.
-- [Automated OS installation](operator-physical-installation.md) — provision physical servers through the operator.
+- [Installing clusters](installing-clusters.md): define `Cluster` resources and connect workload AZs.
+- [Automated OS installation](automated-os-installation.md): provision physical servers through the operator.

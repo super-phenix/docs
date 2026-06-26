@@ -32,7 +32,7 @@ The console is where users:
 
 ## SSH key store
 
-The **SSH keys** product is a **key repository** you maintain for your organization. When you create a **VM**, you can attach keys from this store so cloud-init (or equivalent) can install them on first boot—see [Virtualization](virtualization.md).
+The **SSH keys** product is a **key repository** you maintain for your organization. When you create a **VM**, you can attach keys from this store so cloud-init (or equivalent) can install them on first boot; see [Virtualization](virtualization.md).
 
 **Typical workflow**
 
@@ -62,6 +62,6 @@ Metrics, logs, and dashboards cover **platform health** and **tenant usage** (ca
 
 ## Testing and lifecycle
 
-Platform teams often validate changes in **lab AZs** before promoting Git revisions. **Immutable** OS images (for example **Talos** on the management or workload plane) keep node configuration reproducible—see [Getting started](../installation/getting-started.md) for the operator install path.
+Platform teams often validate changes in **lab AZs** before promoting Git revisions. **Immutable** OS images (for example **Talos** on the management or workload plane) keep node configuration reproducible; see [Getting started](../installation/getting-started.md) for the operator install path.
 
 See [Testing](../testing.md) for project testing practices and [Tenancy and console](tenancy-and-console.md) for support information to include when opening tickets.

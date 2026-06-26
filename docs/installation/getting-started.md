@@ -11,7 +11,7 @@ Before installation, review architecture planning documents so topology and infr
 - [Hardware requirements](../architecture/deployment-requirements.md)
 - [Network requirements](../architecture/network-requirements.md)
 
-For complete and advanced deployment paths (all installation modes and operating patterns), see the [installation guide](full-installations.md).
+For complete and advanced deployment paths (all installation modes and operating patterns), see the [deployment guide](deployment-guide.md).
 
 For production-oriented configuration and performance guidance, see [Production recommendations](production-recommendations.md).
 
@@ -30,7 +30,7 @@ Use this baseline for a first deployment:
 
 1. **Install Talos on the 3 nodes and bootstrap Kubernetes**
 
-   Follow [Manual OS installation](talos-manual-installation.md) for the full runbook. Quick reference:
+   Follow [Manual OS installation](manual-os-installation.md) for the full runbook. Quick reference:
 
    - Generate cluster config:
      `talosctl gen config spx-local https://<api-endpoint>:6443`

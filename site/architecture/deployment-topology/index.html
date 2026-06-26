@@ -734,7 +734,7 @@
   <span class="md-ellipsis">
     
   
-  Guide
+  Deployment guide
 
     
   </span>
@@ -749,7 +749,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Guide
+  Deployment guide
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -761,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/full-installations/" class="md-nav__link">
+      <a href="../../installation/deployment-guide/" class="md-nav__link">
         
   
   
@@ -788,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/talos-manual-installation/" class="md-nav__link">
+      <a href="../../installation/manual-os-installation/" class="md-nav__link">
         
   
   
@@ -815,7 +815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/operator-physical-installation/" class="md-nav__link">
+      <a href="../../installation/automated-os-installation/" class="md-nav__link">
         
   
   
@@ -835,14 +835,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -850,14 +842,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/installation-management/" class="md-nav__link">
+      <a href="../../installation/installing-management/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Installation management
+  Installing management
 
     
   </span>
@@ -885,10 +877,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
             
   
   
@@ -905,8 +897,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -949,7 +941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/configure-cluster/" class="md-nav__link">
+      <a href="../../installation/configuring-a-cluster/" class="md-nav__link">
         
   
   
@@ -991,6 +983,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1651,7 +1651,6 @@
 
 
 <h1 id="deployment-topology">Deployment topology</h1>
-<div class="justify">
 <p>This page covers how availability zones (AZs) and the management cluster can be deployed: storage and virtualization (hyperconverged vs decoupled), and management placement (inside an AZ vs outside).</p>
 <h2 id="management-cluster">Management cluster</h2>
 <p>The <strong>management cluster</strong> runs the control plane that operates Superphenix: the <strong>web console</strong>, <strong>GitOps</strong> (e.g. deployment and sync from Git), <strong>bootstrap</strong>, <strong>installation</strong>, and <strong>upgrades</strong>; i.e. the full <strong>lifecycle</strong> of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.</p>
@@ -1811,7 +1810,6 @@
 </ul>
 <p><strong>Changing your deployment later:</strong> Switching between hyperconverged and decoupled (recoupling or decoupling the infrastructure) is <strong>not supported</strong>. It is theoretically possible with significant downtime and manual migration, but it is not a supported path. <strong>Moving the management cluster</strong> from one cluster to another (e.g. from an AZ to a dedicated management cluster, or the reverse) <strong>is possible</strong> and can be done as an operational procedure.</p>
 <p>See the <a href="../../architecture/">Architecture overview</a> for organizations, projects, resources, and disaster recovery.</p>
-</div>
 
 
 

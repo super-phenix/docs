@@ -18,7 +18,7 @@ After creation you can change many aspects of a running VM from the console or G
 | Area | Capabilities |
 |------|----------------|
 | **Identity** | Change **hostname**. |
-| **Run strategy** | Policies such as **start on create**, **always run** / **auto-restart** on failure, or **manual** start—exact options depend on your release. |
+| **Run strategy** | Policies such as **start on create**, **always run** / **auto-restart** on failure, or **manual** start; exact options depend on your release. |
 | **CPU / memory** | Resize compute **hot** or with a short restart, per platform policy. |
 | **Network interfaces** | Add interfaces **one per subnet** (each NIC sits on a single subnet). Per interface: **static** IP, **DHCP / IPAM**-allocated address, **IPv4**, **IPv6**, or **dual stack** as the subnet allows. |
 | **Volumes** | Attach/detach **disks**, attach **CD-ROM** (ISO) devices, and **cloud-init** configuration disks where supported. |
@@ -101,7 +101,7 @@ Individual **disk** snapshots can be scheduled on a **cron**-style timetable so 
 | Restore type | What it does |
 |--------------|----------------|
 | **Restore a VM** | From an **instance snapshot**; overwrites the existing VM if it still exists. See [Instance snapshots](#instance-snapshots). |
-| **Restore a volume** | From a **disk snapshot** to a new or existing disk—see [Storage](storage.md). |
+| **Restore a volume** | From a **disk snapshot** to a new or existing disk; see [Storage](storage.md). |
 
 ## Related views on the instance
 

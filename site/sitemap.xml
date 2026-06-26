@@ -22,22 +22,22 @@
         <loc>https://docs.superphenix.net/installation/getting-started/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/full-installations/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/talos-manual-installation/</loc>
+        <loc>https://docs.superphenix.net/installation/manual-os-installation/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/operator-physical-installation/</loc>
+        <loc>https://docs.superphenix.net/installation/automated-os-installation/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/installation-management/</loc>
+        <loc>https://docs.superphenix.net/installation/installing-management/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/installation/installing-clusters/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/configure-cluster/</loc>
+        <loc>https://docs.superphenix.net/installation/configuring-a-cluster/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/installation/connecting-clusters/</loc>

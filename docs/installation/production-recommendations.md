@@ -8,7 +8,7 @@ If you are still on your first cluster, start with [Getting started](getting-sta
 - [Hardware requirements](../architecture/deployment-requirements.md)
 - [Network requirements](../architecture/network-requirements.md)
 
-For all installation modes and runbooks, see the [installation guide](full-installations.md).
+For all installation modes and runbooks, see the [deployment guide](deployment-guide.md).
 
 ## Production best practices
 

@@ -36,7 +36,7 @@ Empty disk with **no** data: **not bootable** until you install an OS or copy an
 
 #### HTTP source (`http`)
 
-Point to a URL that serves an **`.iso`**, **`.qcow2`**, or **`.vmdk`**. Superphenix **writes** that image onto the disk for you—simple way to build a **bootable** OS disk.
+Point to a URL that serves an **`.iso`**, **`.qcow2`**, or **`.vmdk`**. Superphenix **writes** that image onto the disk for you: a simple way to build a **bootable** OS disk.
 
 #### Snapshot
 
@@ -48,11 +48,11 @@ Create a new disk from another **disk** (equivalent to snapshotting the source a
 
 #### Registry (template)
 
-Pull a disk image from a **container (OCI) registry**—the image is stored in registry format (Docker-compatible). This path suits **golden images** maintained as registry artifacts; see your release notes for supported image layouts.
+Pull a disk image from a **container (OCI) registry**: the image is stored in registry format (Docker-compatible). This path suits **golden images** maintained as registry artifacts; see your release notes for supported image layouts.
 
 ### Resize
 
-Disks support **resize**, including **while attached** (hot). The guest OS may need a moment—or a rescan—to recognize the new size.
+Disks support **resize**, including **while attached** (hot). The guest OS may need a moment, or a rescan, to recognize the new size.
 
 ## Disk snapshots
 
@@ -66,6 +66,6 @@ You can schedule **recurring snapshots** for individual volumes using a **cron**
 
 ### Restore a volume
 
-Restore from a disk snapshot to **clone** a new volume or **roll back** a disk, depending on your workflow and API—pair with [Virtualization](virtualization.md) when replacing a VM’s data volume.
+Restore from a disk snapshot to **clone** a new volume or **roll back** a disk, depending on your workflow and API. Pair with [Virtualization](virtualization.md) when replacing a VM’s data volume.
 
 See [Virtualization](virtualization.md) for attaching disks to instances and instance snapshots, and [Tenancy and console](tenancy-and-console.md) for project and AZ scope.

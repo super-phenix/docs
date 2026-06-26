@@ -1,7 +1,5 @@
 # Deployment topology
 
-<div class="justify" markdown>
-
 This page covers how availability zones (AZs) and the management cluster can be deployed: storage and virtualization (hyperconverged vs decoupled), and management placement (inside an AZ vs outside).
 
 ## Management cluster
@@ -103,5 +101,3 @@ The matrix below combines the two dimensions (AZ mode and management placement) 
 **Changing your deployment later:** Switching between hyperconverged and decoupled (recoupling or decoupling the infrastructure) is **not supported**. It is theoretically possible with significant downtime and manual migration, but it is not a supported path. **Moving the management cluster** from one cluster to another (e.g. from an AZ to a dedicated management cluster, or the reverse) **is possible** and can be done as an operational procedure.
 
 See the [Architecture overview](../architecture.md) for organizations, projects, resources, and disaster recovery.
-
-</div>

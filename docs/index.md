@@ -2,15 +2,11 @@
 
 ![Superphenix](assets/SPX_black.svg){ .index-logo }
 
-<div class="justify" markdown>
-
 **Superphenix** (SPX) is an open-source, **cloud-native** project to build a **Cloud Service Provider (CSP)** on your own infrastructure using **Kubernetes**.
 
 It turns Kubernetes into a platform capable of handling **virtual machines, networking, storage, and software** in the same way cloud providers do.
 
 **Superphenix** gives you a full IaaS, PaaS, and SaaS platform built from open-source and cloud-native components. It can be deployed across multiple datacenters to form **availability zones** and **regions**.
-
-</div>
 
 ## A few examples of what SPX has to offer
 
@@ -25,15 +21,11 @@ It turns Kubernetes into a platform capable of handling **virtual machines, netw
 
 ## Philosophy
 
-<div class="justify" markdown>
-
 Superphenix was initially built at a **cloud service provider** that wanted more control over its own infrastructure, without having to rely on **proprietary** software and hardware with expensive licenses.
 
 That is why the project aims to provide all the features a CSP needs to serve its customers with the **highest level** of availability and redundancy. Superphenix is designed to be deployed across multiple **datacenters** spread geographically over multiple **continents**.
 
 The project authors chose to make it **open source** because we believe it can benefit **organizations of all sizes** that want to build their own cloud platform.
-
-</div>
 
 ## Quick links
 

@@ -1,7 +1,5 @@
 # Network requirements
 
-<div class="justify" markdown>
-
 Network design for Superphenix should be planned alongside hardware sizing and AZ topology. This page defines baseline expectations for link speed, VLAN segmentation, external connectivity, and IP announcement models. For server sizing and NIC assumptions, see [Hardware requirements](deployment-requirements.md). For AZ design constraints, see [Architecture overview](../architecture.md).
 
 ---
@@ -133,5 +131,3 @@ For advanced networking designs, you can provide **public IP ranges** to Superph
 - **NAT gateways**
 
 This can reduce translation layers for internet-facing workloads and simplify some ingress patterns when public addressing is part of the target architecture.
-
-</div>

@@ -4,7 +4,7 @@ Superphenix provides **VPC-style** networking for VMs: **VPCs**, **subnets**, op
 
 ## VPCs (Virtual Private Cloud)
 
-A **VPC** is an **L3 routing domain** that **contains subnets**. Subnets inside the **same** VPC can reach each other according to routing and firewall rules—similar to placing multiple VLANs behind one router that interconnects them.
+A **VPC** is an **L3 routing domain** that **contains subnets**. Subnets inside the **same** VPC can reach each other according to routing and firewall rules, similar to placing multiple VLANs behind one router that interconnects them.
 
 - **L3 routing**: The VPC owns **route tables** and can host **custom static routes** to steer traffic between subnets, toward NAT, or to other next hops as you define.
 - **Isolation**: Two subnets in **different** VPCs **cannot** talk privately; communication would go via the **Internet** (unless you add future **VPC peering** when available).
@@ -68,7 +68,7 @@ You then define **ports** (for example **80** / **443**) for forwarding.
 
 !!! warning "Same subnet for all backends"
 
-    Selector or endpoint configuration must resolve to backends on a **single subnet**. Only the **first network interface** of each VM participates in load balancing—**secondary NICs** are not used. **All VMs behind one load balancer should sit in the same subnet.**
+    Selector or endpoint configuration must resolve to backends on a **single subnet**. Only the **first network interface** of each VM participates in load balancing: **secondary NICs** are not used. **All VMs behind one load balancer should sit in the same subnet.**
 
 ## Elastic IPs (EIPs)
 
@@ -111,12 +111,12 @@ The console UX may still evolve; power users can mirror the same rules in **GitO
 
 ## Configuration examples (illustrative)
 
-These snippets illustrate the **ideas** behind console fields. **Field names and APIs** may differ in your release—use them as a checklist when translating to your GitOps manifests or API calls.
+These snippets illustrate the **ideas** behind console fields. **Field names and APIs** may differ in your release; use them as a checklist when translating to your GitOps manifests or API calls.
 
 ### Subnet with NAT
 
 ```yaml
-# Illustrative — align with your Superphenix API / CRDs
+# Illustrative: align with your Superphenix API / CRDs
 apiVersion: networking.superphenix.example/v1alpha1
 kind: Subnet
 metadata:

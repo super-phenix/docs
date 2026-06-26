@@ -38,7 +38,7 @@ The foundation provides the core capabilities that the rest of the platform reli
 
     ---
 
-    **GitOps**, **web console**, **SSH key store**, observability, and quotas—deploy and operate the platform and tenant resources from one place.
+    **GitOps**, **web console**, **SSH key store**, observability, and quotas: deploy and operate the platform and tenant resources from one place.
 
     [:octicons-arrow-right-24: Tooling](tooling.md)
 

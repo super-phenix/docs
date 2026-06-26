@@ -2,11 +2,7 @@
 
 ## About the name
 
-<div class="justify" markdown>
-
 The project is named **Superphenix** (SPX) after the [Superphénix](https://en.wikipedia.org/wiki/Superph%C3%A9nix) nuclear power plant in France. The name is a nod to building something ambitious and innovative on open, sovereign infrastructure. We spell the project Superphenix (without the accent) so it works on all keyboard layouts.
-
-</div>
 
 ## What is Superphenix?
 
@@ -20,7 +16,7 @@ A CSP delivers on-demand, scalable compute, storage, and applications. The usual
 
 Superphenix focuses on all those layers to provide **high resiliency**, **high availability**, **high performance** services to the end customers of the platform.
 
-To install a first cluster, see [Getting started](installation/getting-started.md). For complete and advanced deployment paths (all installation modes and operating patterns), see the [installation guide](installation/full-installations.md).
+To install a first cluster, see [Getting started](installation/getting-started.md). For complete and advanced deployment paths (all installation modes and operating patterns), see the [deployment guide](installation/deployment-guide.md).
 
 ## Summary of features
 

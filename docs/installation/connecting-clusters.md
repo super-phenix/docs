@@ -6,5 +6,5 @@ In **Decoupled** mode, you must connect your virtualization clusters to your sto
 
 ## Related
 
-- [Configure a cluster](configure-cluster.md) — define each AZ with a `Cluster` resource.
-- [Deployment topology](../architecture/deployment-topology.md) — when to use decoupled storage and virtualization.
+- [Configure a cluster](configuring-a-cluster.md): define each AZ with a `Cluster` resource.
+- [Deployment topology](../architecture/deployment-topology.md): when to use decoupled storage and virtualization.

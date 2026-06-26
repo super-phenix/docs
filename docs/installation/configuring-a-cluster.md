@@ -48,6 +48,6 @@ Set `connection.mode: Local` when the cluster being defined is the same Kubernet
 
 ## Related
 
-- [Installing clusters](installing-clusters.md) — overview of cluster installation.
-- [Connecting clusters](connecting-clusters.md) — decoupled storage and virtualization.
-- [Deployment topology](../architecture/deployment-topology.md) — hyperconverged vs decoupled layouts.
+- [Installing clusters](installing-clusters.md): overview of cluster installation.
+- [Connecting clusters](connecting-clusters.md): decoupled storage and virtualization.
+- [Deployment topology](../architecture/deployment-topology.md): hyperconverged vs decoupled layouts.

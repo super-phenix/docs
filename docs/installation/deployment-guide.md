@@ -1,4 +1,4 @@
-# Guide
+# Deployment guide
 
 This guide covers the end-to-end installation of Superphenix, from provisioning Kubernetes on bare metal to operator deployment and cluster configuration. Whether you are deploying a single hyperconverged cluster or a large-scale decoupled infrastructure across multiple availability zones, start here for requirements and the recommended installation paths.
 
@@ -43,12 +43,29 @@ Check the [deployment topology documentation](../architecture/deployment-topolog
 
 ## Provisioning Kubernetes on bare metal
 
-Every Superphenix AZ runs on a **Talos Linux** Kubernetes cluster. You can create that cluster in one of two ways:
+Every Superphenix AZ runs on a **Talos Linux** Kubernetes cluster. Choose how you provision it:
 
-- **[Manual OS installation](talos-manual-installation.md)** — install Talos and bootstrap Kubernetes yourself with `talosctl`. Best for labs, your first cluster, or when management runs on an AZ and you need a pre-existing Talos cluster before installing the operator.
-- **[Automated OS installation](operator-physical-installation.md)** — let the `superphenix-operator` and **talos-operator** provision servers over BMC/IPMI and manage node lifecycle declaratively. Best for greenfield datacenters and multi-AZ deployments with management outside the workload AZs.
+<div class="grid cards" markdown>
+
+-   :lucide-terminal:{ .lg .middle } __Manual OS installation__
+
+    ---
+
+    Install Talos and bootstrap Kubernetes yourself with **`talosctl`**. Best for labs, your first cluster, or when management runs on an AZ and you need a pre-existing Talos cluster before installing the operator.
+
+    [:octicons-arrow-right-24: Manual OS installation](manual-os-installation.md)
+
+-   :lucide-bot:{ .lg .middle } __Automated OS installation__
+
+    ---
+
+    Let the **`superphenix-operator`** and **talos-operator** provision servers over BMC/IPMI and manage node lifecycle declaratively. Best for greenfield datacenters and multi-AZ deployments with management outside the workload AZs.
+
+    [:octicons-arrow-right-24: Automated OS installation](automated-os-installation.md)
+
+</div>
 
 ## What comes next
 
-1. **[Installation management](installation-management.md)** — install the operator and configure the management cluster.
-2. **[Installing clusters](installing-clusters.md)** — define `Cluster` resources and connect workload AZs.
+1. **[Installing management](installing-management.md)**: install the operator and configure the management cluster.
+2. **[Installing clusters](installing-clusters.md)**: define `Cluster` resources and connect workload AZs.
