@@ -20,7 +20,17 @@ nav = [
   ]},
   { "Installation" = [
     { "Getting started" = "installation/getting-started.md" },
-    { "Full installations" = "installation/full-installations.md" },
+    { "Guide" = [
+      { "Overview" = "installation/full-installations.md" },
+      { "Manual OS installation" = "installation/talos-manual-installation.md" },
+      { "Automated OS installation" = "installation/operator-physical-installation.md" }
+    ]},
+    { "Installation management" = "installation/installation-management.md" },
+    { "Installing clusters" = [
+      { "Overview" = "installation/installing-clusters.md" },
+      { "Configure a cluster" = "installation/configure-cluster.md" },
+      { "Connecting clusters" = "installation/connecting-clusters.md" }
+    ]},
     { "Production recommendations" = "installation/production-recommendations.md" }
   ]},
   { "Features" = [

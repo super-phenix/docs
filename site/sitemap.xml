@@ -25,6 +25,24 @@
         <loc>https://docs.superphenix.net/installation/full-installations/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/installation/talos-manual-installation/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/operator-physical-installation/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/installation-management/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/installing-clusters/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/configure-cluster/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/connecting-clusters/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/installation/production-recommendations/</loc>
       </url>
       <url>

@@ -1,59 +1,54 @@
-# Full installations guide
+# Guide
 
-This page will document all supported Superphenix installation modes and detailed runbooks.
+This guide covers the end-to-end installation of Superphenix, from provisioning Kubernetes on bare metal to operator deployment and cluster configuration. Whether you are deploying a single hyperconverged cluster or a large-scale decoupled infrastructure across multiple availability zones, start here for requirements and the recommended installation paths.
 
 Superphenix supports two installation modes:
 
-- **Hyperconverged**: Storage and virtualization run on the same cluster.
-- **Decoupled**: Storage and virtualization run on separate clusters.
+- **Hyperconverged**: Storage and virtualization run on the same cluster. Compute and storage share the same nodes.
+- **Decoupled**: Storage and virtualization run on separate clusters. Dedicated storage clusters serve one or more virtualization clusters.
 
-In Decoupled mode, you can have two types of clusters:
+## Requirements
 
-- **Storage cluster**: Dedicated to storage (Ceph, Rook, etc.)
-- **Virtualization cluster**: Dedicated to virtualization (KubeVirt, etc.)
+Before you begin, ensure your environment meets the necessary specifications and follows our recommended patterns.
 
-## Cluster configuration
+- **Kubernetes**: A Kubernetes cluster (v1.28+) is required to host the Superphenix operator.
+- **Helm**: Helm is required for the initial operator installation.
+- **Hardware & network**: Review the dedicated [Hardware](../architecture/deployment-requirements.md) and [Network](../architecture/network-requirements.md) requirements pages.
+- **Best practices**: Follow our [Production recommendations](production-recommendations.md) for sizing and high availability.
 
-When you define a `Cluster` resource in Superphenix, you can configure several fields in the `spec`.
+### Management "in" vs "out" requirements
 
-### Deployment and Topology
+The first step to installing Superphenix is to decide where your management cluster will be located.
+Superphenix supports two placement modes for the management cluster. Your choice affects connectivity requirements and failure domains.
 
-- **deploymentTopology**: Defines whether the cluster is `Hyperconverged` or `Decoupled`.
-- **type**: Specifies the cluster type (`Storage` or `Virtualization`) when `deploymentTopology` is `Decoupled`.
+Check the [deployment topology documentation](../architecture/deployment-topology.md) to learn more about the choices you have. 
 
-### Geography
+<div class="grid cards" markdown>
 
-- **region**: The geographic region where this cluster is located.
-- **availabilityZone**: The availability zone identifier within the region.
+-   **Management on an AZ**
 
-### Software and Chart
+    ![Management on an AZ](../sketch/mgmt-inside-az.svg)
 
-- **version**: The Superphenix version for this cluster.
-- **repoURL**: The URL of the repository where the Superphenix system chart is located.
-- **chartName**: The name of the Superphenix system chart.
-- **systemConfiguration**: A YAML dictionary of values passed to the system configuration chart.
+-   **Management outside the AZ**
 
-### Connection
+    ![Management outside the AZ](../sketch/mgmt-outside-az.svg)
 
-- **connection**: Defines how the operator connects to the cluster.
-    - **mode**: Specifies the connection mode (`Remote` or `Local`).
-    - **url**: The address of the remote cluster API server (required for `Remote` mode).
-    - **secretRef**: A reference to a secret containing connection credentials (required for `Remote` mode).
-        - **name**: Name of the secret.
-        - **namespace**: Namespace of the secret.
+</div>
 
-### Operations
+- **Management on an AZ (Inside)**: The operator and console run on one of the workload clusters. This is easier to bootstrap but creates a dependency on the hosting AZ.
+- **Management outside the AZ (Outside)**: The control plane runs on a dedicated, neutral cluster. This is recommended for multi-AZ orchestrations and maximum redundancy.
 
-- **pauseSync**: Allows to temporarily pause the synchronization of the Superphenix stack on this cluster.
-- **manual**: Disables the autosync of all applications on this cluster.
-- **cleanupOnDeletion**: Allows the cleanup of the cluster when it gets deleted.
+!!! important
+    If you're choosing to deploy the management outside of an AZ, the cluster needs connectivity to the Kubernetes control plane of every Superphenix cluster it will manage.
 
-## Prerequisites
+## Provisioning Kubernetes on bare metal
 
-- A Kubernetes cluster (v1.28+)
-- Helm (v3.12+)
-- ArgoCD (v2.10+)
+Every Superphenix AZ runs on a **Talos Linux** Kubernetes cluster. You can create that cluster in one of two ways:
 
-## Installation steps
+- **[Manual OS installation](talos-manual-installation.md)** — install Talos and bootstrap Kubernetes yourself with `talosctl`. Best for labs, your first cluster, or when management runs on an AZ and you need a pre-existing Talos cluster before installing the operator.
+- **[Automated OS installation](operator-physical-installation.md)** — let the `superphenix-operator` and **talos-operator** provision servers over BMC/IPMI and manage node lifecycle declaratively. Best for greenfield datacenters and multi-AZ deployments with management outside the workload AZs.
 
-Coming soon.
+## What comes next
+
+1. **[Installation management](installation-management.md)** — install the operator and configure the management cluster.
+2. **[Installing clusters](installing-clusters.md)** — define `Cluster` resources and connect workload AZs.

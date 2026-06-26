@@ -10,6 +10,20 @@ The **management cluster** runs the control plane that operates Superphenix: the
 
 The management cluster can run **inside an AZ** (the same Kubernetes cluster as one of your AZs hosts both workloads and the management components) or be **completely separate**. When separate, it can even run on **another cloud or provider**: you can operate Superphenix AZs in your own datacenters from a management cluster hosted elsewhere, as long as it has the necessary connectivity to the AZs for API and GitOps.
 
+### Visual comparison
+
+<div class="grid cards" markdown>
+
+-   **Management on an AZ**
+
+    ![Management on an AZ](../sketch/mgmt-inside-az.svg)
+
+-   **Management outside the AZ**
+
+    ![Management outside the AZ](../sketch/mgmt-outside-az.svg)
+
+</div>
+
 ### Comparison
 
 | Aspect | Management on an AZ | Management outside the AZ |
