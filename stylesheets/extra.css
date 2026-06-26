@@ -65,3 +65,17 @@
 .enterprise-support-hero .md-button {
   margin-top: 0.5rem;
 }
+
+/* Image zoom and rounded corners */
+.md-typeset img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backface-visibility: hidden;
+  border-radius: 8px;
+}
+
+.md-typeset img:hover {
+  transform: scale(2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  position: relative;
+}
