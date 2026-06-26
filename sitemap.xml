@@ -25,13 +25,19 @@
         <loc>https://docs.superphenix.net/installation/deployment-guide/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/installation/installing-management/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/management-inside-az/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/management-outside-az/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/installation/manual-os-installation/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/installation/automated-os-installation/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/installing-management/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/installation/installing-clusters/</loc>
