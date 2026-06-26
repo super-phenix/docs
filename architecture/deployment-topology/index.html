@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Superphenix: A full cloud stack running on your own hardware">
+        <meta name="description" content="Build your own cloud platform with Superphenix">
       
       
       
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/SPX_white.svg">
-      <meta name="generator" content="zensical-0.0.44">
+      <meta name="generator" content="zensical-0.0.46">
     
     
       
@@ -34,7 +34,7 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.fba56155.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.19d3147f.min.css">
       
         
           
@@ -1405,15 +1405,15 @@
 </table>
 <h3 id="recommendation">Recommendation</h3>
 <ul>
-<li><strong>Management on an AZ</strong> — A good fit for organizations that want <strong>isolated AZs</strong>: each AZ has its own management cluster, and the control plane manages only that AZ (not multiple AZs). Suited to <strong>security</strong> requirements where strict isolation between AZs is needed.</li>
-<li><strong>Management outside the AZ</strong> — A good fit for <strong>orchestrating multiple AZs at scale</strong> from a single control plane, and for <strong>redundancy</strong> (management is independent of any workload AZ).</li>
+<li><strong>Management on an AZ</strong>: A good fit for organizations that want <strong>isolated AZs</strong>: each AZ has its own management cluster, and the control plane manages only that AZ (not multiple AZs). Suited to <strong>security</strong> requirements where strict isolation between AZs is needed.</li>
+<li><strong>Management outside the AZ</strong>: A good fit for <strong>orchestrating multiple AZs at scale</strong> from a single control plane, and for <strong>redundancy</strong> (management is independent of any workload AZ).</li>
 </ul>
 <hr />
 <h2 id="hyperconverged-vs-decoupled">Hyperconverged vs decoupled</h2>
 <p>AZs can be deployed in two ways:</p>
 <ul>
-<li><strong>Hyperconverged</strong> — Both <strong>storage</strong> and <strong>virtualization</strong> run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.</li>
-<li><strong>Decoupled (traditional)</strong> — <strong>Storage</strong> runs on separate, dedicated clusters; <strong>virtualization</strong> (hypervisor) runs on one or more other clusters that consume that storage. Multiple private virtualization AZs can <strong>share the same storage</strong> backend. This model is useful when you want to run several hypervisor AZs (e.g. in different racks or sites) against a single, shared storage pool.</li>
+<li><strong>Hyperconverged</strong>: Both <strong>storage</strong> and <strong>virtualization</strong> run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.</li>
+<li><strong>Decoupled (traditional)</strong>: <strong>Storage</strong> runs on separate, dedicated clusters; <strong>virtualization</strong> (hypervisor) runs on one or more other clusters that consume that storage. Multiple private virtualization AZs can <strong>share the same storage</strong> backend. This model is useful when you want to run several hypervisor AZs (e.g. in different racks or sites) against a single, shared storage pool.</li>
 </ul>
 <h3 id="comparison_1">Comparison</h3>
 <table>
@@ -1480,13 +1480,13 @@
 <tbody>
 <tr>
 <td><strong>Hyperconverged</strong></td>
-<td><strong>Fully integrated</strong> — Storage, virtualization, and management run on a single cluster; the simplest deployment, with one AZ and its control plane colocated.</td>
-<td><strong>Centrally managed hyperconverged</strong> — Each AZ is a self-contained hyperconverged cluster; a separate management cluster orchestrates multiple AZs from a single control plane.</td>
+<td><strong>Fully integrated</strong>: Storage, virtualization, and management run on a single cluster; the simplest deployment, with one AZ and its control plane colocated.</td>
+<td><strong>Centrally managed hyperconverged</strong>: Each AZ is a self-contained hyperconverged cluster; a separate management cluster orchestrates multiple AZs from a single control plane.</td>
 </tr>
 <tr>
 <td><strong>Decoupled</strong></td>
-<td><strong>Decoupled with local management</strong> — Storage and hypervisor are on separate clusters; management runs on one of them (e.g. the hypervisor AZ), so that AZ hosts both workloads and the control plane.</td>
-<td><strong>Fully decoupled</strong> — Storage, hypervisor, and management are each on separate clusters; the management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration.</td>
+<td><strong>Decoupled with local management</strong>: Storage and hypervisor are on separate clusters; management runs on one of them (e.g. the hypervisor AZ), so that AZ hosts both workloads and the control plane.</td>
+<td><strong>Fully decoupled</strong>: Storage, hypervisor, and management are each on separate clusters; the management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration.</td>
 </tr>
 </tbody>
 </table>
@@ -1501,10 +1501,10 @@
 </div>
 <p><strong>Use cases and who they target:</strong></p>
 <ul>
-<li><strong>Fully integrated</strong> — Targets <strong>single-AZ</strong> deployments, <strong>proofs of concept</strong>, and teams that want the <strong>simplest</strong> setup: one cluster for storage, virtualization, and management. Best for low cost and minimal operational footprint.</li>
-<li><strong>Centrally managed hyperconverged</strong> — Targets organizations that want <strong>multiple hyperconverged AZs</strong> with <strong>one control plane</strong>: horizontal scaling by adding AZs, each AZ self-contained, orchestration from a separate management cluster.</li>
-<li><strong>Decoupled with local management</strong> — Targets <strong>security-focused</strong> or <strong>isolated</strong> environments: each AZ has its own management, storage and hypervisor are separate, and the control plane only manages that AZ. Good when strict isolation between AZs is required.</li>
-<li><strong>Fully decoupled</strong> — Targets <strong>multi-AZ at scale</strong>, <strong>redundancy</strong>, and <strong>shared storage</strong>: storage and hypervisor are separate, management sits outside all workload AZs. Suited to performance-sensitive workloads, shared storage across AZs or with external systems (e.g. VMware), and operators who need a single, resilient control plane for many AZs.</li>
+<li><strong>Fully integrated</strong>: Targets <strong>single-AZ</strong> deployments, <strong>proofs of concept</strong>, and teams that want the <strong>simplest</strong> setup: one cluster for storage, virtualization, and management. Best for low cost and minimal operational footprint.</li>
+<li><strong>Centrally managed hyperconverged</strong>: Targets organizations that want <strong>multiple hyperconverged AZs</strong> with <strong>one control plane</strong>: horizontal scaling by adding AZs, each AZ self-contained, orchestration from a separate management cluster.</li>
+<li><strong>Decoupled with local management</strong>: Targets <strong>security-focused</strong> or <strong>isolated</strong> environments: each AZ has its own management, storage and hypervisor are separate, and the control plane only manages that AZ. Good when strict isolation between AZs is required.</li>
+<li><strong>Fully decoupled</strong>: Targets <strong>multi-AZ at scale</strong>, <strong>redundancy</strong>, and <strong>shared storage</strong>: storage and hypervisor are separate, management sits outside all workload AZs. Suited to performance-sensitive workloads, shared storage across AZs or with external systems (e.g. VMware), and operators who need a single, resilient control plane for many AZs.</li>
 </ul>
 <p><strong>Changing your deployment later:</strong> Switching between hyperconverged and decoupled (recoupling or decoupling the infrastructure) is <strong>not supported</strong>. It is theoretically possible with significant downtime and manual migration, but it is not a supported path. <strong>Moving the management cluster</strong> from one cluster to another (e.g. from an AZ to a dedicated management cluster, or the reverse) <strong>is possible</strong> and can be done as an operational procedure.</p>
 <p>See the <a href="../../architecture/">Architecture overview</a> for organizations, projects, resources, and disaster recovery.</p>
@@ -1580,10 +1580,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ee611ef6.min.js"></script>
       
     
   </body>

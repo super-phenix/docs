@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Superphenix: A full cloud stack running on your own hardware">
+        <meta name="description" content="Build your own cloud platform with Superphenix">
       
       
       
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/SPX_white.svg">
-      <meta name="generator" content="zensical-0.0.44">
+      <meta name="generator" content="zensical-0.0.46">
     
     
       
@@ -34,7 +34,7 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.fba56155.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.19d3147f.min.css">
       
         
           
@@ -1497,8 +1497,8 @@
 <h2 id="instances-vms">Instances (VMs)</h2>
 <p>An instance is always created in:</p>
 <ul>
-<li>One <strong>availability zone (AZ)</strong> — pick the location where the VM should run.</li>
-<li>One or more <strong>networks</strong> — L2 subnets with a defined IP range (see <a href="../network/">Network</a>).</li>
+<li>One <strong>availability zone (AZ)</strong>: pick the location where the VM should run.</li>
+<li>One or more <strong>networks</strong>: L2 subnets with a defined IP range (see <a href="../network/">Network</a>).</li>
 </ul>
 <p>Resource <strong>names do not need to be globally unique</strong>; identify resources by ID when automating.</p>
 <h3 id="day-2-management">Day-2 management</h3>
@@ -1547,9 +1547,9 @@
 <li>Click <strong>Create instance</strong> (top right).</li>
 <li>Set:</li>
 <li><strong>Name</strong></li>
-<li><strong>AZ</strong> — must match where you want the VM and any disks you attach.</li>
-<li><strong>Run strategy</strong> — whether the VM <strong>starts automatically</strong> or stays stopped until you start it.</li>
-<li><strong>CPU and memory</strong> — size of the VM.</li>
+<li><strong>AZ</strong>: must match where you want the VM and any disks you attach.</li>
+<li><strong>Run strategy</strong>: whether the VM <strong>starts automatically</strong> or stays stopped until you start it.</li>
+<li><strong>CPU and memory</strong>: size of the VM.</li>
 </ol>
 <h3 id="cloud-init">Cloud-init</h3>
 <p><strong>Cloud-init</strong> can provision the guest OS at first boot (users, passwords, packages), <strong>if the image supports it</strong>.</p>
@@ -1566,8 +1566,8 @@
 <h3 id="networks">Networks</h3>
 <p>Attach the VM to <strong>one or more</strong> L2 networks (subnets). Each subnet has an IP range.</p>
 <ul>
-<li><strong>Static IP</strong> — set it explicitly if required.</li>
-<li><strong>No static IP</strong> — <strong>IPAM</strong> allocates an address from the subnet CIDR (see <a href="../network/">Network</a>).</li>
+<li><strong>Static IP</strong>: set it explicitly if required.</li>
+<li><strong>No static IP</strong>: <strong>IPAM</strong> allocates an address from the subnet CIDR (see <a href="../network/">Network</a>).</li>
 </ul>
 <h2 id="start-stop-and-access">Start, stop, and access</h2>
 <p>Depending on <strong>run strategy</strong>, the VM may start automatically after creation.</p>
@@ -1601,8 +1601,8 @@
 <h2 id="instance-snapshots">Instance snapshots</h2>
 <p>Create a snapshot from the instance <strong>Options</strong> menu. An instance snapshot captures:</p>
 <ul>
-<li><strong>VM definition</strong> — CPU, RAM, attached disks, etc.</li>
-<li><strong>Disk data</strong> — contents of attached volumes</li>
+<li><strong>VM definition</strong>: CPU, RAM, attached disks, etc.</li>
+<li><strong>Disk data</strong>: contents of attached volumes</li>
 </ul>
 <h3 id="restore">Restore</h3>
 <p>Open <strong>Instance snapshots</strong>, select a snapshot, and use <strong>Restore</strong>. If the VM still exists, restore <strong>overwrites</strong> it.</p>
@@ -1631,9 +1631,9 @@
 </table>
 <h2 id="related-views-on-the-instance">Related views on the instance</h2>
 <ul>
-<li><strong>Storage</strong> — Cloud-init configuration and attached disks.</li>
-<li><strong>Network</strong> — Subnets attached to the VM and assigned <strong>IP addresses</strong>.</li>
-<li><strong>Instance snapshots</strong> — List of snapshots for this VM and restore actions.</li>
+<li><strong>Storage</strong>: Cloud-init configuration and attached disks.</li>
+<li><strong>Network</strong>: Subnets attached to the VM and assigned <strong>IP addresses</strong>.</li>
+<li><strong>Instance snapshots</strong>: List of snapshots for this VM and restore actions.</li>
 </ul>
 <p>See <a href="../storage/">Storage</a> for disks and disk snapshots, <a href="../network/">Network</a> for VPCs, subnets, and public access, and <a href="../tenancy-and-console/">Tenancy and console</a> for project and AZ context.</p>
 
@@ -1707,10 +1707,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ee611ef6.min.js"></script>
       
     
   </body>

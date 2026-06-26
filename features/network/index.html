@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Superphenix: A full cloud stack running on your own hardware">
+        <meta name="description" content="Build your own cloud platform with Superphenix">
       
       
       
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/SPX_white.svg">
-      <meta name="generator" content="zensical-0.0.44">
+      <meta name="generator" content="zensical-0.0.46">
     
     
       
@@ -34,7 +34,7 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.fba56155.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.19d3147f.min.css">
       
         
           
@@ -1509,21 +1509,21 @@
 <h2 id="vpcs-virtual-private-cloud">VPCs (Virtual Private Cloud)</h2>
 <p>A <strong>VPC</strong> is an <strong>L3 routing domain</strong> that <strong>contains subnets</strong>. Subnets inside the <strong>same</strong> VPC can reach each other according to routing and firewall rules—similar to placing multiple VLANs behind one router that interconnects them.</p>
 <ul>
-<li><strong>L3 routing</strong> — The VPC owns <strong>route tables</strong> and can host <strong>custom static routes</strong> to steer traffic between subnets, toward NAT, or to other next hops as you define.</li>
-<li><strong>Isolation</strong> — Two subnets in <strong>different</strong> VPCs <strong>cannot</strong> talk privately; communication would go via the <strong>Internet</strong> (unless you add future <strong>VPC peering</strong> when available).</li>
+<li><strong>L3 routing</strong>: The VPC owns <strong>route tables</strong> and can host <strong>custom static routes</strong> to steer traffic between subnets, toward NAT, or to other next hops as you define.</li>
+<li><strong>Isolation</strong>: Two subnets in <strong>different</strong> VPCs <strong>cannot</strong> talk privately; communication would go via the <strong>Internet</strong> (unless you add future <strong>VPC peering</strong> when available).</li>
 </ul>
 <h2 id="subnets">Subnets</h2>
 <p>A <strong>subnet</strong> is an <strong>L2 segment</strong> with an IP range (<strong>CIDR</strong>) where you place instances. Think of it like a VLAN behind a router in a traditional design.</p>
 <ul>
 <li>A subnet <strong>belongs to one VPC</strong>. The <strong>VPC</strong> routes traffic to other subnets in the same VPC and toward the <strong>Internet</strong> when configured.</li>
-<li><strong>Custom gateway</strong> — You can define how the subnet’s <strong>default gateway</strong> relates to the VPC router (advanced layouts).</li>
-<li><strong>Custom CIDR</strong> — The subnet’s <strong>CIDR block</strong> is fully under your control within platform limits.</li>
-<li><strong>Exclude IPs from IPAM</strong> — Reserve addresses (for gateways, load balancers, or static services) so <strong>DHCP/IPAM</strong> never hands them out.</li>
+<li><strong>Custom gateway</strong>: You can define how the subnet’s <strong>default gateway</strong> relates to the VPC router (advanced layouts).</li>
+<li><strong>Custom CIDR</strong>: The subnet’s <strong>CIDR block</strong> is fully under your control within platform limits.</li>
+<li><strong>Exclude IPs from IPAM</strong>: Reserve addresses (for gateways, load balancers, or static services) so <strong>DHCP/IPAM</strong> never hands them out.</li>
 </ul>
 <h3 id="create-a-subnet">Create a subnet</h3>
 <ol>
 <li>Choose <strong>IP family</strong>: <strong>IPv4</strong>, <strong>IPv6</strong>, or <strong>Dual stack</strong> (both).</li>
-<li>Set the <strong>CIDR</strong> — defines which IPs IPAM may assign to VMs.</li>
+<li>Set the <strong>CIDR</strong>: defines which IPs IPAM may assign to VMs.</li>
 <li>Prefer <strong>reasonably sized</strong> prefixes (for example <strong><code>/24</code></strong> for IPv4) to avoid overlap and keep address plans manageable. Use <strong>private</strong> ranges appropriate to your environment (for example <code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>).</li>
 </ol>
 <h3 id="ipam">IPAM</h3>
@@ -1531,11 +1531,11 @@
 <h3 id="nat-gateway-and-fully-private-subnets">NAT gateway and “fully private” subnets</h3>
 <p>When creating a subnet you can:</p>
 <ul>
-<li><strong>Enable NAT gateway</strong> — Instantiates a <strong>NAT gateway</strong> in the subnet so <strong>outbound</strong> traffic can reach the <strong>Internet</strong>. The subnet’s <strong>routing table</strong> is updated so traffic flows:</li>
+<li><strong>Enable NAT gateway</strong>: Instantiates a <strong>NAT gateway</strong> in the subnet so <strong>outbound</strong> traffic can reach the <strong>Internet</strong>. The subnet’s <strong>routing table</strong> is updated so traffic flows:</li>
 </ul>
 <p><code>VM → default gateway → NAT gateway → Internet</code></p>
 <ul>
-<li><strong>Fully private / isolated</strong> — A stricter mode that <strong>isolates</strong> the subnet so it is <strong>not reachable</strong> even from other subnets in the same VPC. Use <strong>firewall</strong> rules for finer control when you only need to restrict access, not full isolation.</li>
+<li><strong>Fully private / isolated</strong>: A stricter mode that <strong>isolates</strong> the subnet so it is <strong>not reachable</strong> even from other subnets in the same VPC. Use <strong>firewall</strong> rules for finer control when you only need to restrict access, not full isolation.</li>
 </ul>
 <p>Subnets <strong>host NAT gateways</strong> when you enable them: the gateway is a resource in that subnet that provides <strong>SNAT</strong>, <strong>DNAT</strong>, and <strong>1:1 NAT</strong> (floating IP / <strong>FIP</strong>) patterns toward the Internet or peer networks.</p>
 <p>After creation, the subnet detail shows <strong>CIDR</strong>, <strong>gateway</strong>, <strong>VPC</strong>, and (if enabled) the <strong>NAT gateway</strong> IP.</p>
@@ -1604,7 +1604,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>DNAT (port forwarding)</strong> — Map <strong>external</strong> ports on the EIP to an <strong>internal</strong> IP and <strong>port</strong> on a VM inside the CIDR (open a service to the Internet).</p>
+<p><strong>DNAT (port forwarding)</strong>: Map <strong>external</strong> ports on the EIP to an <strong>internal</strong> IP and <strong>port</strong> on a VM inside the CIDR (open a service to the Internet).</p>
 <div class="admonition note">
 <p class="admonition-title">One NAT gateway per subnet (today)</p>
 <p>A subnet’s <strong>VPC NAT gateway</strong> currently serves <strong>that subnet’s</strong> outbound path. If a subnet needs Internet access or inbound reachability, it needs <strong>its own</strong> NAT gateway and <strong>its own</strong> EIPs. <strong>Sharing</strong> one NAT gateway across multiple subnets may come in a future release to save public IPs.</p>
@@ -1613,9 +1613,9 @@
 <h2 id="firewalls-network-policies">Firewalls (network policies)</h2>
 <p>Firewall rules are expressed as <strong>network policies</strong> (Kubernetes-style semantics):</p>
 <ul>
-<li><strong>Default deny</strong> — Traffic that is <strong>not explicitly allowed</strong> is <strong>dropped</strong> (allow-only model).</li>
-<li><strong>Match criteria</strong> — Rules can target <strong>CIDRs</strong> and/or <strong>label selectors</strong> (for VMs or workloads).</li>
-<li><strong>Protocols</strong> — <strong>TCP</strong>, <strong>UDP</strong>, and <strong>SCTP</strong> where supported.</li>
+<li><strong>Default deny</strong>: Traffic that is <strong>not explicitly allowed</strong> is <strong>dropped</strong> (allow-only model).</li>
+<li><strong>Match criteria</strong>: Rules can target <strong>CIDRs</strong> and/or <strong>label selectors</strong> (for VMs or workloads).</li>
+<li><strong>Protocols</strong>: <strong>TCP</strong>, <strong>UDP</strong>, and <strong>SCTP</strong> where supported.</li>
 </ul>
 <p>The console UX may still evolve; power users can mirror the same rules in <strong>GitOps</strong> for review and audit.</p>
 <h2 id="configuration-examples-illustrative">Configuration examples (illustrative)</h2>
@@ -1744,10 +1744,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ee611ef6.min.js"></script>
       
     
   </body>

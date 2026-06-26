@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Superphenix: A full cloud stack running on your own hardware">
+        <meta name="description" content="Build your own cloud platform with Superphenix">
       
       
       
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../assets/SPX_white.svg">
-      <meta name="generator" content="zensical-0.0.44">
+      <meta name="generator" content="zensical-0.0.46">
     
     
       
@@ -34,7 +34,7 @@
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/modern/main.fba56155.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.19d3147f.min.css">
       
         
           
@@ -1218,28 +1218,28 @@
 <p>Superphenix can be operated in two main ways: <strong>GitOps</strong> (for operators and automation) and a <strong>web console</strong> (for tenants and interactive use). Both are designed to work together.</p>
 <h2 id="role-of-the-console">Role of the console</h2>
 <ul>
-<li><strong>Self-service</strong> — Tenants create and manage VMs, networks (VPCs, subnets), and storage without editing Git or YAML by hand.</li>
-<li><strong>Visibility</strong> — View resources, usage, and basic billing-related information.</li>
-<li><strong>Access</strong> — Serial and VNC console access to VMs through a <strong>proxy</strong> that enforces permissions and logs user actions.</li>
-<li><strong>Consistency with GitOps</strong> — Resources created in the console can be re-imported or reflected in Git; resources defined in Git appear in the console. Collision-free naming (e.g. UUIDv5 + user-defined IDs) allows both flows to coexist.</li>
+<li><strong>Self-service</strong>: Tenants create and manage VMs, networks (VPCs, subnets), and storage without editing Git or YAML by hand.</li>
+<li><strong>Visibility</strong>: View resources, usage, and basic billing-related information.</li>
+<li><strong>Access</strong>: Serial and VNC console access to VMs through a <strong>proxy</strong> that enforces permissions and logs user actions.</li>
+<li><strong>Consistency with GitOps</strong>: Resources created in the console can be re-imported or reflected in Git; resources defined in Git appear in the console. Collision-free naming (e.g. UUIDv5 + user-defined IDs) allows both flows to coexist.</li>
 </ul>
 <h2 id="main-features">Main features</h2>
 <ul>
-<li><strong>VM lifecycle</strong> — Create, start, stop, restart; attach disks and networks; use templates (e.g. from a container registry).</li>
-<li><strong>Networking</strong> — Create VPCs and subnets; attach VMs to subnets; configure NAT and (where exposed) firewall rules.</li>
-<li><strong>Console access</strong> — Serial console and VNC for graphical VMs (e.g. Windows), with access control and audit.</li>
-<li><strong>Projects and quotas</strong> — Organise resources by project; enforce quotas and limits (via Kubernetes and custom policies).</li>
+<li><strong>VM lifecycle</strong>: Create, start, stop, restart; attach disks and networks; use templates (e.g. from a container registry).</li>
+<li><strong>Networking</strong>: Create VPCs and subnets; attach VMs to subnets; configure NAT and (where exposed) firewall rules.</li>
+<li><strong>Console access</strong>: Serial console and VNC for graphical VMs (e.g. Windows), with access control and audit.</li>
+<li><strong>Projects and quotas</strong>: Organise resources by project; enforce quotas and limits (via Kubernetes and custom policies).</li>
 </ul>
 <h2 id="security-and-multi-tenancy">Security and multi-tenancy</h2>
 <ul>
-<li><strong>Authentication</strong> — Typically integrated with an IdP or Kubernetes auth (e.g. OIDC).</li>
-<li><strong>Authorization</strong> — RBAC and project/tenant scoping so users only see and act on their resources.</li>
-<li><strong>Audit</strong> — Logging of console access and sensitive actions for compliance and debugging.</li>
+<li><strong>Authentication</strong>: Typically integrated with an IdP or Kubernetes auth (e.g. OIDC).</li>
+<li><strong>Authorization</strong>: RBAC and project/tenant scoping so users only see and act on their resources.</li>
+<li><strong>Audit</strong>: Logging of console access and sensitive actions for compliance and debugging.</li>
 </ul>
 <h2 id="relation-to-gitops">Relation to GitOps</h2>
 <ul>
-<li><strong>Reconciliation</strong> — The platform can be configured so that console-created resources are represented in Git (e.g. via controllers or export jobs), and Git-defined resources are visible and manageable in the console.</li>
-<li><strong>IDs</strong> — Pseudo-randomised names (e.g. UUIDv5) and labels avoid collisions and allow automation (billing, monitoring) to work regardless of whether a resource was created from the UI or from Git.</li>
+<li><strong>Reconciliation</strong>: The platform can be configured so that console-created resources are represented in Git (e.g. via controllers or export jobs), and Git-defined resources are visible and manageable in the console.</li>
+<li><strong>IDs</strong>: Pseudo-randomised names (e.g. UUIDv5) and labels avoid collisions and allow automation (billing, monitoring) to work regardless of whether a resource was created from the UI or from Git.</li>
 </ul>
 <p>For more detail, see the project’s console repository or documentation.</p>
 
@@ -1313,10 +1313,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["announce.dismiss"],"search":"../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["announce.dismiss"],"search":"../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      <script src="../assets/javascripts/bundle.ee611ef6.min.js"></script>
       
     
   </body>

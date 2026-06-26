@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Superphenix: A full cloud stack running on your own hardware">
+        <meta name="description" content="Build your own cloud platform with Superphenix">
       
       
       
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/SPX_white.svg">
-      <meta name="generator" content="zensical-0.0.44">
+      <meta name="generator" content="zensical-0.0.46">
     
     
       
@@ -34,7 +34,7 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.fba56155.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.19d3147f.min.css">
       
         
           
@@ -1330,10 +1330,10 @@
 <div class="justify">
 <p>Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in <a href="../deployment-topology/">Deployment topology</a>. The same <strong>cluster</strong> can imply very different server counts and configurations depending on whether you run a <strong>hyperconverged</strong> stack (storage and virtualization together) or a <strong>decoupled</strong> stack (dedicated storage and dedicated virtualization clusters).</p>
 <ul>
-<li><strong><a href="#hyperconverged-setup">Hyperconverged</a></strong> — Storage and virtualization on the same nodes. Size hosts for combined Ceph and hypervisor needs, plus headroom for failure and recovery.</li>
-<li><strong><a href="#decoupled-setup">Decoupled</a></strong> — Requirements are split by role:<ul>
-<li><strong><a href="#storage-node-setup">Storage node</a></strong> — Dedicated Ceph / storage tier in a decoupled topology. Same hardware floors as hyperconverged storage roles, sized for OSD throughput and replication.</li>
-<li><strong><a href="#virtualization-nodes-setup">Virtualization nodes</a></strong> — Dedicated hypervisor tier in a decoupled topology. Same CPU, RAM, and boot-disk expectations as hyperconverged compute roles, sized for VM density and migration.</li>
+<li><strong><a href="#hyperconverged-setup">Hyperconverged</a></strong>: Storage and virtualization on the same nodes. Size hosts for combined Ceph and hypervisor needs, plus headroom for failure and recovery.</li>
+<li><strong><a href="#decoupled-setup">Decoupled</a></strong>: Requirements are split by role:<ul>
+<li><strong><a href="#storage-node-setup">Storage node</a></strong>: Dedicated Ceph / storage tier in a decoupled topology. Same hardware floors as hyperconverged storage roles, sized for OSD throughput and replication.</li>
+<li><strong><a href="#virtualization-nodes-setup">Virtualization nodes</a></strong>: Dedicated hypervisor tier in a decoupled topology. Same CPU, RAM, and boot-disk expectations as hyperconverged compute roles, sized for VM density and migration.</li>
 </ul>
 </li>
 </ul>
@@ -1343,8 +1343,8 @@
 </div>
 <p>Deployment topology is the main factor that influences the requirements:</p>
 <ul>
-<li><strong>Hyperconverged</strong> — Each node contributes to both storage and virtualization. Disk, CPU, and memory requirements are <strong>combined</strong> on the same machines: size hosts for the sum of what the Ceph storage and the hypervisor need, plus headroom for failure and recovery</li>
-<li><strong>Decoupled</strong> — Requirements <strong>split by role</strong>. The storage tier must satisfy Ceph expectations for OSD throughput, replication, and recovery; the virtualization tier is sized separately for VM density, live migration, and control-plane overhead. You plan distinct footprints for storage hosts, for hypervisor hosts, and for the <strong>management cluster</strong> that runs the platform control plane (see <a href="#management-cluster-decoupled">Management cluster (decoupled)</a>)</li>
+<li><strong>Hyperconverged</strong>: Each node contributes to both storage and virtualization. Disk, CPU, and memory requirements are <strong>combined</strong> on the same machines: size hosts for the sum of what the Ceph storage and the hypervisor need, plus headroom for failure and recovery</li>
+<li><strong>Decoupled</strong>: Requirements <strong>split by role</strong>. The storage tier must satisfy Ceph expectations for OSD throughput, replication, and recovery; the virtualization tier is sized separately for VM density, live migration, and control-plane overhead. You plan distinct footprints for storage hosts, for hypervisor hosts, and for the <strong>management cluster</strong> that runs the platform control plane (see <a href="#management-cluster-decoupled">Management cluster (decoupled)</a>)</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Multi-AZ and disaster recovery</p>
@@ -1354,8 +1354,8 @@
 <h2 id="alignment-with-ceph">Alignment with Ceph</h2>
 <p>Superphenix relies on Ceph for block and distributed storage. Treat the official documentation as authoritative for storage nodes:</p>
 <ul>
-<li><a href="https://docs.ceph.com/en/latest/start/hardware-recommendations/">Ceph Hardware Recommendations</a> — CPU per OSD (especially with NVMe), RAM and <code>osd_memory_target</code> headroom, OS vs data devices, enterprise-class SSDs/NVMe and endurance, minimum OSD sizes, and network bandwidth so replication and client I/O do not contend</li>
-<li><a href="https://docs.ceph.com/en/latest/rados/configuration/network-config-ref/">Ceph network configuration reference</a> — <strong>Public</strong> vs <strong>cluster</strong> networks, separating client traffic from OSD heartbeat, replication, and recovery</li>
+<li><a href="https://docs.ceph.com/en/latest/start/hardware-recommendations/">Ceph Hardware Recommendations</a>: CPU per OSD (especially with NVMe), RAM and <code>osd_memory_target</code> headroom, OS vs data devices, enterprise-class SSDs/NVMe and endurance, minimum OSD sizes, and network bandwidth so replication and client I/O do not contend</li>
+<li><a href="https://docs.ceph.com/en/latest/rados/configuration/network-config-ref/">Ceph network configuration reference</a>: <strong>Public</strong> vs <strong>cluster</strong> networks, separating client traffic from OSD heartbeat, replication, and recovery</li>
 </ul>
 <p>For production performance, prefer <strong>enterprise-tier</strong> SSDs or NVMe suitable for sustained writes and failure handling, consistent with Ceph’s guidance to avoid consumer-grade drives under heavy or mixed workloads.</p>
 <div class="admonition warning">
@@ -1367,9 +1367,9 @@ Always make sure the disks you select are <strong>fit</strong> for intensive sto
 <h2 id="hardware-requirements">Hardware requirements</h2>
 <p>Use the <strong>Minimal</strong>, <strong>Recommended</strong>, and <strong>Optimal</strong> tabs below to compare tiers.</p>
 <ul>
-<li><strong>Minimal</strong> — Floor for labs and early validation; not a long-term production target on its own</li>
-<li><strong>Recommended</strong> — Default production-oriented sizing for typical deployments</li>
-<li><strong>Optimal</strong> — More headroom, higher-bandwidth networking, for when you expect dense storage, large VM counts, aggressive recovery SLAs, or rapid growth</li>
+<li><strong>Minimal</strong>: Floor for labs and early validation; not a long-term production target on its own</li>
+<li><strong>Recommended</strong>: Default production-oriented sizing for typical deployments</li>
+<li><strong>Optimal</strong>: More headroom, higher-bandwidth networking, for when you expect dense storage, large VM counts, aggressive recovery SLAs, or rapid growth</li>
 </ul>
 <h3 id="hyperconverged-setup">Hyperconverged setup</h3>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Minimal</label><label for="__tabbed_1_2">Recommended</label><label for="__tabbed_1_3">Optimal</label></div>
@@ -1950,10 +1950,10 @@ Always make sure the disks you select are <strong>fit</strong> for intensive sto
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      <script src="../../assets/javascripts/bundle.ee611ef6.min.js"></script>
       
     
   </body>
