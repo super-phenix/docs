@@ -557,7 +557,7 @@
   <span class="md-ellipsis">
     
   
-  Guide
+  Deployment guide
 
     
   </span>
@@ -572,7 +572,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Guide
+  Deployment guide
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -584,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/full-installations/" class="md-nav__link">
+      <a href="../../installation/deployment-guide/" class="md-nav__link">
         
   
   
@@ -611,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/talos-manual-installation/" class="md-nav__link">
+      <a href="../../installation/manual-os-installation/" class="md-nav__link">
         
   
   
@@ -638,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/operator-physical-installation/" class="md-nav__link">
+      <a href="../../installation/automated-os-installation/" class="md-nav__link">
         
   
   
@@ -658,14 +658,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -673,14 +665,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/installation-management/" class="md-nav__link">
+      <a href="../../installation/installing-management/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Installation management
+  Installing management
 
     
   </span>
@@ -708,10 +700,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
             
   
   
@@ -728,8 +720,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -772,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/configure-cluster/" class="md-nav__link">
+      <a href="../../installation/configuring-a-cluster/" class="md-nav__link">
         
   
   
@@ -814,6 +806,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1741,22 +1741,22 @@
 <h4 id="blank-blank">Blank (<code>blank</code>)</h4>
 <p>Empty disk with <strong>no</strong> data: <strong>not bootable</strong> until you install an OS or copy an image onto it.</p>
 <h4 id="http-source-http">HTTP source (<code>http</code>)</h4>
-<p>Point to a URL that serves an <strong><code>.iso</code></strong>, <strong><code>.qcow2</code></strong>, or <strong><code>.vmdk</code></strong>. Superphenix <strong>writes</strong> that image onto the disk for you—simple way to build a <strong>bootable</strong> OS disk.</p>
+<p>Point to a URL that serves an <strong><code>.iso</code></strong>, <strong><code>.qcow2</code></strong>, or <strong><code>.vmdk</code></strong>. Superphenix <strong>writes</strong> that image onto the disk for you: a simple way to build a <strong>bootable</strong> OS disk.</p>
 <h4 id="snapshot">Snapshot</h4>
 <p>Create a new disk from an existing <strong>disk snapshot</strong> (clone snapshot content to a new volume).</p>
 <h4 id="clone">Clone</h4>
 <p>Create a new disk from another <strong>disk</strong> (equivalent to snapshotting the source and then using the <strong>snapshot</strong> source, but in one flow).</p>
 <h4 id="registry-template">Registry (template)</h4>
-<p>Pull a disk image from a <strong>container (OCI) registry</strong>—the image is stored in registry format (Docker-compatible). This path suits <strong>golden images</strong> maintained as registry artifacts; see your release notes for supported image layouts.</p>
+<p>Pull a disk image from a <strong>container (OCI) registry</strong>: the image is stored in registry format (Docker-compatible). This path suits <strong>golden images</strong> maintained as registry artifacts; see your release notes for supported image layouts.</p>
 <h3 id="resize">Resize</h3>
-<p>Disks support <strong>resize</strong>, including <strong>while attached</strong> (hot). The guest OS may need a moment—or a rescan—to recognize the new size.</p>
+<p>Disks support <strong>resize</strong>, including <strong>while attached</strong> (hot). The guest OS may need a moment, or a rescan, to recognize the new size.</p>
 <h2 id="disk-snapshots">Disk snapshots</h2>
 <p>Create <strong>disk snapshots</strong> from a disk’s <strong>detail</strong> page. <strong>Instance snapshots</strong> also <strong>automatically</strong> create disk snapshots for <strong>all</strong> disks attached to that VM.</p>
 <p>A disk snapshot’s detail view shows the <strong>source disk</strong>.</p>
 <h3 id="scheduled-snapshots">Scheduled snapshots</h3>
 <p>You can schedule <strong>recurring snapshots</strong> for individual volumes using a <strong>cron</strong> expression (or the console’s schedule builder). Use this for backup windows without manual clicks.</p>
 <h3 id="restore-a-volume">Restore a volume</h3>
-<p>Restore from a disk snapshot to <strong>clone</strong> a new volume or <strong>roll back</strong> a disk, depending on your workflow and API—pair with <a href="../virtualization/">Virtualization</a> when replacing a VM’s data volume.</p>
+<p>Restore from a disk snapshot to <strong>clone</strong> a new volume or <strong>roll back</strong> a disk, depending on your workflow and API. Pair with <a href="../virtualization/">Virtualization</a> when replacing a VM’s data volume.</p>
 <p>See <a href="../virtualization/">Virtualization</a> for attaching disks to instances and instance snapshots, and <a href="../tenancy-and-console/">Tenancy and console</a> for project and AZ scope.</p>
 
 

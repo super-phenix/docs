@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://docs.superphenix.net/installation/installing-clusters/">
       
       
-        <link rel="prev" href="../installation-management/">
+        <link rel="prev" href="../installing-management/">
       
       
-        <link rel="next" href="../configure-cluster/">
+        <link rel="next" href="../configuring-a-cluster/">
       
       
         
@@ -538,18 +538,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
         
           
           <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
@@ -559,7 +561,7 @@
   <span class="md-ellipsis">
     
   
-  Guide
+  Deployment guide
 
     
   </span>
@@ -569,12 +571,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-  Guide
+  Deployment guide
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -586,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../full-installations/" class="md-nav__link">
+      <a href="../deployment-guide/" class="md-nav__link">
         
   
   
@@ -613,7 +615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../talos-manual-installation/" class="md-nav__link">
+      <a href="../manual-os-installation/" class="md-nav__link">
         
   
   
@@ -640,7 +642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../operator-physical-installation/" class="md-nav__link">
+      <a href="../automated-os-installation/" class="md-nav__link">
         
   
   
@@ -660,14 +662,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -675,14 +669,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation-management/" class="md-nav__link">
+      <a href="../installing-management/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Installation management
+  Installing management
 
     
   </span>
@@ -712,10 +706,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
             
   
   
@@ -732,8 +726,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -845,7 +839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configure-cluster/" class="md-nav__link">
+      <a href="../configuring-a-cluster/" class="md-nav__link">
         
   
   
@@ -887,6 +881,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1441,16 +1443,16 @@
 
 
 <h1 id="installing-clusters">Installing clusters</h1>
-<p>Once the <a href="../installation-management/">operator is installed</a>, you define your infrastructure by creating <code>Cluster</code> resources in the <code>superphenix-system</code> namespace. These resources tell the operator where and how to deploy the Superphenix stack on each availability zone.</p>
+<p>Once the <a href="../installing-management/">operator is installed</a>, you define your infrastructure by creating <code>Cluster</code> resources in the <code>superphenix-system</code> namespace. These resources tell the operator where and how to deploy the Superphenix stack on each availability zone.</p>
 <h2 id="in-this-section">In this section</h2>
 <ul>
-<li><strong><a href="../configure-cluster/">Configure a cluster</a></strong> — topology, geography, connection mode, and system configuration for a <code>Cluster</code> resource.</li>
-<li><strong><a href="../connecting-clusters/">Connecting clusters</a></strong> — link virtualization clusters to storage backends in decoupled deployments.</li>
+<li><strong><a href="../configuring-a-cluster/">Configure a cluster</a></strong>: topology, geography, connection mode, and system configuration for a <code>Cluster</code> resource.</li>
+<li><strong><a href="../connecting-clusters/">Connecting clusters</a></strong>: link virtualization clusters to storage backends in decoupled deployments.</li>
 </ul>
 <h2 id="next-steps">Next steps</h2>
 <ul>
-<li><a href="../installation-management/">Installation management</a> — operator install and management stack configuration.</li>
-<li><a href="../production-recommendations/">Production recommendations</a> — sizing and high-availability guidance.</li>
+<li><a href="../installing-management/">Installing management</a>: operator install and management stack configuration.</li>
+<li><a href="../production-recommendations/">Production recommendations</a>: sizing and high-availability guidance.</li>
 </ul>
 
 

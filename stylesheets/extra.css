@@ -7,8 +7,8 @@
   margin: 0 auto 1rem;
 }
 
-/* Justified paragraphs */
-.justify {
+/* Justified body text */
+.md-typeset p {
   text-align: justify;
 }
 
