@@ -26,12 +26,12 @@ The operator reads `Cluster` (and related) resources in the `superphenix-system`
 - A **management Kubernetes cluster** (v1.28+) with network access to:
     - The **Kubernetes API** of every Superphenix cluster it will manage.
     - The **out-of-band (OOB)** management network of every physical server (IPMI, Redfish, or equivalent BMC).
-- **`superphenix-operator`** installed via Helm: see [Installing management](installing-management.md).
+- **`superphenix-operator`** installed via Helm: see [Installing management](installing-management.md) (or [Installing outside an AZ](management-outside-az.md) for placement requirements). Placement prerequisites are in [Installing inside an AZ](management-inside-az.md) and [Installing outside an AZ](management-outside-az.md).
 - **Hardware** sized for your topology: see [Hardware requirements](../architecture/deployment-requirements.md). Production deployments should use servers with **IPMI** and a dedicated OOB network (see [Production recommendations](production-recommendations.md)).
 - **Network** layout planned (cluster VLAN, public VLAN, storage fabric): see [Network requirements](../architecture/network-requirements.md).
 
 !!! important
-    If management runs **outside** every AZ, it only needs connectivity to cluster APIs and BMCs; it does not need to be a Talos cluster itself. If management runs **on an AZ**, that AZ must already exist, typically created via [Manual OS installation](manual-os-installation.md) for the bootstrap cluster.
+    If management runs **outside** every AZ, it only needs connectivity to cluster APIs and BMCs; it does not need to be a Talos cluster itself. If management runs **on an AZ**, that AZ must already exist, typically created via [Manual OS installation](manual-os-installation.md). See [Installing inside an AZ](management-inside-az.md).
 
 ## Installation overview
 

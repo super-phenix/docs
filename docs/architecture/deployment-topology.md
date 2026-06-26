@@ -1,12 +1,12 @@
 # Deployment topology
 
-This page covers how availability zones (AZs) and the management cluster can be deployed: storage and virtualization (hyperconverged vs decoupled), and management placement (inside an AZ vs outside).
+This page covers how availability zones (AZs) and the management plane can be deployed: storage and virtualization (hyperconverged vs decoupled), and management placement (inside an AZ vs outside).
 
-## Management cluster
+## Management plane
 
-The **management cluster** runs the control plane that operates Superphenix: the **web console**, **GitOps** (e.g. deployment and sync from Git), **bootstrap**, **installation**, and **upgrades**; i.e. the full **lifecycle** of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.
+The **management plane** operates Superphenix: the **web console**, **GitOps** (e.g. deployment and sync from Git), **bootstrap**, **installation**, and **upgrades**; i.e. the full **lifecycle** of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.
 
-The management cluster can run **inside an AZ** (the same Kubernetes cluster as one of your AZs hosts both workloads and the management components) or be **completely separate**. When separate, it can even run on **another cloud or provider**: you can operate Superphenix AZs in your own datacenters from a management cluster hosted elsewhere, as long as it has the necessary connectivity to the AZs for API and GitOps.
+The management plane can run **inside an AZ** (the same Kubernetes cluster as one of your AZs hosts both workloads and the management components) or on a **dedicated management cluster** that is completely separate. When separate, that management cluster can even run on **another cloud or provider**: you can operate Superphenix AZs in your own datacenters from a management cluster hosted elsewhere, as long as it has the necessary connectivity to the AZs for API and GitOps.
 
 ### Visual comparison
 
@@ -26,16 +26,16 @@ The management cluster can run **inside an AZ** (the same Kubernetes cluster as 
 
 | Aspect | Management on an AZ | Management outside the AZ |
 |--------|---------------------|---------------------------|
-| **Deployment** | Easier to deploy | Harder (separate cluster to provision) |
-| **Maintenance** | Easier to maintain | Harder (additional cluster to operate) |
-| **Multiple AZs** | If management controls multiple AZs, the hosting AZ is a **single point of failure (SPOF)** | Easier to manage multiple AZs from a single, neutral control plane |
-| **Failover** | Management is tied to one AZ; failover is harder | Easier to failover; management is not tied to any workload AZ |
+| **Deployment** | Easier to deploy | Harder (separate management cluster to provision) |
+| **Maintenance** | Easier to maintain | Harder (additional management cluster to operate) |
+| **Multiple AZs** | If the management plane controls multiple AZs, the hosting AZ is a **single point of failure (SPOF)** | Easier to manage multiple AZs from a single, neutral management plane |
+| **Failover** | Management is tied to one AZ; failover is harder | Easier to failover; the management plane is not tied to any workload AZ |
 | **Dependency** | Management runs on Superphenix (same stack as the AZ) | Does not depend on Superphenix (no chicken-and-egg; can run on vanilla Kubernetes or another cloud) |
 
 ### Recommendation
 
-- **Management on an AZ**: A good fit for organizations that want **isolated AZs**: each AZ has its own management cluster, and the control plane manages only that AZ (not multiple AZs). Suited to **security** requirements where strict isolation between AZs is needed.
-- **Management outside the AZ**: A good fit for **orchestrating multiple AZs at scale** from a single control plane, and for **redundancy** (management is independent of any workload AZ).
+- **Management on an AZ**: A good fit for organizations that want **isolated AZs**: each AZ hosts its own management plane, and that plane manages only that AZ (not multiple AZs). Suited to **security** requirements where strict isolation between AZs is needed.
+- **Management outside the AZ**: A good fit for **orchestrating multiple AZs at scale** from a single management plane on a dedicated management cluster, and for **redundancy** (management is independent of any workload AZ).
 
 ---
 
@@ -70,20 +70,20 @@ The combination of AZ mode (hyperconverged or decoupled) and management placemen
 
 ### Deployment matrix
 
-The **choice between hyperconverged and decoupled is made per AZ**: you can have some AZs that are hyperconverged and others that are decoupled. The management cluster can manage AZs of **different types**. 
+The **choice between hyperconverged and decoupled is made per AZ**: you can have some AZs that are hyperconverged and others that are decoupled. The management plane can manage AZs of **different types**.
 
-By contrast, **where the management cluster runs** (on one of the AZs or outside all of them) is a **single decision for the whole deployment**.
+By contrast, **where the management plane runs** (on one of the AZs or on a dedicated management cluster outside all of them) is a **single decision for the whole deployment**.
 
 The matrix below combines the two dimensions (AZ mode and management placement) into four deployment types:
 
 |  | Management on an AZ | Management outside the AZ |
 |---|---------------------|---------------------------|
-| **Hyperconverged** | **Fully integrated**: Storage, virtualization, and management run on a single cluster; the simplest deployment, with one AZ and its control plane colocated. | **Centrally managed hyperconverged**: Each AZ is a self-contained hyperconverged cluster; a separate management cluster orchestrates multiple AZs from a single control plane. |
-| **Decoupled** | **Decoupled with local management**: Storage and hypervisor are on separate clusters; management runs on one of them (e.g. the hypervisor AZ), so that AZ hosts both workloads and the control plane. | **Fully decoupled**: Storage, hypervisor, and management are each on separate clusters; the management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration. |
+| **Hyperconverged** | **Fully integrated**: Storage, virtualization, and the management plane run on a single cluster; the simplest deployment, with one AZ and its control plane colocated. | **Centrally managed hyperconverged**: Each AZ is a self-contained hyperconverged cluster; a dedicated management cluster orchestrates multiple AZs from a single management plane. |
+| **Decoupled** | **Decoupled with local management**: Storage and hypervisor are on separate clusters; the management plane runs on one of them (e.g. the hypervisor AZ), so that AZ hosts both workloads and the control plane. | **Fully decoupled**: Storage, hypervisor, and management are each separate; a dedicated management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration. |
 
 !!! warning "Supported deployment types"
 
-    Currently, the only **supported and tested** installation method is **Fully decoupled** (decoupled AZs with management outside the AZ). Work is ongoing to support **Fully integrated** (hyperconverged with management on the AZ) and **Centrally managed hyperconverged** (hyperconverged AZs with management outside the AZ).
+    Currently, the only **supported and tested** installation method is **Fully decoupled** (decoupled AZs with the management plane on a dedicated management cluster outside the AZ). Work is ongoing to support **Fully integrated** (hyperconverged with management on the AZ) and **Centrally managed hyperconverged** (hyperconverged AZs with the management plane on a dedicated management cluster).
 
 ### Recommendations
 
@@ -93,11 +93,11 @@ The matrix below combines the two dimensions (AZ mode and management placement) 
 
 **Use cases and who they target:**
 
-- **Fully integrated**: Targets **single-AZ** deployments, **proofs of concept**, and teams that want the **simplest** setup: one cluster for storage, virtualization, and management. Best for low cost and minimal operational footprint.
-- **Centrally managed hyperconverged**: Targets organizations that want **multiple hyperconverged AZs** with **one control plane**: horizontal scaling by adding AZs, each AZ self-contained, orchestration from a separate management cluster.
-- **Decoupled with local management**: Targets **security-focused** or **isolated** environments: each AZ has its own management, storage and hypervisor are separate, and the control plane only manages that AZ. Good when strict isolation between AZs is required.
-- **Fully decoupled**: Targets **multi-AZ at scale**, **redundancy**, and **shared storage**: storage and hypervisor are separate, management sits outside all workload AZs. Suited to performance-sensitive workloads, shared storage across AZs or with external systems (e.g. VMware), and operators who need a single, resilient control plane for many AZs.
+- **Fully integrated**: Targets **single-AZ** deployments, **proofs of concept**, and teams that want the **simplest** setup: one cluster for storage, virtualization, and the management plane. Best for low cost and minimal operational footprint.
+- **Centrally managed hyperconverged**: Targets organizations that want **multiple hyperconverged AZs** with **one management plane**: horizontal scaling by adding AZs, each AZ self-contained, orchestration from a dedicated management cluster.
+- **Decoupled with local management**: Targets **security-focused** or **isolated** environments: each AZ has its own management plane, storage and hypervisor are separate, and that plane only manages that AZ. Good when strict isolation between AZs is required.
+- **Fully decoupled**: Targets **multi-AZ at scale**, **redundancy**, and **shared storage**: storage and hypervisor are separate, the management plane sits on a dedicated management cluster outside all workload AZs. Suited to performance-sensitive workloads, shared storage across AZs or with external systems (e.g. VMware), and operators who need a single, resilient control plane for many AZs.
 
-**Changing your deployment later:** Switching between hyperconverged and decoupled (recoupling or decoupling the infrastructure) is **not supported**. It is theoretically possible with significant downtime and manual migration, but it is not a supported path. **Moving the management cluster** from one cluster to another (e.g. from an AZ to a dedicated management cluster, or the reverse) **is possible** and can be done as an operational procedure.
+**Changing your deployment later:** Switching between hyperconverged and decoupled (recoupling or decoupling the infrastructure) is **not supported**. It is theoretically possible with significant downtime and manual migration, but it is not a supported path. **Moving the management plane** from one cluster to another (e.g. from an AZ to a dedicated management cluster, or the reverse) **is possible** and can be done as an operational procedure.
 
 See the [Architecture overview](../architecture.md) for organizations, projects, resources, and disaster recovery.

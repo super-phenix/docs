@@ -1,8 +1,13 @@
 # Installing management
 
-This page covers the **management cluster**: how the Superphenix operator is installed, what it provides, and how you configure the management stack.
+This section covers the **management cluster**: where to place it, how the Superphenix operator is installed, and how you configure the management stack.
 
-Part of the [deployment guide](deployment-guide.md). Once the operator is running, continue with [Installing clusters](installing-clusters.md) to define your AZs.
+Part of the [deployment guide](deployment-guide.md). Choose your placement model first:
+
+- **[Installing inside an AZ](management-inside-az.md)**: management runs on a workload cluster.
+- **[Installing outside an AZ](management-outside-az.md)**: management runs on a dedicated cluster.
+
+Once placement is decided and the management cluster exists, continue on this page for operator installation.
 
 ## How the installation process works
 
@@ -19,11 +24,7 @@ The operator handles the installations, upgrades, and lifecycle management of Su
 
 ## How to install the operator
 
-If you're choosing to install the management cluster outside the AZ, you can install the operator on any Kubernetes cluster, as long as it can reach the control plane of the destination clusters.
-
-If you're installing the management cluster on an AZ, the cluster needs to be a pre-existing Talos Linux cluster. See [Manual OS installation](manual-os-installation.md).
-
-Installation of the operator is typically done via Helm on your chosen management cluster.
+Installation of the operator is typically done via Helm on your chosen management cluster:
 
 ```bash
 helm upgrade --install superphenix-operator \
@@ -31,6 +32,11 @@ helm upgrade --install superphenix-operator \
   --namespace superphenix-system \
   --create-namespace
 ```
+
+Placement-specific prerequisites:
+
+- **Inside an AZ**: the cluster must already be a Talos Linux cluster. See [Installing inside an AZ](management-inside-az.md) and [Manual OS installation](manual-os-installation.md).
+- **Outside an AZ**: any reachable Kubernetes cluster works. See [Installing outside an AZ](management-outside-az.md).
 
 ## How to configure the management
 
