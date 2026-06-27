@@ -4,7 +4,7 @@ This page covers how availability zones (AZs) and the management plane can be de
 
 ## Management plane
 
-The **management plane** operates Superphenix: the **web console**, **GitOps** (e.g. deployment and sync from Git), **bootstrap**, **installation**, and **upgrades**; i.e. the full **lifecycle** of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.
+The **management plane** operates Superphenix: the **web console**, **GitOps** (e.g. deployment and sync from Git), **bootstrap**, **installation**, and **upgrades**; i.e. the full **lifecycle** of the AZs. It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.
 
 The management plane can run **inside an AZ** (the same Kubernetes cluster as one of your AZs hosts both workloads and the management components) or on a **dedicated management cluster** that is completely separate. When separate, that management cluster can even run on **another cloud or provider**: you can operate Superphenix AZs in your own datacenters from a management cluster hosted elsewhere, as long as it has the necessary connectivity to the AZs for API and GitOps.
 
@@ -44,7 +44,7 @@ The management plane can run **inside an AZ** (the same Kubernetes cluster as on
 AZs can be deployed in two ways:
 
 - **Hyperconverged**: Both **storage** and **virtualization** run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.
-- **Decoupled (traditional)**: **Storage** runs on separate, dedicated clusters; **virtualization** (hypervisor) runs on one or more other clusters that consume that storage. Multiple private virtualization AZs can **share the same storage** backend. This model is useful when you want to run several hypervisor AZs (e.g. in different racks or sites) against a single, shared storage pool.
+- **Decoupled (traditional)**: **Storage** runs on separate, dedicated clusters; **workload** clusters run on one or more other Kubernetes clusters that consume that storage. Multiple private workload AZs can **share the same storage** backend. This model is useful when you want to run several workload AZs (e.g. in different racks or sites) against a single, shared storage pool.
 
 ### Comparison
 
@@ -53,9 +53,9 @@ AZs can be deployed in two ways:
 | **Deployment** | Easy to deploy | Harder to deploy (twice the clusters) |
 | **Maintenance** | Easy to maintain | Harder to maintain (twice the clusters) |
 | **Cost** | Less costly; hardware is mutualized (compute and storage share the same servers) | Higher cost; dedicated hardware for storage and for hypervisor |
-| **Scaling** | Easier to scale horizontally: add servers to grow both storage and compute | Scale storage and hypervisor clusters independently |
+| **Scaling** | Easier to scale horizontally: add servers to grow both storage and compute | Scale storage and workload clusters independently |
 | **Performance** | Shared resources between storage and compute | Better performance; hardware is dedicated (storage arrays vs hypervisor nodes) |
-| **Multi-AZ / shared storage** | Each AZ typically has its own storage | Easier to share storage among many private-cloud AZs; multiple hypervisor clusters use the same storage backend |
+| **Multi-AZ / shared storage** | Each AZ typically has its own storage | Easier to share storage among many private-cloud AZs; multiple workload clusters use the same storage backend |
 
 ### Recommendation
 
@@ -79,7 +79,7 @@ The matrix below combines the two dimensions (AZ mode and management placement) 
 |  | Management on an AZ | Management outside the AZ |
 |---|---------------------|---------------------------|
 | **Hyperconverged** | **Fully integrated**: Storage, virtualization, and the management plane run on a single cluster; the simplest deployment, with one AZ and its control plane colocated. | **Centrally managed hyperconverged**: Each AZ is a self-contained hyperconverged cluster; a dedicated management cluster orchestrates multiple AZs from a single management plane. |
-| **Decoupled** | **Decoupled with local management**: Storage and hypervisor are on separate clusters; the management plane runs on one of them (e.g. the hypervisor AZ), so that AZ hosts both workloads and the control plane. | **Fully decoupled**: Storage, hypervisor, and management are each separate; a dedicated management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration. |
+| **Decoupled** | **Decoupled with local management**: Storage and workload are on separate clusters; the management plane runs on one of them (e.g. a workload AZ), so that AZ hosts both workloads and the control plane. | **Fully decoupled**: Storage, workload, and management are each separate; a dedicated management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration. |
 
 !!! warning "Supported deployment types"
 

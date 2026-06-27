@@ -26,7 +26,7 @@ The operator reads `Cluster` (and related) resources in the `superphenix-system`
 - A **management Kubernetes cluster** (v1.28+) with network access to:
     - The **Kubernetes API** of every Superphenix cluster it will manage.
     - The **out-of-band (OOB)** management network of every physical server (IPMI, Redfish, or equivalent BMC).
-- **`superphenix-operator`** installed via Helm: see [Installing management](installing-management.md) (or [Installing outside an AZ](management-outside-az.md) for placement requirements). Placement prerequisites are in [Installing inside an AZ](management-inside-az.md) and [Installing outside an AZ](management-outside-az.md).
+- **`superphenix-operator`** installed via Helm: see [Installing management plane](installing-management.md) (or [Installing outside an AZ](management-outside-az.md) for placement requirements). Placement prerequisites are in [Installing inside an AZ](management-inside-az.md) and [Installing outside an AZ](management-outside-az.md).
 - **Hardware** sized for your topology: see [Hardware requirements](../architecture/deployment-requirements.md). Production deployments should use servers with **IPMI** and a dedicated OOB network (see [Production recommendations](production-recommendations.md)).
 - **Network** layout planned (cluster VLAN, public VLAN, storage fabric): see [Network requirements](../architecture/network-requirements.md).
 
@@ -39,7 +39,7 @@ The operator reads `Cluster` (and related) resources in the `superphenix-system`
 2. Register physical servers (BMC credentials, MAC addresses, desired role) with the talos-operator.
 3. Define `Cluster` resources that describe topology, geography, and connection mode.
 4. Let the operator provision Talos on the servers, bootstrap Kubernetes, and install the Superphenix stack.
-5. Connect decoupled storage and virtualization clusters as needed. See [Connecting clusters](connecting-clusters.md).
+5. Connect decoupled storage and workload clusters as needed. See [Connecting clusters](connecting-clusters.md).
 
 ## Step 1: Install the operator
 
@@ -119,7 +119,7 @@ After resources are applied:
 
 ## Next steps
 
-- [Installing management](installing-management.md)
-- [Installing clusters](installing-clusters.md)
+- [Installing management plane](installing-management.md)
+- [Installing an AZ](installing-an-az.md)
 - [Production recommendations](production-recommendations.md)
 - [Deployment topology](../architecture/deployment-topology.md)

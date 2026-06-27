@@ -1,10 +1,10 @@
-# Installing management
+# Installing management plane
 
 This section covers the **management cluster**: where to place it, how the Superphenix operator is installed, and how you configure the management stack.
 
 Part of the [deployment guide](deployment-guide.md). Choose your placement model first:
 
-- **[Installing inside an AZ](management-inside-az.md)**: management runs on a workload cluster.
+- **[Installing inside an AZ](management-inside-az.md)**: management runs on one of your AZ clusters.
 - **[Installing outside an AZ](management-outside-az.md)**: management runs on a dedicated cluster.
 
 Once placement is decided and the management cluster exists, continue on this page for operator installation.
@@ -46,5 +46,5 @@ The management cluster itself requires configuration to host the web console and
 
 ## Next steps
 
-- [Installing clusters](installing-clusters.md): define `Cluster` resources and connect workload AZs.
+- [Installing an AZ](installing-an-az.md): define `Cluster` resources and deploy your availability zones.
 - [Automated OS installation](automated-os-installation.md): provision physical servers through the operator.

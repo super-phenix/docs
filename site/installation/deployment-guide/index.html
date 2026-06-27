@@ -680,10 +680,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-comes-next" class="md-nav__link">
+  <a href="#installing-an-availability-zone" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        What comes next
+        Installing an Availability Zone
       </span>
     </span>
   </a>
@@ -724,7 +724,7 @@
   <span class="md-ellipsis">
     
   
-  Installing management
+  Installing management plane
 
     
   </span>
@@ -739,7 +739,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing management
+  Installing management plane
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -965,7 +965,7 @@
   <span class="md-ellipsis">
     
   
-  Installing clusters
+  Installing an AZ
 
     
   </span>
@@ -980,7 +980,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing clusters
+  Installing an AZ
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -992,7 +992,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-clusters/" class="md-nav__link">
+      <a href="../installing-an-az/" class="md-nav__link">
         
   
   
@@ -1000,6 +1000,60 @@
     
   
   Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-hyperconverged/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing hyperconverged
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-decoupled/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing decoupled
 
     
   </span>
@@ -1616,10 +1670,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-comes-next" class="md-nav__link">
+  <a href="#installing-an-availability-zone" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        What comes next
+        Installing an Availability Zone
       </span>
     </span>
   </a>
@@ -1645,19 +1699,19 @@
 
 
 <h1 id="deployment-guide">Deployment guide</h1>
-<p>This guide covers the end-to-end installation of Superphenix, from provisioning Kubernetes on bare metal to management deployment and cluster configuration. Whether you are deploying a single hyperconverged cluster or a large-scale decoupled infrastructure across multiple availability zones, start here for requirements and the recommended installation paths.</p>
+<p>This guide walks through installing Superphenix end to end: provisioning Kubernetes on bare metal, deploying the management plane, and configuring your availability zones. Whether you are starting with a single hyperconverged cluster or a large decoupled deployment across multiple AZs, use this page for prerequisites and to choose the right installation path.</p>
 <h2 id="requirements">Requirements</h2>
-<p>Before you begin, ensure your environment meets the necessary specifications and follows our recommended patterns.</p>
+<p>Before you begin, confirm that your environment meets these specifications and follows our recommended patterns:</p>
 <ul>
-<li><strong>Kubernetes</strong>: A Kubernetes cluster (v1.28+) is required to host the Superphenix operator and management cluster.</li>
-<li><strong>Helm</strong>: Helm is required for the initial operator installation.</li>
-<li><strong>Hardware &amp; network</strong>: Review the dedicated <a href="../../architecture/deployment-requirements/">Hardware</a> and <a href="../../architecture/network-requirements/">Network</a> requirements pages.</li>
-<li><strong>Best practices</strong>: Follow our <a href="../production-recommendations/">Production recommendations</a> for sizing and high availability.</li>
+<li><strong>Kubernetes</strong>: A Kubernetes cluster (v1.28+) to host the Superphenix operator and management plane.</li>
+<li><strong>Helm</strong>: Required for the initial operator installation.</li>
+<li><strong>Hardware &amp; network</strong>: See <a href="../../architecture/deployment-requirements/">Hardware requirements</a> and <a href="../../architecture/network-requirements/">Network requirements</a>.</li>
+<li><strong>Best practices</strong>: See <a href="../production-recommendations/">Production recommendations</a> for sizing and high availability.</li>
 </ul>
 <h2 id="installing-the-management-plane">Installing the Management Plane</h2>
-<p>The first step to installing Superphenix is to install the management plane. The management plane will handle installing the rest of Superphenix and handles the lifecycle of the clusters and user/admin access to the entire infrastructure.</p>
-<p>Superphenix supports two placement modes, with the management plane being either entirely separate from the AZs or directly ontop of one. Your choice affects connectivity requirements and failure domains.</p>
-<p>Check the <a href="../../architecture/deployment-topology/">deployment topology documentation</a> for a detailed comparison.</p>
+<p>Start by deciding where the <strong>management plane</strong> runs. It installs and operates the rest of Superphenix, manages cluster lifecycle, and provides operator and tenant access across your infrastructure.</p>
+<p>Superphenix supports two placement models: the management plane can run <strong>inside an AZ</strong> or on a <strong>dedicated management cluster</strong> separate from your workload AZs. Your choice affects connectivity requirements and failure domains.</p>
+<p>See <a href="../../architecture/deployment-topology/">Deployment topology</a> for a full comparison.</p>
 <div class="grid cards">
 <ul>
 <li>
@@ -1669,34 +1723,48 @@
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-cloud" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9"/></svg></span> <strong>Installing outside an AZ</strong></p>
 <hr />
-<p>The control plane runs on a dedicated, neutral cluster. Recommended for multi-AZ orchestration and maximum redundancy. Requires API connectivity to every Superphenix cluster you manage.</p>
+<p>The management plane runs on a dedicated management cluster, separate from workload AZs. Recommended for multi-AZ orchestration and maximum redundancy. Requires API connectivity to every Superphenix cluster you manage.</p>
 <p><a href="../management-outside-az/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Installing outside an AZ</a></p>
 </li>
 </ul>
 </div>
 <h2 id="installing-the-operating-system">Installing the Operating System</h2>
-<p>Every Superphenix cluster runs on a <strong>Talos Linux</strong> Kubernetes cluster. Choose how you provision it:</p>
+<p>Every Superphenix cluster runs on <strong>Talos Linux</strong>. Choose how you provision it:</p>
 <div class="grid cards">
 <ul>
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-terminal" viewBox="0 0 24 24"><path d="M12 19h8M4 17l6-6-6-6"/></svg></span> <strong>Manual OS installation</strong></p>
 <hr />
-<p>Install Talos and bootstrap Kubernetes yourself with <strong><code>talosctl</code></strong>. Best for labs, your first cluster, or when management runs on an AZ and you need a pre-existing Talos cluster before installing the operator.</p>
+<p>Install Talos and bootstrap Kubernetes with <strong><code>talosctl</code></strong>. Best for labs, first clusters, or when the management plane runs inside an AZ and you need Talos in place before installing the operator.</p>
 <p><a href="../manual-os-installation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Manual OS installation</a></p>
 </li>
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></span> <strong>Automated OS installation</strong></p>
 <hr />
-<p>Let the <strong><code>superphenix-operator</code></strong> and <strong>talos-operator</strong> provision servers over BMC/IPMI and manage node lifecycle declaratively. Best for greenfield datacenters and multi-AZ deployments with management outside the workload AZs.</p>
+<p>Let the <strong><code>superphenix-operator</code></strong> and <strong>talos-operator</strong> provision servers over BMC/IPMI and manage node lifecycle declaratively. Best for greenfield datacenters and multi-AZ deployments with the management plane outside workload AZs.</p>
 <p><a href="../automated-os-installation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Automated OS installation</a></p>
 </li>
 </ul>
 </div>
-<h2 id="what-comes-next">What comes next</h2>
-<ol>
-<li><strong><a href="../installing-management/">Installing management</a></strong>: install the operator and configure the management stack.</li>
-<li><strong><a href="../installing-clusters/">Installing clusters</a></strong>: define <code>Cluster</code> resources and connect workload AZs.</li>
-</ol>
+<h2 id="installing-an-availability-zone">Installing an Availability Zone</h2>
+<p>Each <strong>availability zone</strong> runs the full Superphenix stack on Talos Kubernetes clusters. Choose how storage and workloads are deployed within the AZ:</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span> <strong>Installing hyperconverged</strong></p>
+<hr />
+<p>Storage and workloads run on the <strong>same cluster</strong>. The simplest model for single-AZ deployments, labs, and environments that need rapid horizontal scaling.</p>
+<p><a href="../installing-hyperconverged/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Installing hyperconverged</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-split" viewBox="0 0 24 24"><path d="M16 3h5v5M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3M15 9l6-6"/></svg></span> <strong>Installing decoupled</strong></p>
+<hr />
+<p><strong>Dedicated storage</strong> and <strong>workload</strong> clusters operate separately. Better performance isolation and support for shared storage across multiple workload AZs.</p>
+<p><a href="../installing-decoupled/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Installing decoupled</a></p>
+</li>
+</ul>
+</div>
+<p>See <a href="../../architecture/deployment-topology/">Deployment topology</a> before you commit to a layout.</p>
 
 
 

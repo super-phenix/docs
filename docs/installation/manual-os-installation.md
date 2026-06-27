@@ -29,7 +29,7 @@ Before you start, confirm:
 3. Apply machine configs to every node.
 4. Bootstrap etcd on the first control-plane node.
 5. Retrieve the kubeconfig and verify the Kubernetes API.
-6. Continue with [Installing management](installing-management.md) on this cluster (or register it as a remote cluster from your management plane).
+6. Continue with [Installing management plane](installing-management.md) on this cluster (or register it as a remote cluster from your management plane).
 
 ## Step 1: Generate cluster configuration
 
@@ -90,6 +90,6 @@ All control-plane (and worker, if any) nodes should report `Ready` before you in
 
 ## Next steps
 
-- Install the operator: [Installing management](installing-management.md).
+- Install the operator: [Installing management plane](installing-management.md).
 - Define your AZ: [Configure a cluster](configuring-a-cluster.md).
 - For production sizing and tuning: [Production recommendations](production-recommendations.md).

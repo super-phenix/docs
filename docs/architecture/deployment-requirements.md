@@ -1,6 +1,6 @@
 # Hardware requirements
 
-Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in [Deployment topology](deployment-topology.md). The same **cluster** can imply very different server counts and configurations depending on whether you run a **hyperconverged** stack (storage and virtualization together) or a **decoupled** stack (dedicated storage and dedicated virtualization clusters).
+Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in [Deployment topology](deployment-topology.md). The same **cluster** can imply very different server counts and configurations depending on whether you run a **hyperconverged** stack (storage and virtualization together) or a **decoupled** stack (dedicated storage and dedicated workload clusters).
 
 - **[Hyperconverged](#hyperconverged-setup)**: Storage and virtualization on the same nodes. Size hosts for combined Ceph and hypervisor needs, plus headroom for failure and recovery.
 - **[Decoupled](#decoupled-setup)**: Requirements are split by role:

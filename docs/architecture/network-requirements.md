@@ -43,7 +43,7 @@ This separation helps reduce contention between client I/O and replication/rebui
 
 ### Decoupled virtualization tier
 
-For virtualization clusters, a practical model is:
+For workload clusters, a practical model is:
 
 - **Public VLAN**: external connectivity and storage consumption paths
 - **Cluster VLAN**: VPCs, virtual subnets, Kubernetes/CNI networking, and inter-node internal traffic

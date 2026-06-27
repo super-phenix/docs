@@ -35,7 +35,7 @@ The operator and console run on one of the workload clusters. This is easier to 
 ## Next steps
 
 1. [Manual OS installation](manual-os-installation.md): bootstrap Talos on the AZ that will host management.
-2. [Installing management](installing-management.md): install the operator and configure the management stack.
-3. [Installing clusters](installing-clusters.md): define `Cluster` resources for your AZs.
+2. [Installing management plane](installing-management.md): install the operator and configure the management stack.
+3. [Installing an AZ](installing-an-az.md): define `Cluster` resources for your AZs.
 
 See [Deployment topology](../architecture/deployment-topology.md) for the full comparison with management outside an AZ.

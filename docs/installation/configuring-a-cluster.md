@@ -1,6 +1,6 @@
 # Configure a cluster
 
-When you define a `Cluster` resource, you specify the topology, geography, and connection details. Below is an example configuration for a remote virtualization cluster:
+When you define a `Cluster` resource, you specify the topology, geography, and connection details. Below is an example configuration for a remote workload cluster:
 
 ```yaml
 apiVersion: superphenix.net/v1alpha1
@@ -48,6 +48,6 @@ Set `connection.mode: Local` when the cluster being defined is the same Kubernet
 
 ## Related
 
-- [Installing clusters](installing-clusters.md): overview of cluster installation.
-- [Connecting clusters](connecting-clusters.md): decoupled storage and virtualization.
+- [Installing an AZ](installing-an-az.md): overview of AZ installation.
+- [Connecting clusters](connecting-clusters.md): decoupled storage and workload.
 - [Deployment topology](../architecture/deployment-topology.md): hyperconverged vs decoupled layouts.

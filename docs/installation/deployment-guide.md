@@ -1,23 +1,23 @@
 # Deployment guide
 
-This guide covers the end-to-end installation of Superphenix, from provisioning Kubernetes on bare metal to management deployment and cluster configuration. Whether you are deploying a single hyperconverged cluster or a large-scale decoupled infrastructure across multiple availability zones, start here for requirements and the recommended installation paths.
+This guide walks through installing Superphenix end to end: provisioning Kubernetes on bare metal, deploying the management plane, and configuring your availability zones. Whether you are starting with a single hyperconverged cluster or a large decoupled deployment across multiple AZs, use this page for prerequisites and to choose the right installation path.
 
 ## Requirements
 
-Before you begin, ensure your environment meets the necessary specifications and follows our recommended patterns.
+Before you begin, confirm that your environment meets these specifications and follows our recommended patterns:
 
-- **Kubernetes**: A Kubernetes cluster (v1.28+) is required to host the Superphenix operator and management cluster.
-- **Helm**: Helm is required for the initial operator installation.
-- **Hardware & network**: Review the dedicated [Hardware](../architecture/deployment-requirements.md) and [Network](../architecture/network-requirements.md) requirements pages.
-- **Best practices**: Follow our [Production recommendations](production-recommendations.md) for sizing and high availability.
+- **Kubernetes**: A Kubernetes cluster (v1.28+) to host the Superphenix operator and management plane.
+- **Helm**: Required for the initial operator installation.
+- **Hardware & network**: See [Hardware requirements](../architecture/deployment-requirements.md) and [Network requirements](../architecture/network-requirements.md).
+- **Best practices**: See [Production recommendations](production-recommendations.md) for sizing and high availability.
 
 ## Installing the Management Plane
 
-The first step to installing Superphenix is to install the management plane. The management plane will handle installing the rest of Superphenix and handles the lifecycle of the clusters and user/admin access to the entire infrastructure.
+Start by deciding where the **management plane** runs. It installs and operates the rest of Superphenix, manages cluster lifecycle, and provides operator and tenant access across your infrastructure.
 
-Superphenix supports two placement modes, with the management plane being either entirely separate from the AZs or directly ontop of one. Your choice affects connectivity requirements and failure domains.
+Superphenix supports two placement models: the management plane can run **inside an AZ** or on a **dedicated management cluster** separate from your workload AZs. Your choice affects connectivity requirements and failure domains.
 
-Check the [deployment topology documentation](../architecture/deployment-topology.md) for a detailed comparison.
+See [Deployment topology](../architecture/deployment-topology.md) for a full comparison.
 
 <div class="grid cards" markdown>
 
@@ -33,7 +33,7 @@ Check the [deployment topology documentation](../architecture/deployment-topolog
 
     ---
 
-    The control plane runs on a dedicated, neutral cluster. Recommended for multi-AZ orchestration and maximum redundancy. Requires API connectivity to every Superphenix cluster you manage.
+    The management plane runs on a dedicated management cluster, separate from workload AZs. Recommended for multi-AZ orchestration and maximum redundancy. Requires API connectivity to every Superphenix cluster you manage.
 
     [:octicons-arrow-right-24: Installing outside an AZ](management-outside-az.md)
 
@@ -41,7 +41,7 @@ Check the [deployment topology documentation](../architecture/deployment-topolog
 
 ## Installing the Operating System
 
-Every Superphenix cluster runs on a **Talos Linux** Kubernetes cluster. Choose how you provision it:
+Every Superphenix cluster runs on **Talos Linux**. Choose how you provision it:
 
 <div class="grid cards" markdown>
 
@@ -49,7 +49,7 @@ Every Superphenix cluster runs on a **Talos Linux** Kubernetes cluster. Choose h
 
     ---
 
-    Install Talos and bootstrap Kubernetes yourself with **`talosctl`**. Best for labs, your first cluster, or when management runs on an AZ and you need a pre-existing Talos cluster before installing the operator.
+    Install Talos and bootstrap Kubernetes with **`talosctl`**. Best for labs, first clusters, or when the management plane runs inside an AZ and you need Talos in place before installing the operator.
 
     [:octicons-arrow-right-24: Manual OS installation](manual-os-installation.md)
 
@@ -57,13 +57,34 @@ Every Superphenix cluster runs on a **Talos Linux** Kubernetes cluster. Choose h
 
     ---
 
-    Let the **`superphenix-operator`** and **talos-operator** provision servers over BMC/IPMI and manage node lifecycle declaratively. Best for greenfield datacenters and multi-AZ deployments with management outside the workload AZs.
+    Let the **`superphenix-operator`** and **talos-operator** provision servers over BMC/IPMI and manage node lifecycle declaratively. Best for greenfield datacenters and multi-AZ deployments with the management plane outside workload AZs.
 
     [:octicons-arrow-right-24: Automated OS installation](automated-os-installation.md)
 
 </div>
 
-## What comes next
+## Installing an Availability Zone
 
-1. **[Installing management](installing-management.md)**: install the operator and configure the management stack.
-2. **[Installing clusters](installing-clusters.md)**: define `Cluster` resources and connect workload AZs.
+Each **availability zone** runs the full Superphenix stack on Talos Kubernetes clusters. Choose how storage and workloads are deployed within the AZ:
+
+<div class="grid cards" markdown>
+
+-   :lucide-layers:{ .lg .middle } __Installing hyperconverged__
+
+    ---
+
+    Storage and workloads run on the **same cluster**. The simplest model for single-AZ deployments, labs, and environments that need rapid horizontal scaling.
+
+    [:octicons-arrow-right-24: Installing hyperconverged](installing-hyperconverged.md)
+
+-   :lucide-split:{ .lg .middle } __Installing decoupled__
+
+    ---
+
+    **Dedicated storage** and **workload** clusters operate separately. Better performance isolation and support for shared storage across multiple workload AZs.
+
+    [:octicons-arrow-right-24: Installing decoupled](installing-decoupled.md)
+
+</div>
+
+See [Deployment topology](../architecture/deployment-topology.md) before you commit to a layout.

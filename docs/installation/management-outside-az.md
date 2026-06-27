@@ -38,8 +38,8 @@ The control plane runs outside your workload AZs. This is recommended for multi-
 ## Next steps
 
 1. Provision a management Kubernetes cluster (any supported distribution).
-2. [Installing management](installing-management.md): install the operator and configure the management stack.
+2. [Installing management plane](installing-management.md): install the operator and configure the management stack.
 3. [Installing the OS](manual-os-installation.md) or [Automated OS installation](automated-os-installation.md): provision workload AZ clusters.
-4. [Installing clusters](installing-clusters.md): register each AZ with a `Cluster` resource.
+4. [Installing an AZ](installing-an-az.md): register each AZ with a `Cluster` resource.
 
 See [Deployment topology](../architecture/deployment-topology.md) for the full comparison with management on an AZ.

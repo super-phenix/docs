@@ -22,7 +22,7 @@ nav = [
     { "Getting started" = "installation/getting-started.md" },
     { "Deployment guide" = [
       { "Overview" = "installation/deployment-guide.md" },
-      { "Installing management" = [
+      { "Installing management plane" = [
         { "Overview" = "installation/installing-management.md" },
         { "Installing inside an AZ" = "installation/management-inside-az.md" },
         { "Installing outside an AZ" = "installation/management-outside-az.md" }
@@ -31,8 +31,10 @@ nav = [
         { "Manual OS installation" = "installation/manual-os-installation.md" },
         { "Automated OS installation" = "installation/automated-os-installation.md" }
       ]},
-      { "Installing clusters" = [
-        { "Overview" = "installation/installing-clusters.md" },
+      { "Installing an AZ" = [
+        { "Overview" = "installation/installing-an-az.md" },
+        { "Installing hyperconverged" = "installation/installing-hyperconverged.md" },
+        { "Installing decoupled" = "installation/installing-decoupled.md" },
         { "Configure a cluster" = "installation/configuring-a-cluster.md" },
         { "Connecting clusters" = "installation/connecting-clusters.md" }
       ]}
