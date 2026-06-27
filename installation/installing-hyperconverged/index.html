@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/installation/installing-clusters/">
+        <link rel="canonical" href="https://docs.superphenix.net/installation/installing-hyperconverged/">
       
       
-        <link rel="prev" href="../automated-os-installation/">
+        <link rel="prev" href="../installing-an-az/">
       
       
-        <link rel="next" href="../configuring-a-cluster/">
+        <link rel="next" href="../installing-decoupled/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Installing clusters - Superphenix documentation</title>
+        <title>Installing hyperconverged - Superphenix documentation</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installing-clusters" class="md-skip">
+        <a href="#installing-hyperconverged" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installing clusters
+              Installing hyperconverged
             
           </span>
         </div>
@@ -633,7 +633,7 @@
   <span class="md-ellipsis">
     
   
-  Installing management
+  Installing management plane
 
     
   </span>
@@ -648,7 +648,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing management
+  Installing management plane
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -876,7 +876,7 @@
   <span class="md-ellipsis">
     
   
-  Installing clusters
+  Installing an AZ
 
     
   </span>
@@ -891,10 +891,37 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing clusters
+  Installing an AZ
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-an-az/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -919,7 +946,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Installing hyperconverged
 
     
   </span>
@@ -936,7 +963,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Installing hyperconverged
 
     
   </span>
@@ -962,10 +989,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#in-this-section" class="md-nav__link">
+  <a href="#when-to-choose-hyperconverged" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        In this section
+        When to choose hyperconverged
       </span>
     </span>
   </a>
@@ -973,10 +1000,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Next steps
+        Prerequisites
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Installation overview
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-cluster-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example <code>Cluster</code> resource
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Related
       </span>
     </span>
   </a>
@@ -987,6 +1047,33 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-decoupled/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing decoupled
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1563,10 +1650,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#in-this-section" class="md-nav__link">
+  <a href="#when-to-choose-hyperconverged" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        In this section
+        When to choose hyperconverged
       </span>
     </span>
   </a>
@@ -1574,10 +1661,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Next steps
+        Prerequisites
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Installation overview
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-cluster-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example <code>Cluster</code> resource
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Related
       </span>
     </span>
   </a>
@@ -1602,17 +1722,54 @@
   
 
 
-<h1 id="installing-clusters">Installing clusters</h1>
-<p>Once the <a href="../installing-management/">operator is installed</a>, you define your infrastructure by creating <code>Cluster</code> resources in the <code>superphenix-system</code> namespace. These resources tell the operator where and how to deploy the Superphenix stack on each availability zone.</p>
-<h2 id="in-this-section">In this section</h2>
+<h1 id="installing-hyperconverged">Installing hyperconverged</h1>
+<p>In a <strong>hyperconverged</strong> AZ, <strong>storage</strong> and <strong>virtualization</strong> run on the same Kubernetes cluster. Compute and storage share the same nodes. This is the simplest model and fits single-AZ deployments, labs, and proofs of concept.</p>
+<p>Part of the <a href="../deployment-guide/">deployment guide</a>. For separate storage and compute tiers, see <a href="../installing-decoupled/">Installing decoupled</a>.</p>
+<h2 id="when-to-choose-hyperconverged">When to choose hyperconverged</h2>
 <ul>
-<li><strong><a href="../configuring-a-cluster/">Configure a cluster</a></strong>: topology, geography, connection mode, and system configuration for a <code>Cluster</code> resource.</li>
-<li><strong><a href="../connecting-clusters/">Connecting clusters</a></strong>: link virtualization clusters to storage backends in decoupled deployments.</li>
+<li><strong>Single AZ</strong> or <strong>first deployment</strong>: minimal footprint and operational complexity.</li>
+<li><strong>Horizontal growth</strong>: add servers to grow both storage and compute together.</li>
+<li><strong>Cost</strong>: hardware is mutualized across storage and virtualization roles.</li>
 </ul>
-<h2 id="next-steps">Next steps</h2>
+<p>See <a href="../../architecture/deployment-topology/">Deployment topology</a> for trade-offs versus decoupled layouts.</p>
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><a href="../installing-management/">Installing management</a>: operator install and management stack configuration.</li>
-<li><a href="../production-recommendations/">Production recommendations</a>: sizing and high-availability guidance.</li>
+<li>A Talos Linux cluster bootstrapped on your nodes (<a href="../manual-os-installation/">Manual OS installation</a> or <a href="../automated-os-installation/">Automated OS installation</a>).</li>
+<li>The <a href="../installing-management/">management plane installed</a> and able to reach the cluster API.</li>
+<li>Hardware sized for <strong>combined</strong> Ceph and hypervisor needs. See <a href="../../architecture/deployment-requirements/">Hardware requirements</a>.</li>
+</ul>
+<h2 id="installation-overview">Installation overview</h2>
+<ol>
+<li>Provision Kubernetes on your AZ nodes (Talos).</li>
+<li>Register the AZ with a <code>Cluster</code> resource using <code>deploymentTopology: Hyperconverged</code>.</li>
+<li>Let the operator sync the Superphenix stack on that cluster.</li>
+</ol>
+<h2 id="example-cluster-resource">Example <code>Cluster</code> resource</h2>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix.net/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">az-local</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperconverged</span>
+<span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">europe-west</span>
+<span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paris-1</span>
+<span class="w">  </span><span class="nt">connection</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remote</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://api.paris-1.superphenix.net:6443</span>
+<span class="w">    </span><span class="nt">secretRef</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-paris-1-credentials</span>
+<span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.1.0</span>
+<span class="w">  </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://charts.superphenix.net</span>
+<span class="w">  </span><span class="nt">chartName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-stack</span>
+</code></pre></div>
+<p>Set <code>connection.mode: Local</code> when the operator runs on the same cluster as the AZ.</p>
+<p>See <a href="../configuring-a-cluster/">Configure a cluster</a> for the full field reference.</p>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="../installing-an-az/">Installing an AZ</a>: overview of AZ installation paths.</li>
+<li><a href="../../architecture/deployment-topology/">Deployment topology</a>: fully integrated vs other deployment types.</li>
 </ul>
 
 

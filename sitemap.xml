@@ -40,7 +40,13 @@
         <loc>https://docs.superphenix.net/installation/automated-os-installation/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/installing-clusters/</loc>
+        <loc>https://docs.superphenix.net/installation/installing-an-az/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/installing-hyperconverged/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/installing-decoupled/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/installation/configuring-a-cluster/</loc>

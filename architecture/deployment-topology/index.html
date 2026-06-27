@@ -806,7 +806,7 @@
   <span class="md-ellipsis">
     
   
-  Installing management
+  Installing management plane
 
     
   </span>
@@ -821,7 +821,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing management
+  Installing management plane
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1047,7 +1047,7 @@
   <span class="md-ellipsis">
     
   
-  Installing clusters
+  Installing an AZ
 
     
   </span>
@@ -1062,7 +1062,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing clusters
+  Installing an AZ
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1074,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/installing-clusters/" class="md-nav__link">
+      <a href="../../installation/installing-an-az/" class="md-nav__link">
         
   
   
@@ -1082,6 +1082,60 @@
     
   
   Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installing-hyperconverged/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing hyperconverged
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installing-decoupled/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing decoupled
 
     
   </span>
@@ -1813,7 +1867,7 @@
 <h1 id="deployment-topology">Deployment topology</h1>
 <p>This page covers how availability zones (AZs) and the management plane can be deployed: storage and virtualization (hyperconverged vs decoupled), and management placement (inside an AZ vs outside).</p>
 <h2 id="management-plane">Management plane</h2>
-<p>The <strong>management plane</strong> operates Superphenix: the <strong>web console</strong>, <strong>GitOps</strong> (e.g. deployment and sync from Git), <strong>bootstrap</strong>, <strong>installation</strong>, and <strong>upgrades</strong>; i.e. the full <strong>lifecycle</strong> of the workload clusters (AZs). It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.</p>
+<p>The <strong>management plane</strong> operates Superphenix: the <strong>web console</strong>, <strong>GitOps</strong> (e.g. deployment and sync from Git), <strong>bootstrap</strong>, <strong>installation</strong>, and <strong>upgrades</strong>; i.e. the full <strong>lifecycle</strong> of the AZs. It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.</p>
 <p>The management plane can run <strong>inside an AZ</strong> (the same Kubernetes cluster as one of your AZs hosts both workloads and the management components) or on a <strong>dedicated management cluster</strong> that is completely separate. When separate, that management cluster can even run on <strong>another cloud or provider</strong>: you can operate Superphenix AZs in your own datacenters from a management cluster hosted elsewhere, as long as it has the necessary connectivity to the AZs for API and GitOps.</p>
 <h3 id="visual-comparison">Visual comparison</h3>
 <div class="grid cards">
@@ -1875,7 +1929,7 @@
 <p>AZs can be deployed in two ways:</p>
 <ul>
 <li><strong>Hyperconverged</strong>: Both <strong>storage</strong> and <strong>virtualization</strong> run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.</li>
-<li><strong>Decoupled (traditional)</strong>: <strong>Storage</strong> runs on separate, dedicated clusters; <strong>virtualization</strong> (hypervisor) runs on one or more other clusters that consume that storage. Multiple private virtualization AZs can <strong>share the same storage</strong> backend. This model is useful when you want to run several hypervisor AZs (e.g. in different racks or sites) against a single, shared storage pool.</li>
+<li><strong>Decoupled (traditional)</strong>: <strong>Storage</strong> runs on separate, dedicated clusters; <strong>workload</strong> clusters run on one or more other Kubernetes clusters that consume that storage. Multiple private workload AZs can <strong>share the same storage</strong> backend. This model is useful when you want to run several workload AZs (e.g. in different racks or sites) against a single, shared storage pool.</li>
 </ul>
 <h3 id="comparison_1">Comparison</h3>
 <table>
@@ -1905,7 +1959,7 @@
 <tr>
 <td><strong>Scaling</strong></td>
 <td>Easier to scale horizontally: add servers to grow both storage and compute</td>
-<td>Scale storage and hypervisor clusters independently</td>
+<td>Scale storage and workload clusters independently</td>
 </tr>
 <tr>
 <td><strong>Performance</strong></td>
@@ -1915,7 +1969,7 @@
 <tr>
 <td><strong>Multi-AZ / shared storage</strong></td>
 <td>Each AZ typically has its own storage</td>
-<td>Easier to share storage among many private-cloud AZs; multiple hypervisor clusters use the same storage backend</td>
+<td>Easier to share storage among many private-cloud AZs; multiple workload clusters use the same storage backend</td>
 </tr>
 </tbody>
 </table>
@@ -1947,8 +2001,8 @@
 </tr>
 <tr>
 <td><strong>Decoupled</strong></td>
-<td><strong>Decoupled with local management</strong>: Storage and hypervisor are on separate clusters; the management plane runs on one of them (e.g. the hypervisor AZ), so that AZ hosts both workloads and the control plane.</td>
-<td><strong>Fully decoupled</strong>: Storage, hypervisor, and management are each separate; a dedicated management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration.</td>
+<td><strong>Decoupled with local management</strong>: Storage and workload are on separate clusters; the management plane runs on one of them (e.g. a workload AZ), so that AZ hosts both workloads and the control plane.</td>
+<td><strong>Fully decoupled</strong>: Storage, workload, and management are each separate; a dedicated management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration.</td>
 </tr>
 </tbody>
 </table>

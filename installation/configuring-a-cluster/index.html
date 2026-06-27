@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://docs.superphenix.net/installation/configuring-a-cluster/">
       
       
-        <link rel="prev" href="../installing-clusters/">
+        <link rel="prev" href="../installing-decoupled/">
       
       
         <link rel="next" href="../connecting-clusters/">
@@ -633,7 +633,7 @@
   <span class="md-ellipsis">
     
   
-  Installing management
+  Installing management plane
 
     
   </span>
@@ -648,7 +648,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing management
+  Installing management plane
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -876,7 +876,7 @@
   <span class="md-ellipsis">
     
   
-  Installing clusters
+  Installing an AZ
 
     
   </span>
@@ -891,7 +891,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing clusters
+  Installing an AZ
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -903,7 +903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-clusters/" class="md-nav__link">
+      <a href="../installing-an-az/" class="md-nav__link">
         
   
   
@@ -911,6 +911,60 @@
     
   
   Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-hyperconverged/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing hyperconverged
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-decoupled/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing decoupled
 
     
   </span>
@@ -1581,7 +1635,7 @@
 
 
 <h1 id="configure-a-cluster">Configure a cluster</h1>
-<p>When you define a <code>Cluster</code> resource, you specify the topology, geography, and connection details. Below is an example configuration for a remote virtualization cluster:</p>
+<p>When you define a <code>Cluster</code> resource, you specify the topology, geography, and connection details. Below is an example configuration for a remote workload cluster:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix.net/v1alpha1</span>
 <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
 <span class="nt">metadata</span><span class="p">:</span>
@@ -1625,8 +1679,8 @@
 <p>Set <code>connection.mode: Local</code> when the cluster being defined is the same Kubernetes cluster that hosts the operator (typical for management-on-AZ after bootstrap).</p>
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="../installing-clusters/">Installing clusters</a>: overview of cluster installation.</li>
-<li><a href="../connecting-clusters/">Connecting clusters</a>: decoupled storage and virtualization.</li>
+<li><a href="../installing-an-az/">Installing an AZ</a>: overview of AZ installation.</li>
+<li><a href="../connecting-clusters/">Connecting clusters</a>: decoupled storage and workload.</li>
 <li><a href="../../architecture/deployment-topology/">Deployment topology</a>: hyperconverged vs decoupled layouts.</li>
 </ul>
 

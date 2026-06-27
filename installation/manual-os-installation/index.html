@@ -633,7 +633,7 @@
   <span class="md-ellipsis">
     
   
-  Installing management
+  Installing management plane
 
     
   </span>
@@ -648,7 +648,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing management
+  Installing management plane
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1022,7 +1022,7 @@
   <span class="md-ellipsis">
     
   
-  Installing clusters
+  Installing an AZ
 
     
   </span>
@@ -1037,7 +1037,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing clusters
+  Installing an AZ
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1049,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-clusters/" class="md-nav__link">
+      <a href="../installing-an-az/" class="md-nav__link">
         
   
   
@@ -1057,6 +1057,60 @@
     
   
   Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-hyperconverged/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing hyperconverged
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-decoupled/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing decoupled
 
     
   </span>
@@ -1784,7 +1838,7 @@
 <li>Apply machine configs to every node.</li>
 <li>Bootstrap etcd on the first control-plane node.</li>
 <li>Retrieve the kubeconfig and verify the Kubernetes API.</li>
-<li>Continue with <a href="../installing-management/">Installing management</a> on this cluster (or register it as a remote cluster from your management plane).</li>
+<li>Continue with <a href="../installing-management/">Installing management plane</a> on this cluster (or register it as a remote cluster from your management plane).</li>
 </ol>
 <h2 id="step-1-generate-cluster-configuration">Step 1: Generate cluster configuration</h2>
 <p>Pick a stable <strong>Kubernetes API endpoint</strong> (VIP, load balancer, or first control-plane IP) and generate configs:</p>
@@ -1823,7 +1877,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 <p>All control-plane (and worker, if any) nodes should report <code>Ready</code> before you install Superphenix.</p>
 <h2 id="next-steps">Next steps</h2>
 <ul>
-<li>Install the operator: <a href="../installing-management/">Installing management</a>.</li>
+<li>Install the operator: <a href="../installing-management/">Installing management plane</a>.</li>
 <li>Define your AZ: <a href="../configuring-a-cluster/">Configure a cluster</a>.</li>
 <li>For production sizing and tuning: <a href="../production-recommendations/">Production recommendations</a>.</li>
 </ul>

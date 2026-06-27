@@ -16,7 +16,7 @@
         <link rel="prev" href="../manual-os-installation/">
       
       
-        <link rel="next" href="../installing-clusters/">
+        <link rel="next" href="../installing-an-az/">
       
       
         
@@ -633,7 +633,7 @@
   <span class="md-ellipsis">
     
   
-  Installing management
+  Installing management plane
 
     
   </span>
@@ -648,7 +648,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing management
+  Installing management plane
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1033,7 +1033,7 @@
   <span class="md-ellipsis">
     
   
-  Installing clusters
+  Installing an AZ
 
     
   </span>
@@ -1048,7 +1048,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing clusters
+  Installing an AZ
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1060,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-clusters/" class="md-nav__link">
+      <a href="../installing-an-az/" class="md-nav__link">
         
   
   
@@ -1068,6 +1068,60 @@
     
   
   Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-hyperconverged/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing hyperconverged
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installing-decoupled/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing decoupled
 
     
   </span>
@@ -1803,7 +1857,7 @@
 <li>The <strong>out-of-band (OOB)</strong> management network of every physical server (IPMI, Redfish, or equivalent BMC).</li>
 </ul>
 </li>
-<li><strong><code>superphenix-operator</code></strong> installed via Helm: see <a href="../installing-management/">Installing management</a> (or <a href="../management-outside-az/">Installing outside an AZ</a> for placement requirements). Placement prerequisites are in <a href="../management-inside-az/">Installing inside an AZ</a> and <a href="../management-outside-az/">Installing outside an AZ</a>.</li>
+<li><strong><code>superphenix-operator</code></strong> installed via Helm: see <a href="../installing-management/">Installing management plane</a> (or <a href="../management-outside-az/">Installing outside an AZ</a> for placement requirements). Placement prerequisites are in <a href="../management-inside-az/">Installing inside an AZ</a> and <a href="../management-outside-az/">Installing outside an AZ</a>.</li>
 <li><strong>Hardware</strong> sized for your topology: see <a href="../../architecture/deployment-requirements/">Hardware requirements</a>. Production deployments should use servers with <strong>IPMI</strong> and a dedicated OOB network (see <a href="../production-recommendations/">Production recommendations</a>).</li>
 <li><strong>Network</strong> layout planned (cluster VLAN, public VLAN, storage fabric): see <a href="../../architecture/network-requirements/">Network requirements</a>.</li>
 </ul>
@@ -1817,7 +1871,7 @@
 <li>Register physical servers (BMC credentials, MAC addresses, desired role) with the talos-operator.</li>
 <li>Define <code>Cluster</code> resources that describe topology, geography, and connection mode.</li>
 <li>Let the operator provision Talos on the servers, bootstrap Kubernetes, and install the Superphenix stack.</li>
-<li>Connect decoupled storage and virtualization clusters as needed. See <a href="../connecting-clusters/">Connecting clusters</a>.</li>
+<li>Connect decoupled storage and workload clusters as needed. See <a href="../connecting-clusters/">Connecting clusters</a>.</li>
 </ol>
 <h2 id="step-1-install-the-operator">Step 1: Install the operator</h2>
 <p>On your management cluster:</p>
@@ -1903,8 +1957,8 @@
 </table>
 <h2 id="next-steps">Next steps</h2>
 <ul>
-<li><a href="../installing-management/">Installing management</a></li>
-<li><a href="../installing-clusters/">Installing clusters</a></li>
+<li><a href="../installing-management/">Installing management plane</a></li>
+<li><a href="../installing-an-az/">Installing an AZ</a></li>
 <li><a href="../production-recommendations/">Production recommendations</a></li>
 <li><a href="../../architecture/deployment-topology/">Deployment topology</a></li>
 </ul>

@@ -833,7 +833,7 @@
   <span class="md-ellipsis">
     
   
-  Installing management
+  Installing management plane
 
     
   </span>
@@ -848,7 +848,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing management
+  Installing management plane
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1074,7 +1074,7 @@
   <span class="md-ellipsis">
     
   
-  Installing clusters
+  Installing an AZ
 
     
   </span>
@@ -1089,7 +1089,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Installing clusters
+  Installing an AZ
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -1101,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/installing-clusters/" class="md-nav__link">
+      <a href="../../installation/installing-an-az/" class="md-nav__link">
         
   
   
@@ -1109,6 +1109,60 @@
     
   
   Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installing-hyperconverged/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing hyperconverged
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/installing-decoupled/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing decoupled
 
     
   </span>
@@ -1898,7 +1952,7 @@
 </ul>
 <p>This separation helps reduce contention between client I/O and replication/rebuild traffic.</p>
 <h3 id="decoupled-virtualization-tier">Decoupled virtualization tier</h3>
-<p>For virtualization clusters, a practical model is:</p>
+<p>For workload clusters, a practical model is:</p>
 <ul>
 <li><strong>Public VLAN</strong>: external connectivity and storage consumption paths</li>
 <li><strong>Cluster VLAN</strong>: VPCs, virtual subnets, Kubernetes/CNI networking, and inter-node internal traffic</li>
