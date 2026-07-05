@@ -1,6 +1,6 @@
 # Deployment guide
 
-This guide walks through installing Superphenix end to end: provisioning Kubernetes on bare metal, deploying the management plane, and configuring your availability zones. Whether you are starting with a single hyperconverged cluster or a large decoupled deployment across multiple AZs, use this page for prerequisites and to choose the right installation path.
+This guide walks through installing Superphenix end to end: deploying the management plane, installing the operating system, and configuring your availability zones. Whether you are starting with a single hyperconverged cluster or a large decoupled deployment across multiple AZs, use this page for prerequisites and to choose the right installation path.
 
 ## Requirements
 
@@ -17,7 +17,7 @@ Start by deciding where the **management plane** runs. It installs and operates 
 
 Superphenix supports two placement models: the management plane can run **inside an AZ** or on a **dedicated management cluster** separate from your workload AZs. Your choice affects connectivity requirements and failure domains.
 
-See [Deployment topology](../architecture/deployment-topology.md) for a full comparison.
+See [Deployment topology](../architecture/deployment-topology.md#management-plane) for a full comparison.
 
 <div class="grid cards" markdown>
 
@@ -41,7 +41,9 @@ See [Deployment topology](../architecture/deployment-topology.md) for a full com
 
 ## Installing the Operating System
 
-Every Superphenix cluster runs on **Talos Linux**. Choose how you provision it:
+Every Superphenix cluster runs on **Talos Linux**. Talos bootstraps and hosts Kubernetes on your bare-metal nodes; Superphenix then deploys storage, virtualization, and networking on that Kubernetes foundation.
+
+Superphenix supports two provisioning models: bootstrap Talos clusters yourself, or let the Superphenix provision servers declaratively over BMC/IPMI. Manual installation is typically required when the management plane runs inside an AZ; automated installation pairs well with a dedicated management cluster orchestrating greenfield or multi-AZ datacenters.
 
 <div class="grid cards" markdown>
 
@@ -57,7 +59,7 @@ Every Superphenix cluster runs on **Talos Linux**. Choose how you provision it:
 
     ---
 
-    Let the **`superphenix-operator`** and **talos-operator** provision servers over BMC/IPMI and manage node lifecycle declaratively. Best for greenfield datacenters and multi-AZ deployments with the management plane outside workload AZs.
+    Let Superphenix provision servers over BMC/IPMI and manage node lifecycle declaratively. Best for greenfield datacenters and multi-AZ deployments with the management plane outside workload AZs.
 
     [:octicons-arrow-right-24: Automated OS installation](automated-os-installation.md)
 
@@ -65,7 +67,11 @@ Every Superphenix cluster runs on **Talos Linux**. Choose how you provision it:
 
 ## Installing an Availability Zone
 
-Each **availability zone** runs the full Superphenix stack on Talos Kubernetes clusters. Choose how storage and workloads are deployed within the AZ:
+Each **availability zone** runs the full Superphenix stack on Talos Kubernetes clusters. Choose how storage and workloads are deployed within the AZ. You can install multiple AZs with different topologies under the same management plane.
+
+Superphenix supports both **hyperconverged** (with the storage and workload running on the same cluster) and **decoupled** (separate clusters for the storage and the workload) installations. 
+
+See [Deployment topology](../architecture/deployment-topology.md#hyperconverged-vs-decoupled) for a full comparison.
 
 <div class="grid cards" markdown>
 
@@ -86,5 +92,3 @@ Each **availability zone** runs the full Superphenix stack on Talos Kubernetes c
     [:octicons-arrow-right-24: Installing decoupled](installing-decoupled.md)
 
 </div>
-
-See [Deployment topology](../architecture/deployment-topology.md) before you commit to a layout.

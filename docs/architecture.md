@@ -1,12 +1,27 @@
 # Architecture overview
 
-This page describes how Superphenix is organized: organizations and projects, where resources live, how availability zones (AZs) work, and how disaster recovery fits in. For how AZs and the management cluster can be deployed, see [Deployment topology](architecture/deployment-topology.md). For infrastructure planning details, see [Hardware requirements](architecture/deployment-requirements.md) and [Network requirements](architecture/network-requirements.md).
+This page describes how Superphenix is organized: **Superphenix clusters**, how they are grouped into **availability zones (AZs)** and **regions**, tenant **organizations** and **projects**, where resources live, and how disaster recovery fits in. For deployment layouts and management placement, see [Deployment topology](architecture/deployment-topology.md). For infrastructure planning, see [Hardware requirements](architecture/deployment-requirements.md) and [Network requirements](architecture/network-requirements.md).
+
+## Superphenix clusters
+
+A **Superphenix cluster** is a **Kubernetes cluster** (typically Talos Linux) on which the Superphenix stack runs. The management plane discovers and operates each cluster through a **`Cluster` custom resource** that declares its **topology**, **geography**, and **connection** details.
+
+Each cluster uses one of two **deployment topologies**:
+
+- **Hyperconverged**: storage and virtualization on the **same** cluster—the simplest layout, usually one cluster per AZ.
+- **Decoupled**: clusters are dedicated to **storage** or **virtualization**; an AZ can therefore comprise **several** Superphenix clusters (for example, one storage cluster and one or more workload clusters).
+
+Set `deploymentTopology` and, when decoupled, `type: Storage` or `type: Virtualization` on the `Cluster` resource. See [Deployment topology](architecture/deployment-topology.md) and [Configure a cluster](installation/configuring-a-cluster.md).
 
 ## Availability zones
 
-An **availability zone** is a **Kubernetes cluster** on which the full Superphenix stack is deployed: virtualization, software-defined network, storage (if not decoupled), and tooling. It is the unit of capacity and failure domain: everything running in that AZ runs on that cluster.
+An **availability zone (AZ)** is a **logical grouping** of Superphenix clusters. Clusters in an AZ are treated as one unit of capacity and failure domain for placing tenant resources (VMs, networks, volumes).
 
-### Geography
+In a **hyperconverged** AZ, a single cluster usually runs virtualization, software-defined networking, and storage together. In a **decoupled** AZ, storage and workload tiers are separate Kubernetes clusters registered under the same `availabilityZone`; workload clusters connect to the storage backends defined for that zone.
+
+An AZ may **span multiple nearby datacenters** (a stretched AZ) only when inter-site latency stays very low—aim for about **2 ms round-trip** or less between sites (same campus or metro). Higher latency undermines storage replication, control-plane stability, and VM networking; use **separate AZs** in the same **region** instead. Assign every cluster in the AZ the same `region` and `availabilityZone` values. See [Stretched AZ latency guidance](architecture/network-requirements.md#stretched-az-latency-guidance).
+
+## Regions
 
 An AZ can **span multiple datacenters** as long as latency between them is low (e.g. same campus or metro). The important constraint is **network latency (ping)**: if the sites are too far apart, the cluster’s consistency and performance requirements may not be met. So an AZ is a logical unit of availability that can stretch across nearby datacenters, but not across distant regions.
 
