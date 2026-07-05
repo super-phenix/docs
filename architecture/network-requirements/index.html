@@ -1919,7 +1919,7 @@
 
 
 <h1 id="network-requirements">Network requirements</h1>
-<p>Network design for Superphenix should be planned alongside hardware sizing and AZ topology. This page defines baseline expectations for link speed, VLAN segmentation, external connectivity, and IP announcement models. For server sizing and NIC assumptions, see <a href="../deployment-requirements/">Hardware requirements</a>. For AZ design constraints, see <a href="../../architecture/">Architecture overview</a>.</p>
+<p>Network design for Superphenix should be planned alongside hardware sizing and AZ topology. This page defines baseline expectations for link speed, VLAN segmentation, external connectivity, and IP announcement models. For server sizing and NIC assumptions, see <a href="../deployment-requirements/">Hardware requirements</a>. For AZ design constraints, see <a href="../">Architecture overview</a>.</p>
 <hr />
 <h2 id="baseline-and-interface-sizing">Baseline and interface sizing</h2>
 <p>Use the NIC sizing from the <a href="../deployment-requirements/">Hardware requirements</a> as the baseline for network planning:</p>
@@ -1987,7 +1987,7 @@ Expect significant east-west traffic from Ceph (replication and recovery) and fr
 <li>Increased storage latency (for example, <strong>Ceph</strong> replication and recovery paths)</li>
 <li>Slower virtual network paths between workloads in different sites</li>
 </ul>
-<p>This aligns with the <a href="../../architecture/">Architecture overview</a>, which positions an AZ as a close geographic zone (typically same campus/metro, often on the order of a few dozen kilometers at most in best cases).</p>
+<p>This aligns with the <a href="../">Architecture overview</a>, which positions an AZ as a close geographic zone (typically same campus/metro, often on the order of a few dozen kilometers at most in best cases).</p>
 <hr />
 <h2 id="ipam-behavior-across-azs">IPAM behavior across AZs</h2>
 <p>Superphenix IPAM is scoped <strong>per availability zone (AZ)</strong>. Superphenix receives one or more IP ranges (pools) and allocates addresses from those ranges to <strong>VMs</strong>, <strong>NAT gateways</strong>, <strong>containers</strong>, and other workloads/services in that AZ. If you configure overlapping ranges in different AZs, Superphenix does <strong>not</strong> provide global deduplication across AZs for those allocations and does not guarantee non-overlap between AZs.</p>
