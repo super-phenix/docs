@@ -407,6 +407,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#superphenix-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Superphenix clusters
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#availability-zones-azs" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1761,6 +1772,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#superphenix-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Superphenix clusters
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#availability-zones-azs" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1860,17 +1882,27 @@
 </ul>
 <p>If your need is <strong>independence</strong> and <strong>total control</strong> of your infrastructure to do <strong>SaaS, PaaS and IaaS</strong>, Superphenix should cover most of your use cases. And if it doesn't, feel free to share why with us so we can improve the project!</p>
 <h2 id="high-level-architecture">High-level architecture</h2>
+<h3 id="superphenix-clusters">Superphenix clusters</h3>
+<p>A <strong>Superphenix cluster</strong> is a <strong>Kubernetes cluster</strong> on which the Superphenix stack is deployed. The management plane discovers and operates each cluster through a <strong><code>Cluster</code> custom resource</strong> that declares its <strong>topology</strong>, <strong>geography</strong>, and <strong>connection</strong> details.</p>
+<p>Each cluster runs in one of two <strong>deployment topologies</strong>:</p>
+<ul>
+<li><strong>Hyperconverged</strong>: storage and virtualization run on the <strong>same</strong> cluster—the simplest layout, typically one cluster per availability zone.</li>
+<li><strong>Decoupled</strong>: clusters are dedicated to either <strong>storage</strong> or <strong>virtualization</strong>; an availability zone may therefore comprise <strong>several</strong> Superphenix clusters (for example, one storage cluster and one or more workload clusters).</li>
+</ul>
+<p>Set <code>deploymentTopology</code> and, when decoupled, <code>type: Storage</code> or <code>type: Virtualization</code> on the <code>Cluster</code> resource. See <a href="../architecture/deployment-topology/">Deployment topology</a> and <a href="../installation/configuring-a-cluster/">Configure a cluster</a>.</p>
 <h3 id="availability-zones-azs">Availability zones (AZs)</h3>
-<p>An <strong>Availability Zone (AZ)</strong> is a <strong>Kubernetes cluster</strong> on which Superphenix is deployed. That cluster runs the full SPX stack: hypervisor, software-defined network, and storage. A single AZ may span <strong>multiple datacenters</strong> (e.g. a stretched cluster), so one AZ is a logical unit of availability, not necessarily a single physical site.</p>
+<p>An <strong>Availability Zone (AZ)</strong> a logical groupment of <strong>Kubernetes cluster</strong> on which Superphenix is deployed. A single AZ may span <strong>multiple datacenters</strong> (e.g. a stretched cluster), so one AZ is a logical unit of availability, not necessarily a single physical site.</p>
+<p>In a <strong>hyperconverged</strong> AZ, a single cluster usually carries the full stack. In a <strong>decoupled</strong> AZ, multiple clusters cooperate: storage and workload tiers are separate Kubernetes clusters registered under the same availability zone, and workload clusters connect to the storage backends defined for that zone.</p>
+<p>An AZ may <strong>span multiple nearby datacenters</strong> (a stretched AZ) only when inter-site latency stays very low—aim for about <strong>2 ms round-trip</strong> or less between sites (same campus or metro). Higher latency breaks storage replication, control-plane stability, and VM networking expectations; use <strong>separate AZs</strong> in the same <strong>region</strong> instead. Assign every cluster in the AZ the same <code>region</code> and <code>availabilityZone</code> values so the console, GitOps, and disaster-recovery policies can target the zone consistently.</p>
 <h3 id="regions">Regions</h3>
 <p>A <strong>region</strong> is a group of <strong>AZs</strong>. AZs within a region are <strong>peered</strong> so that data and backups can be <strong>mirrored</strong> between them. This enables disaster recovery and redundancy: if one AZ fails or is taken offline, workloads and data can be failed over to another AZ in the same region.</p>
 <h3 id="central-administration">Central administration</h3>
 <p>All AZs are administered <strong>centrally</strong> using:</p>
 <ul>
 <li><strong>GitOps</strong>: Declarative definitions (e.g. ArgoCD, Helm) deploy and update the stack and tenant resources across AZs from a single source of truth.</li>
-<li><strong>The web console</strong>: A multi-tenant console lets customers of the platform  manage their resources over multiple AZs from one place.</li>
+<li><strong>The web console</strong>: A multi-tenant console lets customers of the platform manage their resources over multiple AZs from one place.</li>
 </ul>
-<p>Together, GitOps and the console provide a single control plane over the whole deployment, while each AZ remains an independent Kubernetes cluster for isolation and resilience.</p>
+<p>Together, GitOps and the console provide a single control plane over the whole deployment, while each Superphenix cluster remains an independent Kubernetes control plane for isolation and resilience.</p>
 
 
 
