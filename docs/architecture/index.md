@@ -1,6 +1,6 @@
 # Architecture overview
 
-This page describes how Superphenix is organized: **Superphenix clusters**, how they are grouped into **availability zones (AZs)** and **regions**, tenant **organizations** and **projects**, where resources live, and how disaster recovery fits in. For deployment layouts and management placement, see [Deployment topology](architecture/deployment-topology.md). For infrastructure planning, see [Hardware requirements](architecture/deployment-requirements.md) and [Network requirements](architecture/network-requirements.md).
+This page describes how Superphenix is organized: **Superphenix clusters**, how they are grouped into **availability zones (AZs)** and **regions**, tenant **organizations** and **projects**, where resources live, and how disaster recovery fits in. For deployment layouts and management placement, see [Deployment topology](deployment-topology.md). For infrastructure planning, see [Hardware requirements](deployment-requirements.md) and [Network requirements](network-requirements.md).
 
 ## Superphenix clusters
 
@@ -11,7 +11,7 @@ Each cluster uses one of two **deployment topologies**:
 - **Hyperconverged**: storage and virtualization on the **same** cluster; the simplest layout, usually one cluster per AZ.
 - **Decoupled**: clusters are dedicated to **storage** or **virtualization**; an AZ can therefore comprise **several** Superphenix clusters (for example, one storage cluster and one or more workload clusters).
 
-Set `deploymentTopology` and, when decoupled, `type: Storage` or `type: Virtualization` on the `Cluster` resource. See [Deployment topology](architecture/deployment-topology.md) and [Configure a cluster](installation/configuring-a-cluster.md).
+Set `deploymentTopology` and, when decoupled, `type: Storage` or `type: Virtualization` on the `Cluster` resource. See [Deployment topology](deployment-topology.md) and [Configure a cluster](../installation/configuring-a-cluster.md).
 
 ## Availability zones
 
@@ -19,11 +19,15 @@ An **availability zone (AZ)** is a **logical grouping** of Superphenix clusters.
 
 In a **hyperconverged** AZ, a single cluster usually runs virtualization, software-defined networking, and storage together. In a **decoupled** AZ, storage and workload tiers are separate Kubernetes clusters registered under the same `availabilityZone`; workload clusters connect to the storage backends defined for that zone.
 
-An AZ may **span multiple nearby datacenters** (a stretched AZ) only when inter-site latency stays very low; aim for about **2 ms round-trip** or less between sites (same campus or metro). Higher latency undermines storage replication, control-plane stability, and VM networking; use **separate AZs** in the same **region** instead. Assign every cluster in the AZ the same `region` and `availabilityZone` values. See [Stretched AZ latency guidance](architecture/network-requirements.md#stretched-az-latency-guidance).
+An AZ may **span multiple nearby datacenters** (a stretched AZ) only when inter-site latency stays very low; aim for about **2 ms round-trip** or less between sites (same campus or metro). Higher latency undermines storage replication, control-plane stability, and VM networking; use **separate AZs** in the same **region** instead. Assign every cluster in the AZ the same `region` and `availabilityZone` values. See [Stretched AZ latency guidance](network-requirements.md#stretched-az-latency-guidance).
 
 ## Regions
 
-An AZ can **span multiple datacenters** as long as latency between them is low (e.g. same campus or metro). The important constraint is **network latency (ping)**: if the sites are too far apart, the cluster’s consistency and performance requirements may not be met. So an AZ is a logical unit of availability that can stretch across nearby datacenters, but not across distant regions.
+A **region** is primarily a **label** for grouping availability zones—set via the `region` field on each `Cluster` resource and reflected in the console and GitOps. It is an organizational indicator only; it does **not** by itself define failure domains, peering scope, storage reachability, or other platform behavior.
+
+**AZ peering** for mirroring, backups, and disaster recovery can be configured **within a region or across regions**. Region boundaries do not limit where peers can be established.
+
+**Storage** can be consumed across AZs when sites are **close enough** in latency and network terms; for example between nearby **hyperconverged** AZs. That is a proximity and topology constraint, not a regional one; how AZs are labeled does not gate whether storage can be shared or attached across zones.
 
 ## Organizations and projects
 

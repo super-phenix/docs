@@ -6,7 +6,7 @@ In a normal installation flow, the **deployment topology for the AZ must be chos
 
 Before installation, review architecture planning documents so topology and infrastructure constraints are clear up front:
 
-- [Architecture overview](../architecture.md)
+- [Architecture overview](../architecture/index.md)
 - [Deployment topology](../architecture/deployment-topology.md)
 - [Hardware requirements](../architecture/deployment-requirements.md)
 - [Network requirements](../architecture/network-requirements.md)

@@ -74,4 +74,4 @@ These services run on the foundation. Availability depends on your Superphenix v
 - **Foundation**: Virtualization runs VMs; the network layer provides VPCs and subnets; storage backs disks; tooling drives GitOps and the console.
 - **Managed services**: When enabled, PaaS and SaaS consume the same virtualization, storage, and network primitives.
 
-See [Architecture overview](../architecture.md) for AZs, regions, and central administration.
+See [Architecture overview](../architecture/index.md) for AZs, regions, and central administration.

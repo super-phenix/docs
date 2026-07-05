@@ -174,4 +174,4 @@ spec:
       internalPort: 443
 ```
 
-See [Virtualization](virtualization.md) for attaching VMs to subnets and [Architecture overview](../architecture.md) for AZ scope.
+See [Virtualization](virtualization.md) for attaching VMs to subnets and [Architecture overview](../architecture/index.md) for AZ scope.

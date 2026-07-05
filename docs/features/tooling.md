@@ -19,7 +19,7 @@ The same objects (VMs, disks, networks, policies) are represented in the API and
 - Changes are **reviewed**, **versioned**, and **rolled back** like application code.
 - The same workflow can manage **one AZ** or **many AZs** from a single repository (or a structured set of repos).
 
-See [Architecture overview](../architecture.md) for how administration spans regions and AZs.
+See [Architecture overview](../architecture/index.md) for how administration spans regions and AZs.
 
 ## Web console
 

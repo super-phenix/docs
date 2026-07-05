@@ -77,7 +77,7 @@ An AZ may **span multiple nearby datacenters** (a stretched AZ) only when inter-
 
 ### Regions
 
-A **region** is a group of **AZs**. AZs within a region are **peered** so that data and backups can be **mirrored** between them. This enables disaster recovery and redundancy: if one AZ fails or is taken offline, workloads and data can be failed over to another AZ in the same region.
+A **region** is primarily a **label** for grouping availability zones (`region` on each `Cluster` resource); it carries no other operational meaning. AZs can be **peered** and **storage** consumed across zones **within or across regions** when sites are close enough—proximity matters, not the region label.
 
 ### Central administration
 

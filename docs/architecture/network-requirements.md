@@ -1,6 +1,6 @@
 # Network requirements
 
-Network design for Superphenix should be planned alongside hardware sizing and AZ topology. This page defines baseline expectations for link speed, VLAN segmentation, external connectivity, and IP announcement models. For server sizing and NIC assumptions, see [Hardware requirements](deployment-requirements.md). For AZ design constraints, see [Architecture overview](../architecture.md).
+Network design for Superphenix should be planned alongside hardware sizing and AZ topology. This page defines baseline expectations for link speed, VLAN segmentation, external connectivity, and IP announcement models. For server sizing and NIC assumptions, see [Hardware requirements](deployment-requirements.md). For AZ design constraints, see [Architecture overview](index.md).
 
 ---
 
@@ -94,7 +94,7 @@ Higher latency can lead to operational and performance issues, including:
 - Increased storage latency (for example, **Ceph** replication and recovery paths)
 - Slower virtual network paths between workloads in different sites
 
-This aligns with the [Architecture overview](../architecture.md), which positions an AZ as a close geographic zone (typically same campus/metro, often on the order of a few dozen kilometers at most in best cases).
+This aligns with the [Architecture overview](index.md), which positions an AZ as a close geographic zone (typically same campus/metro, often on the order of a few dozen kilometers at most in best cases).
 
 ---
 
