@@ -384,10 +384,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#who-superphenix-is-for" class="md-nav__link">
+  <a href="#who-is-superphenix-for" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Who Superphenix is for
+        Who is Superphenix for?
       </span>
     </span>
   </a>
@@ -395,52 +395,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#high-level-architecture" class="md-nav__link">
+  <a href="#do-i-need-to-know-kubernetes-to-install-superphenix" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        High-level architecture
+        Do I need to know Kubernetes to install Superphenix?
       </span>
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="High-level architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#availability-zones-azs" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Availability zones (AZs)
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#regions" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Regions
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#central-administration" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Central administration
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1738,10 +1699,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#who-superphenix-is-for" class="md-nav__link">
+  <a href="#who-is-superphenix-for" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Who Superphenix is for
+        Who is Superphenix for?
       </span>
     </span>
   </a>
@@ -1749,52 +1710,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#high-level-architecture" class="md-nav__link">
+  <a href="#do-i-need-to-know-kubernetes-to-install-superphenix" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        High-level architecture
+        Do I need to know Kubernetes to install Superphenix?
       </span>
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="High-level architecture">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#availability-zones-azs" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Availability zones (AZs)
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#regions" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Regions
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#central-administration" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Central administration
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1851,7 +1773,7 @@
 <li><strong>Expertise</strong>: Teams that already run Kubernetes can operate the CSP stack with the same mindset</li>
 </ul>
 <p>The trade-off is adapting Kubernetes to VMs, storage, and CSP-style networking. Superphenix does that by combining a multitude of <strong>open source projects</strong> into one coherent, cloud-native platform.</p>
-<h2 id="who-superphenix-is-for">Who Superphenix is for</h2>
+<h2 id="who-is-superphenix-for">Who is Superphenix for?</h2>
 <p>Superphenix can be used for very different use cases:</p>
 <ul>
 <li><strong>At scale</strong>: For <strong>actors willing to build their own cloud platform</strong> across <strong>multiple datacenters and regions</strong>. Deploy several AZs, group them into regions, mirror data and backups between AZs, and operate everything from a single interface.</li>
@@ -1859,18 +1781,9 @@
 <li><strong>Single rack</strong>: Superphenix can run in a <strong>single rack</strong> for small actors, labs, or even <strong>at home</strong>. Evaluate the stack, learn the platform, or host a small private cloud on minimal hardware.</li>
 </ul>
 <p>If your need is <strong>independence</strong> and <strong>total control</strong> of your infrastructure to do <strong>SaaS, PaaS and IaaS</strong>, Superphenix should cover most of your use cases. And if it doesn't, feel free to share why with us so we can improve the project!</p>
-<h2 id="high-level-architecture">High-level architecture</h2>
-<h3 id="availability-zones-azs">Availability zones (AZs)</h3>
-<p>An <strong>Availability Zone (AZ)</strong> is a <strong>Kubernetes cluster</strong> on which Superphenix is deployed. That cluster runs the full SPX stack: hypervisor, software-defined network, and storage. A single AZ may span <strong>multiple datacenters</strong> (e.g. a stretched cluster), so one AZ is a logical unit of availability, not necessarily a single physical site.</p>
-<h3 id="regions">Regions</h3>
-<p>A <strong>region</strong> is a group of <strong>AZs</strong>. AZs within a region are <strong>peered</strong> so that data and backups can be <strong>mirrored</strong> between them. This enables disaster recovery and redundancy: if one AZ fails or is taken offline, workloads and data can be failed over to another AZ in the same region.</p>
-<h3 id="central-administration">Central administration</h3>
-<p>All AZs are administered <strong>centrally</strong> using:</p>
-<ul>
-<li><strong>GitOps</strong>: Declarative definitions (e.g. ArgoCD, Helm) deploy and update the stack and tenant resources across AZs from a single source of truth.</li>
-<li><strong>The web console</strong>: A multi-tenant console lets customers of the platform  manage their resources over multiple AZs from one place.</li>
-</ul>
-<p>Together, GitOps and the console provide a single control plane over the whole deployment, while each AZ remains an independent Kubernetes cluster for isolation and resilience.</p>
+<h2 id="do-i-need-to-know-kubernetes-to-install-superphenix">Do I need to know Kubernetes to install Superphenix?</h2>
+<p>Superphenix uses Kubernetes under the hood, but you <strong>do not</strong> need Kubernetes knowledge to install or run a standard deployment. </p>
+<p>With that said, it isn't useless to be knowledgeable about Kubernetes. Operators who already know Kubernetes can go further: extending the platform, debugging issues, and operating Superphenix in more advanced ways.</p>
 
 
 

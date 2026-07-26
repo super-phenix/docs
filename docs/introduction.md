@@ -44,7 +44,7 @@ Kubernetes is a container orchestrator, not a VM orchestrator. Using it as the c
 
 The trade-off is adapting Kubernetes to VMs, storage, and CSP-style networking. Superphenix does that by combining a multitude of **open source projects** into one coherent, cloud-native platform.
 
-## Who Superphenix is for
+## Who is Superphenix for?
 
 Superphenix can be used for very different use cases:
 
@@ -54,36 +54,8 @@ Superphenix can be used for very different use cases:
 
 If your need is **independence** and **total control** of your infrastructure to do **SaaS, PaaS and IaaS**, Superphenix should cover most of your use cases. And if it doesn't, feel free to share why with us so we can improve the project!
 
-## High-level architecture
+## Do I need to know Kubernetes to install Superphenix?
 
-### Superphenix clusters
+Superphenix uses Kubernetes under the hood, but you **do not** need Kubernetes knowledge to install or run a standard deployment. 
 
-A **Superphenix cluster** is a **Kubernetes cluster** on which the Superphenix stack is deployed. The management plane discovers and operates each cluster through a **`Cluster` custom resource** that declares its **topology**, **geography**, and **connection** details.
-
-Each cluster runs in one of two **deployment topologies**:
-
-- **Hyperconverged**: storage and virtualization run on the **same** cluster—the simplest layout, typically one cluster per availability zone.
-- **Decoupled**: clusters are dedicated to either **storage** or **virtualization**; an availability zone may therefore comprise **several** Superphenix clusters (for example, one storage cluster and one or more workload clusters).
-
-Set `deploymentTopology` and, when decoupled, `type: Storage` or `type: Virtualization` on the `Cluster` resource. See [Deployment topology](architecture/deployment-topology.md) and [Configure a cluster](installation/configuring-a-cluster.md).
-
-### Availability zones (AZs)
-
-An **Availability Zone (AZ)** a logical groupment of **Kubernetes cluster** on which Superphenix is deployed. A single AZ may span **multiple datacenters** (e.g. a stretched cluster), so one AZ is a logical unit of availability, not necessarily a single physical site.
-
-In a **hyperconverged** AZ, a single cluster usually carries the full stack. In a **decoupled** AZ, multiple clusters cooperate: storage and workload tiers are separate Kubernetes clusters registered under the same availability zone, and workload clusters connect to the storage backends defined for that zone.
-
-An AZ may **span multiple nearby datacenters** (a stretched AZ) only when inter-site latency stays very low—aim for about **2 ms round-trip** or less between sites (same campus or metro). Higher latency breaks storage replication, control-plane stability, and VM networking expectations; use **separate AZs** in the same **region** instead. Assign every cluster in the AZ the same `region` and `availabilityZone` values so the console, GitOps, and disaster-recovery policies can target the zone consistently.
-
-### Regions
-
-A **region** is primarily a **label** for grouping availability zones (`region` on each `Cluster` resource); it carries no other operational meaning. AZs can be **peered** and **storage** consumed across zones **within or across regions** when sites are close enough—proximity matters, not the region label.
-
-### Central administration
-
-All AZs are administered **centrally** using:
-
-- **GitOps**: Declarative definitions (e.g. ArgoCD, Helm) deploy and update the stack and tenant resources across AZs from a single source of truth.
-- **The web console**: A multi-tenant console lets customers of the platform manage their resources over multiple AZs from one place.
-
-Together, GitOps and the console provide a single control plane over the whole deployment, while each Superphenix cluster remains an independent Kubernetes control plane for isolation and resilience.
+With that said, it isn't useless to be knowledgeable about Kubernetes. Operators who already know Kubernetes can go further: extending the platform, debugging issues, and operating Superphenix in more advanced ways.

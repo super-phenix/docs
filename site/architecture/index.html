@@ -413,6 +413,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#superphenix-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Superphenix clusters
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#availability-zones" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -421,22 +432,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Availability zones">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#geography" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Geography
+        Regions
       </span>
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1652,6 +1657,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#superphenix-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Superphenix clusters
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#availability-zones" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1660,22 +1676,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Availability zones">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#geography" class="md-nav__link">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Geography
+        Regions
       </span>
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1731,10 +1741,20 @@
 
 
 <h1 id="architecture-overview">Architecture overview</h1>
-<p>This page describes how Superphenix is organized: organizations and projects, where resources live, how availability zones (AZs) work, and how disaster recovery fits in. For how AZs and the management cluster can be deployed, see <a href="../architecture/deployment-topology/">Deployment topology</a>. For infrastructure planning details, see <a href="../architecture/deployment-requirements/">Hardware requirements</a> and <a href="../architecture/network-requirements/">Network requirements</a>.</p>
+<p>This page describes how Superphenix is organized: <strong>Superphenix clusters</strong>, how they are grouped into <strong>availability zones (AZs)</strong> and <strong>regions</strong>, tenant <strong>organizations</strong> and <strong>projects</strong>, where resources live, and how disaster recovery fits in. For deployment layouts and management placement, see <a href="../architecture/deployment-topology/">Deployment topology</a>. For infrastructure planning, see <a href="../architecture/deployment-requirements/">Hardware requirements</a> and <a href="../architecture/network-requirements/">Network requirements</a>.</p>
+<h2 id="superphenix-clusters">Superphenix clusters</h2>
+<p>A <strong>Superphenix cluster</strong> is a <strong>Kubernetes cluster</strong> (typically Talos Linux) on which the Superphenix stack runs. The management plane discovers and operates each cluster through a <strong><code>Cluster</code> custom resource</strong> that declares its <strong>topology</strong>, <strong>geography</strong>, and <strong>connection</strong> details.</p>
+<p>Each cluster uses one of two <strong>deployment topologies</strong>:</p>
+<ul>
+<li><strong>Hyperconverged</strong>: storage and virtualization on the <strong>same</strong> cluster; the simplest layout, usually one cluster per AZ.</li>
+<li><strong>Decoupled</strong>: clusters are dedicated to <strong>storage</strong> or <strong>virtualization</strong>; an AZ can therefore comprise <strong>several</strong> Superphenix clusters (for example, one storage cluster and one or more workload clusters).</li>
+</ul>
+<p>Set <code>deploymentTopology</code> and, when decoupled, <code>type: Storage</code> or <code>type: Virtualization</code> on the <code>Cluster</code> resource. See <a href="../architecture/deployment-topology/">Deployment topology</a> and <a href="../installation/configuring-a-cluster/">Configure a cluster</a>.</p>
 <h2 id="availability-zones">Availability zones</h2>
-<p>An <strong>availability zone</strong> is a <strong>Kubernetes cluster</strong> on which the full Superphenix stack is deployed: virtualization, software-defined network, storage (if not decoupled), and tooling. It is the unit of capacity and failure domain: everything running in that AZ runs on that cluster.</p>
-<h3 id="geography">Geography</h3>
+<p>An <strong>availability zone (AZ)</strong> is a <strong>logical grouping</strong> of Superphenix clusters. Clusters in an AZ are treated as one unit of capacity and failure domain for placing tenant resources (VMs, networks, volumes).</p>
+<p>In a <strong>hyperconverged</strong> AZ, a single cluster usually runs virtualization, software-defined networking, and storage together. In a <strong>decoupled</strong> AZ, storage and workload tiers are separate Kubernetes clusters registered under the same <code>availabilityZone</code>; workload clusters connect to the storage backends defined for that zone.</p>
+<p>An AZ may <strong>span multiple nearby datacenters</strong> (a stretched AZ) only when inter-site latency stays very low; aim for about <strong>2 ms round-trip</strong> or less between sites (same campus or metro). Higher latency undermines storage replication, control-plane stability, and VM networking; use <strong>separate AZs</strong> in the same <strong>region</strong> instead. Assign every cluster in the AZ the same <code>region</code> and <code>availabilityZone</code> values. See <a href="../architecture/network-requirements/#stretched-az-latency-guidance">Stretched AZ latency guidance</a>.</p>
+<h2 id="regions">Regions</h2>
 <p>An AZ can <strong>span multiple datacenters</strong> as long as latency between them is low (e.g. same campus or metro). The important constraint is <strong>network latency (ping)</strong>: if the sites are too far apart, the cluster’s consistency and performance requirements may not be met. So an AZ is a logical unit of availability that can stretch across nearby datacenters, but not across distant regions.</p>
 <h2 id="organizations-and-projects">Organizations and projects</h2>
 <p>Superphenix uses a two-level hierarchy for tenant isolation and resource grouping:</p>
