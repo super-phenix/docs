@@ -1,4 +1,4 @@
-# Add a storage class
+# Adding a storage class
 
 **Storage classes** are how end users choose what type of storage they get on the platform. When someone creates a disk or bucket, they pick a class that defines what they get: media type (HDD, SSD, NVMe), QoS (IOPS, bandwidth), data protection (replication, erasure coding), and options such as encryption.
 
@@ -255,7 +255,7 @@ An **object storage class** is the user-facing catalog entry for S3 object stora
 
 ### Prerequisites
 
-- At least one **object store** already exists on the cluster that hosts the storage. See [Add an object store](add-an-object-store.md).
+- At least one **object store** already exists on the cluster that hosts the storage. See [Adding an object store](adding-an-object-store.md).
 
 ### Configuration
 

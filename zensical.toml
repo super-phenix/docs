@@ -51,9 +51,12 @@ nav = [
     { "SaaS" = "features/saas.md" }
   ]},
   { "Operations" = [
-    { "Connecting a workload and storage cluster" = "operations/connecting-a-workload-and-storage-cluster.md" },
-    { "Add a storage class" = "operations/add-a-storage-class.md" },
-    { "Add an object store" = "operations/add-an-object-store.md" },
+    { "Storage" = [
+      { "Configuring the storage cluster" = "operations/storage/configuring-the-storage-cluster.md" },
+      { "Connecting a workload and storage cluster" = "operations/storage/connecting-a-workload-and-storage-cluster.md" },
+      { "Adding a storage class" = "operations/storage/adding-a-storage-class.md" },
+      { "Adding an object store" = "operations/storage/adding-an-object-store.md" }
+    ]},
     { "Testing" = "operations/testing.md" },
     { "Web console" = "operations/console.md" }
   ]},

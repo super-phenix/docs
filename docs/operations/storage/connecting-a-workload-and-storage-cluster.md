@@ -13,7 +13,15 @@ Apply this configuration under `systemConfiguration` on the **workload** `Cluste
 
 ## Consuming block storage
 
-Connect the workload cluster to a storage cluster so it can consume Ceph block pools. After the connection is in place, expose pools to tenants with [block storage classes](add-a-storage-class.md#adding-a-block-storage-class).
+Connect the workload cluster to a storage cluster so it can consume Ceph block pools. After the connection is in place, expose pools to tenants with [block storage classes](adding-a-storage-class.md#adding-a-block-storage-class).
+
+Retrieve the connection values from the remote **storage** cluster as follows:
+
+- **`clusterID`**: from `.status.cephClusters` on the Superphenix `Cluster` CR for the remote storage cluster. The Ceph FSID is the **key** of that dictionary (for example `e2a62ea1-6428-496e-a5bf-366936a8c833`).
+- **`username`**: TBD.
+- **`token`**: TBD.
+- **`bootstrapMon`**: the public address of **one** Ceph monitor on the storage cluster (`id`, `ip`, `port`, and `protocol`). It is used only to bootstrap the connection. After that, the full MON list is pulled and kept fresh; this bootstrap MON is not used again.
+- **`healthCheck`**: TBD.
 
 ```yaml
 systemConfiguration:
@@ -22,11 +30,11 @@ systemConfiguration:
       values:
         clusters:
           - name: "[storage-cluster-name]" # The name of the remote storage cluster
-            # Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833
+            # From .status.cephClusters on the remote Cluster CR (dictionary key = FSID)
             clusterID: ""
-            username: "[csi-user]"
-            token: ""
-            # Initial MON used to retrieve the full MON list
+            username: "[csi-user]" # TBD
+            token: "" # TBD
+            # Public address of one MON; used only to bootstrap, then the full MON list is refreshed
             bootstrapMon:
               # MON ID (must be a single letter)
               id: ""
@@ -36,7 +44,7 @@ systemConfiguration:
               port: "6789"
               # Protocol of the IP (IPv4 or IPv6)
               protocol: IPv6
-            # Used by Rook to check remote cluster health and refresh the MON list
+            # TBD
             healthCheck:
               username: "client.csi-health"
               token: ""
@@ -44,7 +52,7 @@ systemConfiguration:
 
 ## Consuming object storage
 
-Connect the workload cluster to a storage cluster so it can consume an RGW object store. After the connection is in place, expose the store to tenants with [object storage classes](add-a-storage-class.md#adding-an-object-storage-class).
+Connect the workload cluster to a storage cluster so it can consume an RGW object store. After the connection is in place, expose the store to tenants with [object storage classes](adding-a-storage-class.md#adding-an-object-storage-class).
 
 ```yaml
 systemConfiguration:
@@ -53,24 +61,6 @@ systemConfiguration:
       values:
         clusters:
           - name: "[storage-cluster-name]" # The name of the remote storage cluster
-            # Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833
-            clusterID: ""
-            username: "[csi-user]"
-            token: ""
-            # Initial MON used to retrieve the full MON list
-            bootstrapMon:
-              # MON ID (must be a single letter)
-              id: ""
-              # IP of the MON
-              ip: ""
-              # Port of the MON
-              port: "6789"
-              # Protocol of the IP (IPv4 or IPv6)
-              protocol: IPv6
-            # Used by Rook to check remote cluster health and refresh the MON list
-            healthCheck:
-              username: "client.csi-health"
-              token: ""
             objectStores:
               - name: "[object-store-name]" # CephObjectStore CR name (also used to derive the TLS secret name)
                 # External RGW endpoints. Each entry accepts either `ip` or `hostname`.

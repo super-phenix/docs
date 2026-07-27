@@ -49,5 +49,5 @@ Set `connection.mode: Local` when the cluster being defined is the same Kubernet
 ## Related
 
 - [Installing an AZ](index.md): overview of AZ installation.
-- [Add a storage class](../../../operations/add-a-storage-class.md): hyperconverged and decoupled storage.
+- [Adding a storage class](../../../operations/storage/adding-a-storage-class.md): hyperconverged and decoupled storage.
 - [Deployment topology](../../../architecture/deployment-topology.md): hyperconverged vs decoupled layouts.
