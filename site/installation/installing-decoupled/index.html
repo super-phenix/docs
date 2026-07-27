@@ -1049,21 +1049,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-workload-cluster-resource" class="md-nav__link">
+  <a href="#installing-a-workload-and-storage-cluster" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Example workload <code>Cluster</code> resource
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Related
+        Installing a workload and storage cluster
       </span>
     </span>
   </a>
@@ -1683,21 +1672,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-workload-cluster-resource" class="md-nav__link">
+  <a href="#installing-a-workload-and-storage-cluster" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Example workload <code>Cluster</code> resource
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Related
+        Installing a workload and storage cluster
       </span>
     </span>
   </a>
@@ -1723,8 +1701,7 @@
 
 
 <h1 id="installing-decoupled">Installing decoupled</h1>
-<p>In a <strong>decoupled</strong> AZ layout, <strong>storage</strong> and <strong>workload</strong> run on <strong>separate</strong> Kubernetes clusters. Dedicated storage clusters can serve one or more workload clusters. This model fits performance-sensitive workloads, shared storage across AZs, and production multi-tier designs.</p>
-<p>Part of the <a href="../deployment-guide/">deployment guide</a>. For storage and compute on the same nodes, see <a href="../installing-hyperconverged/">Installing hyperconverged</a>.</p>
+<p>In a <strong>decoupled</strong> AZ layout, <strong>storage</strong> and <strong>workload</strong> run on <strong>separate</strong> Superphenix clusters. Dedicated storage clusters can serve one or more workload clusters. This model fits performance-sensitive workloads, shared storage across AZs, and production multi-tier designs.</p>
 <h2 id="when-to-choose-decoupled">When to choose decoupled</h2>
 <ul>
 <li><strong>Performance</strong>: dedicated hardware for Ceph and hypervisor tiers without resource contention.</li>
@@ -1735,13 +1712,9 @@
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li>Talos clusters for <strong>storage</strong> and <strong>workload</strong> tiers (<a href="../manual-os-installation/">Manual OS installation</a> or <a href="../automated-os-installation/">Automated OS installation</a>).</li>
-<li>The <a href="../installing-management/">management plane installed</a> with API access to every cluster.</li>
+<li>The <a href="../installing-management/">management plane installed</a> with Kubernetes API access to every cluster.</li>
 <li>Hardware sized <strong>per role</strong>. See <a href="../../architecture/deployment-requirements/">Hardware requirements</a>.</li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Supported deployment types</p>
-<p>Currently, the only <strong>supported and tested</strong> installation method is <strong>fully decoupled</strong> (decoupled AZs with the management plane on a dedicated management cluster outside the AZ). See <a href="../../architecture/deployment-topology/">Deployment topology</a>.</p>
-</div>
 <h2 id="installation-overview">Installation overview</h2>
 <ol>
 <li>Provision a <strong>storage</strong> cluster and one or more <strong>workload</strong> clusters.</li>
@@ -1749,33 +1722,60 @@
 <li><a href="../connecting-clusters/">Connect workload clusters to storage backends</a>.</li>
 <li>Let the operator sync the Superphenix stack on each cluster.</li>
 </ol>
-<h2 id="example-workload-cluster-resource">Example workload <code>Cluster</code> resource</h2>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix.net/v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">az-paris-virt-1</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Decoupled</span>
-<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Virtualization</span>
-<span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">europe-west</span>
-<span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paris-1</span>
-<span class="w">  </span><span class="nt">connection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remote</span>
-<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://api.paris-virt-1.superphenix.net:6443</span>
-<span class="w">    </span><span class="nt">secretRef</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-paris-virt-1-credentials</span>
-<span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.1.0</span>
-<span class="w">  </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://charts.superphenix.net</span>
-<span class="w">  </span><span class="nt">chartName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-stack</span>
+<h2 id="installing-a-workload-and-storage-cluster">Installing a workload and storage cluster</h2>
+<p>To install the storage and workload cluster, upgrade the release with the chart <code>clusters:</code> values. The example below adds two new decoupled clusters in the same availability zone: one <code>Storage</code> cluster and one <code>Virtualization</code> (workload) cluster.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">clusters</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">spx-us-west01-storage</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Decoupled</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Storage</span>
+<span class="w">    </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-west-1</span>
+<span class="w">    </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">west01</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.1.0</span>
+<span class="w">    </span><span class="nt">connection</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remote</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://[STORAGE CLUSTER API ENDPOINT]:6443</span>
+<span class="w">      </span><span class="c1"># Any of the following option is valid to connect to the cluster</span>
+<span class="w">      </span><span class="nt">credentials</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">bearerToken</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">caData</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">certData</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">keyData</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">insecure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">serverName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="nt">pauseSync</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="w">  </span><span class="nt">spx-us-west01-workload</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Decoupled</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Virtualization</span>
+<span class="w">    </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-west-1</span>
+<span class="w">    </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">west01</span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.1.0</span>
+<span class="w">    </span><span class="nt">connection</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remote</span>
+<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://[WORKLOAD CLUSTER API ENDPOINT]:6443</span>
+<span class="w">      </span><span class="c1"># Any of the following option is valid to connect to the cluster</span>
+<span class="w">      </span><span class="nt">credentials</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">bearerToken</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">caData</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">certData</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">keyData</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">insecure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="nt">serverName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="nt">pauseSync</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
-<p>Create a matching <code>Cluster</code> for the storage tier with <code>type: Storage</code>. See <a href="../configuring-a-cluster/">Configure a cluster</a> for the full field reference.</p>
-<h2 id="related">Related</h2>
-<ul>
-<li><a href="../installing-an-az/">Installing an AZ</a>: overview of AZ installation paths.</li>
-<li><a href="../connecting-clusters/">Connecting clusters</a>: storage and workload integration.</li>
-</ul>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/super-phenix/charts/superphenix-operator<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-f<span class="w"> </span>spx-clusters-values.yaml
+</code></pre></div>
+<p>You can monitor the status of the <code>Cluster</code> CR to check how far along the installion is.</p>
+<p>You'll then need to connect the <a href="../connecting-clusters/">workload cluster to the storage cluster</a>.</p>
 
 
 

@@ -972,17 +972,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Next steps
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1627,17 +1616,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Next steps
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1657,21 +1635,13 @@
 
 
 <h1 id="installing-an-az">Installing an AZ</h1>
-<p>Once the <a href="../installing-management/">management plane is installed</a>, you define each availability zone by creating <code>Cluster</code> resources in the <code>superphenix-system</code> namespace. These resources tell the operator where and how to deploy the Superphenix stack.</p>
-<p>Choose your AZ topology first:</p>
+<p>Once the <a href="../installing-management/">management plane is installed</a>, you install each AZ by creating <code>Cluster</code> resources in the namespace of the operator. These resources tell the operator where and how to deploy the Superphenix stack on each target.</p>
+<h2 id="in-this-section">In this section</h2>
 <ul>
 <li><strong><a href="../installing-hyperconverged/">Installing hyperconverged</a></strong>: storage and virtualization on the same cluster.</li>
 <li><strong><a href="../installing-decoupled/">Installing decoupled</a></strong>: dedicated storage and workload clusters.</li>
-</ul>
-<h2 id="in-this-section">In this section</h2>
-<ul>
 <li><strong><a href="../configuring-a-cluster/">Configure a cluster</a></strong>: geography, connection mode, and system configuration for a <code>Cluster</code> resource.</li>
 <li><strong><a href="../connecting-clusters/">Connecting clusters</a></strong>: link workload clusters to storage backends in decoupled deployments.</li>
-</ul>
-<h2 id="next-steps">Next steps</h2>
-<ul>
-<li><a href="../installing-management/">Installing management plane</a>: operator install and management stack configuration.</li>
-<li><a href="../production-recommendations/">Production recommendations</a>: sizing and high-availability guidance.</li>
 </ul>
 
 
