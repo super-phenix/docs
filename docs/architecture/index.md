@@ -11,7 +11,7 @@ Each cluster uses one of two **deployment topologies**:
 - **Hyperconverged**: storage and virtualization on the **same** cluster; the simplest layout, usually one cluster per AZ.
 - **Decoupled**: clusters are dedicated to **storage** or **virtualization**; an AZ can therefore comprise **several** Superphenix clusters (for example, one storage cluster and one or more workload clusters).
 
-Set `deploymentTopology` and, when decoupled, `type: Storage` or `type: Virtualization` on the `Cluster` resource. See [Deployment topology](deployment-topology.md) and [Configure a cluster](../installation/configuring-a-cluster.md).
+Set `deploymentTopology` and, when decoupled, `type: Storage` or `type: Virtualization` on the `Cluster` resource. See [Deployment topology](deployment-topology.md) and [Configure a cluster](../installation/deployment-guide/installing-an-az/configuring-a-cluster.md).
 
 ## Availability zones
 

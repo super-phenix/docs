@@ -21,22 +21,21 @@ nav = [
   { "Installation" = [
     { "Getting started" = "installation/getting-started.md" },
     { "Deployment guide" = [
-      { "Overview" = "installation/deployment-guide.md" },
+      { "Overview" = "installation/deployment-guide/index.md" },
       { "Installing management plane" = [
-        { "Overview" = "installation/installing-management.md" },
-        { "Installing inside an AZ" = "installation/management-inside-az.md" },
-        { "Installing outside an AZ" = "installation/management-outside-az.md" }
+        { "Overview" = "installation/deployment-guide/installing-management/index.md" },
+        { "Installing inside an AZ" = "installation/deployment-guide/installing-management/management-inside-az.md" },
+        { "Installing outside an AZ" = "installation/deployment-guide/installing-management/management-outside-az.md" }
       ]},
       { "Installing the OS" = [
-        { "Manual OS installation" = "installation/manual-os-installation.md" },
-        { "Automated OS installation" = "installation/automated-os-installation.md" }
+        { "Manual OS installation" = "installation/deployment-guide/installing-the-os/manual-os-installation.md" },
+        { "Automated OS installation" = "installation/deployment-guide/installing-the-os/automated-os-installation.md" }
       ]},
       { "Installing an AZ" = [
-        { "Overview" = "installation/installing-an-az.md" },
-        { "Installing hyperconverged" = "installation/installing-hyperconverged.md" },
-        { "Installing decoupled" = "installation/installing-decoupled.md" },
-        { "Configure a cluster" = "installation/configuring-a-cluster.md" },
-        { "Connecting clusters" = "installation/connecting-clusters.md" }
+        { "Overview" = "installation/deployment-guide/installing-an-az/index.md" },
+        { "Installing hyperconverged" = "installation/deployment-guide/installing-an-az/installing-hyperconverged.md" },
+        { "Installing decoupled" = "installation/deployment-guide/installing-an-az/installing-decoupled.md" },
+        { "Configure a cluster" = "installation/deployment-guide/installing-an-az/configuring-a-cluster.md" }
       ]}
     ]},
     { "Production recommendations" = "installation/production-recommendations.md" }
@@ -52,8 +51,9 @@ nav = [
     { "SaaS" = "features/saas.md" }
   ]},
   { "Operations" = [
-    { "Testing" = "testing.md" },
-    { "Web console" = "console.md" }
+    { "Add storage classes to a cluster" = "operations/add-storage-pools-to-a-cluster.md" },
+    { "Testing" = "operations/testing.md" },
+    { "Web console" = "operations/console.md" }
   ]},
   { "Contributing" = "contributing.md" },
   { "Enterprise support" = "enterprise-support.md" }
@@ -78,6 +78,7 @@ emoji_generator = "zensical.extensions.emoji.to_svg"
 [project.markdown_extensions.pymdownx.superfences]
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true
+[project.markdown_extensions.pymdownx.details]
 
 # Theme
 [project.theme]
