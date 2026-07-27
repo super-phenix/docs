@@ -727,7 +727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-management/" class="md-nav__link">
+      <a href="../deployment-guide/installing-management/" class="md-nav__link">
         
   
   
@@ -754,7 +754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../management-inside-az/" class="md-nav__link">
+      <a href="../deployment-guide/installing-management/management-inside-az/" class="md-nav__link">
         
   
   
@@ -781,7 +781,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../management-outside-az/" class="md-nav__link">
+      <a href="../deployment-guide/installing-management/management-outside-az/" class="md-nav__link">
         
   
   
@@ -861,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../manual-os-installation/" class="md-nav__link">
+      <a href="../deployment-guide/installing-the-os/manual-os-installation/" class="md-nav__link">
         
   
   
@@ -888,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../automated-os-installation/" class="md-nav__link">
+      <a href="../deployment-guide/installing-the-os/automated-os-installation/" class="md-nav__link">
         
   
   
@@ -968,7 +968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-an-az/" class="md-nav__link">
+      <a href="../deployment-guide/installing-an-az/" class="md-nav__link">
         
   
   
@@ -995,7 +995,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-hyperconverged/" class="md-nav__link">
+      <a href="../deployment-guide/installing-an-az/installing-hyperconverged/" class="md-nav__link">
         
   
   
@@ -1022,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-decoupled/" class="md-nav__link">
+      <a href="../deployment-guide/installing-an-az/installing-decoupled/" class="md-nav__link">
         
   
   
@@ -1049,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuring-a-cluster/" class="md-nav__link">
+      <a href="../deployment-guide/installing-an-az/configuring-a-cluster/" class="md-nav__link">
         
   
   
@@ -1057,33 +1057,6 @@
     
   
   Configure a cluster
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../connecting-clusters/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Connecting clusters
 
     
   </span>
@@ -1466,7 +1439,34 @@
   
   
     <li class="md-nav__item">
-      <a href="../../testing/" class="md-nav__link">
+      <a href="../../operations/add-storage-pools-to-a-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Add storage classes to a cluster
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/testing/" class="md-nav__link">
         
   
   
@@ -1493,7 +1493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../console/" class="md-nav__link">
+      <a href="../../operations/console/" class="md-nav__link">
         
   
   
@@ -1679,7 +1679,7 @@
 <ol>
 <li><strong>Install Talos on the 3 nodes and bootstrap Kubernetes</strong></li>
 </ol>
-<p>Follow <a href="../manual-os-installation/">Manual OS installation</a> for the full runbook. Quick reference:</p>
+<p>Follow <a href="../deployment-guide/installing-the-os/manual-os-installation/">Manual OS installation</a> for the full runbook. Quick reference:</p>
 <ul>
 <li>Generate cluster config:
      <code>talosctl gen config spx-local https://&lt;api-endpoint&gt;:6443</code></li>
@@ -1715,11 +1715,11 @@
 <span class="w">  </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperconverged</span>
 <span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-west-2</span>
 <span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-west-2a</span>
-<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0-latest</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0-latest</span><span class="w"> </span><span class="c1"># This installs the latest dev version, not recommended in production</span>
 <span class="w">  </span><span class="nt">connection</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Local</span>
 <span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">apps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
 </code></pre></div>
 
 

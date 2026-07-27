@@ -25,34 +25,31 @@
         <loc>https://docs.superphenix.net/installation/deployment-guide/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/installing-management/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/management-inside-az/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/management-inside-az/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/management-outside-az/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/management-outside-az/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/manual-os-installation/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-the-os/manual-os-installation/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/automated-os-installation/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-the-os/automated-os-installation/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/installing-an-az/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/installing-hyperconverged/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/installing-hyperconverged/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/installing-decoupled/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/installing-decoupled/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/configuring-a-cluster/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/connecting-clusters/</loc>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/configuring-a-cluster/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/installation/production-recommendations/</loc>
@@ -82,10 +79,13 @@
         <loc>https://docs.superphenix.net/features/saas/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/testing/</loc>
+        <loc>https://docs.superphenix.net/operations/add-storage-pools-to-a-cluster/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/console/</loc>
+        <loc>https://docs.superphenix.net/operations/testing/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/console/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/contributing/</loc>
