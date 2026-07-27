@@ -10,10 +10,10 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/operations/add-storage-pools-to-a-cluster/">
+        <link rel="canonical" href="https://docs.superphenix.net/operations/add-a-storage-class/">
       
       
-        <link rel="prev" href="../../features/saas/">
+        <link rel="prev" href="../connecting-a-workload-and-storage-cluster/">
       
       
         <link rel="next" href="../add-an-object-store/">
@@ -27,7 +27,7 @@
     
     
       
-        <title>Add storage classes to a cluster - Superphenix documentation</title>
+        <title>Add a storage class - Superphenix documentation</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-storage-classes-to-a-cluster" class="md-skip">
+        <a href="#add-a-storage-class" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Add storage classes to a cluster
+              Add a storage class
             
           </span>
         </div>
@@ -1367,6 +1367,33 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../connecting-a-workload-and-storage-cluster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Connecting a workload and storage cluster
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1386,7 +1413,7 @@
   <span class="md-ellipsis">
     
   
-  Add storage classes to a cluster
+  Add a storage class
 
     
   </span>
@@ -1403,7 +1430,7 @@
   <span class="md-ellipsis">
     
   
-  Add storage classes to a cluster
+  Add a storage class
 
     
   </span>
@@ -1891,7 +1918,7 @@
   
 
 
-<h1 id="add-storage-classes-to-a-cluster">Add storage classes to a cluster</h1>
+<h1 id="add-a-storage-class">Add a storage class</h1>
 <p><strong>Storage classes</strong> are how end users choose what type of storage they get on the platform. When someone creates a disk or bucket, they pick a class that defines what they get: media type (HDD, SSD, NVMe), QoS (IOPS, bandwidth), data protection (replication, erasure coding), and options such as encryption.</p>
 <p>On each cluster, you define storage classes and expose them to users. The steps depend on your AZ layout:</p>
 <ul>
@@ -2089,6 +2116,10 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Values used to connect to a remote cluster are detailed in <a href="../connecting-a-workload-and-storage-cluster/#consuming-block-storage">Connecting a workload and storage cluster</a>.</p>
+</div>
 <p>On a decoupled AZ, create the storage class on the <strong>workload</strong> cluster and connect it to a pool on the <strong>storage</strong> cluster. That requires Ceph connection details (<code>clusterID</code>, credentials, bootstrap MON, and health check) plus the pool and storage class definitions.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">rook-connection</span><span class="p">:</span>
@@ -2180,6 +2211,10 @@
 </code></pre></div>
 </div>
 <div class="tabbed-block">
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Values used to connect to a remote cluster are detailed in <a href="../connecting-a-workload-and-storage-cluster/#consuming-object-storage">Connecting a workload and storage cluster</a>.</p>
+</div>
 <p>On a decoupled AZ, create the object storage class on the <strong>workload</strong> cluster and connect it to an object store on the <strong>storage</strong> cluster. That requires Ceph connection details, the remote RGW endpoints, and the object store storage class definitions.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">rook-connection</span><span class="p">:</span>

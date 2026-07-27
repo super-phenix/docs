@@ -1465,14 +1465,41 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/add-storage-pools-to-a-cluster/" class="md-nav__link">
+      <a href="../../../../operations/connecting-a-workload-and-storage-cluster/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Add storage classes to a cluster
+  Connecting a workload and storage cluster
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operations/add-a-storage-class/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Add a storage class
 
     
   </span>
@@ -1746,7 +1773,7 @@
 <ol>
 <li>Provision a <strong>storage</strong> cluster and one or more <strong>workload</strong> clusters.</li>
 <li>Register each with a <code>Cluster</code> resource (<code>deploymentTopology: Decoupled</code>, with <code>type: Storage</code> or <code>type: Virtualization</code>).</li>
-<li><a href="../../../../operations/add-storage-pools-to-a-cluster/#adding-a-block-storage-class">Add storage classes to the workload cluster</a>.</li>
+<li><a href="../../../../operations/add-a-storage-class/#adding-a-block-storage-class">Add a storage class to the workload cluster</a>.</li>
 <li>Let the operator sync the Superphenix stack on each cluster.</li>
 </ol>
 <h2 id="installing-a-workload-and-storage-cluster">Installing a workload and storage cluster</h2>
@@ -1802,7 +1829,7 @@
 <span class="w">  </span>-f<span class="w"> </span>spx-clusters-values.yaml
 </code></pre></div>
 <p>You can monitor the status of the <code>Cluster</code> CR to check how far along the installion is.</p>
-<p>You'll then need to <a href="../../../../operations/add-storage-pools-to-a-cluster/#adding-a-block-storage-class">add storage classes to the workload cluster</a>.</p>
+<p>You'll then need to <a href="../../../../operations/add-a-storage-class/#adding-a-block-storage-class">add a storage class to the workload cluster</a>.</p>
 
 
 
