@@ -52,6 +52,7 @@ nav = [
   ]},
   { "Operations" = [
     { "Add storage classes to a cluster" = "operations/add-storage-pools-to-a-cluster.md" },
+    { "Add an object store" = "operations/add-an-object-store.md" },
     { "Testing" = "operations/testing.md" },
     { "Web console" = "operations/console.md" }
   ]},

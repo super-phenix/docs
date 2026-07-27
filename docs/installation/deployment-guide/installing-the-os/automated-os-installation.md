@@ -39,7 +39,7 @@ The operator reads `Cluster` (and related) resources in the `superphenix-system`
 2. Register physical servers (BMC credentials, MAC addresses, desired role) with the talos-operator.
 3. Define `Cluster` resources that describe topology, geography, and connection mode.
 4. Let the operator provision Talos on the servers, bootstrap Kubernetes, and install the Superphenix stack.
-5. Connect decoupled storage and workload clusters as needed. See [Add storage classes to a cluster](../../../operations/add-storage-pools-to-a-cluster.md#adding-a-storage-class).
+5. Connect decoupled storage and workload clusters as needed. See [Add storage classes to a cluster](../../../operations/add-storage-pools-to-a-cluster.md#adding-a-block-storage-class).
 
 ## Step 1: Install the operator
 

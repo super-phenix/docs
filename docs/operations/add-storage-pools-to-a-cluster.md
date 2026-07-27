@@ -9,7 +9,7 @@ On each cluster, you define storage classes and expose them to users. The steps 
 
 In both cases, every storage class is backed by a **storage pool**. The pool defines the physical media and data protection; one pool can serve several classes with different QoS or encryption settings. For example, an NVMe pool with 3-way replication could back two classes. One could be capped at 100 MB/s and another be configured with encryption, while the data lands on the same underlying pool.
 
-The sections below cover creating **storage pools**, then exposing them through **storage classes**.
+The sections below cover creating **storage pools**, then exposing them through **storage classes**, whether for block storage, filesystem or object storage purposes.
 
 ## Adding a storage pool
 
@@ -63,7 +63,7 @@ Add the pool under `systemConfiguration` on the `Cluster` resource (or via the `
                   deviceClass: hdd
                   # Where replicas are placed. "host" spreads data across servers so
                   # you can lose a machine. "osd" spreads across disks and may place
-                  # all copies on one server—losing that server can mean permanent
+                  # all copies on one server. Losing that server can mean permanent
                   # data loss. With size 3 and failureDomain "host", you can lose
                   # two hosts and still recover.
                   failureDomain: "host"
@@ -130,17 +130,19 @@ Add the pool under `systemConfiguration` on the `Cluster` resource (or via the `
 
 For advanced pool options, see the [rook-ceph-cluster](https://artifacthub.io/packages/helm/rook/rook-ceph-cluster) Helm chart values.
 
-## Adding a storage class
+## Adding a block storage class
 
-A **storage class** is the user-facing catalog entry for storage. It points at a pool and adds policies such as QoS and encryption so tenants can pick the right offering when they create disks or buckets.
+This section covers adding a **storage class for block storage**. They're used by end users pick when they create disks and other block volumes.
+
+A **block storage class** is the user-facing catalog entry for block storage. It points at a pool and adds policies such as QoS and encryption so tenants can pick the right offering when they create disks.
 
 ### Prerequisites
 
-- At least one **storage pool** already exists on the cluster that hosts the storage. See [Adding a new storage pool](#adding-a-new-storage-pool).
+- At least one **storage pool** already exists on the cluster that hosts the storage. See [Adding a storage pool](#adding-a-storage-pool).
 
 ### Configuration
 
-Add the storage class under `systemConfiguration` on the `Cluster` resource (or via the `superphenix-operator` Helm chart), using the **`rook-connection`** chart. Choose the example that matches your AZ layout.
+Add the block storage class under `systemConfiguration` on the `Cluster` resource (or via the `superphenix-operator` Helm chart), using the **`rook-connection`** chart. Choose the example that matches your AZ layout.
 
 !!! info "Where to apply this configuration"
     Configure the storage class on the cluster that **consumes** the storage:
@@ -150,7 +152,7 @@ Add the storage class under `systemConfiguration` on the `Cluster` resource (or 
 
 === "Hyperconverged"
 
-    On a hyperconverged cluster, storage and workloads share the same Kubernetes cluster. You only need to reference the local pool and define storage classes—no remote Ceph connection fields.
+    On a hyperconverged cluster, storage and workloads share the same Superphenix cluster. You only need to reference the local pool and define storage classes. No remote Ceph connection fields are necessary.
 
     ```yaml
     systemConfiguration:
@@ -239,3 +241,99 @@ Add the storage class under `systemConfiguration` on the `Cluster` resource (or 
                           # Encryption passphrase, can be a random string of characters.
                           passphrase: ""
     ```
+
+For advanced storage class and connection options, see the [spx-rook-connection](https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection) chart values.
+
+## Adding an object storage class
+
+This section covers adding a **storage class for object (S3) storage**. They're used by end users when they create buckets and consume S3-compatible storage.
+
+An **object storage class** is the user-facing catalog entry for S3 object storage. It exposes an object store so tenants can create and use buckets with the media, protection, and policies you define.
+
+### Prerequisites
+
+- At least one **object store** already exists on the cluster that hosts the storage. See [Add an object store](add-an-object-store.md).
+
+### Configuration
+
+Add the object storage class under `systemConfiguration` on the `Cluster` resource (or via the `superphenix-operator` Helm chart), using the **`rook-connection`** chart. Choose the example that matches your AZ layout.
+
+!!! info "Where to apply this configuration"
+    Configure the storage class on the cluster that **consumes** the storage:
+
+    - **Hyperconverged**: the same cluster that hosts the object store.
+    - **Decoupled**: the **workload** cluster. Remote connection fields point at the storage cluster.
+
+=== "Hyperconverged"
+
+    On a hyperconverged cluster, storage and workloads share the same Superphenix cluster. You only need to reference the local object store and define the object storage class. No remote RGW endpoint or Ceph connection fields are necessary.
+
+    ```yaml
+    systemConfiguration:
+      rook-connection:
+        helm:
+          values:
+            clusters:
+              - name: "[cluster-name]" # Can be the name of your hyperconverged cluster
+                objectStores:
+                  - name: "[object-store-name]" # CephObjectStore CR name
+                    storageClasses:
+                      - name: "[storage-class-name]"
+                        # StorageClass name will be "<cluster>.<name>" unless fullName is set.
+                        # Name must be unique across every storage class in the cluster.
+                        # fullName: ""
+    ```
+
+=== "Decoupled"
+
+    On a decoupled AZ, create the object storage class on the **workload** cluster and connect it to an object store on the **storage** cluster. That requires Ceph connection details, the remote RGW endpoints, and the object store storage class definitions.
+
+    ```yaml
+    systemConfiguration:
+      rook-connection:
+        helm:
+          values:
+            clusters:
+              - name: "[storage-cluster-name]" # The name of the remote storage cluster
+                # Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833
+                clusterID: ""
+                username: "[csi-user]"
+                token: ""
+                # Initial MON used to retrieve the full MON list
+                bootstrapMon:
+                  # MON ID (must be a single letter)
+                  id: ""
+                  # IP of the MON
+                  ip: ""
+                  # Port of the MON
+                  port: "6789"
+                  # Protocol of the IP (IPv4 or IPv6)
+                  protocol: IPv6
+                # Used by Rook to check remote cluster health and refresh the MON list
+                healthCheck:
+                  username: "client.csi-health"
+                  token: ""
+                objectStores:
+                  - name: "[object-store-name]" # CephObjectStore CR name (also used to derive the TLS secret name)
+                    # External RGW endpoints. Each entry accepts either `ip` or `hostname`.
+                    endpoints:
+                      - ip: ""
+                        # hostname: ""
+                    # Gateway HTTP port
+                    port: 80
+                    # Gateway HTTPS port (only set when TLS is enabled)
+                    # securePort: 443
+                    # TLS configuration for the remote RGW
+                    # tls:
+                    #   enabled: false
+                    #   # PEM-encoded certificate the operator will trust when talking to the RGW
+                    #   cert: ""
+                    storageClasses:
+                      - name: "[storage-class-name]"
+                        # StorageClass name will be "<cluster>.<name>" unless fullName is set.
+                        # Name must be unique across every storage class in the cluster.
+                        # fullName: ""
+                        reclaimPolicy: Delete
+    ```
+
+For advanced storage class and connection options, see the [spx-rook-connection](https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection) chart values.
