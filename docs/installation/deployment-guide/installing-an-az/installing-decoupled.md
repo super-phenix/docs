@@ -20,7 +20,7 @@ See [Deployment topology](../../../architecture/deployment-topology.md) for the 
 
 1. Provision a **storage** cluster and one or more **workload** clusters.
 2. Register each with a `Cluster` resource (`deploymentTopology: Decoupled`, with `type: Storage` or `type: Virtualization`).
-3. [Add storage classes to the workload cluster](../../../operations/add-storage-pools-to-a-cluster.md#adding-a-block-storage-class).
+3. [Add a storage class to the workload cluster](../../../operations/add-a-storage-class.md#adding-a-block-storage-class).
 4. Let the operator sync the Superphenix stack on each cluster.
 
 ## Installing a workload and storage cluster
@@ -84,4 +84,4 @@ helm upgrade superphenix-operator \
 
 You can monitor the status of the `Cluster` CR to check how far along the installion is.
 
-You'll then need to [add storage classes to the workload cluster](../../../operations/add-storage-pools-to-a-cluster.md#adding-a-block-storage-class).
+You'll then need to [add a storage class to the workload cluster](../../../operations/add-a-storage-class.md#adding-a-block-storage-class).

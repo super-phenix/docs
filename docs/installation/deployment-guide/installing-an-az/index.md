@@ -7,4 +7,4 @@ Once the [management plane is installed](../installing-management/index.md), you
 - **[Installing hyperconverged](installing-hyperconverged.md)**: storage and virtualization on the same cluster.
 - **[Installing decoupled](installing-decoupled.md)**: dedicated storage and workload clusters.
 - **[Configure a cluster](configuring-a-cluster.md)**: geography, connection mode, and system configuration for a `Cluster` resource.
-- **[Add storage classes to a cluster](../../../operations/add-storage-pools-to-a-cluster.md)**: attach storage to hyperconverged or decoupled clusters.
+- **[Add a storage class](../../../operations/add-a-storage-class.md)**: attach storage to hyperconverged or decoupled clusters.

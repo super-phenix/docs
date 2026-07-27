@@ -79,7 +79,10 @@
         <loc>https://docs.superphenix.net/features/saas/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/operations/add-storage-pools-to-a-cluster/</loc>
+        <loc>https://docs.superphenix.net/operations/connecting-a-workload-and-storage-cluster/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/add-a-storage-class/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/add-an-object-store/</loc>

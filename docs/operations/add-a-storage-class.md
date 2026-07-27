@@ -1,4 +1,4 @@
-# Add storage classes to a cluster
+# Add a storage class
 
 **Storage classes** are how end users choose what type of storage they get on the platform. When someone creates a disk or bucket, they pick a class that defines what they get: media type (HDD, SSD, NVMe), QoS (IOPS, bandwidth), data protection (replication, erasure coding), and options such as encryption.
 
@@ -189,6 +189,9 @@ Add the block storage class under `systemConfiguration` on the `Cluster` resourc
 
 === "Decoupled"
 
+    !!! info
+        Values used to connect to a remote cluster are detailed in [Connecting a workload and storage cluster](connecting-a-workload-and-storage-cluster.md#consuming-block-storage).
+
     On a decoupled AZ, create the storage class on the **workload** cluster and connect it to a pool on the **storage** cluster. That requires Ceph connection details (`clusterID`, credentials, bootstrap MON, and health check) plus the pool and storage class definitions.
 
     ```yaml
@@ -285,6 +288,9 @@ Add the object storage class under `systemConfiguration` on the `Cluster` resour
     ```
 
 === "Decoupled"
+
+    !!! info
+        Values used to connect to a remote cluster are detailed in [Connecting a workload and storage cluster](connecting-a-workload-and-storage-cluster.md#consuming-object-storage).
 
     On a decoupled AZ, create the object storage class on the **workload** cluster and connect it to an object store on the **storage** cluster. That requires Ceph connection details, the remote RGW endpoints, and the object store storage class definitions.
 

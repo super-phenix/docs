@@ -51,7 +51,8 @@ nav = [
     { "SaaS" = "features/saas.md" }
   ]},
   { "Operations" = [
-    { "Add storage classes to a cluster" = "operations/add-storage-pools-to-a-cluster.md" },
+    { "Connecting a workload and storage cluster" = "operations/connecting-a-workload-and-storage-cluster.md" },
+    { "Add a storage class" = "operations/add-a-storage-class.md" },
     { "Add an object store" = "operations/add-an-object-store.md" },
     { "Testing" = "operations/testing.md" },
     { "Web console" = "operations/console.md" }
