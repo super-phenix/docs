@@ -709,9 +709,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../../installation/deployment-guide/installing-management/management-outside-az/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2_3" id="__nav_4_2_2_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -724,7 +735,76 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Installing outside an AZ
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/deployment-guide/installing-management/management-outside-az/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/deployment-guide/installing-management/full-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Full configuration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1695,8 +1775,39 @@
 
 
 <h1 id="configuring-the-storage-cluster">Configuring the storage cluster</h1>
-<p>This article covers configuring the storage cluster for both <strong>hyperconverged</strong> and <strong>decoupled</strong> deployments.</p>
-<p><em>Coming soon.</em></p>
+<p>Configure the storage cluster through the <strong><code>rook-local-cluster</code></strong> chart under <code>systemConfiguration</code> on the <code>Cluster</code> resource (or via the <code>superphenix-operator</code> Helm chart). The same pattern applies to both <strong>hyperconverged</strong> and <strong>decoupled</strong> deployments: set these values on the cluster that hosts Ceph.</p>
+<p>The parameters below are the ones changed most often: Ceph network address ranges and which disks Rook claims for OSDs.</p>
+<div class="admonition info">
+<p class="admonition-title">Where to apply this configuration</p>
+<p>Configure storage on the cluster that <strong>hosts Ceph</strong>:</p>
+<ul>
+<li><strong>Hyperconverged</strong>: the single AZ cluster (storage and workloads together).</li>
+<li><strong>Decoupled</strong>: the <strong>storage</strong> cluster (not the workload cluster).</li>
+</ul>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">rook-local-cluster</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">cephClusterSpec</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">network</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">addressRanges</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">public</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2000::/64</span>
+<span class="w">              </span><span class="nt">cluster</span><span class="p">:</span>
+<span class="w">                </span><span class="c1"># We reserve the first of the 65536 subnets to Ceph; nodes should only be</span>
+<span class="w">                </span><span class="c1"># assigned addresses in that range.</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2001::/96</span>
+<span class="w">          </span><span class="nt">storage</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">deviceFilter</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;nvme*|sd*&quot;</span>
+</code></pre></div>
+<ul>
+<li><strong><code>network.addressRanges.public</code></strong>: address range for Ceph client (public) traffic.</li>
+<li><strong><code>network.addressRanges.cluster</code></strong>: address range for Ceph replication and recovery traffic. Keep node addresses within the reserved range.</li>
+<li><strong><code>storage.deviceFilter</code></strong>: which disks Rook claims as OSDs (for example NVMe and SCSI disks matching <code>nvme*</code> or <code>sd*</code>).</li>
+</ul>
+<p>For network planning around public vs cluster storage traffic, see <a href="../../../architecture/network-requirements/">Network requirements</a>. For disk sizing and Ceph media guidance, see <a href="../../../architecture/deployment-requirements/">Hardware requirements</a>.</p>
+<p>For advanced options, see the <a href="https://artifacthub.io/packages/helm/rook/rook-ceph-cluster">rook-ceph-cluster</a> Helm chart values.</p>
 
 
 

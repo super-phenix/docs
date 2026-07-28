@@ -25,7 +25,10 @@ nav = [
       { "Installing management plane" = [
         { "Overview" = "installation/deployment-guide/installing-management/index.md" },
         { "Installing inside an AZ" = "installation/deployment-guide/installing-management/management-inside-az.md" },
-        { "Installing outside an AZ" = "installation/deployment-guide/installing-management/management-outside-az.md" }
+        { "Installing outside an AZ" = [
+          { "Overview" = "installation/deployment-guide/installing-management/management-outside-az.md" },
+          { "Full configuration" = "installation/deployment-guide/installing-management/full-configuration.md" }
+        ]}
       ]},
       { "Installing the OS" = [
         { "Manual OS installation" = "installation/deployment-guide/installing-the-os/manual-os-installation.md" },

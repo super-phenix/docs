@@ -7,8 +7,6 @@ Part of the [deployment guide](../index.md). Choose your placement model first:
 - **[Installing inside an AZ](management-inside-az.md)**: management runs on one of your AZ clusters.
 - **[Installing outside an AZ](management-outside-az.md)**: management runs on a dedicated cluster.
 
-Once placement is decided and the management cluster exists, continue on this page for operator installation.
-
 ## How the installation process works
 
 Superphenix is installed through an operator running on the management cluster.
@@ -22,29 +20,8 @@ The management stack is installed on the management cluster by the operator, pro
 
 The operator handles the installations, upgrades, and lifecycle management of Superphenix clusters entirely.
 
-## How to install the operator
-
-Installation of the operator is typically done via Helm on your chosen management cluster:
-
-```bash
-helm upgrade --install superphenix-operator \
-  ghcr.io/super-phenix/charts/superphenix-operator \
-  --namespace superphenix-system \
-  --create-namespace
-```
-
-Placement-specific prerequisites:
-
-- **Inside an AZ**: the cluster must already be a Talos Linux cluster. See [Installing inside an AZ](management-inside-az.md) and [Manual OS installation](../installing-the-os/manual-os-installation.md).
-- **Outside an AZ**: any reachable Kubernetes cluster works. See [Installing outside an AZ](management-outside-az.md).
-
-## How to configure the management
-
-The management cluster itself requires configuration to host the web console and ArgoCD components. This is managed via the `Management` resource (or via the system chart values).
-
-*Coming soon: detailed management stack configuration.*
-
 ## Next steps
 
+- [Installing inside an AZ](management-inside-az.md) or [Installing outside an AZ](management-outside-az.md): install the operator for your chosen placement.
 - [Installing an AZ](../installing-an-az/index.md): define `Cluster` resources and deploy your availability zones.
 - [Automated OS installation](../installing-the-os/automated-os-installation.md): provision physical servers through the operator.

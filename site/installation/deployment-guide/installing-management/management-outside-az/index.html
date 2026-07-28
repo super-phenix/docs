@@ -16,7 +16,7 @@
         <link rel="prev" href="../management-inside-az/">
       
       
-        <link rel="next" href="../../installing-the-os/manual-os-installation/">
+        <link rel="next" href="../full-configuration/">
       
       
         
@@ -717,6 +717,53 @@
   
   
   
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2_3" id="__nav_4_2_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installing outside an AZ
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Installing outside an AZ
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       
@@ -732,7 +779,7 @@
   <span class="md-ellipsis">
     
   
-  Installing outside an AZ
+  Overview
 
     
   </span>
@@ -749,7 +796,7 @@
   <span class="md-ellipsis">
     
   
-  Installing outside an AZ
+  Overview
 
     
   </span>
@@ -819,6 +866,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-install-the-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        How to install the operator
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -832,6 +890,41 @@
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../full-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Full configuration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -1828,6 +1921,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-to-install-the-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        How to install the operator
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1909,12 +2013,21 @@
 </tr>
 </tbody>
 </table>
+<h2 id="how-to-install-the-operator">How to install the operator</h2>
+<p>Installation of the operator is typically done via Helm on your dedicated management cluster:</p>
+<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>ghcr.io/super-phenix/charts/superphenix-operator<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--create-namespace
+</code></pre></div>
+<p>For advanced Helm values and management stack settings, see <a href="../full-configuration/">Full configuration</a>.</p>
 <h2 id="next-steps">Next steps</h2>
 <ol>
 <li>Provision a management Kubernetes cluster (any supported distribution).</li>
-<li><a href="../">Installing management plane</a>: install the operator and configure the management stack.</li>
+<li>Install the operator using the Helm command above.</li>
+<li><a href="../full-configuration/">Full configuration</a>: configure the management stack (console, ArgoCD, and related components).</li>
 <li><a href="../../installing-the-os/manual-os-installation/">Installing the OS</a> or <a href="../../installing-the-os/automated-os-installation/">Automated OS installation</a>: provision workload AZ clusters.</li>
-<li><a href="../../installing-an-az/">Installing an AZ</a>: register each AZ with a <code>Cluster</code> resource.</li>
+<li><a href="../../installing-an-az/">Installing an AZ</a>: register each AZ with a <code>Cluster</code> resource (<code>connection.mode: Remote</code>).</li>
 </ol>
 <p>See <a href="../../../../architecture/deployment-topology/">Deployment topology</a> for the full comparison with management on an AZ.</p>
 

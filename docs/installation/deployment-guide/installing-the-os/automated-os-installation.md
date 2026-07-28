@@ -26,7 +26,7 @@ The operator reads `Cluster` (and related) resources in the `superphenix-system`
 - A **management Kubernetes cluster** (v1.28+) with network access to:
     - The **Kubernetes API** of every Superphenix cluster it will manage.
     - The **out-of-band (OOB)** management network of every physical server (IPMI, Redfish, or equivalent BMC).
-- **`superphenix-operator`** installed via Helm: see [Installing management plane](../installing-management/index.md) (or [Installing outside an AZ](../installing-management/management-outside-az.md) for placement requirements). Placement prerequisites are in [Installing inside an AZ](../installing-management/management-inside-az.md) and [Installing outside an AZ](../installing-management/management-outside-az.md).
+- **`superphenix-operator`** installed via Helm: see [Installing outside an AZ](../installing-management/management-outside-az.md) (typical for automated provisioning) or [Installing inside an AZ](../installing-management/management-inside-az.md).
 - **Hardware** sized for your topology: see [Hardware requirements](../../../architecture/deployment-requirements.md). Production deployments should use servers with **IPMI** and a dedicated OOB network (see [Production recommendations](../../production-recommendations.md)).
 - **Network** layout planned (cluster VLAN, public VLAN, storage fabric): see [Network requirements](../../../architecture/network-requirements.md).
 
@@ -119,7 +119,7 @@ After resources are applied:
 
 ## Next steps
 
-- [Installing management plane](../installing-management/index.md)
+- [Installing outside an AZ](../installing-management/management-outside-az.md)
 - [Installing an AZ](../installing-an-az/index.md)
 - [Production recommendations](../../production-recommendations.md)
 - [Deployment topology](../../../architecture/deployment-topology.md)
