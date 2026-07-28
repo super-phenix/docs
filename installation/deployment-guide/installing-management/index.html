@@ -732,28 +732,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-install-the-operator" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        How to install the operator
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-configure-the-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        How to configure the management
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -806,9 +784,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="./management-outside-az/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2_3" id="__nav_4_2_2_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -821,7 +810,76 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Installing outside an AZ
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./management-outside-az/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./full-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Full configuration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1784,28 +1842,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-to-install-the-operator" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        How to install the operator
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-configure-the-management" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        How to configure the management
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1841,7 +1877,6 @@
 <li><strong><a href="management-inside-az/">Installing inside an AZ</a></strong>: management runs on one of your AZ clusters.</li>
 <li><strong><a href="management-outside-az/">Installing outside an AZ</a></strong>: management runs on a dedicated cluster.</li>
 </ul>
-<p>Once placement is decided and the management cluster exists, continue on this page for operator installation.</p>
 <h2 id="how-the-installation-process-works">How the installation process works</h2>
 <p>Superphenix is installed through an operator running on the management cluster.
 The operator handles installation of the Superphenix clusters based on the configuration provided in the <code>Cluster</code> resource.</p>
@@ -1852,23 +1887,9 @@ The operator handles installation of the Superphenix clusters based on the confi
 <li>The talos-operator used to manage physical nodes (optional)</li>
 </ul>
 <p>The operator handles the installations, upgrades, and lifecycle management of Superphenix clusters entirely.</p>
-<h2 id="how-to-install-the-operator">How to install the operator</h2>
-<p>Installation of the operator is typically done via Helm on your chosen management cluster:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>ghcr.io/super-phenix/charts/superphenix-operator<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--create-namespace
-</code></pre></div>
-<p>Placement-specific prerequisites:</p>
-<ul>
-<li><strong>Inside an AZ</strong>: the cluster must already be a Talos Linux cluster. See <a href="management-inside-az/">Installing inside an AZ</a> and <a href="../installing-the-os/manual-os-installation/">Manual OS installation</a>.</li>
-<li><strong>Outside an AZ</strong>: any reachable Kubernetes cluster works. See <a href="management-outside-az/">Installing outside an AZ</a>.</li>
-</ul>
-<h2 id="how-to-configure-the-management">How to configure the management</h2>
-<p>The management cluster itself requires configuration to host the web console and ArgoCD components. This is managed via the <code>Management</code> resource (or via the system chart values).</p>
-<p><em>Coming soon: detailed management stack configuration.</em></p>
 <h2 id="next-steps">Next steps</h2>
 <ul>
+<li><a href="management-inside-az/">Installing inside an AZ</a> or <a href="management-outside-az/">Installing outside an AZ</a>: install the operator for your chosen placement.</li>
 <li><a href="../installing-an-az/">Installing an AZ</a>: define <code>Cluster</code> resources and deploy your availability zones.</li>
 <li><a href="../installing-the-os/automated-os-installation/">Automated OS installation</a>: provision physical servers through the operator.</li>
 </ul>

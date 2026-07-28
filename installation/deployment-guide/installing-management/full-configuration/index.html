@@ -10,36 +10,36 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/features/paas/">
+        <link rel="canonical" href="https://docs.superphenix.net/installation/deployment-guide/installing-management/full-configuration/">
       
       
-        <link rel="prev" href="../tooling/">
+        <link rel="prev" href="../management-outside-az/">
       
       
-        <link rel="next" href="../saas/">
+        <link rel="next" href="../../installing-the-os/manual-os-installation/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/SPX_white.svg">
+      <link rel="icon" href="../../../../assets/SPX_white.svg">
       <meta name="generator" content="zensical-0.0.51">
     
     
       
-        <title>PaaS (Platform as a Service) - Superphenix documentation</title>
+        <title>Full configuration - Superphenix documentation</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.62c9b9cc.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.62c9b9cc.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
       
       
 
@@ -58,9 +58,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    <script>__md_scope=new URL("../../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#paas-platform-as-a-service" class="md-skip">
+        <a href="#full-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -118,9 +118,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Superphenix documentation" class="md-header__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
+    <a href="../../../.." title="Superphenix documentation" class="md-header__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
       
-  <img src="../../assets/SPX_black.svg" alt="Superphenix documentation">
+  <img src="../../../../assets/SPX_black.svg" alt="Superphenix documentation">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              PaaS (Platform as a Service)
+              Full configuration
             
           </span>
         </div>
@@ -226,9 +226,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Superphenix documentation" class="md-nav__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
+    <a href="../../../.." title="Superphenix documentation" class="md-nav__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
       
-  <img src="../../assets/SPX_black.svg" alt="Superphenix documentation">
+  <img src="../../../../assets/SPX_black.svg" alt="Superphenix documentation">
 
     </a>
     Superphenix documentation
@@ -255,7 +255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -281,7 +281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../introduction/" class="md-nav__link">
+      <a href="../../../../introduction/" class="md-nav__link">
         
   
   
@@ -352,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/" class="md-nav__link">
+      <a href="../../../../architecture/" class="md-nav__link">
         
   
   
@@ -379,7 +379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/deployment-topology/" class="md-nav__link">
+      <a href="../../../../architecture/deployment-topology/" class="md-nav__link">
         
   
   
@@ -406,7 +406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/deployment-requirements/" class="md-nav__link">
+      <a href="../../../../architecture/deployment-requirements/" class="md-nav__link">
         
   
   
@@ -433,7 +433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/network-requirements/" class="md-nav__link">
+      <a href="../../../../architecture/network-requirements/" class="md-nav__link">
         
   
   
@@ -464,18 +464,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -495,7 +497,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -512,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/getting-started/" class="md-nav__link">
+      <a href="../../../getting-started/" class="md-nav__link">
         
   
   
@@ -536,18 +538,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
         
           
           <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
@@ -567,7 +571,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -584,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -608,18 +612,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
@@ -639,7 +645,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -656,7 +662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-management/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -683,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-management/management-inside-az/" class="md-nav__link">
+      <a href="../management-inside-az/" class="md-nav__link">
         
   
   
@@ -707,18 +713,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2_3" checked>
         
           
           <label class="md-nav__link" for="__nav_4_2_2_3" id="__nav_4_2_2_3_label" tabindex="0">
@@ -738,7 +746,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_2_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_2_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2_2_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -755,7 +763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-management/management-outside-az/" class="md-nav__link">
+      <a href="../management-outside-az/" class="md-nav__link">
         
   
   
@@ -779,10 +787,36 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-management/full-configuration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Full configuration
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -797,6 +831,38 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Related
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -870,7 +936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-the-os/manual-os-installation/" class="md-nav__link">
+      <a href="../../installing-the-os/manual-os-installation/" class="md-nav__link">
         
   
   
@@ -897,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-the-os/automated-os-installation/" class="md-nav__link">
+      <a href="../../installing-the-os/automated-os-installation/" class="md-nav__link">
         
   
   
@@ -977,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-an-az/" class="md-nav__link">
+      <a href="../../installing-an-az/" class="md-nav__link">
         
   
   
@@ -1004,7 +1070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-an-az/installing-hyperconverged/" class="md-nav__link">
+      <a href="../../installing-an-az/installing-hyperconverged/" class="md-nav__link">
         
   
   
@@ -1031,7 +1097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-an-az/installing-decoupled/" class="md-nav__link">
+      <a href="../../installing-an-az/installing-decoupled/" class="md-nav__link">
         
   
   
@@ -1058,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/deployment-guide/installing-an-az/configuring-a-cluster/" class="md-nav__link">
+      <a href="../../installing-an-az/configuring-a-cluster/" class="md-nav__link">
         
   
   
@@ -1101,7 +1167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/production-recommendations/" class="md-nav__link">
+      <a href="../../../production-recommendations/" class="md-nav__link">
         
   
   
@@ -1132,20 +1198,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -1165,7 +1229,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1182,7 +1246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../../features/" class="md-nav__link">
         
   
   
@@ -1209,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tenancy-and-console/" class="md-nav__link">
+      <a href="../../../../features/tenancy-and-console/" class="md-nav__link">
         
   
   
@@ -1236,7 +1300,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../virtualization/" class="md-nav__link">
+      <a href="../../../../features/virtualization/" class="md-nav__link">
         
   
   
@@ -1263,7 +1327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../network/" class="md-nav__link">
+      <a href="../../../../features/network/" class="md-nav__link">
         
   
   
@@ -1290,7 +1354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../storage/" class="md-nav__link">
+      <a href="../../../../features/storage/" class="md-nav__link">
         
   
   
@@ -1317,7 +1381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tooling/" class="md-nav__link">
+      <a href="../../../../features/tooling/" class="md-nav__link">
         
   
   
@@ -1341,36 +1405,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  PaaS
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="././" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../features/paas/" class="md-nav__link">
         
   
   
@@ -1385,99 +1423,6 @@
   
 
       </a>
-      
-        
-
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#current-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Current status
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubernetes-on-superphenix" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Kubernetes on Superphenix
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubernetes on Superphenix">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vm-pools-worker-and-control-nodes" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        VM pools (worker and control nodes)
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#platform-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Platform integration
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Operations
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#foundation-used" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Foundation used
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1490,7 +1435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../saas/" class="md-nav__link">
+      <a href="../../../../features/saas/" class="md-nav__link">
         
   
   
@@ -1614,7 +1559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/storage/configuring-the-storage-cluster/" class="md-nav__link">
+      <a href="../../../../operations/storage/configuring-the-storage-cluster/" class="md-nav__link">
         
   
   
@@ -1641,7 +1586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/storage/connecting-a-workload-and-storage-cluster/" class="md-nav__link">
+      <a href="../../../../operations/storage/connecting-a-workload-and-storage-cluster/" class="md-nav__link">
         
   
   
@@ -1668,7 +1613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/storage/adding-a-storage-class/" class="md-nav__link">
+      <a href="../../../../operations/storage/adding-a-storage-class/" class="md-nav__link">
         
   
   
@@ -1695,7 +1640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/storage/adding-an-object-store/" class="md-nav__link">
+      <a href="../../../../operations/storage/adding-an-object-store/" class="md-nav__link">
         
   
   
@@ -1730,7 +1675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/testing/" class="md-nav__link">
+      <a href="../../../../operations/testing/" class="md-nav__link">
         
   
   
@@ -1757,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/console/" class="md-nav__link">
+      <a href="../../../../operations/console/" class="md-nav__link">
         
   
   
@@ -1791,7 +1736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../contributing/" class="md-nav__link">
+      <a href="../../../../contributing/" class="md-nav__link">
         
   
   
@@ -1817,7 +1762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../enterprise-support/" class="md-nav__link">
+      <a href="../../../../enterprise-support/" class="md-nav__link">
         
   
   
@@ -1877,71 +1822,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#current-status" class="md-nav__link">
+  <a href="#related" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Current status
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kubernetes-on-superphenix" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Kubernetes on Superphenix
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Kubernetes on Superphenix">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#vm-pools-worker-and-control-nodes" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        VM pools (worker and control nodes)
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#platform-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Platform integration
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#operations" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Operations
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#foundation-used" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Foundation used
+        Related
       </span>
     </span>
   </a>
@@ -1966,78 +1850,15 @@
   
 
 
-<h1 id="paas-platform-as-a-service">PaaS (Platform as a Service)</h1>
-<p>Superphenix is designed to offer <strong>Kubernetes as a Service (KaaS)</strong> so tenants can run <strong>managed Kubernetes clusters</strong> on the same <strong>virtualization</strong>, <strong>storage</strong>, and <strong>network</strong> stack as your IaaS workloads.</p>
-<h2 id="current-status">Current status</h2>
-<p>In some console releases the <strong>SaaS / PaaS</strong> area is still a <strong>placeholder</strong>: <strong>KaaS may not yet appear</strong> as a selectable product. When enabled in your environment, you create and manage tenant clusters from the console and/or GitOps like other resources.</p>
-<p>The sections below describe the <strong>intended</strong> Kubernetes feature set on Superphenix.</p>
-<h2 id="kubernetes-on-superphenix">Kubernetes on Superphenix</h2>
-<h3 id="vm-pools-worker-and-control-nodes">VM pools (worker and control nodes)</h3>
-<p>Tenant clusters are backed by <strong>pools of VMs</strong> you define:</p>
+<h1 id="full-configuration">Full configuration</h1>
+<p>This page covers configuring the management stack after you install the operator on a <a href="../management-outside-az/">dedicated management cluster</a>.</p>
+<p>The management cluster itself requires configuration to host the web console and ArgoCD components. This is managed via the <code>Management</code> resource (or via the system chart values).</p>
+<p><em>Coming soon: detailed management stack configuration.</em></p>
+<h2 id="related">Related</h2>
 <ul>
-<li><strong>Custom VM sizing</strong>: CPU, memory, and disk for control-plane and worker <strong>machine types</strong>.</li>
-<li><strong>Networking</strong>: Node pools are attached to your <strong><a href="../network/">VPCs and subnets</a></strong>; pods and services use the integrated <strong>CNI</strong> on top of that underlay.</li>
+<li><a href="../management-outside-az/">Installing outside an AZ</a>: placement model and operator install.</li>
+<li><a href="../../installing-an-az/configuring-a-cluster/">Configure a cluster</a>: <code>Cluster</code> resource fields for workload AZs.</li>
 </ul>
-<h3 id="platform-integration">Platform integration</h3>
-<table>
-<thead>
-<tr>
-<th>Capability</th>
-<th>Behavior</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>CNI</strong></td>
-<td><strong>Integrated CNI</strong>: cluster networking is provided by the platform stack (same SDN as VMs where applicable).</td>
-</tr>
-<tr>
-<td><strong>CSI</strong></td>
-<td><strong>Integrated CSI</strong>: persistent volumes map to the platform <strong><a href="../storage/">storage</a></strong> layer.</td>
-</tr>
-<tr>
-<td><strong>Live migration</strong></td>
-<td>Worker <strong>VMs</strong> can be <strong>live-migrated</strong> like any other instance when policy allows, for node maintenance without hard downtime for stateless workloads.</td>
-</tr>
-<tr>
-<td><strong>Upgrades</strong></td>
-<td><strong>Automatic upgrades</strong> of cluster components (Kubernetes patch/minor versions per policy) reduce manual toil; exact knobs depend on your release.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="operations">Operations</h3>
-<ul>
-<li>Create, scale, upgrade, and delete clusters via <strong><a href="../tooling/">Tooling</a></strong> (GitOps and console).</li>
-<li>Use the same <strong>organization / project</strong> RBAC as the rest of the platform; see <a href="../tenancy-and-console/">Tenancy and console</a>.</li>
-</ul>
-<h2 id="foundation-used">Foundation used</h2>
-<table>
-<thead>
-<tr>
-<th>Foundation</th>
-<th>How Kubernetes uses it</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Virtualization</td>
-<td><strong>VM pools</strong> for nodes (<a href="../virtualization/">Virtualization</a>)</td>
-</tr>
-<tr>
-<td>Network</td>
-<td>VPCs, subnets, NAT, LB, firewall (<a href="../network/">Network</a>)</td>
-</tr>
-<tr>
-<td>Storage</td>
-<td>CSI-backed volumes (<a href="../storage/">Storage</a>)</td>
-</tr>
-<tr>
-<td>Tooling</td>
-<td>GitOps and console (<a href="../tooling/">Tooling</a>)</td>
-</tr>
-</tbody>
-</table>
-<p>See the <a href="../">Features overview</a>.</p>
 
 
 
@@ -2109,10 +1930,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"search":"../../../../assets/javascripts/workers/search.b6b7e04f.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7f30b55.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7f30b55.min.js"></script>
       
     
   </body>

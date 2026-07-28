@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://docs.superphenix.net/installation/deployment-guide/installing-the-os/manual-os-installation/">
       
       
-        <link rel="prev" href="../../installing-management/management-outside-az/">
+        <link rel="prev" href="../../installing-management/full-configuration/">
       
       
         <link rel="next" href="../automated-os-installation/">
@@ -713,9 +713,20 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../installing-management/management-outside-az/" class="md-nav__link">
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2_3" id="__nav_4_2_2_3_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -728,7 +739,76 @@
   
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Installing outside an AZ
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installing-management/management-outside-az/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installing-management/full-configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Full configuration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1972,7 +2052,7 @@
 <li>Apply machine configs to every node.</li>
 <li>Bootstrap etcd on the first control-plane node.</li>
 <li>Retrieve the kubeconfig and verify the Kubernetes API.</li>
-<li>Continue with <a href="../../installing-management/">Installing management plane</a> on this cluster (or register it as a remote cluster from your management plane).</li>
+<li>Continue with <a href="../../installing-management/management-inside-az/">Installing inside an AZ</a> on this cluster (or register it as a remote cluster from your management plane).</li>
 </ol>
 <h2 id="step-1-generate-cluster-configuration">Step 1: Generate cluster configuration</h2>
 <p>Pick a stable <strong>Kubernetes API endpoint</strong> (VIP, load balancer, or first control-plane IP) and generate configs:</p>
@@ -2011,7 +2091,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 <p>All control-plane (and worker, if any) nodes should report <code>Ready</code> before you install Superphenix.</p>
 <h2 id="next-steps">Next steps</h2>
 <ul>
-<li>Install the operator: <a href="../../installing-management/">Installing management plane</a>.</li>
+<li>Install the operator: <a href="../../installing-management/management-inside-az/">Installing inside an AZ</a> or <a href="../../installing-management/management-outside-az/">Installing outside an AZ</a>.</li>
 <li>Define your AZ: <a href="../../installing-an-az/configuring-a-cluster/">Configure a cluster</a>.</li>
 <li>For production sizing and tuning: <a href="../../../production-recommendations/">Production recommendations</a>.</li>
 </ul>
