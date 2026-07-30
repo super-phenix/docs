@@ -1,6 +1,6 @@
 # Automated OS installation
 
-This guide covers using the **superphenix-operator** and the **talos-operator** it deploys to provision and lifecycle-manage **physical servers** as Talos Kubernetes clusters. Use this path when you want declarative, GitOps-driven installation from a management cluster instead of running `talosctl` on each node by hand.
+This guide covers using the **superphenix-operator**, the **talos-operator** and **talos-manager** to provision and lifecycle-manage **physical servers** as Talos Kubernetes clusters. Use this path when you want declarative, GitOps-driven installation from a management cluster instead of running `talosctl` on each node by hand.
 
 Part of the [deployment guide](../index.md). For the manual alternative, see [Manual OS installation](manual-os-installation.md).
 
@@ -17,7 +17,8 @@ When you install the `superphenix-operator` Helm chart on the management cluster
 
 - The **Superphenix web console**
 - **ArgoCD** for GitOps synchronization of the Superphenix system
-- The **talos-operator**, which manages physical nodes and Talos cluster lifecycle (optional, enabled when you use operator-driven provisioning)
+- The **talos-operator**, which deploys a server for PXE boot and manages physical nodes and Talos cluster lifecycle (optional, enabled when you use operator-driven provisioning)
+- **talos-manager**, which generates a `TalosCluster` resource for talos-operator to manage the cluster (optional, enabled when you use operator-driven provisioning).
 
 The operator reads `Cluster` (and related) resources in the `superphenix-system` namespace and reconciles the Superphenix stack on each target cluster. When physical provisioning is enabled, the talos-operator layer handles server-level installation before or alongside that reconciliation.
 
@@ -33,13 +34,19 @@ The operator reads `Cluster` (and related) resources in the `superphenix-system`
 !!! important
     If management runs **outside** every AZ, it only needs connectivity to cluster APIs and BMCs; it does not need to be a Talos cluster itself. If management runs **on an AZ**, that AZ must already exist, typically created via [Manual OS installation](manual-os-installation.md). See [Installing inside an AZ](../installing-management/management-inside-az.md).
 
+!!! important
+    Nodes must support PXE boot and EFI (make sure that the boot mode is UEFI and not "legacy" in the BIOS settings). If you want to make your nodes reboot into PXE automatically, they will need an IPMI with Redfish enabled.
+    Setting up PXE automatically on the BIOS only works on DELL iDRAC and Lenovo XClarity, and setting up VLAN on the PXE interface only works on DELL iDRAC. Automatic reboot into PXE should work with all IPMI.
+
+!!! important
+    Make sure no DHCP server is running on the cluster VLAN, as it might conflict with the DHCP server deployed by talos-operator for PXE boot.
+
 ## Installation overview
 
 1. Install the `superphenix-operator` on the management cluster.
-2. Register physical servers (BMC credentials, MAC addresses, desired role) with the talos-operator.
-3. Define `Cluster` resources that describe topology, geography, and connection mode.
-4. Let the operator provision Talos on the servers, bootstrap Kubernetes, and install the Superphenix stack.
-5. Connect decoupled storage and workload clusters as needed. See [Connecting a workload and storage cluster](../../../operations/storage/connecting-a-workload-and-storage-cluster.md).
+2. Define `Cluster` resources that describe topology, geography and connection mode, as well as BMC credentials, MAC addresses and desired role of each node for talos-manager.
+3. Let the operator boot and provision Talos on the servers, bootstrap Kubernetes, and install the Superphenix stack.
+4. Connect decoupled storage and workload clusters as needed. See [Connecting a workload and storage cluster](../../../operations/storage/connecting-a-workload-and-storage-cluster.md).
 
 ## Step 1: Install the operator
 
@@ -49,26 +56,10 @@ On your management cluster:
 helm upgrade --install superphenix-operator \
   ghcr.io/super-phenix/charts/superphenix-operator \
   --namespace superphenix-system \
-  --create-namespace
+  --create-namespace --set "management.values.talos-operator.enabled=true"
 ```
 
-Enable talos-operator components and physical provisioning through the chart values for your environment.
-
-*Coming soon: Helm values reference for talos-operator and BMC integration.*
-
-## Step 2: Register physical servers
-
-Provide the talos-operator with everything it needs to reach and install each server:
-
-- **BMC endpoint** and credentials (stored in Kubernetes secrets).
-- **Network identity**: for example MAC address or serial number used to match a machine to its slot in the cluster design.
-- **Role**: control plane, worker, storage, or hypervisor tier depending on your [deployment topology](../../../architecture/deployment-topology.md).
-
-The operator uses this inventory to apply the correct Talos machine configuration and join nodes into the target cluster.
-
-*Coming soon: example `Machine` / server inventory resources and secret layout.*
-
-## Step 3: Define cluster resources
+## Step 2: Define cluster resources
 
 Create `Cluster` resources in `superphenix-system` that describe each Superphenix AZ. For operator-provisioned clusters, set connection details so the management plane can reach the cluster once bootstrap completes:
 
@@ -92,13 +83,73 @@ spec:
   version: v0.1.0
   repoURL: https://charts.superphenix.net
   chartName: superphenix-stack
+  talosManagementMode: Full
+  talosManagerConfiguration:
+    dhcpInterface: "enp0s1"
+    pxeIpAddr: "10.0.0.1"
+    clusterName: "az-paris-1"
+    clusterType: virt
+    reconciliationMode: Reconcile
+    clusterNetwork:
+      ipv4: "10.0.0.0"
+      ipv6: "fc00:1::"
+      cidrIpv4: 24
+      cidrIpv6: 64
+      vlanId: 1
+      gatewayIpv4: "10.0.0.254"
+      linkMtu: 1500
+    publicNetwork:
+      ipv6: "fc00:2::"
+      cidrIpv6: 64
+      vlanId: 2
+      linkMtu: 1500
+    podSubnets:
+      ipv4: "10.0.0.0"
+      ipv6: "fd00:100::"
+      cidrIpv4: 12
+      cidrIpv6: 96
+    serviceSubnets:
+      ipv4: "10.16.0.0"
+      ipv6: "fd00:100:ffff::"
+      cidrIpv4: 12
+      cidrIpv6: 112
+    controlplaneIpv6: "fc00:1::ffff:ffff:ffff:ffff"
+    controlplanePort: 6443
+    talosVersion: "v1.13.0"
+    k8sVersion: "v1.35.0"
+    nodes:
+      - hostname: "az-paris-1-master01"
+        type: controlplane
+        cpuArchitecture: amd64
+        pxeMacAddress: "AA:AA:AA:AA:AA:AA"
+        pxeSetup: true
+        ipmiIpv4: "10.0.2.1"
+        ipmiUser: user
+        ipmiPassword: pass
+        pxeInterfaceName: "Interface1"
+        interface:
+          name: net0
+          clusterNetwork:
+            ipv4: "10.0.0.2"
+            ipv6: "fc00:1::2"
+          publicNetwork:
+            ipv6: "fc00:2::2"
+          useVlan: true
+          lacpBond:
+            enabled: false
+          physicalMacAddress: "AA:AA:AA:AA:AA:AA"
+        installDisk:
+          auto: true
+      - ...
 ```
 
 Set `connection.mode: Local` when the cluster being defined is the same Kubernetes cluster that hosts the operator (typical for management-on-AZ after bootstrap).
 
+Set `talosManagementMode: Full` to let talos-operator boot, install and configure Talos automatically, or `talosManagementMode: Import` to import an already installed Talos cluster and let talos-operator manage its lifecycle.
+
 See [Configure a cluster](../installing-an-az/configuring-a-cluster.md) for the full field reference.
 
-## Step 4: Reconcile and verify
+## Step 3: Reconcile and verify
 
 After resources are applied:
 
