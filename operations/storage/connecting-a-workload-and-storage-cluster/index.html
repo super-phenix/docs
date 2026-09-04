@@ -22,24 +22,24 @@
         
       
       
-      <link rel="icon" href="../../../assets/SPX_white.svg">
-      <meta name="generator" content="zensical-0.0.53">
+      <link rel="icon" href="../../../assets/favicon.svg">
+      <meta name="generator" content="zensical-0.0.59">
     
     
       
-        <title>Connecting a workload and storage cluster - Superphenix documentation</title>
+        <title>Connecting a workload and storage cluster - Documentation</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.20815dad.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -118,9 +118,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Superphenix documentation" class="md-header__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../assets/SPX_black.svg" alt="Superphenix documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
@@ -131,7 +131,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Superphenix documentation
+            Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -226,12 +226,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Superphenix documentation" class="md-nav__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../assets/SPX_black.svg" alt="Superphenix documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
-    Superphenix documentation
+    Documentation
   </label>
   
     <div class="md-nav__source">
@@ -1892,25 +1892,25 @@
 <span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[storage-cluster-name]&quot;</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
 <span class="w">            </span><span class="c1"># From .status.cephClusters on the remote Cluster CR (dictionary key = FSID)</span>
-<span class="w">            </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[csi-user]&quot;</span><span class="w"> </span><span class="c1"># TBD</span>
-<span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="c1"># TBD</span>
+<span class="w">            </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"[csi-user]"</span><span class="w"> </span><span class="c1"># TBD</span>
+<span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w"> </span><span class="c1"># TBD</span>
 <span class="w">            </span><span class="c1"># Public address of one MON; used only to bootstrap, then the full MON list is refreshed</span>
 <span class="w">            </span><span class="nt">bootstrapMon</span><span class="p">:</span>
 <span class="w">              </span><span class="c1"># MON ID (must be a single letter)</span>
-<span class="w">              </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">              </span><span class="c1"># IP of the MON</span>
-<span class="w">              </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">              </span><span class="c1"># Port of the MON</span>
-<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;6789&quot;</span>
+<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
 <span class="w">              </span><span class="c1"># Protocol of the IP (IPv4 or IPv6)</span>
 <span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
 <span class="w">            </span><span class="c1"># TBD</span>
 <span class="w">            </span><span class="nt">healthCheck</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;client.csi-health&quot;</span>
-<span class="w">              </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"client.csi-health"</span>
+<span class="w">              </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 </code></pre></div>
 <h2 id="consuming-object-storage">Consuming object storage</h2>
 <p>Connect the workload cluster to a storage cluster so it can consume an RGW object store. After the connection is in place, expose the store to tenants with <a href="../adding-a-storage-class/#adding-an-object-storage-class">object storage classes</a>.</p>
@@ -1919,13 +1919,13 @@
 <span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[storage-cluster-name]&quot;</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
 <span class="w">            </span><span class="nt">objectStores</span><span class="p">:</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[object-store-name]&quot;</span><span class="w"> </span><span class="c1"># CephObjectStore CR name (also used to derive the TLS secret name)</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]"</span><span class="w"> </span><span class="c1"># CephObjectStore CR name (also used to derive the TLS secret name)</span>
 <span class="w">                </span><span class="c1"># External RGW endpoints. Each entry accepts either `ip` or `hostname`.</span>
 <span class="w">                </span><span class="nt">endpoints</span><span class="p">:</span>
-<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">                    </span><span class="c1"># hostname: &quot;&quot;</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">                    </span><span class="c1"># hostname: ""</span>
 <span class="w">                </span><span class="c1"># Gateway HTTP port</span>
 <span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
 <span class="w">                </span><span class="c1"># Gateway HTTPS port (only set when TLS is enabled)</span>
@@ -1934,7 +1934,7 @@
 <span class="w">                </span><span class="c1"># tls:</span>
 <span class="w">                </span><span class="c1">#   enabled: false</span>
 <span class="w">                </span><span class="c1">#   # PEM-encoded certificate the operator will trust when talking to the RGW</span>
-<span class="w">                </span><span class="c1">#   cert: &quot;&quot;</span>
+<span class="w">                </span><span class="c1">#   cert: ""</span>
 </code></pre></div>
 <p>For advanced connection options, see the <a href="https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection">spx-rook-connection</a> chart values.</p>
 
@@ -2011,7 +2011,7 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss"],"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.69c251d7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>

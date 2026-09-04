@@ -22,24 +22,24 @@
         
       
       
-      <link rel="icon" href="../../../../assets/SPX_white.svg">
-      <meta name="generator" content="zensical-0.0.53">
+      <link rel="icon" href="../../../../assets/favicon.svg">
+      <meta name="generator" content="zensical-0.0.59">
     
     
       
-        <title>Configure a cluster - Superphenix documentation</title>
+        <title>Configure a cluster - Documentation</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.20815dad.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -118,9 +118,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Superphenix documentation" class="md-header__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
+    <a href="../../../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../../assets/SPX_black.svg" alt="Superphenix documentation">
+  <img src="../../../../assets/spx.svg" alt="Documentation">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
@@ -131,7 +131,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Superphenix documentation
+            Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -226,12 +226,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Superphenix documentation" class="md-nav__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
+    <a href="../../../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../../assets/SPX_black.svg" alt="Superphenix documentation">
+  <img src="../../../../assets/spx.svg" alt="Documentation">
 
     </a>
-    Superphenix documentation
+    Documentation
   </label>
   
     <div class="md-nav__source">
@@ -1923,136 +1923,136 @@
 <h2 id="talos-manager-configuration">talos-manager configuration</h2>
 <p>If you want to use the <a href="../../installing-the-os/automated-os-installation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> automated OS installation method</a>, you need to specify the configuration for the talos-manager chart using the field <code>talosManagerConfiguration</code>, as well as set <code>talosManagementMode</code> to either <code>Full</code> or <code>Import</code> in your <code>Cluster</code>'s specs. Below are the values of this chart:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Cluster specific variables:</span>
-<span class="c1"># Enable PXE features (optional, overrides the value set automatically by the operator depending on &quot;talosManagementMode&quot;):</span>
+<span class="c1"># Enable PXE features (optional, overrides the value set automatically by the operator depending on "talosManagementMode"):</span>
 <span class="nt">pxeEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="c1"># Network interface the DHCP server should listen to (optional if &quot;talosManagementMode&quot; set to &quot;Import&quot; or if &quot;pxeEnabled&quot; set to &quot;false&quot;):</span>
-<span class="nt">dhcpInterface</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="c1"># IP address of the PXE server (the bootstrap server) (optional if &quot;talosManagementMode&quot; set to &quot;Import&quot; or if &quot;pxeEnabled&quot; set to &quot;false&quot;):</span>
-<span class="nt">pxeIpAddr</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="c1"># Network interface the DHCP server should listen to (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
+<span class="nt">dhcpInterface</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="c1"># IP address of the PXE server (the bootstrap server) (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
+<span class="nt">pxeIpAddr</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="c1"># Name of the Talos cluster:</span>
-<span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="c1"># Cluster type (can be either &quot;storage&quot; or &quot;virt&quot;):</span>
-<span class="nt">clusterType</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="c1"># Reconciliation mode of the Talos configuration, as defined by talos-operator (&quot;Reconcile&quot;, &quot;Disable&quot; or &quot;DryRun&quot;):</span>
-<span class="nt">reconciliationMode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="c1"># Cluster type (can be either "storage" or "virt"):</span>
+<span class="nt">clusterType</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="c1"># Reconciliation mode of the Talos configuration, as defined by talos-operator ("Reconcile", "Disable" or "DryRun"):</span>
+<span class="nt">reconciliationMode</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="c1"># Cluster network specifications:</span>
 <span class="nt">clusterNetwork</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">gatewayIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">  </span><span class="nt">gatewayIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="nt">gatewayIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">  </span><span class="nt">gatewayIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># Public network specifications (optional if &quot;clusterType&quot; is not &quot;storage&quot;):</span>
+<span class="c1"># Public network specifications (optional if "clusterType" is not "storage"):</span>
 <span class="nt">publicNetwork</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="c1"># Storage network specifications (optional):</span>
 <span class="nt">storageNetwork</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="c1"># Kubernetes pod subnets specifications:</span>
 <span class="nt">podSubnets</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="c1"># Kubernetes service subnets specifications:</span>
 <span class="nt">serviceSubnets</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># IPv4 address of the Talos control plane node (optional if &quot;controlplaneIpv6&quot; is set):</span>
-<span class="nt">controlplaneIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="c1"># IPv4 address of the Talos control plane node (optional if "controlplaneIpv6" is set):</span>
+<span class="nt">controlplaneIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="c1"># IPv6 address of the Talos control plane node:</span>
-<span class="nt">controlplaneIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="nt">controlplaneIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="c1"># Port of the Talos control plane:</span>
 <span class="nt">controlplanePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="c1"># ArgoCD token:</span>
-<span class="nt">argocdToken</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="nt">argocdToken</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="c1"># Version of Talos to install on nodes:</span>
-<span class="nt">talosVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="nt">talosVersion</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="c1"># Version of Kubernetes to install on Talos:</span>
-<span class="nt">k8sVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="c1"># &#39;MachineConfig&#39; overrides for all types of nodes (array, optional):</span>
+<span class="nt">k8sVersion</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="c1"># 'MachineConfig' overrides for all types of nodes (array, optional):</span>
 <span class="nt">machineGlobalOverrides</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-<span class="c1"># &#39;MachineConfig&#39; overrides for control plane nodes (array, optional):</span>
+<span class="c1"># 'MachineConfig' overrides for control plane nodes (array, optional):</span>
 <span class="nt">machineOverridesControlPlane</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-<span class="c1"># &#39;MachineConfig&#39; overrides for worker nodes (array, optional):</span>
+<span class="c1"># 'MachineConfig' overrides for worker nodes (array, optional):</span>
 <span class="nt">machineOverridesWorker</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 
 <span class="c1"># Nodes specific variables:</span>
 <span class="nt">nodes</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">    </span><span class="c1"># Talos node type (can be either &quot;controlplane&quot; or &quot;worker&quot;):</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">    </span><span class="c1"># CPU architecture of this node (optional if &quot;talosManagementMode&quot; set to &quot;Import&quot; or if &quot;pxeEnabled&quot; set to &quot;false&quot;):</span>
-<span class="w">    </span><span class="nt">cpuArchitecture</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">    </span><span class="c1"># MAC address used by the PXE firmware (optional if &quot;talosManagementMode&quot; set to &quot;Import&quot; or if &quot;pxeEnabled&quot; set to &quot;false&quot;):</span>
-<span class="w">    </span><span class="nt">pxeMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">    </span><span class="c1"># Talos node type (can be either "controlplane" or "worker"):</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">    </span><span class="c1"># CPU architecture of this node (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
+<span class="w">    </span><span class="nt">cpuArchitecture</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">    </span><span class="c1"># MAC address used by the PXE firmware (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
+<span class="w">    </span><span class="nt">pxeMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">    </span><span class="c1"># Kernel command line arguments when booting in PXE (optional):</span>
-<span class="w">    </span><span class="nt">kernelCmdlineArgs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="nt">kernelCmdlineArgs</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">    </span><span class="c1"># Specifies whether this machine should be set up for PXE:</span>
 <span class="w">    </span><span class="nt">pxeSetup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">    </span><span class="c1"># IPv4 address of the node&#39;s IPMI (optional if &quot;pxeSetup&quot; set to &quot;false&quot;):</span>
-<span class="w">    </span><span class="nt">ipmiIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">    </span><span class="c1"># Username of an administrator account on the IPMI (optional if &quot;pxeSetup&quot; set to &quot;false&quot;):</span>
-<span class="w">    </span><span class="nt">ipmiUser</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">    </span><span class="c1"># Password of the aforementioned IPMI account (optional if &quot;pxeSetup&quot; set to &quot;false&quot;):</span>
-<span class="w">    </span><span class="nt">ipmiPassword</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">    </span><span class="c1"># Name of the interface used by the PXE firmware, as given by the IPMI through Redfish (optional if &quot;pxeSetup&quot; set to &quot;false&quot;):</span>
-<span class="w">    </span><span class="nt">pxeInterfaceName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="c1"># IPv4 address of the node's IPMI (optional if "pxeSetup" set to "false"):</span>
+<span class="w">    </span><span class="nt">ipmiIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">    </span><span class="c1"># Username of an administrator account on the IPMI (optional if "pxeSetup" set to "false"):</span>
+<span class="w">    </span><span class="nt">ipmiUser</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">    </span><span class="c1"># Password of the aforementioned IPMI account (optional if "pxeSetup" set to "false"):</span>
+<span class="w">    </span><span class="nt">ipmiPassword</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">    </span><span class="c1"># Name of the interface used by the PXE firmware, as given by the IPMI through Redfish (optional if "pxeSetup" set to "false"):</span>
+<span class="w">    </span><span class="nt">pxeInterfaceName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">    </span><span class="c1"># Specifications of the network interface:</span>
 <span class="w">    </span><span class="nt">interface</span><span class="p">:</span>
-<span class="w">      </span><span class="c1"># Name to give to the interface (avoid common names such as &quot;ethX&quot; or &quot;enoXnpY&quot;):</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">      </span><span class="c1"># Name to give to the interface (avoid common names such as "ethX" or "enoXnpY"):</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">      </span><span class="c1"># IP of this node on the cluster network (IPv6 is optional):</span>
 <span class="w">      </span><span class="nt">clusterNetwork</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">      </span><span class="c1"># IP of this node on the public network (optional if &quot;clusterType&quot; is not &quot;storage&quot;):</span>
+<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">      </span><span class="c1"># IP of this node on the public network (optional if "clusterType" is not "storage"):</span>
 <span class="w">      </span><span class="nt">publicNetwork</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">      </span><span class="c1"># IP of this node on the storage network (optional):</span>
 <span class="w">      </span><span class="nt">storageNetwork</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">      </span><span class="c1"># Specifies whether this interface should be connected to VLANs:</span>
 <span class="w">      </span><span class="nt">useVlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="c1"># Specifications of the LACP bond, if applicable (setting &quot;enabled&quot; to &quot;false&quot; makes other sub-fields optional):</span>
+<span class="w">      </span><span class="c1"># Specifications of the LACP bond, if applicable (setting "enabled" to "false" makes other sub-fields optional):</span>
 <span class="w">      </span><span class="nt">lacpBond</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">        </span><span class="nt">lacpRate</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">        </span><span class="nt">xmitHashPolicy</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">        </span><span class="nt">lacpRate</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">        </span><span class="nt">xmitHashPolicy</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">        </span><span class="nt">miimon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">        </span><span class="nt">updelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">        </span><span class="nt">downdelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">        </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
 <span class="w">        </span><span class="c1"># Physical interfaces to be aggregated:</span>
 <span class="w">        </span><span class="nt">physicalInterfaces</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">            </span><span class="nt">macAddress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">            </span><span class="nt">macAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">      </span><span class="c1"># MAC address of the single physical interface, if bond is disabled:</span>
-<span class="w">      </span><span class="nt">physicalMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">      </span><span class="nt">physicalMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">    </span><span class="c1"># Specifications of the installation disk:</span>
 <span class="w">    </span><span class="nt">installDisk</span><span class="p">:</span>
-<span class="w">      </span><span class="c1"># Indicates whether the installation disk should be selected automatically (&quot;true&quot; makes other sub-fields optional):</span>
+<span class="w">      </span><span class="c1"># Indicates whether the installation disk should be selected automatically ("true" makes other sub-fields optional):</span>
 <span class="w">      </span><span class="nt">auto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="c1"># Selector for the installation disk, if not selected automatically (this is the same as the &quot;diskSelector&quot; field from the Talos documentation : https://docs.siderolabs.com/talos/v1.13/reference/configuration/v1alpha1/config#diskselector):</span>
-<span class="w">      </span><span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">    </span><span class="c1"># &#39;MachineConfig&#39; overrides for this node (array, optional):</span>
+<span class="w">      </span><span class="c1"># Selector for the installation disk, if not selected automatically (this is the same as the "diskSelector" field from the Talos documentation : https://docs.siderolabs.com/talos/v1.13/reference/configuration/v1alpha1/config#diskselector):</span>
+<span class="w">      </span><span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">    </span><span class="c1"># 'MachineConfig' overrides for this node (array, optional):</span>
 <span class="w">    </span><span class="nt">machineOverrides</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </code></pre></div>
 <h2 id="related">Related</h2>
@@ -2135,7 +2135,7 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.69c251d7.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>

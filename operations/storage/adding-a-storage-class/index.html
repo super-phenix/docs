@@ -22,24 +22,24 @@
         
       
       
-      <link rel="icon" href="../../../assets/SPX_white.svg">
-      <meta name="generator" content="zensical-0.0.53">
+      <link rel="icon" href="../../../assets/favicon.svg">
+      <meta name="generator" content="zensical-0.0.59">
     
     
       
-        <title>Adding a storage class - Superphenix documentation</title>
+        <title>Adding a storage class - Documentation</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.20815dad.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.5da3a30f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -118,9 +118,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Superphenix documentation" class="md-header__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../assets/SPX_black.svg" alt="Superphenix documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
@@ -131,7 +131,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Superphenix documentation
+            Documentation
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -226,12 +226,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Superphenix documentation" class="md-nav__button md-logo" aria-label="Superphenix documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../assets/SPX_black.svg" alt="Superphenix documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
-    Superphenix documentation
+    Documentation
   </label>
   
     <div class="md-nav__source">
@@ -2125,20 +2125,20 @@
 <span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">cephBlockPools</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[pool-name]&quot;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[pool-name]"</span>
 <span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
 <span class="w">              </span><span class="c1"># Media for this pool. Valid values: hdd, ssd, nvme.</span>
 <span class="w">              </span><span class="c1"># Device class is detected automatically on physical disks and must</span>
-<span class="w">              </span><span class="c1"># match your failure domain. With failureDomain &quot;host&quot; and size 3,</span>
+<span class="w">              </span><span class="c1"># match your failure domain. With failureDomain "host" and size 3,</span>
 <span class="w">              </span><span class="c1"># you need three servers that each have disks of this class.</span>
 <span class="w">              </span><span class="nt">deviceClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hdd</span>
-<span class="w">              </span><span class="c1"># Where replicas are placed. &quot;host&quot; spreads data across servers so</span>
-<span class="w">              </span><span class="c1"># you can lose a machine. &quot;osd&quot; spreads across disks and may place</span>
+<span class="w">              </span><span class="c1"># Where replicas are placed. "host" spreads data across servers so</span>
+<span class="w">              </span><span class="c1"># you can lose a machine. "osd" spreads across disks and may place</span>
 <span class="w">              </span><span class="c1"># all copies on one server. Losing that server can mean permanent</span>
-<span class="w">              </span><span class="c1"># data loss. With size 3 and failureDomain &quot;host&quot;, you can lose</span>
+<span class="w">              </span><span class="c1"># data loss. With size 3 and failureDomain "host", you can lose</span>
 <span class="w">              </span><span class="c1"># two hosts and still recover.</span>
-<span class="w">              </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host&quot;</span>
-<span class="w">              </span><span class="c1"># Number of replicas across failure domains. With &quot;host&quot;, size 3</span>
+<span class="w">              </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">"host"</span>
+<span class="w">              </span><span class="c1"># Number of replicas across failure domains. With "host", size 3</span>
 <span class="w">              </span><span class="c1"># means three different servers. Higher size uses more raw capacity</span>
 <span class="w">              </span><span class="c1"># (1 TB usable ≈ 3 TB raw at size 3).</span>
 <span class="w">              </span><span class="nt">replicated</span><span class="p">:</span>
@@ -2196,24 +2196,24 @@
 <span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">cephECBlockPools</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[pool-name]&quot;</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[pool-name]"</span>
 <span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
 <span class="w">              </span><span class="c1"># Replicated pool used for RBD image metadata.</span>
 <span class="w">              </span><span class="nt">metadataPool</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host&quot;</span>
+<span class="w">                </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">"host"</span>
 <span class="w">                </span><span class="nt">replicated</span><span class="p">:</span>
 <span class="w">                  </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 <span class="w">              </span><span class="c1"># Erasure-coded pool that holds the image data.</span>
 <span class="w">              </span><span class="nt">dataPool</span><span class="p">:</span>
 <span class="w">                </span><span class="c1"># Media for this pool. Valid values: hdd, ssd, nvme.</span>
 <span class="w">                </span><span class="nt">deviceClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hdd</span>
-<span class="w">                </span><span class="c1"># Where EC chunks are placed. &quot;host&quot; spreads chunks across</span>
-<span class="w">                </span><span class="c1"># servers so you can lose a machine. &quot;osd&quot; spreads across</span>
+<span class="w">                </span><span class="c1"># Where EC chunks are placed. "host" spreads chunks across</span>
+<span class="w">                </span><span class="c1"># servers so you can lose a machine. "osd" spreads across</span>
 <span class="w">                </span><span class="c1"># disks and may place several chunks on one server. Losing</span>
 <span class="w">                </span><span class="c1"># that server can exceed codingChunks and mean permanent</span>
-<span class="w">                </span><span class="c1"># data loss. Prefer &quot;host&quot;. You need dataChunks +</span>
+<span class="w">                </span><span class="c1"># data loss. Prefer "host". You need dataChunks +</span>
 <span class="w">                </span><span class="c1"># codingChunks failure domains (6 hosts for 4+2).</span>
-<span class="w">                </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;host&quot;</span>
+<span class="w">                </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">"host"</span>
 <span class="w">                </span><span class="c1"># k data chunks + m coding chunks. Overhead =</span>
 <span class="w">                </span><span class="c1"># (k + m) / k. Recommend at least 4+2 in production.</span>
 <span class="w">                </span><span class="nt">erasureCoded</span><span class="p">:</span>
@@ -2250,21 +2250,21 @@
 <span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[cluster-name]&quot;</span><span class="w"> </span><span class="c1"># Can be the name of your hyperconverged cluster</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[cluster-name]"</span><span class="w"> </span><span class="c1"># Can be the name of your hyperconverged cluster</span>
 <span class="w">            </span><span class="nt">pools</span><span class="p">:</span>
-<span class="w">              </span><span class="c1"># Name must match an existing storage pool. If you&#39;re creating a storage class for an erasure</span>
+<span class="w">              </span><span class="c1"># Name must match an existing storage pool. If you're creating a storage class for an erasure</span>
 <span class="w">              </span><span class="c1"># coded pool, you need to specify the name of the metadata pool here. If you followed the previous</span>
 <span class="w">              </span><span class="c1"># steps to add an EC pool, the name of the metadata pool will be [pool name]-metadata.</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[pool-name]&quot;</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[pool-name]"</span>
 <span class="w">                </span><span class="nt">storageClasses</span><span class="p">:</span>
-<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[storage-class-name]&quot;</span>
-<span class="w">                    </span><span class="c1"># StorageClass name will be &quot;&lt;cluster&gt;.&lt;name&gt;&quot; unless fullName is set.</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-class-name]"</span>
+<span class="w">                    </span><span class="c1"># StorageClass name will be "&lt;cluster&gt;.&lt;name&gt;" unless fullName is set.</span>
 <span class="w">                    </span><span class="c1"># Name must be unique across every storage class in the cluster.</span>
-<span class="w">                    </span><span class="c1"># fullName: &quot;&quot;</span>
+<span class="w">                    </span><span class="c1"># fullName: ""</span>
 <span class="w">                    </span><span class="c1"># Data pool for erasure-coded storage classes (leave empty for replicated).</span>
 <span class="w">                    </span><span class="c1"># If you followed the previous steps to add an EC pool, the name of the data pool will be</span>
 <span class="w">                    </span><span class="c1"># the name of your pool.</span>
-<span class="w">                    </span><span class="nt">dataPool</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                    </span><span class="nt">dataPool</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">                    </span><span class="c1"># If set to true, this storage class will be used as the default when none is specified.</span>
 <span class="w">                    </span><span class="c1"># Only one can be set per cluster. We recommend setting the pool with the less costly media (e.g. HDD).</span>
 <span class="w">                    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -2274,7 +2274,7 @@
 <span class="w">                      </span><span class="c1"># Set to true to enable encryption, and provide a random passphrase.</span>
 <span class="w">                      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">                      </span><span class="c1"># Encryption passphrase, can be a random string of characters.</span>
-<span class="w">                      </span><span class="nt">passphrase</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                      </span><span class="nt">passphrase</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -2288,39 +2288,39 @@
 <span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[storage-cluster-name]&quot;</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
 <span class="w">            </span><span class="c1"># Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833</span>
-<span class="w">            </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[csi-user]&quot;</span>
-<span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">            </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"[csi-user]"</span>
+<span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">            </span><span class="c1"># Initial MON used to retrieve the full MON list</span>
 <span class="w">            </span><span class="nt">bootstrapMon</span><span class="p">:</span>
 <span class="w">              </span><span class="c1"># MON ID (must be a single letter)</span>
-<span class="w">              </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">              </span><span class="c1"># IP of the MON</span>
-<span class="w">              </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">              </span><span class="c1"># Port of the MON</span>
-<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;6789&quot;</span>
+<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
 <span class="w">              </span><span class="c1"># Protocol of the IP (IPv4 or IPv6)</span>
 <span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
 <span class="w">            </span><span class="c1"># Used by Rook to check remote cluster health and refresh the MON list</span>
 <span class="w">            </span><span class="nt">healthCheck</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;client.csi-health&quot;</span>
-<span class="w">              </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"client.csi-health"</span>
+<span class="w">              </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">            </span><span class="nt">pools</span><span class="p">:</span>
-<span class="w">              </span><span class="c1"># Name must match an existing storage pool. If you&#39;re creating a storage class for an erasure</span>
+<span class="w">              </span><span class="c1"># Name must match an existing storage pool. If you're creating a storage class for an erasure</span>
 <span class="w">              </span><span class="c1"># coded pool, you need to specify the name of the metadata pool here. If you followed the previous</span>
 <span class="w">              </span><span class="c1"># steps to add an EC pool, the name of the metadata pool will be [pool name]-metadata.</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[pool-name]&quot;</span><span class="w"> </span><span class="c1"># Must match an existing pool on the storage cluster</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[pool-name]"</span><span class="w"> </span><span class="c1"># Must match an existing pool on the storage cluster</span>
 <span class="w">                </span><span class="nt">storageClasses</span><span class="p">:</span>
-<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[storage-class-name]&quot;</span>
-<span class="w">                    </span><span class="c1"># StorageClass name will be &quot;&lt;cluster&gt;.&lt;name&gt;&quot; unless fullName is set.</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-class-name]"</span>
+<span class="w">                    </span><span class="c1"># StorageClass name will be "&lt;cluster&gt;.&lt;name&gt;" unless fullName is set.</span>
 <span class="w">                    </span><span class="c1"># Name must be unique across every storage class in the cluster.</span>
-<span class="w">                    </span><span class="c1"># fullName: &quot;&quot;</span>
+<span class="w">                    </span><span class="c1"># fullName: ""</span>
 <span class="w">                    </span><span class="c1"># Data pool for erasure-coded storage classes (leave empty for replicated).</span>
 <span class="w">                    </span><span class="c1"># If you followed the previous steps to add an EC pool, the name of the data pool will be</span>
 <span class="w">                    </span><span class="c1"># the name of your pool.</span>
-<span class="w">                    </span><span class="nt">dataPool</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                    </span><span class="nt">dataPool</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">                    </span><span class="c1"># If set to true, this storage class will be used as the default when none is specified.</span>
 <span class="w">                    </span><span class="c1"># Only one can be set per cluster. We recommend setting the pool with the less costly media (e.g. HDD).</span>
 <span class="w">                    </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -2330,7 +2330,7 @@
 <span class="w">                      </span><span class="c1"># Set to true to enable encryption, and provide a random passphrase.</span>
 <span class="w">                      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">                      </span><span class="c1"># Encryption passphrase, can be a random string of characters.</span>
-<span class="w">                      </span><span class="nt">passphrase</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">                      </span><span class="nt">passphrase</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 </code></pre></div>
 </div>
 </div>
@@ -2362,14 +2362,14 @@
 <span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[cluster-name]&quot;</span><span class="w"> </span><span class="c1"># Can be the name of your hyperconverged cluster</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[cluster-name]"</span><span class="w"> </span><span class="c1"># Can be the name of your hyperconverged cluster</span>
 <span class="w">            </span><span class="nt">objectStores</span><span class="p">:</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[object-store-name]&quot;</span><span class="w"> </span><span class="c1"># CephObjectStore CR name</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]"</span><span class="w"> </span><span class="c1"># CephObjectStore CR name</span>
 <span class="w">                </span><span class="nt">storageClasses</span><span class="p">:</span>
-<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[storage-class-name]&quot;</span>
-<span class="w">                    </span><span class="c1"># StorageClass name will be &quot;&lt;cluster&gt;.&lt;name&gt;&quot; unless fullName is set.</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-class-name]"</span>
+<span class="w">                    </span><span class="c1"># StorageClass name will be "&lt;cluster&gt;.&lt;name&gt;" unless fullName is set.</span>
 <span class="w">                    </span><span class="c1"># Name must be unique across every storage class in the cluster.</span>
-<span class="w">                    </span><span class="c1"># fullName: &quot;&quot;</span>
+<span class="w">                    </span><span class="c1"># fullName: ""</span>
 </code></pre></div>
 </div>
 <div class="tabbed-block">
@@ -2383,31 +2383,31 @@
 <span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[storage-cluster-name]&quot;</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
 <span class="w">            </span><span class="c1"># Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833</span>
-<span class="w">            </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[csi-user]&quot;</span>
-<span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">            </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"[csi-user]"</span>
+<span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">            </span><span class="c1"># Initial MON used to retrieve the full MON list</span>
 <span class="w">            </span><span class="nt">bootstrapMon</span><span class="p">:</span>
 <span class="w">              </span><span class="c1"># MON ID (must be a single letter)</span>
-<span class="w">              </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">              </span><span class="c1"># IP of the MON</span>
-<span class="w">              </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">              </span><span class="c1"># Port of the MON</span>
-<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;6789&quot;</span>
+<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
 <span class="w">              </span><span class="c1"># Protocol of the IP (IPv4 or IPv6)</span>
 <span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
 <span class="w">            </span><span class="c1"># Used by Rook to check remote cluster health and refresh the MON list</span>
 <span class="w">            </span><span class="nt">healthCheck</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;client.csi-health&quot;</span>
-<span class="w">              </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"client.csi-health"</span>
+<span class="w">              </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="w">            </span><span class="nt">objectStores</span><span class="p">:</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[object-store-name]&quot;</span><span class="w"> </span><span class="c1"># CephObjectStore CR name (also used to derive the TLS secret name)</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]"</span><span class="w"> </span><span class="c1"># CephObjectStore CR name (also used to derive the TLS secret name)</span>
 <span class="w">                </span><span class="c1"># External RGW endpoints. Each entry accepts either `ip` or `hostname`.</span>
 <span class="w">                </span><span class="nt">endpoints</span><span class="p">:</span>
-<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
-<span class="w">                    </span><span class="c1"># hostname: &quot;&quot;</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">                    </span><span class="c1"># hostname: ""</span>
 <span class="w">                </span><span class="c1"># Gateway HTTP port</span>
 <span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
 <span class="w">                </span><span class="c1"># Gateway HTTPS port (only set when TLS is enabled)</span>
@@ -2416,12 +2416,12 @@
 <span class="w">                </span><span class="c1"># tls:</span>
 <span class="w">                </span><span class="c1">#   enabled: false</span>
 <span class="w">                </span><span class="c1">#   # PEM-encoded certificate the operator will trust when talking to the RGW</span>
-<span class="w">                </span><span class="c1">#   cert: &quot;&quot;</span>
+<span class="w">                </span><span class="c1">#   cert: ""</span>
 <span class="w">                </span><span class="nt">storageClasses</span><span class="p">:</span>
-<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;[storage-class-name]&quot;</span>
-<span class="w">                    </span><span class="c1"># StorageClass name will be &quot;&lt;cluster&gt;.&lt;name&gt;&quot; unless fullName is set.</span>
+<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-class-name]"</span>
+<span class="w">                    </span><span class="c1"># StorageClass name will be "&lt;cluster&gt;.&lt;name&gt;" unless fullName is set.</span>
 <span class="w">                    </span><span class="c1"># Name must be unique across every storage class in the cluster.</span>
-<span class="w">                    </span><span class="c1"># fullName: &quot;&quot;</span>
+<span class="w">                    </span><span class="c1"># fullName: ""</span>
 <span class="w">                    </span><span class="nt">reclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Delete</span>
 </code></pre></div>
 </div>
@@ -2502,7 +2502,7 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss"],"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.69c251d7.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.6970bfe9.min.js"></script>
       
     
   </body>

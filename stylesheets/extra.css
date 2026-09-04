@@ -4,7 +4,8 @@
   width: 400px;
   height: auto;
   display: block;
-  margin: 0 auto 1rem;
+  margin: 0 auto;
+  padding: 3rem 0;
 }
 
 /* Justified body text */
@@ -12,32 +13,21 @@
   text-align: justify;
 }
 
-.md-header__button.md-logo img, .md-header__button.md-logo svg {
+.md-header__button.md-logo img, .md-header__button.md-logo svg,
+.md-nav__button.md-logo img, .md-nav__button.md-logo svg {
   display: block;
-  width: 4rem;
+  width: auto;
   height: 1.2rem;
   fill: currentColor;
 }
 
-/* Slate (dark) theme: use white logo in header and sidebar */
-[data-md-color-scheme="slate"] .md-header__button.md-logo,
-[data-md-color-scheme="slate"] .md-nav__button.md-logo {
-  background: url(../assets/SPX_white.svg) no-repeat center / contain;
-  min-width: 4rem;
-  min-height: 1.2rem;
-}
+/* Slate (dark) theme: invert black logos to white */
 [data-md-color-scheme="slate"] .md-header__button.md-logo img,
 [data-md-color-scheme="slate"] .md-header__button.md-logo svg,
 [data-md-color-scheme="slate"] .md-nav__button.md-logo img,
-[data-md-color-scheme="slate"] .md-nav__button.md-logo svg {
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-}
-
-/* Slate theme: home page / article logo (SPX_black.svg) shown as white */
-[data-md-color-scheme="slate"] .md-content img[src*="SPX_black.svg"],
-[data-md-color-scheme="slate"] .md-typeset img[src*="SPX_black.svg"] {
+[data-md-color-scheme="slate"] .md-nav__button.md-logo svg,
+[data-md-color-scheme="slate"] .md-content img.index-logo,
+[data-md-color-scheme="slate"] .md-typeset img.index-logo {
   filter: invert(1);
 }
 
@@ -66,16 +56,6 @@
   margin-top: 0.5rem;
 }
 
-/* Image zoom and rounded corners */
 .md-typeset img {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backface-visibility: hidden;
   border-radius: 8px;
-}
-
-.md-typeset img:hover {
-  transform: scale(2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  z-index: 10;
-  position: relative;
 }
