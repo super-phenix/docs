@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.svg">
-      <meta name="generator" content="zensical-0.0.59">
+      <meta name="generator" content="zensical-0.0.60">
     
     
       
@@ -34,7 +34,7 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.5da3a30f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.ce62732f.min.css">
       
         
           
@@ -596,6 +596,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#domain-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Domain names
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#planning" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -650,6 +661,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Required Talos configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-interface-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        External interface name
       </span>
     </span>
   </a>
@@ -1978,6 +2000,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#domain-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Domain names
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#planning" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -2032,6 +2065,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         Required Talos configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-interface-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        External interface name
       </span>
     </span>
   </a>
@@ -2133,6 +2177,15 @@
 <li><strong>Helm</strong> — required to install the <code>superphenix-operator</code> chart (<a href="https://helm.sh/docs/intro/install/">Helm install</a>)</li>
 <li><strong>kubectl</strong> (recommended) and <strong>k9s</strong> (optional) — useful to inspect the cluster and debug if something goes wrong</li>
 </ul>
+<h3 id="domain-names">Domain names</h3>
+<p>A <strong>domain name</strong> is required to expose:</p>
+<ul>
+<li>The <strong>web console</strong></li>
+<li><strong>ArgoCD</strong>, if you expose it</li>
+<li>Services such as Kubernetes control planes, databases, and similar HTTP(S) endpoints</li>
+</ul>
+<p>The cluster listens on <strong>every node</strong> on ports <strong>80</strong> and <strong>443</strong>. DNS only needs to point at <strong>one</strong> node. In a high-availability setup, put a <strong>load balancer</strong> in front of the nodes or use <strong>DNS round-robin</strong>.</p>
+<p>If you do not have DNS, a wildcard service such as <strong><a href="https://nip.io">nip.io</a></strong> can map a name to the cluster’s internal IP. Use that for labs that are not reachable from the internet.</p>
 <h3 id="planning">Planning</h3>
 <p>Review architecture planning documents so topology and infrastructure constraints are clear up front:</p>
 <ul>
@@ -2156,6 +2209,11 @@ For production-oriented configuration and performance guidance, see <a href="../
 <li><strong>Network</strong>: Flat VLAN on a single switch</li>
 </ul>
 <h2 id="install-talos">Install Talos</h2>
+<div class="admonition warning">
+<p class="admonition-title">Maximum supported Talos version</p>
+<p>The maximum supported Talos version is <strong>1.12.6</strong>. Do not install a newer release.
+This is due to a Linux kernel bug affecting the SDN.</p>
+</div>
 <h3 id="bootstrap-kubernetes">Bootstrap Kubernetes</h3>
 <p>Quick reference:</p>
 <ul>
@@ -2192,18 +2250,30 @@ For production-oriented configuration and performance guidance, see <a href="../
 </code></pre></div>
 <p>Also set the following under <code>cluster:</code> in the generated configs. Superphenix installs the CNI and CoreDNS itself (via ArgoCD), and this 3-node lab schedules workloads on the control planes:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">  </span><span class="c1"># Control plane nodes also handle running normal workloads</span>
+<span class="w">  </span><span class="c1"># Control plane nodes also handle running normal workloads (this is a small cluster)</span>
 <span class="w">  </span><span class="nt">allowSchedulingOnControlPlanes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
 <span class="w">  </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">    </span><span class="c1"># We install the CNI ourselves using ArgoCD</span>
+<span class="w">    </span><span class="c1"># The CNI is installed by Superphenix</span>
 <span class="w">    </span><span class="nt">cni</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
 
-<span class="w">  </span><span class="c1"># We install CoreDNS ourselves using ArgoCD, with custom parameters and high availability</span>
+<span class="w">  </span><span class="c1"># CoreDNS is installed by Superphenix</span>
 <span class="w">  </span><span class="nt">coreDNS</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
+<h3 id="external-interface-name">External interface name</h3>
+<p>The interface that connects the cluster to the exterior must have the <strong>same name on every node</strong>. Superphenix refers to that name cluster-wide. It can be a <strong>physical NIC</strong>, a <strong>bond</strong>, or a <strong>VLAN</strong>.</p>
+<p>If the kernel names differ between nodes, add a <strong>link alias</strong> so every node exposes the same name. Append a <code>LinkAliasConfig</code> document to each node's machine configuration. Match the NIC by MAC address, and use the same alias on every node:</p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkAliasConfig</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
+<span class="nt">selector</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac(link.permanent_addr) == "00:1a:2b:3c:4d:5e"</span><span class="w"> </span><span class="c1"># this node's NIC MAC</span>
+</code></pre></div>
+<p>Pick an alias that does not look like a kernel name (<code>eth0</code>, <code>ens3</code>, <code>enp0s31f6</code>, …), or it may conflict with a real interface. Change only the MAC per node; keep <code>name: ext0</code> identical.</p>
+<p>Bonds and VLANs are named when you define them, so give them the same <code>interface</code> name on every node instead of an alias. Talos can alias <strong>physical</strong> links only.</p>
 <h3 id="dhcp-and-default-gateway">DHCP and default gateway</h3>
 <p>If node addresses come from DHCP, enable DHCP explicitly on each interface in the Talos machine configuration, and <strong>set a default gateway on every node</strong>. Without a default gateway, Kube-OVN can fail and break cluster connectivity.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">machine</span><span class="p">:</span>
@@ -2218,16 +2288,39 @@ For production-oriented configuration and performance guidance, see <a href="../
 <p>Apply the same pattern (with the correct gateway) on all three nodes.</p>
 <h2 id="install-the-operator">Install the operator</h2>
 <p>Create a values file (for example <code>values.yaml</code>) that installs the operator on this cluster, configures the management stack, and declares a <strong>hyperconverged</strong> <code>Cluster</code> with <code>connection.mode: Local</code> so Superphenix runs on the same Kubernetes cluster that hosts the operator.</p>
-<p>Full chart reference: <a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-operator/values.yaml">superphenix-operator <code>values.yaml</code></a>.
+<p>Full chart reference: <a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-operator/values.yaml">superphenix-operator <code>values.yaml</code></a>.<br />
 System / Kube-OVN defaults: <a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-system/values.yaml">superphenix-system <code>values.yaml</code></a>.</p>
 <h3 id="example-values-file">Example values file</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Required while bootstrapping: the Talos cluster has no CNI until Superphenix</span>
 <span class="c1"># installs Kube-OVN. Set back to false after the stack is healthy.</span>
 <span class="nt">installOnClusterWithoutCNI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 
+<span class="c1"># ArgoCD config to debug and see the deployments live</span>
+<span class="c1"># Not required, but always useful to have</span>
+<span class="nt">config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">argocd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">server</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">ingress</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">"argocd.example.org"</span><span class="w"> </span><span class="c1"># For internal IPs: argocd.192.168.1.10.nip.io</span>
+
+<span class="c1"># Management stack configuration (including the console)</span>
+<span class="nt">management</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">kratos</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">globalSecret</span><span class="p">:</span><span class="w"> </span><span class="s">"a-very-long-string-you-need-to-change"</span>
+<span class="w">      </span><span class="nt">superphenix-console</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">          </span><span class="c1"># The domain on which the console will be hosted</span>
+<span class="w">          </span><span class="c1"># For internal IPs: argocd.192.168.1.10.nip.io</span>
+<span class="w">          </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console.example.org</span>
+
 <span class="c1"># Hyperconverged AZ on the same cluster (Local connection).</span>
 <span class="nt">clusters</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">cluster-local</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperconverged</span>
 <span class="w">    </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab</span>
 <span class="w">    </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab-a</span>
@@ -2235,12 +2328,33 @@ System / Kube-OVN defaults: <a href="https://github.com/super-phenix/superphenix
 <span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Local</span>
 <span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">misc</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">objects</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">external-subnet</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
+<span class="w">                  </span><span class="nt">cidrBlock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+<span class="w">                  </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.254</span>
+<span class="w">                  </span><span class="nt">excludeIps</span><span class="p">:</span>
+<span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0..192.168.1.200</span>
+<span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.254</span>
+<span class="w">              </span><span class="nt">external-subnet-nad</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">'{</span>
+<span class="w">                      </span><span class="s">"cniVersion":</span><span class="nv"> </span><span class="s">"0.3.0",</span>
+<span class="w">                      </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"macvlan",</span>
+<span class="w">                      </span><span class="s">"master":</span><span class="nv"> </span><span class="s">"ext0",</span><span class="nv"> </span><span class="s">#</span><span class="nv"> </span><span class="s">Put</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">your</span><span class="nv"> </span><span class="s">external</span><span class="nv"> </span><span class="s">interface</span><span class="nv"> </span><span class="s">here</span>
+<span class="w">                      </span><span class="s">"mode":</span><span class="nv"> </span><span class="s">"bridge",</span>
+<span class="w">                      </span><span class="s">"ipam":</span><span class="nv"> </span><span class="s">{</span>
+<span class="w">                        </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"kube-ovn",</span>
+<span class="w">                        </span><span class="s">"server_socket":</span><span class="nv"> </span><span class="s">"/run/openvswitch/kube-ovn-daemon.sock",</span>
+<span class="w">                        </span><span class="s">"provider":</span><span class="nv"> </span><span class="s">"external-subnet.kube-system"</span>
+<span class="w">                      </span><span class="s">}</span>
+<span class="w">                    </span><span class="s">}'</span>
 <span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">helm</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">              </span><span class="c1"># Comma-separated IPs of the three control-plane nodes.</span>
-<span class="w">              </span><span class="c1"># Required today; auto-detection is planned in a future release.</span>
-<span class="w">              </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"192.168.1.11,192.168.1.12,192.168.1.13"</span>
+<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MASTER_1,MASTER_2,MASTER_3</span><span class="w"> </span><span class="c1"># 192.168.1.150,192.168.1.151,192.168.1.153</span>
 </code></pre></div>
 <h3 id="install-with-helm">Install with Helm</h3>
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
@@ -2295,28 +2409,27 @@ System / Kube-OVN defaults: <a href="https://github.com/super-phenix/superphenix
 <span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">helm</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"10.1.0.11,10.1.0.12,10.1.0.13"</span>
-<span class="w">              </span><span class="nt">networking</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">pods</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                    </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.128.0.0/12"</span>
-<span class="w">                    </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:0000:0::/96"</span>
-<span class="w">                  </span><span class="nt">gateways</span><span class="p">:</span>
-<span class="w">                    </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.128.0.1"</span>
-<span class="w">                    </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:0000:0::1"</span>
-<span class="w">                </span><span class="nt">services</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                    </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.144.0.0/12"</span>
-<span class="w">                    </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:ffff:0::/112"</span>
-<span class="w">                </span><span class="nt">join</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                    </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
-<span class="w">                    </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:64::/112"</span>
-<span class="w">              </span><span class="c1"># Isolated egress lives under extraObjects in the system chart;</span>
-<span class="w">              </span><span class="c1"># only change it if your node CIDR also conflicts with</span>
-<span class="w">              </span><span class="c1"># 10.32.0.0/16 or fd00:110::/64.</span>
+<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"10.1.0.11,10.1.0.12,10.1.0.13"</span>
+<span class="w">            </span><span class="nt">networking</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">pods</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.128.0.0/12"</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:0000:0::/96"</span>
+<span class="w">                </span><span class="nt">gateways</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.128.0.1"</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:0000:0::1"</span>
+<span class="w">              </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.144.0.0/12"</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:ffff:0::/112"</span>
+<span class="w">              </span><span class="nt">join</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:64::/112"</span>
+<span class="w">            </span><span class="c1"># Isolated egress lives under extraObjects in the system chart;</span>
+<span class="w">            </span><span class="c1"># only change it if your node CIDR also conflicts with</span>
+<span class="w">            </span><span class="c1"># 10.32.0.0/16 or fd00:110::/64.</span>
 </code></pre></div>
 
 
@@ -2392,7 +2505,7 @@ System / Kube-OVN defaults: <a href="https://github.com/super-phenix/superphenix
       <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.6970bfe9.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88ee1349.min.js"></script>
       
     
   </body>
