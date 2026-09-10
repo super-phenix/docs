@@ -1889,52 +1889,50 @@
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">rook-connection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
-<span class="w">            </span><span class="c1"># From .status.cephClusters on the remote Cluster CR (dictionary key = FSID)</span>
-<span class="w">            </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"[csi-user]"</span><span class="w"> </span><span class="c1"># TBD</span>
-<span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w"> </span><span class="c1"># TBD</span>
-<span class="w">            </span><span class="c1"># Public address of one MON; used only to bootstrap, then the full MON list is refreshed</span>
-<span class="w">            </span><span class="nt">bootstrapMon</span><span class="p">:</span>
-<span class="w">              </span><span class="c1"># MON ID (must be a single letter)</span>
-<span class="w">              </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">              </span><span class="c1"># IP of the MON</span>
-<span class="w">              </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">              </span><span class="c1"># Port of the MON</span>
-<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
-<span class="w">              </span><span class="c1"># Protocol of the IP (IPv4 or IPv6)</span>
-<span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
-<span class="w">            </span><span class="c1"># TBD</span>
-<span class="w">            </span><span class="nt">healthCheck</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"client.csi-health"</span>
-<span class="w">              </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">clusters</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
+<span class="w">          </span><span class="c1"># From .status.cephClusters on the remote Cluster CR (dictionary key = FSID)</span>
+<span class="w">          </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">          </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"[csi-user]"</span><span class="w"> </span><span class="c1"># TBD</span>
+<span class="w">          </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w"> </span><span class="c1"># TBD</span>
+<span class="w">          </span><span class="c1"># Public address of one MON; used only to bootstrap, then the full MON list is refreshed</span>
+<span class="w">          </span><span class="nt">bootstrapMon</span><span class="p">:</span>
+<span class="w">            </span><span class="c1"># MON ID (must be a single letter)</span>
+<span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">            </span><span class="c1"># IP of the MON</span>
+<span class="w">            </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">            </span><span class="c1"># Port of the MON</span>
+<span class="w">            </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
+<span class="w">            </span><span class="c1"># Protocol of the IP (IPv4 or IPv6)</span>
+<span class="w">            </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
+<span class="w">          </span><span class="c1"># TBD</span>
+<span class="w">          </span><span class="nt">healthCheck</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"client.csi-health"</span>
+<span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 </code></pre></div>
 <h2 id="consuming-object-storage">Consuming object storage</h2>
 <p>Connect the workload cluster to a storage cluster so it can consume an RGW object store. After the connection is in place, expose the store to tenants with <a href="../adding-a-storage-class/#adding-an-object-storage-class">object storage classes</a>.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">rook-connection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">helm</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
-<span class="w">            </span><span class="nt">objectStores</span><span class="p">:</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]"</span><span class="w"> </span><span class="c1"># CephObjectStore CR name (also used to derive the TLS secret name)</span>
-<span class="w">                </span><span class="c1"># External RGW endpoints. Each entry accepts either `ip` or `hostname`.</span>
-<span class="w">                </span><span class="nt">endpoints</span><span class="p">:</span>
-<span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">                    </span><span class="c1"># hostname: ""</span>
-<span class="w">                </span><span class="c1"># Gateway HTTP port</span>
-<span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-<span class="w">                </span><span class="c1"># Gateway HTTPS port (only set when TLS is enabled)</span>
-<span class="w">                </span><span class="c1"># securePort: 443</span>
-<span class="w">                </span><span class="c1"># TLS configuration for the remote RGW</span>
-<span class="w">                </span><span class="c1"># tls:</span>
-<span class="w">                </span><span class="c1">#   enabled: false</span>
-<span class="w">                </span><span class="c1">#   # PEM-encoded certificate the operator will trust when talking to the RGW</span>
-<span class="w">                </span><span class="c1">#   cert: ""</span>
+<span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">clusters</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
+<span class="w">          </span><span class="nt">objectStores</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]"</span><span class="w"> </span><span class="c1"># CephObjectStore CR name (also used to derive the TLS secret name)</span>
+<span class="w">              </span><span class="c1"># External RGW endpoints. Each entry accepts either `ip` or `hostname`.</span>
+<span class="w">              </span><span class="nt">endpoints</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<span class="w">                  </span><span class="c1"># hostname: ""</span>
+<span class="w">              </span><span class="c1"># Gateway HTTP port</span>
+<span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+<span class="w">              </span><span class="c1"># Gateway HTTPS port (only set when TLS is enabled)</span>
+<span class="w">              </span><span class="c1"># securePort: 443</span>
+<span class="w">              </span><span class="c1"># TLS configuration for the remote RGW</span>
+<span class="w">              </span><span class="c1"># tls:</span>
+<span class="w">              </span><span class="c1">#   enabled: false</span>
+<span class="w">              </span><span class="c1">#   # PEM-encoded certificate the operator will trust when talking to the RGW</span>
+<span class="w">              </span><span class="c1">#   cert: ""</span>
 </code></pre></div>
 <p>For advanced connection options, see the <a href="https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection">spx-rook-connection</a> chart values.</p>
 
