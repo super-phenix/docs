@@ -70,6 +70,18 @@
         <loc>https://docs.superphenix.net/features/storage/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/user-guides/network/create-a-subnet/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/user-guides/virtual-machines/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/user-guides/virtual-machines/create-a-vm/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/user-guides/virtual-machines/expose-with-eip/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/operations/storage/configuring-the-storage-cluster/</loc>
       </url>
       <url>
