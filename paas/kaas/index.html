@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/architecture/deployment-topology/">
+        <link rel="canonical" href="https://docs.superphenix.net/paas/kaas/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../../operations/console/">
       
       
-        <link rel="next" href="../deployment-requirements/">
+        <link rel="next" href="./basic-operations/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Deployment topology - Documentation</title>
+        <title>Overview - Documentation</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deployment-topology" class="md-skip">
+        <a href="#kubernetes-as-a-service-on-superphenix" class="md-skip">
           Skip to content
         </a>
       
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Deployment topology
+              Overview
             
           </span>
         </div>
@@ -278,20 +278,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -311,7 +309,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -328,7 +326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../architecture/" class="md-nav__link">
         
   
   
@@ -352,36 +350,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Deployment topology
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="././" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../architecture/deployment-topology/" class="md-nav__link">
         
   
   
@@ -396,155 +368,6 @@
   
 
       </a>
-      
-        
-
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#management-plane" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Management plane
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Management plane">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#visual-comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Visual comparison
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Comparison
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Recommendation
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hyperconverged-vs-decoupled" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Hyperconverged vs decoupled
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Hyperconverged vs decoupled">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#comparison_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Comparison
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommendation_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Recommendation
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#choosing-your-deployment-topology" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Choosing your deployment topology
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Choosing your deployment topology">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deployment-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Deployment matrix
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Recommendations
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -557,7 +380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deployment-requirements/" class="md-nav__link">
+      <a href="../../architecture/deployment-requirements/" class="md-nav__link">
         
   
   
@@ -584,7 +407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../network-requirements/" class="md-nav__link">
+      <a href="../../architecture/network-requirements/" class="md-nav__link">
         
   
   
@@ -2164,18 +1987,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -2195,7 +2020,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2209,18 +2034,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" checked>
         
           
           <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
@@ -2240,7 +2067,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2254,10 +2081,36 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../paas/kaas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2272,6 +2125,99 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#main-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Main features
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Main features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vm-pools-worker-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        VM pools (worker nodes)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Platform integration
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Operations
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foundation-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Foundation used
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Version support
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2284,7 +2230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paas/kaas/basic-operations/" class="md-nav__link">
+      <a href="./basic-operations/" class="md-nav__link">
         
   
   
@@ -2311,7 +2257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paas/kaas/advanced-configuration/" class="md-nav__link">
+      <a href="./advanced-configuration/" class="md-nav__link">
         
   
   
@@ -2338,7 +2284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paas/kaas/disaster-recovery/" class="md-nav__link">
+      <a href="./disaster-recovery/" class="md-nav__link">
         
   
   
@@ -2365,7 +2311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paas/kaas/network-configuration/" class="md-nav__link">
+      <a href="./network-configuration/" class="md-nav__link">
         
   
   
@@ -2493,22 +2439,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#management-plane" class="md-nav__link">
+  <a href="#main-features" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Management plane
+        Main features
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Management plane">
+    <nav class="md-nav" aria-label="Main features">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#visual-comparison" class="md-nav__link">
+  <a href="#vm-pools-worker-nodes" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Visual comparison
+        VM pools (worker nodes)
       </span>
     </span>
   </a>
@@ -2516,10 +2462,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#comparison" class="md-nav__link">
+  <a href="#platform-integration" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Comparison
+        Platform integration
       </span>
     </span>
   </a>
@@ -2527,10 +2473,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#recommendation" class="md-nav__link">
+  <a href="#operations" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Recommendation
+        Operations
       </span>
     </span>
   </a>
@@ -2543,80 +2489,24 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#hyperconverged-vs-decoupled" class="md-nav__link">
+  <a href="#foundation-used" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Hyperconverged vs decoupled
+        Foundation used
       </span>
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Hyperconverged vs decoupled">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#comparison_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Comparison
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommendation_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Recommendation
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#choosing-your-deployment-topology" class="md-nav__link">
+  <a href="#version-support" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Choosing your deployment topology
+        Version support
       </span>
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Choosing your deployment topology">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#deployment-matrix" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Deployment matrix
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#recommendations" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Recommendations
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2638,166 +2528,72 @@
   
 
 
-<h1 id="deployment-topology">Deployment topology</h1>
-<p>This page covers how availability zones (AZs) and the management plane can be deployed: storage and virtualization (hyperconverged vs decoupled), and management placement (inside an AZ vs outside).</p>
-<h2 id="management-plane">Management plane</h2>
-<p>The <strong>management plane</strong> operates Superphenix: the <strong>web console</strong>, <strong>GitOps</strong> (e.g. deployment and sync from Git), <strong>bootstrap</strong>, <strong>installation</strong>, and <strong>upgrades</strong>; i.e. the full <strong>lifecycle</strong> of the AZs. It is where operators and tenants interact with the platform and where the declarative state (Git) is applied to the AZs.</p>
-<p>The management plane can run <strong>inside an AZ</strong> (the same Kubernetes cluster as one of your AZs hosts both workloads and the management components) or on a <strong>dedicated management cluster</strong> that is completely separate. When separate, that management cluster can even run on <strong>another cloud or provider</strong>: you can operate Superphenix AZs in your own datacenters from a management cluster hosted elsewhere, as long as it has the necessary connectivity to the AZs for API and GitOps.</p>
-<h3 id="visual-comparison">Visual comparison</h3>
-<div class="grid cards">
+<h1 id="kubernetes-as-a-service-on-superphenix">Kubernetes as a service on Superphenix</h1>
+<p>Superphenix is designed to offer <strong>Kubernetes as a Service (KaaS)</strong> so tenants can run <strong>managed Kubernetes clusters</strong> on the same <strong>virtualization</strong>, <strong>storage</strong>, and <strong>network</strong> stack as your IaaS workloads.</p>
+<h2 id="main-features">Main features</h2>
+<h3 id="vm-pools-worker-nodes">VM pools (worker nodes)</h3>
+<p>Tenant clusters are backed by <strong>pools of VMs</strong> where you define:</p>
 <ul>
-<li>
-<p><strong>Management on an AZ</strong></p>
-<p><img alt="Management on an AZ" src="../../sketch/mgmt-inside-az.svg" /></p>
-</li>
-<li>
-<p><strong>Management outside the AZ</strong></p>
-<p><img alt="Management outside the AZ" src="../../sketch/mgmt-outside-az.svg" /></p>
-</li>
+<li><strong>VM sizing</strong>: CPU, memory, and disk for control-plane and worker machines.</li>
+<li><strong>Networking</strong>: Node pools are attached to your <strong><a href="../../features/network/">VPCs and subnets</a></strong>; pods and services use the integrated <strong>CNI</strong> on top of that underlay.</li>
 </ul>
-</div>
-<h3 id="comparison">Comparison</h3>
+<h3 id="platform-integration">Platform integration</h3>
 <table>
 <thead>
 <tr>
-<th>Aspect</th>
-<th>Management on an AZ</th>
-<th>Management outside the AZ</th>
+<th>Capability</th>
+<th>Behavior</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Deployment</strong></td>
-<td>Easier to deploy</td>
-<td>Harder (separate management cluster to provision)</td>
+<td><strong>CNI</strong></td>
+<td><strong>Integrated CNI</strong>: cluster networking is provided by the platform stack (same SDN as VMs where applicable).</td>
 </tr>
 <tr>
-<td><strong>Maintenance</strong></td>
-<td>Easier to maintain</td>
-<td>Harder (additional management cluster to operate)</td>
+<td><strong>CSI</strong></td>
+<td><strong>Integrated CSI</strong>: persistent volumes map to the platform <strong><a href="../../features/storage/">storage</a></strong> layer.</td>
 </tr>
 <tr>
-<td><strong>Multiple AZs</strong></td>
-<td>If the management plane controls multiple AZs, the hosting AZ is a <strong>single point of failure (SPOF)</strong></td>
-<td>Easier to manage multiple AZs from a single, neutral management plane</td>
+<td><strong>Live migration</strong></td>
+<td>Worker <strong>VMs</strong> can be <strong>live-migrated</strong> like any other instance when policy allows, for node maintenance without hard downtime for stateless workloads.</td>
 </tr>
 <tr>
-<td><strong>Failover</strong></td>
-<td>Management is tied to one AZ; failover is harder</td>
-<td>Easier to failover; the management plane is not tied to any workload AZ</td>
-</tr>
-<tr>
-<td><strong>Dependency</strong></td>
-<td>Management runs on Superphenix (same stack as the AZ)</td>
-<td>Does not depend on Superphenix (no chicken-and-egg; can run on vanilla Kubernetes or another cloud)</td>
+<td><strong>Disaster recovery</strong></td>
+<td>Controlplane data and worker nodes can be backed up and replicated allowing for quick recovery in case of outages or catastrophic failure.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="recommendation">Recommendation</h3>
+<h3 id="operations">Operations</h3>
 <ul>
-<li><strong>Management on an AZ</strong>: A good fit for organizations that want <strong>isolated AZs</strong>: each AZ hosts its own management plane, and that plane manages only that AZ (not multiple AZs). Suited to <strong>security</strong> requirements where strict isolation between AZs is needed.</li>
-<li><strong>Management outside the AZ</strong>: A good fit for <strong>orchestrating multiple AZs at scale</strong> from a single management plane on a dedicated management cluster, and for <strong>redundancy</strong> (management is independent of any workload AZ).</li>
+<li>Create, scale, upgrade, and delete clusters via GitOps and console.</li>
+<li>Use the same <strong>organization / project</strong> RBAC as the rest of the platform; see <a href="../../features/tenancy-and-console/">Tenancy and console</a>.</li>
 </ul>
-<hr />
-<h2 id="hyperconverged-vs-decoupled">Hyperconverged vs decoupled</h2>
-<p>AZs can be deployed in two ways:</p>
-<ul>
-<li><strong>Hyperconverged</strong>: Both <strong>storage</strong> and <strong>virtualization</strong> run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.</li>
-<li><strong>Decoupled (traditional)</strong>: <strong>Storage</strong> runs on separate, dedicated clusters; <strong>workload</strong> clusters run on one or more other Kubernetes clusters that consume that storage. Multiple private workload AZs can <strong>share the same storage</strong> backend. This model is useful when you want to run several workload AZs (e.g. in different racks or sites) against a single, shared storage pool.</li>
-</ul>
-<h3 id="comparison_1">Comparison</h3>
+<h2 id="foundation-used">Foundation used</h2>
 <table>
 <thead>
 <tr>
-<th>Aspect</th>
-<th>Hyperconverged</th>
-<th>Decoupled</th>
+<th>Foundation</th>
+<th>How Kubernetes uses it</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Deployment</strong></td>
-<td>Easy to deploy</td>
-<td>Harder to deploy (twice the clusters)</td>
+<td>Virtualization</td>
+<td><strong>VM pools</strong> for nodes (<a href="../../features/virtualization/">Virtualization</a>)</td>
 </tr>
 <tr>
-<td><strong>Maintenance</strong></td>
-<td>Easy to maintain</td>
-<td>Harder to maintain (twice the clusters)</td>
+<td>Network</td>
+<td>VPCs, subnets, NAT, LB, firewall (<a href="../../features/network/">Network</a>)</td>
 </tr>
 <tr>
-<td><strong>Cost</strong></td>
-<td>Less costly; hardware is mutualized (compute and storage share the same servers)</td>
-<td>Higher cost; dedicated hardware for storage and for hypervisor</td>
-</tr>
-<tr>
-<td><strong>Scaling</strong></td>
-<td>Easier to scale horizontally: add servers to grow both storage and compute</td>
-<td>Scale storage and workload clusters independently</td>
-</tr>
-<tr>
-<td><strong>Performance</strong></td>
-<td>Shared resources between storage and compute</td>
-<td>Better performance; hardware is dedicated (storage arrays vs hypervisor nodes)</td>
-</tr>
-<tr>
-<td><strong>Multi-AZ / shared storage</strong></td>
-<td>Each AZ typically has its own storage</td>
-<td>Easier to share storage among many private-cloud AZs; multiple workload clusters use the same storage backend</td>
+<td>Storage</td>
+<td>CSI-backed volumes (<a href="../../features/storage/">Storage</a>)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="recommendation_1">Recommendation</h3>
-<ul>
-<li><strong>Hyperconverged</strong> is a good fit for organizations that want to <strong>scale horizontally</strong> (grow by adding servers), for <strong>proofs of concept (PoCs)</strong>, and for <strong>single-AZ deployments</strong> where storage does not need to be shared with other clusters.</li>
-<li><strong>Decoupled</strong> is a better fit when <strong>performance</strong> is a priority (dedicated storage and hypervisor hardware), when storage must be <strong>shared with other Superphenix clusters</strong> (multiple private-cloud AZs), or when storage must be <strong>shared with external systems</strong> (e.g. a VMware cluster or other non-SPX workloads).</li>
-</ul>
-<hr />
-<h2 id="choosing-your-deployment-topology">Choosing your deployment topology</h2>
-<p>The combination of AZ mode (hyperconverged or decoupled) and management placement (on an AZ or outside) defines four deployment types. The matrix below summarizes them; the paragraphs that follow help you pick one and clarify what can be changed later.</p>
-<h3 id="deployment-matrix">Deployment matrix</h3>
-<p>The <strong>choice between hyperconverged and decoupled is made per AZ</strong>: you can have some AZs that are hyperconverged and others that are decoupled. The management plane can manage AZs of <strong>different types</strong>.</p>
-<p>By contrast, <strong>where the management plane runs</strong> (on one of the AZs or on a dedicated management cluster outside all of them) is a <strong>single decision for the whole deployment</strong>.</p>
-<p>The matrix below combines the two dimensions (AZ mode and management placement) into four deployment types:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Management on an AZ</th>
-<th>Management outside the AZ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Hyperconverged</strong></td>
-<td><strong>Fully integrated</strong>: Storage, virtualization, and the management plane run on a single cluster; the simplest deployment, with one AZ and its control plane colocated.</td>
-<td><strong>Centrally managed hyperconverged</strong>: Each AZ is a self-contained hyperconverged cluster; a dedicated management cluster orchestrates multiple AZs from a single management plane.</td>
-</tr>
-<tr>
-<td><strong>Decoupled</strong></td>
-<td><strong>Decoupled with local management</strong>: Storage and workload are on separate clusters; the management plane runs on one of them (e.g. a workload AZ), so that AZ hosts both workloads and the control plane.</td>
-<td><strong>Fully decoupled</strong>: Storage, workload, and management are each separate; a dedicated management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration.</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition warning">
-<p class="admonition-title">Supported deployment types</p>
-<p>Currently, the only <strong>supported and tested</strong> installation method is <strong>Fully decoupled</strong> (decoupled AZs with the management plane on a dedicated management cluster outside the AZ). Work is ongoing to support <strong>Fully integrated</strong> (hyperconverged with management on the AZ) and <strong>Centrally managed hyperconverged</strong> (hyperconverged AZs with the management plane on a dedicated management cluster).</p>
-</div>
-<h3 id="recommendations">Recommendations</h3>
-<div class="admonition important">
-<p class="admonition-title">Choose before you install</p>
-<p>Deployment topology (hyperconverged vs decoupled) and management placement (on an AZ or outside) are <strong>fundamental choices</strong>; decide which combination fits your use case <strong>before installation</strong>. Changing the AZ topology or management placement later is limited or unsupported (see below).</p>
-</div>
-<p><strong>Use cases and who they target:</strong></p>
-<ul>
-<li><strong>Fully integrated</strong>: Targets <strong>single-AZ</strong> deployments, <strong>proofs of concept</strong>, and teams that want the <strong>simplest</strong> setup: one cluster for storage, virtualization, and the management plane. Best for low cost and minimal operational footprint.</li>
-<li><strong>Centrally managed hyperconverged</strong>: Targets organizations that want <strong>multiple hyperconverged AZs</strong> with <strong>one management plane</strong>: horizontal scaling by adding AZs, each AZ self-contained, orchestration from a dedicated management cluster.</li>
-<li><strong>Decoupled with local management</strong>: Targets <strong>security-focused</strong> or <strong>isolated</strong> environments: each AZ has its own management plane, storage and hypervisor are separate, and that plane only manages that AZ. Good when strict isolation between AZs is required.</li>
-<li><strong>Fully decoupled</strong>: Targets <strong>multi-AZ at scale</strong>, <strong>redundancy</strong>, and <strong>shared storage</strong>: storage and hypervisor are separate, the management plane sits on a dedicated management cluster outside all workload AZs. Suited to performance-sensitive workloads, shared storage across AZs or with external systems (e.g. VMware), and operators who need a single, resilient control plane for many AZs.</li>
-</ul>
-<p><strong>Changing your deployment later:</strong> Switching between hyperconverged and decoupled (recoupling or decoupling the infrastructure) is <strong>not supported</strong>. It is theoretically possible with significant downtime and manual migration, but it is not a supported path. <strong>Moving the management plane</strong> from one cluster to another (e.g. from an AZ to a dedicated management cluster, or the reverse) <strong>is possible</strong> and can be done as an operational procedure.</p>
-<p>See the <a href="../">Architecture overview</a> for organizations, projects, resources, and disaster recovery.</p>
+<h2 id="version-support">Version support</h2>
+<p>Each version of Superphenix will support 3 minor Kubernetes versions at a time. You may encounter different supported versions for a single Superphenix deployment as some AZs might be more up to date than others.</p>
 
 
 

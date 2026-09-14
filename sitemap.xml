@@ -112,6 +112,21 @@
         <loc>https://docs.superphenix.net/operations/console/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/paas/kaas/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/paas/kaas/basic-operations/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/paas/kaas/advanced-configuration/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/paas/kaas/disaster-recovery/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/paas/kaas/network-configuration/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/contributing/</loc>
       </url>
       <url>
