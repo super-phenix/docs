@@ -10,32 +10,36 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/">
+        <link rel="canonical" href="https://docs.superphenix.net/operations/network/ipv6-configuration/">
       
       
+        <link rel="prev" href="../setting-the-mtu-of-subnets/">
+      
+      
+        <link rel="next" href="../../storage/configuring-the-storage-cluster/">
       
       
         
       
       
-      <link rel="icon" href="./assets/favicon.svg">
+      <link rel="icon" href="../../../assets/favicon.svg">
       <meta name="generator" content="zensical-0.0.62">
     
     
       
-        <title>Build your own cloud platform with Superphenix - Documentation</title>
+        <title>IPv6 configuration - Documentation</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="./assets/stylesheets/modern/main.ce62732f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.ce62732f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="./assets/stylesheets/modern/palette.812a03bb.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -54,9 +58,9 @@
       
     
     
-      <link rel="stylesheet" href="./stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    <script>__md_scope=new URL("../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -81,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#build-your-own-cloud-platform-with-superphenix" class="md-skip">
+        <a href="#ipv6-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -114,9 +118,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="" title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="./assets/spx.svg" alt="Documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
@@ -133,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Build your own cloud platform with Superphenix
+              IPv6 configuration
             
           </span>
         </div>
@@ -222,9 +226,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="" title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="./assets/spx.svg" alt="Documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
     Documentation
@@ -251,7 +255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./home/" class="md-nav__link">
+      <a href="../../../home/" class="md-nav__link">
         
   
   
@@ -322,7 +326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./architecture/" class="md-nav__link">
+      <a href="../../../architecture/" class="md-nav__link">
         
   
   
@@ -349,7 +353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./architecture/deployment-topology/" class="md-nav__link">
+      <a href="../../../architecture/deployment-topology/" class="md-nav__link">
         
   
   
@@ -376,7 +380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./architecture/deployment-requirements/" class="md-nav__link">
+      <a href="../../../architecture/deployment-requirements/" class="md-nav__link">
         
   
   
@@ -403,7 +407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./architecture/network-requirements/" class="md-nav__link">
+      <a href="../../../architecture/network-requirements/" class="md-nav__link">
         
   
   
@@ -482,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/getting-started/" class="md-nav__link">
+      <a href="../../../installation/getting-started/" class="md-nav__link">
         
   
   
@@ -554,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/" class="md-nav__link">
         
   
   
@@ -626,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-management/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/" class="md-nav__link">
         
   
   
@@ -653,7 +657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-management/management-inside-az/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/management-inside-az/" class="md-nav__link">
         
   
   
@@ -725,7 +729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-management/management-outside-az/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/management-outside-az/" class="md-nav__link">
         
   
   
@@ -752,7 +756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-management/full-configuration/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/full-configuration/" class="md-nav__link">
         
   
   
@@ -840,7 +844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-the-os/manual-os-installation/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-the-os/manual-os-installation/" class="md-nav__link">
         
   
   
@@ -867,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-the-os/automated-os-installation/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-the-os/automated-os-installation/" class="md-nav__link">
         
   
   
@@ -947,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-an-az/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/" class="md-nav__link">
         
   
   
@@ -974,7 +978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-an-az/installing-hyperconverged/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/installing-hyperconverged/" class="md-nav__link">
         
   
   
@@ -1001,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-an-az/installing-decoupled/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/installing-decoupled/" class="md-nav__link">
         
   
   
@@ -1028,7 +1032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/deployment-guide/installing-an-az/configuring-a-cluster/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/configuring-a-cluster/" class="md-nav__link">
         
   
   
@@ -1071,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./installation/production-recommendations/" class="md-nav__link">
+      <a href="../../../installation/production-recommendations/" class="md-nav__link">
         
   
   
@@ -1150,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./features/" class="md-nav__link">
+      <a href="../../../features/" class="md-nav__link">
         
   
   
@@ -1177,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./features/tenancy-and-console/" class="md-nav__link">
+      <a href="../../../features/tenancy-and-console/" class="md-nav__link">
         
   
   
@@ -1204,7 +1208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./features/virtualization/" class="md-nav__link">
+      <a href="../../../features/virtualization/" class="md-nav__link">
         
   
   
@@ -1231,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./features/network/" class="md-nav__link">
+      <a href="../../../features/network/" class="md-nav__link">
         
   
   
@@ -1258,7 +1262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./features/storage/" class="md-nav__link">
+      <a href="../../../features/storage/" class="md-nav__link">
         
   
   
@@ -1382,7 +1386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./user-guides/network/create-a-subnet/" class="md-nav__link">
+      <a href="../../../user-guides/network/create-a-subnet/" class="md-nav__link">
         
   
   
@@ -1462,7 +1466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./user-guides/virtual-machines/" class="md-nav__link">
+      <a href="../../../user-guides/virtual-machines/" class="md-nav__link">
         
   
   
@@ -1489,7 +1493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./user-guides/virtual-machines/create-a-vm/" class="md-nav__link">
+      <a href="../../../user-guides/virtual-machines/create-a-vm/" class="md-nav__link">
         
   
   
@@ -1516,7 +1520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./user-guides/virtual-machines/expose-with-eip/" class="md-nav__link">
+      <a href="../../../user-guides/virtual-machines/expose-with-eip/" class="md-nav__link">
         
   
   
@@ -1555,18 +1559,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1586,7 +1592,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1600,18 +1606,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
         
           
           <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
@@ -1631,7 +1639,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1648,7 +1656,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./operations/network/setting-the-mtu-of-subnets/" class="md-nav__link">
+      <a href="../setting-the-mtu-of-subnets/" class="md-nav__link">
         
   
   
@@ -1672,10 +1680,36 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="./operations/network/ipv6-configuration/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  IPv6 configuration
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1690,6 +1724,60 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-dual-stack-with-ipv4-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Running dual stack with IPv4 first
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-dual-stack-with-ipv6-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Running dual stack with IPv6 first
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-ceph-to-use-ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configure Ceph to use IPv6
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1755,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./operations/storage/configuring-the-storage-cluster/" class="md-nav__link">
+      <a href="../../storage/configuring-the-storage-cluster/" class="md-nav__link">
         
   
   
@@ -1782,7 +1870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./operations/storage/connecting-a-workload-and-storage-cluster/" class="md-nav__link">
+      <a href="../../storage/connecting-a-workload-and-storage-cluster/" class="md-nav__link">
         
   
   
@@ -1809,7 +1897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./operations/storage/adding-a-storage-class/" class="md-nav__link">
+      <a href="../../storage/adding-a-storage-class/" class="md-nav__link">
         
   
   
@@ -1836,7 +1924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./operations/storage/adding-an-object-store/" class="md-nav__link">
+      <a href="../../storage/adding-an-object-store/" class="md-nav__link">
         
   
   
@@ -1863,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./operations/storage/using-local-storage/" class="md-nav__link">
+      <a href="../../storage/using-local-storage/" class="md-nav__link">
         
   
   
@@ -1898,7 +1986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./operations/console/" class="md-nav__link">
+      <a href="../../console/" class="md-nav__link">
         
   
   
@@ -1932,7 +2020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./contributing/" class="md-nav__link">
+      <a href="../../../contributing/" class="md-nav__link">
         
   
   
@@ -1958,7 +2046,7 @@
   
   
     <li class="md-nav__item">
-      <a href="./enterprise-support/" class="md-nav__link">
+      <a href="../../../enterprise-support/" class="md-nav__link">
         
   
   
@@ -2018,10 +2106,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#about-the-name" class="md-nav__link">
+  <a href="#running-dual-stack-with-ipv4-first" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        About the name
+        Running dual stack with IPv4 first
       </span>
     </span>
   </a>
@@ -2029,10 +2117,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-superphenix-offers" class="md-nav__link">
+  <a href="#running-dual-stack-with-ipv6-first" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        What Superphenix offers
+        Running dual stack with IPv6 first
       </span>
     </span>
   </a>
@@ -2040,54 +2128,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#who-is-superphenix-for" class="md-nav__link">
+  <a href="#configure-ceph-to-use-ipv6" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Who is Superphenix for?
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#philosophy" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Philosophy
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#why-kubernetes" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Why Kubernetes?
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#do-i-need-to-know-kubernetes" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Do I need to know Kubernetes?
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Quick links
+        Configure Ceph to use IPv6
       </span>
     </span>
   </a>
@@ -2112,55 +2156,136 @@
   
 
 
-<h1 id="build-your-own-cloud-platform-with-superphenix">Build your own cloud platform with Superphenix</h1>
-<p><img alt="Superphenix" class="index-logo" src="assets/spx.svg" /></p>
-<p><strong>Superphenix</strong> (SPX) is an open-source, <strong>cloud-native</strong> project to build a <strong>Cloud Service Provider (CSP)</strong> on your own infrastructure using <strong>Kubernetes</strong>.</p>
-<p>It turns Kubernetes into a platform capable of handling <strong>virtual machines, networking, storage, and software</strong> in the same way cloud providers do. A CSP delivers on-demand compute, storage, and applications across <strong>IaaS</strong>, <strong>PaaS</strong>, and <strong>SaaS</strong>. Superphenix covers those layers so you can offer <strong>resilient</strong>, <strong>high-availability</strong>, <strong>high-performance</strong> services from your own datacenters, grouped into <strong>availability zones</strong> and <strong>regions</strong>.</p>
-<p>To install a first cluster, see <a href="installation/getting-started/">Getting started</a>. For complete and advanced deployment paths, see the <a href="installation/deployment-guide/">deployment guide</a>.</p>
-<h2 id="about-the-name">About the name</h2>
-<p>The project is named <strong>Superphenix</strong> (SPX) after the <a href="https://en.wikipedia.org/wiki/Superph%C3%A9nix">Superphénix</a> nuclear power plant in France. The name is a nod to building something ambitious and innovative on open, sovereign infrastructure. We spell the project Superphenix (without the accent) so it works on all keyboard layouts.</p>
-<h2 id="what-superphenix-offers">What Superphenix offers</h2>
-<ul>
-<li><strong>Hypervisor</strong>: VMs, live migration, snapshots, workload scheduling and load balancing</li>
-<li><strong>Storage</strong>: Block, file (<em>Soon</em>) and S3 storage with replication and disaster recovery</li>
-<li><strong>Software-defined network</strong>: VPCs, NAT gateways, BGP, load balancers, QoS, firewalling</li>
-<li><strong>PaaS</strong>: Kubernetes as a Service</li>
-<li><strong>SaaS</strong>: Databases (<em>Soon</em>), Inference as a Service (<em>Soon</em>)</li>
-<li><strong>GitOps</strong>: Installs, upgrades, and resource provisioning via GitOps</li>
-<li><strong>Web Console</strong>: Multi-tenant console to manage multiple AZs from one place</li>
-<li><strong>Backup and disaster recovery</strong>: Cross-AZ mirroring, disk, VM and metadata backups, automated disaster recovery</li>
-</ul>
-<p>For more detail, see <a href="features/">Features</a>.</p>
-<h2 id="who-is-superphenix-for">Who is Superphenix for?</h2>
-<ul>
-<li><strong>At scale</strong>: Build a cloud platform across <strong>multiple datacenters and regions</strong>. Deploy several AZs, group them into regions, mirror data and backups between AZs, and operate everything from a single interface.</li>
-<li><strong>Single datacenter</strong>: Run one or more AZs in <strong>one datacenter</strong>. Ideal for MSPs, enterprises, or labs that want a full CSP stack without multi-site complexity.</li>
-<li><strong>Single rack</strong>: Run in a <strong>single rack</strong> for small actors, labs, or even <strong>at home</strong>. Evaluate the stack, learn the platform, or host a small private cloud on minimal hardware.</li>
-</ul>
-<p>If you need <strong>independence</strong> and <strong>total control</strong> of your infrastructure for <strong>SaaS, PaaS and IaaS</strong>, Superphenix should cover most of your use cases. If it doesn't, feel free to share why so we can improve the project.</p>
-<h2 id="philosophy">Philosophy</h2>
-<p>Superphenix was initially built at a <strong>cloud service provider</strong> that wanted more control over its own infrastructure, without having to rely on <strong>proprietary</strong> software and hardware with expensive licenses.</p>
-<p>That is why the project aims to provide all the features a CSP needs to serve its customers with the <strong>highest level</strong> of availability and redundancy. Superphenix is designed to be deployed across multiple <strong>datacenters</strong> spread geographically over multiple <strong>continents</strong>.</p>
-<p>The project authors chose to make it <strong>open source</strong> because we believe it can benefit <strong>organizations of all sizes</strong> that want to build their own cloud platform.</p>
-<h2 id="why-kubernetes">Why Kubernetes?</h2>
-<p>Kubernetes is a container orchestrator, not a VM orchestrator. Using it as the core of a <strong>cloud-native</strong> CSP brings:</p>
-<ul>
-<li><strong>Automation</strong>: Declarative APIs, GitOps, and a single control plane</li>
-<li><strong>Unified operations</strong>: Same tooling for scheduling, monitoring, and upgrades</li>
-<li><strong>Ecosystem</strong>: <strong>CNI</strong> and <strong>CSI</strong> plugins and operators from the <strong>CNCF</strong> ecosystem already solve many integration problems</li>
-<li><strong>Expertise</strong>: Teams that already run Kubernetes can operate the CSP stack with the same mindset</li>
-</ul>
-<p>The trade-off is adapting Kubernetes to VMs, storage, and CSP-style networking. Superphenix does that by combining a multitude of <strong>open source projects</strong> into one coherent, cloud-native platform.</p>
-<h2 id="do-i-need-to-know-kubernetes">Do I need to know Kubernetes?</h2>
-<p>You <strong>do not</strong> need extensive Kubernetes knowledge to install or run a standard deployment. Superphenix uses Kubernetes under the hood.</p>
-<p>At this stage of the project, Kubernetes experience still helps a lot. Debugging Superphenix or doing advanced deployments requires knowledge of Kubernetes and Talos.</p>
-<p>We hope that in the future, we can abstract Kubernetes as much as possible.</p>
-<h2 id="quick-links">Quick links</h2>
-<ul>
-<li><a href="features/"><strong>Features</strong></a>: Virtualization, network, storage, and tooling</li>
-<li><a href="installation/getting-started/"><strong>Getting started</strong></a>: Install a first lab cluster</li>
-<li><a href="installation/deployment-guide/"><strong>Deployment guide</strong></a>: All installation modes and operating patterns</li>
-</ul>
+<h1 id="ipv6-configuration">IPv6 configuration</h1>
+<p>Superphenix supports both IPv4 and IPv6, and some of the largest Superphenix deployments are IPv6-first.</p>
+<p>Superphenix is usually deployed in dual-stack mode with IPv6 as the preferred address family. IPv6 is used for internal communication, while IPv4 preserves connectivity to external components and services that are not available over IPv6, such as GitHub.</p>
+<p>The first address family in the configuration is the preferred family. Superphenix uses it for internal communication across both physical and virtual networks.</p>
+<div class="admonition warning">
+<p class="admonition-title">Keep the address-family order consistent</p>
+<p>Use the same IPv4/IPv6 order for the Talos pod and service subnets, the kubelet node IP ranges, the etcd advertised subnets, and the Kube-OVN network configuration. Kube-OVN master addresses must use the address family listed first.</p>
+</div>
+<h2 id="running-dual-stack-with-ipv4-first">Running dual stack with IPv4 first</h2>
+<p>The configuration from <a href="../../../installation/getting-started/">Getting started</a> places IPv4 before IPv6. Configure the Talos pod and service subnets, etcd advertised subnets, and kubelet node IP ranges in that order:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">cluster</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">podSubnets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/12</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:0000:0::/96</span>
+<span class="w">    </span><span class="nt">serviceSubnets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.16.0.0/12</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:ffff:0::/112</span>
+<span class="w">  </span><span class="nt">etcd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">advertisedSubnets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
+
+<span class="nt">machine</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">kubelet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">nodeIP</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">validSubnets</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
+</code></pre></div>
+<p>The kubelet and etcd ranges select node addresses, so replace the example ranges with the IPv4 and IPv6 ranges of your node network.</p>
+<p>Configure Kube-OVN with IPv4 first as well. Because IPv4 is preferred, <code>masterNodes</code> must contain the IPv4 addresses of the control-plane nodes:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">clusters</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"192.168.1.150,192.168.1.151,192.168.1.153"</span>
+<span class="w">            </span><span class="nt">networking</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">pods</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.0/12"</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::/96"</span>
+<span class="w">                </span><span class="nt">gateways</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.1"</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::1"</span>
+<span class="w">              </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.16.0.0/12"</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:ffff:0::/112"</span>
+<span class="w">              </span><span class="nt">join</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:64::/112"</span>
+</code></pre></div>
+<p>With this configuration, Superphenix prioritizes IPv4 for communication within the physical node network and virtual workload networks.</p>
+<h2 id="running-dual-stack-with-ipv6-first">Running dual stack with IPv6 first</h2>
+<p>To prefer IPv6, reverse the address-family order everywhere. In the Talos configuration, list IPv6 before IPv4 for the pod and service subnets, etcd advertised subnets, and kubelet node IP ranges:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">cluster</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">podSubnets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:0000:0::/96</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/12</span>
+<span class="w">    </span><span class="nt">serviceSubnets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:ffff:0::/112</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.16.0.0/12</span>
+<span class="w">  </span><span class="nt">etcd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">advertisedSubnets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+
+<span class="nt">machine</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">kubelet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">nodeIP</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">validSubnets</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+</code></pre></div>
+<p>Configure the Kube-OVN ranges in the same IPv6-first order. Because IPv6 is preferred, <code>masterNodes</code> must contain the IPv6 addresses of the control-plane nodes:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">clusters</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:1::150,fd00:1::151,fd00:1::153"</span>
+<span class="w">            </span><span class="nt">networking</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">pods</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::/96"</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.0/12"</span>
+<span class="w">                </span><span class="nt">gateways</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::1"</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.1"</span>
+<span class="w">              </span><span class="nt">services</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:ffff:0::/112"</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.16.0.0/12"</span>
+<span class="w">              </span><span class="nt">join</span><span class="p">:</span>
+<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:64::/112"</span>
+<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
+</code></pre></div>
+<p>With this configuration, Superphenix prioritizes IPv6 for communication within the physical node network and virtual workload networks, while IPv4 remains available for IPv4-only destinations.</p>
+<h2 id="configure-ceph-to-use-ipv6">Configure Ceph to use IPv6</h2>
+<p>On the cluster that hosts Ceph, bind the Ceph public and cluster networks to IPv6 subnets through the <code>rook-local-cluster</code> configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">rook-local-cluster</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">cephClusterSpec</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">network</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">addressRanges</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">public</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2000::/64</span>
+<span class="w">            </span><span class="nt">cluster</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2001::/96</span>
+</code></pre></div>
+<p>The <code>public</code> subnet carries Ceph client and monitor traffic. The <code>cluster</code> subnet carries replication, recovery, and other traffic between Ceph daemons. Every Ceph node must have an address in the configured IPv6 subnet or subnets.</p>
+<div class="admonition important">
+<p class="admonition-title">Connecting separate workload and storage clusters</p>
+<p>For a decoupled deployment, follow <a href="../../storage/connecting-a-workload-and-storage-cluster/">Connecting a workload and storage cluster</a>.</p>
+<p>The <code>bootstrapMon.ip</code> used by the workload cluster must be an IPv6 address from the Ceph public network, and <code>bootstrapMon.protocol</code> must be set to <code>IPv6</code>. This ensures that Superphenix bootstraps the connection and retrieves the Ceph monitor list over IPv6.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">bootstrapMon</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+<span class="w">  </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:ffff:2000::10"</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
+<span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
+</code></pre></div>
+</div>
 
 
 
@@ -2236,10 +2361,10 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":".","features":["announce.dismiss"],"redirect":null,"search":"./assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="./assets/javascripts/bundle.8dcc8e9c.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
       
     
   </body>
