@@ -101,7 +101,7 @@
               </button>
             
             
-  <strong>Note:</strong> This project is not released publicly yet and is in the process of being released.
+  Superphenix is now open source! We're still building the docs and it will get more content in the following days.
 
           </div>
           
@@ -1282,87 +1282,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../features/tooling/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Tooling
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../features/paas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  PaaS
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../features/saas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  SaaS
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1747,14 +1666,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -1762,14 +1673,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../testing/" class="md-nav__link">
+      <a href="../using-local-storage/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Testing
+  Using local storage
 
     
   </span>
@@ -1777,6 +1688,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2222,7 +2141,7 @@
 <span class="w">    </span><span class="nt">values</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">clusters</span><span class="p">:</span>
 <span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[cluster-name]"</span><span class="w"> </span><span class="c1"># Can be the name of your hyperconverged cluster</span>
-<span class="w">          </span><span class="nt">pools</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">blockPools</span><span class="p">:</span>
 <span class="w">            </span><span class="c1"># Name must match an existing storage pool. If you're creating a storage class for an erasure</span>
 <span class="w">            </span><span class="c1"># coded pool, you need to specify the name of the metadata pool here. If you followed the previous</span>
 <span class="w">            </span><span class="c1"># steps to add an EC pool, the name of the metadata pool will be [pool name]-metadata.</span>
@@ -2277,7 +2196,7 @@
 <span class="w">          </span><span class="nt">healthCheck</span><span class="p">:</span>
 <span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"client.csi-health"</span>
 <span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">          </span><span class="nt">pools</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">blockPools</span><span class="p">:</span>
 <span class="w">            </span><span class="c1"># Name must match an existing storage pool. If you're creating a storage class for an erasure</span>
 <span class="w">            </span><span class="c1"># coded pool, you need to specify the name of the metadata pool here. If you followed the previous</span>
 <span class="w">            </span><span class="c1"># steps to add an EC pool, the name of the metadata pool will be [pool name]-metadata.</span>

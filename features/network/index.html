@@ -101,7 +101,7 @@
               </button>
             
             
-  <strong>Note:</strong> This project is not released publicly yet and is in the process of being released.
+  Superphenix is now open source! We're still building the docs and it will get more content in the following days.
 
           </div>
           
@@ -1434,56 +1434,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#configuration-examples-illustrative" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Configuration examples (illustrative)
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuration examples (illustrative)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#subnet-with-nat" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Subnet with NAT
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#load-balancer-with-static-backends" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Load balancer with static backends
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#elastic-ip-with-dnat" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Elastic IP with DNAT
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1508,87 +1458,6 @@
     
   
   Storage
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tooling/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Tooling
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../paas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  PaaS
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../saas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  SaaS
 
     
   </span>
@@ -1806,14 +1675,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -1821,14 +1682,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/testing/" class="md-nav__link">
+      <a href="../../operations/storage/using-local-storage/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Testing
+  Using local storage
 
     
   </span>
@@ -1836,6 +1697,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2106,56 +1975,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#configuration-examples-illustrative" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Configuration examples (illustrative)
-      </span>
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configuration examples (illustrative)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#subnet-with-nat" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Subnet with NAT
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#load-balancer-with-static-backends" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Load balancer with static backends
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#elastic-ip-with-dnat" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Elastic IP with DNAT
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2288,60 +2107,6 @@
 <li><strong>Protocols</strong>: <strong>TCP</strong>, <strong>UDP</strong>, and <strong>SCTP</strong> where supported.</li>
 </ul>
 <p>The console UX may still evolve; power users can mirror the same rules in <strong>GitOps</strong> for review and audit.</p>
-<h2 id="configuration-examples-illustrative">Configuration examples (illustrative)</h2>
-<p>These snippets illustrate the <strong>ideas</strong> behind console fields. <strong>Field names and APIs</strong> may differ in your release; use them as a checklist when translating to your GitOps manifests or API calls.</p>
-<h3 id="subnet-with-nat">Subnet with NAT</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Illustrative: align with your Superphenix API / CRDs</span>
-<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networking.superphenix.example/v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subnet</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-net-a</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">vpcRef</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tenant-vpc</span>
-<span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fr01-als01</span>
-<span class="w">  </span><span class="nt">ipFamily</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
-<span class="w">  </span><span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.0/24</span>
-<span class="w">  </span><span class="nt">natGateway</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</code></pre></div>
-<h3 id="load-balancer-with-static-backends">Load balancer with static backends</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Illustrative</span>
-<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loadbalancer.superphenix.example/v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web-frontend</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">subnetRef</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-net-a</span>
-<span class="w">  </span><span class="nt">vip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">198.18.10.50</span>
-<span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
-<span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
-<span class="w">      </span><span class="nt">backends</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">staticIPs</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.20</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.21</span>
-<span class="w">  </span><span class="nt">healthCheck</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">tcp</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
-</code></pre></div>
-<h3 id="elastic-ip-with-dnat">Elastic IP with DNAT</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Illustrative</span>
-<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">network.superphenix.example/v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ElasticIP</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public-web</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">subnetRef</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app-net-a</span>
-<span class="w">  </span><span class="nt">snat</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">internalCidr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.0/24</span>
-<span class="w">  </span><span class="nt">dnat</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">externalPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
-<span class="w">      </span><span class="nt">internalIp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.20</span>
-<span class="w">      </span><span class="nt">internalPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
-</code></pre></div>
 <p>See <a href="../virtualization/">Virtualization</a> for attaching VMs to subnets and <a href="../../architecture/">Architecture overview</a> for AZ scope.</p>
 
 

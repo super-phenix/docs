@@ -70,15 +70,6 @@
         <loc>https://docs.superphenix.net/features/storage/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/features/tooling/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/features/paas/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/features/saas/</loc>
-      </url>
-      <url>
         <loc>https://docs.superphenix.net/operations/storage/configuring-the-storage-cluster/</loc>
       </url>
       <url>
@@ -91,7 +82,7 @@
         <loc>https://docs.superphenix.net/operations/storage/adding-an-object-store/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/operations/testing/</loc>
+        <loc>https://docs.superphenix.net/operations/storage/using-local-storage/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/console/</loc>

@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://docs.superphenix.net/operations/storage/configuring-the-storage-cluster/">
       
       
-        <link rel="prev" href="../../../features/saas/">
+        <link rel="prev" href="../../../features/storage/">
       
       
         <link rel="next" href="../connecting-a-workload-and-storage-cluster/">
@@ -101,7 +101,7 @@
               </button>
             
             
-  <strong>Note:</strong> This project is not released publicly yet and is in the process of being released.
+  Superphenix is now open source! We're still building the docs and it will get more content in the following days.
 
           </div>
           
@@ -1282,87 +1282,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../features/tooling/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Tooling
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../features/paas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  PaaS
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../features/saas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  SaaS
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1582,14 +1501,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -1597,14 +1508,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../testing/" class="md-nav__link">
+      <a href="../using-local-storage/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Testing
+  Using local storage
 
     
   </span>
@@ -1612,6 +1523,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1779,7 +1698,6 @@
 <li><strong><code>network.addressRanges.cluster</code></strong>: address range for Ceph replication and recovery traffic. Keep node addresses within the reserved range.</li>
 <li><strong><code>storage.deviceFilter</code></strong>: which disks Rook claims as OSDs (for example NVMe and SCSI disks matching <code>nvme*</code> or <code>sd*</code>).</li>
 </ul>
-<p>For network planning around public vs cluster storage traffic, see <a href="../../../architecture/network-requirements/">Network requirements</a>. For disk sizing and Ceph media guidance, see <a href="../../../architecture/deployment-requirements/">Hardware requirements</a>.</p>
 <p>For advanced options, see the <a href="https://artifacthub.io/packages/helm/rook/rook-ceph-cluster">rook-ceph-cluster</a> Helm chart values.</p>
 
 

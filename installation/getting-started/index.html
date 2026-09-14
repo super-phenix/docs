@@ -101,7 +101,7 @@
               </button>
             
             
-  <strong>Note:</strong> This project is not released publicly yet and is in the process of being released.
+  Superphenix is now open source! We're still building the docs and it will get more content in the following days.
 
           </div>
           
@@ -1364,87 +1364,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/tooling/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Tooling
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/paas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  PaaS
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../features/saas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  SaaS
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1650,14 +1569,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
               
                 
   
@@ -1665,14 +1576,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/testing/" class="md-nav__link">
+      <a href="../../operations/storage/using-local-storage/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Testing
+  Using local storage
 
     
   </span>
@@ -1680,6 +1591,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1871,7 +1790,7 @@
 <li><strong>Talos 1.12.6 or older</strong> — newer versions hit a Linux kernel bug that breaks the SDN. Superphenix is <strong>only officially supported on Talos</strong>.</li>
 <li>An <strong>IPv4 range on the network behind the external interface</strong>. Superphenix picks addresses from that subnet at random and assigns them to <strong>NAT gateways</strong> and <strong>elastic IPs</strong>. If the subnet is shared with node addresses or other devices, those IPs can be excluded from the IPAM. Ideally, reserve the whole range (or a dedicated part of it) for Superphenix.</li>
 <li>
-<p>A <strong>domain</strong> for the console (and ArgoCD if you expose it). The cluster serves HTTP(S) on <strong>every node</strong> on ports <strong>80</strong> and <strong>443</strong>, so DNS only needs to point at <strong>one</strong> node. For HA, use a load balancer or DNS round-robin.</p>
+<p>A <strong>domain name</strong> for the console. The cluster serves HTTP(S) on <strong>every node</strong> on ports <strong>80</strong> and <strong>443</strong>, so DNS only needs to point at <strong>one</strong> node. For HA, use a load balancer or DNS round-robin.</p>
 <div class="admonition tip">
 <p class="admonition-title">No DNS?</p>
 <p>Use <strong><a href="https://nip.io">nip.io</a></strong> against an internal node IP, for example <code>console.192.168.1.10.nip.io</code>.</p>
@@ -1882,8 +1801,34 @@
 <p>Boot the nodes with the <a href="https://talos.dev/v1.11/introduction/getting-started">Talos getting started</a> guide, then generate configs:</p>
 <div class="highlight"><pre><span></span><code>talosctl<span class="w"> </span>gen<span class="w"> </span>config<span class="w"> </span>spx-local<span class="w"> </span>https://&lt;api-endpoint&gt;:6443
 </code></pre></div>
-<p>Edit <code>controlplane.yaml</code> <strong>before</strong> you apply it. Superphenix installs the CNI and CoreDNS itself; this 3-node lab also schedules workloads on the control planes. Control planes must enable <strong>MutatingAdmissionPolicy</strong>.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">machine</span><span class="p">:</span>
+<p>Edit <code>controlplane.yaml</code> <strong>before</strong> you apply it. Superphenix installs the CNI and CoreDNS itself; this 3-node lab also schedules workloads on the control planes. Control planes must enable <strong>MutatingAdmissionPolicy</strong>. Replace the interface name, gateway, and <code>192.168.1.0/24</code> subnets with your lab network.</p>
+<details class="example" open="open">
+<summary>controlplane.yaml</summary>
+<div class="highlight"><pre><span></span><code><span class="nt">cluster</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">allowSchedulingOnControlPlanes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cni</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">    </span><span class="nt">podSubnets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/12</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:0000:0::/96</span>
+<span class="w">    </span><span class="nt">serviceSubnets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.16.0.0/12</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:ffff:0::/112</span>
+<span class="w">  </span><span class="nt">coreDNS</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">controllerManager</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">  </span><span class="nt">apiServer</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">      </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
+<span class="w">  </span><span class="nt">etcd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">advertisedSubnets</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span><span class="w"> </span><span class="c1"># Change this with your lab network</span>
+
+<span class="nt">machine</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">files</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
 <span class="w">        </span><span class="no">[plugins]</span>
@@ -1896,29 +1841,19 @@
 <span class="w">  </span><span class="nt">kernel</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">modules</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openvswitch</span>
+<span class="w">  </span><span class="nt">kubelet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">nodeIP</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">validSubnets</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span><span class="w"> </span><span class="c1"># Change this with your lab network</span>
 <span class="w">  </span><span class="nt">network</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span><span class="w"> </span><span class="c1"># same name on every node (NIC, bond, or VLAN)</span>
-<span class="w">        </span><span class="nt">dhcp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span><span class="w"> </span><span class="c1"># Same name on every node (NIC, bond, or VLAN)</span>
+<span class="w">        </span><span class="nt">dhcp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Ensure DHCP always gives the same addresses to your nodes, or configure static addresses.</span>
 <span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
 <span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
-<span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span><span class="w"> </span><span class="c1"># your lab default gateway</span>
-
-<span class="nt">cluster</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">allowSchedulingOnControlPlanes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">cni</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
-<span class="w">  </span><span class="nt">coreDNS</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">controllerManager</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">  </span><span class="nt">apiServer</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">      </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
+<span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.254</span><span class="w"> </span><span class="c1"># Your lab default gateway</span>
 </code></pre></div>
+</details>
 <details class="warning" open="open">
 <summary>Same external interface name on every node</summary>
 <p>The <strong>external</strong> interface must have the <strong>same name on every node</strong> (<code>ext0</code> here). Superphenix uses that name cluster-wide. If kernel names differ, append a <code>LinkAliasConfig</code> per node (physical NICs only; name bonds and VLANs yourself). Keep <code>name: ext0</code> identical; change only the MAC:</p>
@@ -2004,6 +1939,10 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 <span class="w">            </span><span class="c1"># Replace with the IPs of your 3 masters here</span>
 <span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"192.168.1.150,192.168.1.151,192.168.1.153"</span>
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Local storage for debugging only</p>
+<p>If slow disks perform poorly with Ceph, you can use the <code>local-path</code> storage class to avoid network-storage overhead. Data is tied to one node and is lost if that node or disk is lost, so workloads cannot move freely between nodes. See <a href="../../operations/storage/using-local-storage/">Using local storage</a>.</p>
+</div>
 <p>Install the <strong>superphenix-operator</strong> on the Talos cluster using Helm:
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>oci://ghcr.io/super-phenix/charts/superphenix-operator:0.7.0<span class="w"> </span><span class="se">\</span>
