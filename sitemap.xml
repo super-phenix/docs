@@ -70,7 +70,13 @@
         <loc>https://docs.superphenix.net/features/storage/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/user-guides/network/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/user-guides/network/create-a-subnet/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/user-guides/network/create-a-security-group/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/user-guides/virtual-machines/</loc>

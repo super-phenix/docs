@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://docs.superphenix.net/user-guides/network/create-a-subnet/">
       
       
-        <link rel="prev" href="../../../features/storage/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../../virtual-machines/">
+        <link rel="next" href="../create-a-security-group/">
       
       
         
@@ -1387,6 +1387,33 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1546,6 +1573,33 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create-a-security-group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Create a security group
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2601,7 +2655,7 @@
 <p><img alt="General Information step with Enable NAT gateway checked" src="../../../assets/screenshots/virtual-machines/subnet-create-nat.png" /></p>
 <h3 id="what-the-two-options-do">What the two options do</h3>
 <p><strong>Enable NAT gateway</strong> creates a gateway inside the subnet and adds a default route through it. Traffic from a VM goes to the subnet gateway, then to the NAT gateway, then to the Internet, with the gateway's address as source. Without it, the VMs can reach the other subnets of the VPC and nothing outside. The gateway is also what an EIP attaches to, so the EIP wizard lists subnets that have one and hides the others.</p>
-<p><strong>Make the network private</strong> cuts the subnet off from every other subnet, including the ones in the same VPC. VMs on a private subnet talk to each other, to the gateway, and to the Internet if the subnet has a NAT gateway. Use it for workloads that must stay unreachable from the rest of the project. For finer rules, keep the subnet open and use security groups instead.</p>
+<p><strong>Make the network private</strong> cuts the subnet off from every other subnet, including the ones in the same VPC. VMs on a private subnet talk to each other, to the gateway, and to the Internet if the subnet has a NAT gateway. Use it for workloads that must stay unreachable from the rest of the project. For finer rules, keep the subnet open and use <a href="../create-a-security-group/">security groups</a> instead.</p>
 <p>You can change both options later from the subnet details page with <strong>Options → Edit</strong>. One exception: the console refuses to disable a NAT gateway while an EIP still uses it. Delete the EIPs first.</p>
 <h2 id="step-2-specifications">Step 2: Specifications</h2>
 <ol>
