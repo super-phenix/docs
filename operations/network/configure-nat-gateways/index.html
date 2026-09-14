@@ -10,36 +10,36 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/installation/deployment-guide/installing-an-az/configuring-a-cluster/">
+        <link rel="canonical" href="https://docs.superphenix.net/operations/network/configure-nat-gateways/">
       
       
-        <link rel="prev" href="../installing-decoupled/">
+        <link rel="prev" href="../../../user-guides/virtual-machines/expose-with-eip/">
       
       
-        <link rel="next" href="../../../production-recommendations/">
+        <link rel="next" href="../setting-the-mtu-of-subnets/">
       
       
         
       
       
-      <link rel="icon" href="../../../../assets/favicon.svg">
+      <link rel="icon" href="../../../assets/favicon.svg">
       <meta name="generator" content="zensical-0.0.62">
     
     
       
-        <title>Configure a cluster - Documentation</title>
+        <title>Configure NAT gateways - Documentation</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.ce62732f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.ce62732f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/modern/palette.812a03bb.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -58,9 +58,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    <script>__md_scope=new URL("../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configure-a-cluster" class="md-skip">
+        <a href="#configure-nat-gateways" class="md-skip">
           Skip to content
         </a>
       
@@ -118,9 +118,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../../assets/spx.svg" alt="Documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
@@ -137,7 +137,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configure a cluster
+              Configure NAT gateways
             
           </span>
         </div>
@@ -226,9 +226,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../../assets/spx.svg" alt="Documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
     Documentation
@@ -255,7 +255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../home/" class="md-nav__link">
+      <a href="../../../home/" class="md-nav__link">
         
   
   
@@ -326,7 +326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/" class="md-nav__link">
+      <a href="../../../architecture/" class="md-nav__link">
         
   
   
@@ -353,7 +353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/deployment-topology/" class="md-nav__link">
+      <a href="../../../architecture/deployment-topology/" class="md-nav__link">
         
   
   
@@ -380,7 +380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/deployment-requirements/" class="md-nav__link">
+      <a href="../../../architecture/deployment-requirements/" class="md-nav__link">
         
   
   
@@ -407,7 +407,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/network-requirements/" class="md-nav__link">
+      <a href="../../../architecture/network-requirements/" class="md-nav__link">
         
   
   
@@ -438,20 +438,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -471,7 +469,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -488,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/" class="md-nav__link">
+      <a href="../../../installation/getting-started/" class="md-nav__link">
         
   
   
@@ -512,20 +510,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -545,7 +541,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -562,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/" class="md-nav__link">
         
   
   
@@ -634,7 +630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-management/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/" class="md-nav__link">
         
   
   
@@ -661,7 +657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-management/management-inside-az/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/management-inside-az/" class="md-nav__link">
         
   
   
@@ -733,7 +729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-management/management-outside-az/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/management-outside-az/" class="md-nav__link">
         
   
   
@@ -760,7 +756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-management/full-configuration/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/full-configuration/" class="md-nav__link">
         
   
   
@@ -848,7 +844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-the-os/manual-os-installation/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-the-os/manual-os-installation/" class="md-nav__link">
         
   
   
@@ -875,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-the-os/automated-os-installation/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-the-os/automated-os-installation/" class="md-nav__link">
         
   
   
@@ -907,20 +903,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
           <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
@@ -940,7 +934,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -957,7 +951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/" class="md-nav__link">
         
   
   
@@ -984,7 +978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-hyperconverged/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/installing-hyperconverged/" class="md-nav__link">
         
   
   
@@ -1011,7 +1005,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-decoupled/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/installing-decoupled/" class="md-nav__link">
         
   
   
@@ -1035,36 +1029,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Configure a cluster
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="././" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../installation/deployment-guide/installing-an-az/configuring-a-cluster/" class="md-nav__link">
         
   
   
@@ -1079,49 +1047,6 @@
   
 
       </a>
-      
-        
-
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#talos-manager-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        talos-manager configuration
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Related
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1150,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../production-recommendations/" class="md-nav__link">
+      <a href="../../../installation/production-recommendations/" class="md-nav__link">
         
   
   
@@ -1229,7 +1154,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../features/" class="md-nav__link">
+      <a href="../../../features/" class="md-nav__link">
         
   
   
@@ -1256,7 +1181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../features/tenancy-and-console/" class="md-nav__link">
+      <a href="../../../features/tenancy-and-console/" class="md-nav__link">
         
   
   
@@ -1283,7 +1208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../features/virtualization/" class="md-nav__link">
+      <a href="../../../features/virtualization/" class="md-nav__link">
         
   
   
@@ -1310,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../features/network/" class="md-nav__link">
+      <a href="../../../features/network/" class="md-nav__link">
         
   
   
@@ -1337,7 +1262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../features/storage/" class="md-nav__link">
+      <a href="../../../features/storage/" class="md-nav__link">
         
   
   
@@ -1461,7 +1386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/network/create-a-subnet/" class="md-nav__link">
+      <a href="../../../user-guides/network/create-a-subnet/" class="md-nav__link">
         
   
   
@@ -1541,7 +1466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/virtual-machines/" class="md-nav__link">
+      <a href="../../../user-guides/virtual-machines/" class="md-nav__link">
         
   
   
@@ -1568,7 +1493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/virtual-machines/create-a-vm/" class="md-nav__link">
+      <a href="../../../user-guides/virtual-machines/create-a-vm/" class="md-nav__link">
         
   
   
@@ -1595,7 +1520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/virtual-machines/expose-with-eip/" class="md-nav__link">
+      <a href="../../../user-guides/virtual-machines/expose-with-eip/" class="md-nav__link">
         
   
   
@@ -1634,18 +1559,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1665,7 +1592,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1679,18 +1606,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
         
           
           <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
@@ -1710,7 +1639,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1724,10 +1653,36 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../../operations/network/configure-nat-gateways/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configure NAT gateways
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1742,6 +1697,99 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-external-interface-in-talos" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configure the external interface in Talos
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-the-external-subnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configure the external subnet
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choose-how-to-announce-eips" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Choose how to announce EIPs
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Choose how to announce EIPs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arp-announcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ARP announcement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgp-announcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        BGP announcement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-nat-gateway-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configure NAT gateway defaults
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1754,7 +1802,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/network/setting-the-mtu-of-subnets/" class="md-nav__link">
+      <a href="../setting-the-mtu-of-subnets/" class="md-nav__link">
         
   
   
@@ -1781,7 +1829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/network/ipv6-configuration/" class="md-nav__link">
+      <a href="../ipv6-configuration/" class="md-nav__link">
         
   
   
@@ -1808,7 +1856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/network/hairpin-nat/" class="md-nav__link">
+      <a href="../hairpin-nat/" class="md-nav__link">
         
   
   
@@ -1888,7 +1936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/configuring-the-storage-cluster/" class="md-nav__link">
+      <a href="../../storage/configuring-the-storage-cluster/" class="md-nav__link">
         
   
   
@@ -1915,7 +1963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/connecting-a-workload-and-storage-cluster/" class="md-nav__link">
+      <a href="../../storage/connecting-a-workload-and-storage-cluster/" class="md-nav__link">
         
   
   
@@ -1942,7 +1990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/adding-a-storage-class/" class="md-nav__link">
+      <a href="../../storage/adding-a-storage-class/" class="md-nav__link">
         
   
   
@@ -1969,7 +2017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/adding-an-object-store/" class="md-nav__link">
+      <a href="../../storage/adding-an-object-store/" class="md-nav__link">
         
   
   
@@ -1996,7 +2044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/using-local-storage/" class="md-nav__link">
+      <a href="../../storage/using-local-storage/" class="md-nav__link">
         
   
   
@@ -2031,7 +2079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/console/" class="md-nav__link">
+      <a href="../../console/" class="md-nav__link">
         
   
   
@@ -2065,7 +2113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contributing/" class="md-nav__link">
+      <a href="../../../contributing/" class="md-nav__link">
         
   
   
@@ -2091,7 +2139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../enterprise-support/" class="md-nav__link">
+      <a href="../../../enterprise-support/" class="md-nav__link">
         
   
   
@@ -2151,10 +2199,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#talos-manager-configuration" class="md-nav__link">
+  <a href="#configure-the-external-interface-in-talos" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        talos-manager configuration
+        Configure the external interface in Talos
       </span>
     </span>
   </a>
@@ -2162,10 +2210,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
+  <a href="#configure-the-external-subnet" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Related
+        Configure the external subnet
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choose-how-to-announce-eips" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Choose how to announce EIPs
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Choose how to announce EIPs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#arp-announcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ARP announcement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bgp-announcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        BGP announcement
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configure-nat-gateway-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configure NAT gateway defaults
       </span>
     </span>
   </a>
@@ -2190,206 +2288,178 @@
   
 
 
-<h1 id="configure-a-cluster">Configure a cluster</h1>
-<p>When you define a <code>Cluster</code> resource, you specify the topology, geography, and connection details. Below is an example configuration for a remote workload cluster:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix.net/v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">az-paris-1</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="c1"># -- Deployment and Topology</span>
-<span class="w">  </span><span class="c1"># Defines whether the cluster is Hyperconverged or Decoupled.</span>
-<span class="w">  </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Decoupled</span>
-
-<span class="w">  </span><span class="c1"># Specifies the cluster type (Storage or Virtualization) when deploymentTopology is Decoupled.</span>
-<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Virtualization</span>
-
-<span class="w">  </span><span class="c1"># -- Geography</span>
-<span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">europe-west</span>
-<span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paris-1</span>
-
-<span class="w">  </span><span class="c1"># -- Connection</span>
-<span class="w">  </span><span class="c1"># Defines how the operator connects to the cluster.</span>
-<span class="w">  </span><span class="nt">connection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remote</span>
-<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://api.paris-1.superphenix.net:6443</span>
-<span class="w">    </span><span class="nt">secretRef</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-paris-1-credentials</span>
-<span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-
-<span class="w">  </span><span class="c1"># -- System configuration</span>
-<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.1.0</span>
-<span class="w">  </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://charts.superphenix.net</span>
-<span class="w">  </span><span class="nt">chartName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-stack</span>
-
-<span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">podCIDR</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.244.0.0/16</span>
-
-<span class="w">  </span><span class="c1"># -- Operations</span>
-<span class="w">  </span><span class="nt">pauseSync</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">cleanupOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-
-<span class="w">  </span><span class="c1"># -- Talos management mode</span>
-<span class="w">  </span><span class="c1"># Specifies how Talos configuration should be managed.</span>
-<span class="w">  </span><span class="c1"># Unmanaged - The Talos cluster is not managed by the operator. This requires an externally managed installation and configuration of Talos. PXE features and talos-operator are disabled.</span>
-<span class="w">  </span><span class="c1"># Import - The operator imports an already installed Talos cluster and manages its configuration. PXE features are disabled.</span>
-<span class="w">  </span><span class="c1"># Full - The Talos cluster is fully installed and configured by the operator.</span>
-<span class="w">  </span><span class="nt">talosManagementMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unmanaged</span>
+<h1 id="configure-nat-gateways">Configure NAT gateways</h1>
+<p>NAT gateways connect private Superphenix subnets to an external network. Before creating NAT gateways or Elastic IPs (EIPs), configure:</p>
+<ol>
+<li>An external interface with the same name on every Talos node.</li>
+<li>An external subnet from which Superphenix can allocate NAT gateway addresses.</li>
+<li>The EIP allocation subnet and, when required, the BGP speaker settings for each availability zone (AZ).</li>
+</ol>
+<h2 id="configure-the-external-interface-in-talos">Configure the external interface in Talos</h2>
+<p>Every node must expose the external network through an interface with the same name. This example uses <code>ext0</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">machine</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
+<span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+<span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.1</span>
 </code></pre></div>
-<p>Set <code>connection.mode: Local</code> when the cluster being defined is the same Kubernetes cluster that hosts the operator (typical for management-on-AZ after bootstrap).</p>
-<h2 id="talos-manager-configuration">talos-manager configuration</h2>
-<p>If you want to use the <a href="../../installing-the-os/automated-os-installation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> automated OS installation method</a>, you need to specify the configuration for the talos-manager chart using the field <code>talosManagerConfiguration</code>, as well as set <code>talosManagementMode</code> to either <code>Full</code> or <code>Import</code> in your <code>Cluster</code>'s specs. Below are the values of this chart:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Cluster specific variables:</span>
-<span class="c1"># Enable PXE features (optional, overrides the value set automatically by the operator depending on "talosManagementMode"):</span>
-<span class="nt">pxeEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="c1"># Network interface the DHCP server should listen to (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
-<span class="nt">dhcpInterface</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># IP address of the PXE server (the bootstrap server) (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
-<span class="nt">pxeIpAddr</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Name of the Talos cluster:</span>
-<span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Cluster type (can be either "storage" or "virt"):</span>
-<span class="nt">clusterType</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Reconciliation mode of the Talos configuration, as defined by talos-operator ("Reconcile", "Disable" or "DryRun"):</span>
-<span class="nt">reconciliationMode</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Cluster network specifications:</span>
-<span class="nt">clusterNetwork</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">gatewayIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">gatewayIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># Public network specifications (optional if "clusterType" is not "storage"):</span>
-<span class="nt">publicNetwork</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># Storage network specifications (optional):</span>
-<span class="nt">storageNetwork</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># Kubernetes pod subnets specifications:</span>
-<span class="nt">podSubnets</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># Kubernetes service subnets specifications:</span>
-<span class="nt">serviceSubnets</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># IPv4 address of the Talos control plane node (optional if "controlplaneIpv6" is set):</span>
-<span class="nt">controlplaneIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># IPv6 address of the Talos control plane node:</span>
-<span class="nt">controlplaneIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Port of the Talos control plane:</span>
-<span class="nt">controlplanePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># ArgoCD token:</span>
-<span class="nt">argocdToken</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Version of Talos to install on nodes:</span>
-<span class="nt">talosVersion</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Version of Kubernetes to install on Talos:</span>
-<span class="nt">k8sVersion</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># 'MachineConfig' overrides for all types of nodes (array, optional):</span>
-<span class="nt">machineGlobalOverrides</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-<span class="c1"># 'MachineConfig' overrides for control plane nodes (array, optional).</span>
-<span class="c1"># Control planes must enable MutatingAdmissionPolicy:</span>
-<span class="nt">machineOverridesControlPlane</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">controllerManager</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">      </span><span class="nt">apiServer</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">          </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
-<span class="c1"># 'MachineConfig' overrides for worker nodes (array, optional):</span>
-<span class="nt">machineOverridesWorker</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-
-<span class="c1"># Nodes specific variables:</span>
-<span class="nt">nodes</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Talos node type (can be either "controlplane" or "worker"):</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># CPU architecture of this node (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
-<span class="w">    </span><span class="nt">cpuArchitecture</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># MAC address used by the PXE firmware (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
-<span class="w">    </span><span class="nt">pxeMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Kernel command line arguments when booting in PXE (optional):</span>
-<span class="w">    </span><span class="nt">kernelCmdlineArgs</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Specifies whether this machine should be set up for PXE:</span>
-<span class="w">    </span><span class="nt">pxeSetup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">    </span><span class="c1"># IPv4 address of the node's IPMI (optional if "pxeSetup" set to "false"):</span>
-<span class="w">    </span><span class="nt">ipmiIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Username of an administrator account on the IPMI (optional if "pxeSetup" set to "false"):</span>
-<span class="w">    </span><span class="nt">ipmiUser</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Password of the aforementioned IPMI account (optional if "pxeSetup" set to "false"):</span>
-<span class="w">    </span><span class="nt">ipmiPassword</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Name of the interface used by the PXE firmware, as given by the IPMI through Redfish (optional if "pxeSetup" set to "false"):</span>
-<span class="w">    </span><span class="nt">pxeInterfaceName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Specifications of the network interface:</span>
-<span class="w">    </span><span class="nt">interface</span><span class="p">:</span>
-<span class="w">      </span><span class="c1"># Name to give to the interface (avoid common names such as "ethX" or "enoXnpY"):</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># IP of this node on the cluster network (IPv6 is optional):</span>
-<span class="w">      </span><span class="nt">clusterNetwork</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># IP of this node on the public network (optional if "clusterType" is not "storage"):</span>
-<span class="w">      </span><span class="nt">publicNetwork</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># IP of this node on the storage network (optional):</span>
-<span class="w">      </span><span class="nt">storageNetwork</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># Specifies whether this interface should be connected to VLANs:</span>
-<span class="w">      </span><span class="nt">useVlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="c1"># Specifications of the LACP bond, if applicable (setting "enabled" to "false" makes other sub-fields optional):</span>
-<span class="w">      </span><span class="nt">lacpBond</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">        </span><span class="nt">lacpRate</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">xmitHashPolicy</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">miimon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">        </span><span class="nt">updelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">        </span><span class="nt">downdelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">        </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">        </span><span class="c1"># Physical interfaces to be aggregated:</span>
-<span class="w">        </span><span class="nt">physicalInterfaces</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">            </span><span class="nt">macAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># MAC address of the single physical interface, if bond is disabled:</span>
-<span class="w">      </span><span class="nt">physicalMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Specifications of the installation disk:</span>
-<span class="w">    </span><span class="nt">installDisk</span><span class="p">:</span>
-<span class="w">      </span><span class="c1"># Indicates whether the installation disk should be selected automatically ("true" makes other sub-fields optional):</span>
-<span class="w">      </span><span class="nt">auto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="c1"># Selector for the installation disk, if not selected automatically (this is the same as the "diskSelector" field from the Talos documentation : https://docs.siderolabs.com/talos/v1.13/reference/configuration/v1alpha1/config#diskselector):</span>
-<span class="w">      </span><span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># 'MachineConfig' overrides for this node (array, optional):</span>
-<span class="w">    </span><span class="nt">machineOverrides</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<p>Replace the addressing and gateway with values for your external network. The interface can be a physical NIC, bond, or VLAN, but its Talos name must be identical on every node.</p>
+<p>If physical interface names differ between nodes, add a <code>LinkAliasConfig</code> to each node's Talos configuration. Keep <code>name</code> identical and change the MAC address for each node:</p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkAliasConfig</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
+<span class="nt">selector</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac(link.permanent_addr) == "00:1a:2b:3c:4d:5e"</span>
 </code></pre></div>
-<h2 id="related">Related</h2>
+<p>Do not use kernel-style names such as <code>eth0</code>, <code>ens3</code>, or <code>enp0s31f6</code> as the common alias.</p>
+<h2 id="configure-the-external-subnet">Configure the external subnet</h2>
+<p>Define the external subnet and its network attachment in the AZ's system configuration. The network attachment must use the common Talos interface as its <code>master</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">misc</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">objects</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">external-subnet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
+<span class="w">              </span><span class="nt">cidrBlock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.0/24</span>
+<span class="w">              </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.1</span>
+<span class="w">              </span><span class="nt">excludeIps</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.0..10.81.5.31</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.255</span>
+<span class="w">          </span><span class="nt">external-subnet-nad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">'{</span>
+<span class="w">                  </span><span class="s">"cniVersion":</span><span class="nv"> </span><span class="s">"0.3.0",</span>
+<span class="w">                  </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"macvlan",</span>
+<span class="w">                  </span><span class="s">"master":</span><span class="nv"> </span><span class="s">"ext0",</span>
+<span class="w">                  </span><span class="s">"mode":</span><span class="nv"> </span><span class="s">"bridge",</span>
+<span class="w">                  </span><span class="s">"ipam":</span><span class="nv"> </span><span class="s">{</span>
+<span class="w">                    </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"kube-ovn",</span>
+<span class="w">                    </span><span class="s">"server_socket":</span><span class="nv"> </span><span class="s">"/run/openvswitch/kube-ovn-daemon.sock",</span>
+<span class="w">                    </span><span class="s">"provider":</span><span class="nv"> </span><span class="s">"external-subnet.kube-system"</span>
+<span class="w">                  </span><span class="s">}</span>
+<span class="w">                </span><span class="s">}'</span>
+</code></pre></div>
+<p>Exclude the network and broadcast addresses, node addresses, router addresses, and any other addresses that Superphenix must not allocate. In a BGP deployment, this subnet is only used to address the NAT gateways and their BGP speakers. A private RFC 1918 range is recommended because these addresses do not need to be public.</p>
+<div class="admonition warning">
+<p class="admonition-title">External network connectivity</p>
+<p>The common interface on every node must reach the external subnet. The backbone must then learn how to reach the EIPs through either ARP or BGP.</p>
+</div>
+<h2 id="choose-how-to-announce-eips">Choose how to announce EIPs</h2>
+<p>Superphenix can announce EIPs to the backbone using either ARP or BGP.</p>
+<h3 id="arp-announcement">ARP announcement</h3>
+<p>ARP is the default and requires no BGP configuration. Superphenix answers ARP requests for an EIP on the external network, allowing the upstream gateway to send traffic directly to the NAT gateway.</p>
+<p>With ARP, EIPs must belong to the external Layer 2 subnet so that the upstream gateway can resolve them.</p>
+<p>ARP is appropriate when:</p>
 <ul>
-<li><a href="../">Installing an AZ</a>: overview of AZ installation.</li>
-<li><a href="../../../../operations/storage/adding-a-storage-class/">Adding a storage class</a>: hyperconverged and decoupled storage.</li>
-<li><a href="../../../../architecture/deployment-topology/">Deployment topology</a>: hyperconverged vs decoupled layouts.</li>
+<li>The NAT gateways and upstream gateway share the same Layer 2 network.</li>
+<li>You want the simplest setup with no BGP peering.</li>
+<li>The external broadcast domain is small enough to extend to every relevant node.</li>
 </ul>
+<p>Its main limitation is that EIP reachability depends on a shared Layer 2 domain. Extending that domain across racks or network zones can increase the broadcast scope and make the network harder to scale.</p>
+<h3 id="bgp-announcement">BGP announcement</h3>
+<p>BGP advertises EIP routes to one or more upstream routers. It requires an ASN, a remote ASN, and at least one reachable neighbor.</p>
+<p>Unlike ARP, BGP does not require EIPs to belong to <code>external-subnet</code>. The external subnet provides private addresses for the NAT gateways and connectivity to their BGP neighbors, while EIPs can be allocated from a separate public prefix and advertised to the backbone.</p>
+<p>BGP is preferable when:</p>
+<ul>
+<li>The backbone is routed and does not extend the external Layer 2 domain.</li>
+<li>EIP routes must be propagated beyond one subnet or network segment.</li>
+<li>You want explicit routing policy and better route visibility on the backbone.</li>
+<li>You need routing features such as multiple peers or graceful restart.</li>
+</ul>
+<p>BGP requires coordination with the network team and matching peer configuration on the upstream routers, but it generally scales better across racks, network zones, and AZs.</p>
+<div class="admonition tip">
+<p class="admonition-title">Recommended BGP addressing</p>
+<p>Use a private subnet, such as <code>10.81.5.0/24</code>, for NAT gateway and BGP speaker addresses. Use a separate public prefix for EIPs. The examples use <code>192.0.2.0/24</code>, which is reserved by RFC 5737 for documentation; replace it with a public prefix routed to your organization.</p>
+</div>
+<details class="example" open="open">
+<summary>Create a separate EIP subnet for BGP</summary>
+<p>Create the public EIP subnet in the same way as <code>external-subnet</code>. Unlike the existing <code>external-subnet</code> objects, these are new resources, so include their <code>apiVersion</code>, <code>kind</code>, and <code>metadata</code>.</p>
+<p>A network attachment definition (NAD) is still required, even though BGP-routed EIPs are not mounted on a host interface. Its macvlan <code>master</code> can therefore use a placeholder such as <code>fake</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">misc</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">objects</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">192.0.2.0-24</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubeovn.io/v1</span>
+<span class="w">            </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subnet</span>
+<span class="w">            </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0-24</span>
+<span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
+<span class="w">              </span><span class="nt">cidrBlock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0/24</span>
+<span class="w">              </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.1</span>
+<span class="w">              </span><span class="nt">excludeIps</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0..192.0.2.1</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.255</span>
+<span class="w">          </span><span class="nt">192.0.2.0-24-nad</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s">"k8s.cni.cncf.io/v1"</span>
+<span class="w">            </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkAttachmentDefinition</span>
+<span class="w">            </span><span class="nt">metadata</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0-24</span>
+<span class="w">              </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
+<span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">'{</span>
+<span class="w">                  </span><span class="s">"cniVersion":</span><span class="nv"> </span><span class="s">"0.3.0",</span>
+<span class="w">                  </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"macvlan",</span>
+<span class="w">                  </span><span class="s">"master":</span><span class="nv"> </span><span class="s">"fake",</span>
+<span class="w">                  </span><span class="s">"mode":</span><span class="nv"> </span><span class="s">"bridge",</span>
+<span class="w">                  </span><span class="s">"ipam":</span><span class="nv"> </span><span class="s">{</span>
+<span class="w">                    </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"kube-ovn",</span>
+<span class="w">                    </span><span class="s">"server_socket":</span><span class="nv"> </span><span class="s">"/run/openvswitch/kube-ovn-daemon.sock",</span>
+<span class="w">                    </span><span class="s">"provider":</span><span class="nv"> </span><span class="s">"192.0.2.0-24.kube-system"</span>
+<span class="w">                  </span><span class="s">}</span>
+<span class="w">                </span><span class="s">}'</span>
+</code></pre></div>
+<p>The placeholder interface is never used to carry EIP traffic. The BGP speaker advertises the EIPs, and the backbone routes their traffic to the NAT gateway through <code>external-subnet</code>.</p>
+</details>
+<h2 id="configure-nat-gateway-defaults">Configure NAT gateway defaults</h2>
+<p>Pass the EIP and NAT gateway defaults through the AZ's <code>systemConfiguration</code>. To use ARP announcements, set <code>eipDefault.externalSubnet</code> to <code>external-subnet</code> and omit <code>bgpSpeaker</code>, or leave it disabled.</p>
+<p>For BGP, set <code>eipDefault.externalSubnet</code> to the separate IPAM subnet that contains the public EIP pool. This adjusts the controller so that it allocates EIPs from the public prefix instead of the private subnet used by the NAT gateways.</p>
+<p>The following example assumes:</p>
+<ul>
+<li><code>external-subnet</code> is <code>10.81.5.0/24</code> and provides private addresses to the NAT gateways.</li>
+<li>The upstream BGP router is <code>10.81.5.1</code>.</li>
+<li>The EIP subnet created above is named <code>192.0.2.0-24</code> and represents the example public prefix <code>192.0.2.0/24</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">superphenix-controller</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">productsConfig</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">eipDefault</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">externalSubnet</span><span class="p">:</span><span class="w"> </span><span class="s">"192.0.2.0-24"</span>
+<span class="w">          </span><span class="nt">natGatewayDefault</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">bgpSpeaker</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">              </span><span class="nt">asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64892</span>
+<span class="w">              </span><span class="nt">remoteAsn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64890</span>
+<span class="w">              </span><span class="nt">neighbors</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.1</span>
+<span class="w">              </span><span class="nt">enableGracefulRestart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">              </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"-v5"</span>
+<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"--graceful-restart"</span>
+</code></pre></div>
+<p>Apply this configuration to each AZ that should advertise EIP routes. Values can differ by AZ to match the local routers and autonomous systems.</p>
+<p>The BGP speaker accepts these settings under <code>productsConfig.natGatewayDefault.bgpSpeaker</code>:</p>
+<ul>
+<li><code>enabled</code>: enables or disables BGP route advertisement.</li>
+<li><code>asn</code>: the local ASN used by the AZ's NAT gateways.</li>
+<li><code>remoteAsn</code>: the ASN expected from the upstream BGP peers.</li>
+<li><code>neighbors</code>: one or more upstream BGP peer addresses.</li>
+<li><code>holdTime</code>: the BGP hold time, expressed as a duration such as <code>"90s"</code>.</li>
+<li><code>routerId</code>: the BGP router ID.</li>
+<li><code>password</code>: the BGP session password. Store sensitive values through your normal secret-management process.</li>
+<li><code>enableGracefulRestart</code>: enables BGP graceful restart.</li>
+<li><code>extraArgs</code>: additional arguments passed to the BGP speaker.</li>
+</ul>
+<p>Only <code>enabled</code> and the settings required by your network need to be specified. Coordinate the ASNs, neighbor addresses, authentication, timers, and graceful-restart behavior with the upstream router configuration.</p>
 
 
 
@@ -2465,10 +2535,10 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
       
     
   </body>

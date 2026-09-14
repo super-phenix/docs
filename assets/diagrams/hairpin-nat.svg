@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="330" viewBox="0 0 920 330" role="img" aria-labelledby="title desc">
+  <title id="title">Hairpin NAT traffic flow</title>
+  <desc id="desc">A client sends traffic to an Elastic IP. The NAT gateway changes the source to the Elastic IP and the destination to the server's private IP before forwarding it to the server.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#52606d"/>
+    </marker>
+    <style>
+      .box { fill: #f5f7fa; stroke: #52606d; stroke-width: 2; }
+      .nat { fill: #e8f1ff; stroke: #2563eb; stroke-width: 2; }
+      .title { font: 600 18px system-ui, sans-serif; fill: #172b4d; }
+      .text { font: 15px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #172b4d; }
+      .label { font: 14px system-ui, sans-serif; fill: #334e68; }
+      .arrow { fill: none; stroke: #52606d; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="box" x="20" y="105" width="190" height="105" rx="10"/>
+  <text class="title" x="115" y="137" text-anchor="middle">Client</text>
+  <text class="text" x="115" y="172" text-anchor="middle">10.20.0.2</text>
+
+  <rect class="nat" x="330" y="55" width="260" height="215" rx="10"/>
+  <text class="title" x="460" y="87" text-anchor="middle">NAT gateway</text>
+  <text class="label" x="350" y="125">Before NAT</text>
+  <text class="text" x="350" y="150">SRC 10.20.0.2</text>
+  <text class="text" x="350" y="174">DST 198.51.100.20</text>
+  <line x1="350" y1="191" x2="570" y2="191" stroke="#93a4b5"/>
+  <text class="label" x="350" y="216">After DNAT + SNAT</text>
+  <text class="text" x="350" y="241">SRC 198.51.100.20</text>
+  <text class="text" x="350" y="265">DST 10.20.0.3</text>
+
+  <rect class="box" x="710" y="105" width="190" height="105" rx="10"/>
+  <text class="title" x="805" y="137" text-anchor="middle">Server</text>
+  <text class="text" x="805" y="172" text-anchor="middle">10.20.0.3</text>
+  <text class="label" x="805" y="196" text-anchor="middle">sees source: EIP</text>
+
+  <path class="arrow" d="M 210 135 C 250 100, 285 100, 328 125"/>
+  <text class="label" x="270" y="80" text-anchor="middle">request to EIP</text>
+  <path class="arrow" d="M 590 125 C 635 100, 670 100, 708 135"/>
+  <text class="label" x="650" y="80" text-anchor="middle">translated request</text>
+
+  <path class="arrow" d="M 710 190 C 670 225, 635 225, 592 205"/>
+  <path class="arrow" d="M 330 205 C 285 225, 250 225, 212 190"/>
+  <text class="label" x="650" y="285" text-anchor="middle">response returns through NAT</text>
+  <text class="label" x="270" y="285" text-anchor="middle">client sees response from EIP</text>
+</svg>

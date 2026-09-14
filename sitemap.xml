@@ -82,10 +82,16 @@
         <loc>https://docs.superphenix.net/user-guides/virtual-machines/expose-with-eip/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/operations/network/configure-nat-gateways/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/operations/network/setting-the-mtu-of-subnets/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/network/ipv6-configuration/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/network/hairpin-nat/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/storage/configuring-the-storage-cluster/</loc>
