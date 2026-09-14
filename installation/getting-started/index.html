@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.svg">
-      <meta name="generator" content="zensical-0.0.60">
+      <meta name="generator" content="zensical-0.0.62">
     
     
       
@@ -1882,7 +1882,7 @@
 <p>Boot the nodes with the <a href="https://talos.dev/v1.11/introduction/getting-started">Talos getting started</a> guide, then generate configs:</p>
 <div class="highlight"><pre><span></span><code>talosctl<span class="w"> </span>gen<span class="w"> </span>config<span class="w"> </span>spx-local<span class="w"> </span>https://&lt;api-endpoint&gt;:6443
 </code></pre></div>
-<p>Edit <code>controlplane.yaml</code> <strong>before</strong> you apply it. Superphenix installs the CNI and CoreDNS itself; this 3-node lab also schedules workloads on the control planes.</p>
+<p>Edit <code>controlplane.yaml</code> <strong>before</strong> you apply it. Superphenix installs the CNI and CoreDNS itself; this 3-node lab also schedules workloads on the control planes. Control planes must enable <strong>MutatingAdmissionPolicy</strong>.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">machine</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">files</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
@@ -1911,6 +1911,13 @@
 <span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
 <span class="w">  </span><span class="nt">coreDNS</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">controllerManager</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">  </span><span class="nt">apiServer</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">      </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
 </code></pre></div>
 <details class="warning" open="open">
 <summary>Same external interface name on every node</summary>
@@ -1999,8 +2006,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
 </code></pre></div>
 <p>Install the <strong>superphenix-operator</strong> on the Talos cluster using Helm:
 <div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>ghcr.io/super-phenix/charts/superphenix-operator<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--version<span class="w"> </span><span class="m">0</span>.7.0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>oci://ghcr.io/super-phenix/charts/superphenix-operator:0.7.0<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-f<span class="w"> </span>values.yaml
@@ -2108,10 +2114,14 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"redirect":null,"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.88ee1349.min.js"></script>
+      <script src="../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
       
     
   </body>

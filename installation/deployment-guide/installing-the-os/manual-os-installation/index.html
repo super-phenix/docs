@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../../assets/favicon.svg">
-      <meta name="generator" content="zensical-0.0.60">
+      <meta name="generator" content="zensical-0.0.62">
     
     
       
@@ -2009,14 +2009,15 @@
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Official support scope</p>
-<p>Superphenix can technically run on any conformant Kubernetes cluster, but we <strong>officially support Talos</strong>. Current default values and operational assumptions are tuned for Talos-based clusters.</p>
+<p>Superphenix is <strong>only officially supported on Talos</strong>. Use <strong>Talos 1.12.6 or older</strong>: newer versions hit a Linux kernel bug that breaks the SDN.</p>
 </div>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Before you start, confirm:</p>
 <ul>
 <li><strong>Hardware and network</strong> meet the profile for your topology: see <a href="../../../../architecture/deployment-requirements/">Hardware requirements</a> and <a href="../../../../architecture/network-requirements/">Network requirements</a>.</li>
 <li><strong>Deployment topology</strong> is chosen (hyperconverged vs decoupled, management in vs out): see <a href="../../../../architecture/deployment-topology/">Deployment topology</a>.</li>
-<li><strong><code>talosctl</code></strong> is installed on your workstation: <a href="https://www.talos.dev/latest/reference/cli/">talosctl CLI reference</a>.</li>
+<li><strong><code>talosctl</code></strong> (<a href="https://www.talos.dev/latest/reference/cli/">CLI reference</a>) and <strong><code>kubectl</code></strong> on your workstation.</li>
+<li><strong>Talos 1.12.6 or older</strong> installer media (ISO, PXE, or disk image).</li>
 <li>Servers can reach each other on the <strong>cluster VLAN</strong> and your workstation can reach each node on the Talos API port during bootstrap.</li>
 </ul>
 <h2 id="installation-overview">Installation overview</h2>
@@ -2032,15 +2033,61 @@
 <p>Pick a stable <strong>Kubernetes API endpoint</strong> (VIP, load balancer, or first control-plane IP) and generate configs:</p>
 <div class="highlight"><pre><span></span><code>talosctl<span class="w"> </span>gen<span class="w"> </span>config<span class="w"> </span>spx-cluster<span class="w"> </span>https://&lt;api-endpoint&gt;:6443
 </code></pre></div>
-<p>This produces <code>controlplane.yaml</code>, <code>worker.yaml</code>, and <code>talosconfig</code>. Edit the generated files before applying them:</p>
-<ul>
-<li>Set node hostnames, disk selectors, and network interfaces to match your hardware.</li>
-<li>For a minimal 3-node hyperconverged lab, you can run all nodes as control-plane members (no separate workers).</li>
-<li>Align <code>podCIDR</code> and <code>serviceCIDR</code> with what you plan to declare later in the Superphenix <code>Cluster</code> resource.</li>
-</ul>
-<p>Official reference: <a href="https://talos.dev/v1.11/introduction/getting-started">Talos Getting Started</a>.</p>
+<p>This produces <code>controlplane.yaml</code>, <code>worker.yaml</code>, and <code>talosconfig</code>. Edit the generated files <strong>before</strong> you apply them.</p>
+<p>Set node hostnames, disk selectors, and addressing to match your hardware. Superphenix installs the CNI and CoreDNS itself, so those must be disabled in Talos. Every node also needs the containerd and kernel settings below, plus an <strong>external</strong> interface with the <strong>same name</strong> on every node. Control-plane configs must enable <strong>MutatingAdmissionPolicy</strong>.</p>
+<p>Edit <code>controlplane.yaml</code> (and <code>worker.yaml</code> if you use dedicated workers) with at least:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">machine</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">[plugins]</span>
+<span class="w">          </span><span class="no">[plugins."io.containerd.grpc.v1.cri"]</span>
+<span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
+<span class="w">          </span><span class="no">[plugins."io.containerd.cri.v1.runtime"]</span>
+<span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
+<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/cri/conf.d/20-customization.part</span>
+<span class="w">      </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create</span>
+<span class="w">  </span><span class="nt">kernel</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">modules</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openvswitch</span>
+<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span><span class="w"> </span><span class="c1"># same name on every node (NIC, bond, or VLAN)</span>
+<span class="w">        </span><span class="nt">dhcp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+<span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span><span class="w"> </span><span class="c1"># your default gateway</span>
+
+<span class="nt">cluster</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cni</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+<span class="w">  </span><span class="nt">coreDNS</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">controllerManager</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">  </span><span class="nt">apiServer</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">      </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
+</code></pre></div>
+<p>For a small hyperconverged lab with only control-plane nodes, also set <code>cluster.allowSchedulingOnControlPlanes: true</code> so Superphenix workloads can run on those nodes. Dedicated workers do not need that flag or the <code>controllerManager</code> / <code>apiServer</code> extraArgs; apply the same <code>machine</code> and <code>cluster.network</code> / <code>coreDNS</code> settings in <code>worker.yaml</code>.</p>
+<p>Replace <code>ext0</code>, DHCP vs static addressing, and the default gateway to match your network. Keep the interface <strong>name</strong> identical on every node.</p>
+<details class="warning" open="open">
+<summary>Same external interface name on every node</summary>
+<p>The <strong>external</strong> interface must have the <strong>same name on every node</strong> (<code>ext0</code> here). Superphenix uses that name cluster-wide. If kernel names differ, append a <code>LinkAliasConfig</code> per node (physical NICs only; name bonds and VLANs yourself). Keep <code>name: ext0</code> identical; change only the MAC:</p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkAliasConfig</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
+<span class="nt">selector</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac(link.permanent_addr) == "00:1a:2b:3c:4d:5e"</span><span class="w"> </span><span class="c1"># this node's NIC MAC</span>
+</code></pre></div>
+<p>Do not use kernel-style alias names (<code>eth0</code>, <code>ens3</code>, <code>enp0s31f6</code>, …).</p>
+</details>
+<p>Official reference: <a href="https://talos.dev/v1.11/introduction/getting-started">Talos Getting Started</a>. For a full 3-node lab walkthrough including Superphenix Helm values, see <a href="../../../getting-started/">Getting started</a>.</p>
 <h2 id="step-2-boot-the-nodes">Step 2: Boot the nodes</h2>
-<p>Install Talos on each server using one of:</p>
+<p>Install <strong>Talos 1.12.6 or older</strong> on each server using one of:</p>
 <ul>
 <li><strong>ISO</strong>: boot from the Talos installer image and install to disk.</li>
 <li><strong>PXE</strong>: network boot for repeatable datacenter provisioning.</li>
@@ -2140,10 +2187,14 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.88ee1349.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
       
     
   </body>

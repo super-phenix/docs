@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../../assets/favicon.svg">
-      <meta name="generator" content="zensical-0.0.60">
+      <meta name="generator" content="zensical-0.0.62">
     
     
       
@@ -1961,8 +1961,17 @@
 <span class="nt">k8sVersion</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 <span class="c1"># 'MachineConfig' overrides for all types of nodes (array, optional):</span>
 <span class="nt">machineGlobalOverrides</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-<span class="c1"># 'MachineConfig' overrides for control plane nodes (array, optional):</span>
-<span class="nt">machineOverridesControlPlane</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="c1"># 'MachineConfig' overrides for control plane nodes (array, optional).</span>
+<span class="c1"># Control planes must enable MutatingAdmissionPolicy:</span>
+<span class="nt">machineOverridesControlPlane</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cluster</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">controllerManager</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">      </span><span class="nt">apiServer</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">          </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
 <span class="c1"># 'MachineConfig' overrides for worker nodes (array, optional):</span>
 <span class="nt">machineOverridesWorker</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 
@@ -2106,10 +2115,14 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.88ee1349.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
       
     
   </body>

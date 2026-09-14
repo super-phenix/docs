@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../../../assets/favicon.svg">
-      <meta name="generator" content="zensical-0.0.60">
+      <meta name="generator" content="zensical-0.0.62">
     
     
       
@@ -2001,6 +2001,10 @@
 <h1 id="automated-os-installation">Automated OS installation</h1>
 <p>This guide covers using the <strong>superphenix-operator</strong>, the <strong>talos-operator</strong> and <strong>talos-manager</strong> to provision and lifecycle-manage <strong>physical servers</strong> as Talos Kubernetes clusters. Use this path when you want declarative, GitOps-driven installation from a management cluster instead of running <code>talosctl</code> on each node by hand.</p>
 <p>Part of the <a href="../../">deployment guide</a>. For the manual alternative, see <a href="../manual-os-installation/">Manual OS installation</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Experimental</p>
+<p>Automated OS installation is still <strong>experimental</strong>. It is intended for installing <strong>hundreds of servers in a datacenter</strong>, not for a first lab or a small cluster. Prefer <a href="../manual-os-installation/">Manual OS installation</a> unless you need that scale.</p>
+</div>
 <h2 id="when-to-use-this-path">When to use this path</h2>
 <ul>
 <li><strong>Greenfield datacenter</strong>: bare-metal servers with BMC/IPMI are registered once; the operator drives imaging, Talos configuration, and cluster bootstrap.</li>
@@ -2110,6 +2114,15 @@ Setting up PXE automatically on the BIOS only works on DELL iDRAC and Lenovo XCl
 <span class="w">    </span><span class="nt">controlplanePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6443</span>
 <span class="w">    </span><span class="nt">talosVersion</span><span class="p">:</span><span class="w"> </span><span class="s">"v1.13.0"</span>
 <span class="w">    </span><span class="nt">k8sVersion</span><span class="p">:</span><span class="w"> </span><span class="s">"v1.35.0"</span>
+<span class="w">    </span><span class="nt">machineOverridesControlPlane</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cluster</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">controllerManager</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">          </span><span class="nt">apiServer</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">extraArgs</span><span class="p">:</span>
+<span class="w">              </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+<span class="w">              </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
 <span class="w">    </span><span class="nt">nodes</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">"az-paris-1-master01"</span>
 <span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">controlplane</span>
@@ -2256,10 +2269,14 @@ Setting up PXE automatically on the BIOS only works on DELL iDRAC and Lenovo XCl
     
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.88ee1349.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
       
     
   </body>
