@@ -1181,41 +1181,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../features/tenancy-and-console/" class="md-nav__link">
+      <a href="../../../features/compute/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Tenancy & console
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../features/virtualization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Virtualization
+  Compute
 
     
   </span>
@@ -2617,21 +2590,19 @@
 <p><img alt="Subnet details showing the NAT Gateway card" src="../../../assets/screenshots/virtual-machines/subnet-details-nat.png" /></p>
 <h2 id="create-the-eip">Create the EIP</h2>
 <ol>
-<li>
-<p>On the subnet details page, open <strong>Options</strong> and click <strong>Attach EIP</strong>. The EIP wizard opens with the AZ and subnet already selected. You can also start from <strong>Network → EIP → Create an EIP</strong> and pick the subnet yourself.</p>
+<li>On the subnet details page, open <strong>Options</strong> and click <strong>Attach EIP</strong>. The EIP wizard opens with the AZ and subnet already selected. You can also start from <strong>Network → EIP → Create an EIP</strong> and pick the subnet yourself.</li>
+</ol>
 <p><img alt="Subnet Options menu with Attach EIP" src="../../../assets/screenshots/virtual-machines/subnet-attach-eip.png" /></p>
-</li>
-<li>
-<p>Enter a <strong>Name</strong>, for example <code>docs-demo-eip</code>, and click <strong>Next</strong>.</p>
+<ol>
+<li>Enter a <strong>Name</strong>, for example <code>docs-demo-eip</code>, and click <strong>Next</strong>.</li>
+</ol>
 <p><img alt="EIP wizard step 1 with name and subnet" src="../../../assets/screenshots/virtual-machines/create-eip-general.png" /></p>
-</li>
-<li>
-<p>Keep <strong>EIP Type</strong> on <strong>Internal IP</strong> and enter the VM's <strong>Assigned IP</strong> in <strong>Internal IP</strong>.</p>
+<ol>
+<li>Keep <strong>EIP Type</strong> on <strong>Internal IP</strong> and enter the VM's <strong>Assigned IP</strong> in <strong>Internal IP</strong>.</li>
+</ol>
 <p><img alt="EIP wizard step 2 in Internal IP mode" src="../../../assets/screenshots/virtual-machines/create-eip-internal-ip.png" /></p>
-</li>
-<li>
-<p>Click <strong>Create</strong>.</p>
-</li>
+<ol>
+<li>Click <strong>Create</strong>.</li>
 </ol>
 <p><strong>Internal IP</strong> mode is a one-to-one NAT. Every port of the public address reaches the same port on the VM, and the VM's outbound traffic leaves with that public address.</p>
 <h2 id="read-the-public-address">Read the public address</h2>

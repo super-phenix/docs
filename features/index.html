@@ -16,7 +16,7 @@
         <link rel="prev" href="../installation/production-recommendations/">
       
       
-        <link rel="next" href="./tenancy-and-console/">
+        <link rel="next" href="./compute/">
       
       
         
@@ -1226,10 +1226,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#managed-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Managed services
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-they-fit-together" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
         How they fit together
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        User guides
       </span>
     </span>
   </a>
@@ -1252,41 +1274,14 @@
   
   
     <li class="md-nav__item">
-      <a href="./tenancy-and-console/" class="md-nav__link">
+      <a href="./compute/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Tenancy & console
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="./virtualization/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Virtualization
+  Compute
 
     
   </span>
@@ -2452,10 +2447,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#managed-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Managed services
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-they-fit-together" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
         How they fit together
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        User guides
       </span>
     </span>
   </a>
@@ -2482,38 +2499,57 @@
 
 <h1 id="features">Features</h1>
 <p>Superphenix is organized in two layers: the <strong>foundation</strong> provides the infrastructure platform (IaaS and operations), and <strong>managed services</strong> consume it to deliver higher-level offerings. The <strong>web console</strong> exposes these capabilities as <strong>products</strong> (compute, storage, network, SSH keys, and more), scoped by <strong>organization</strong>, <strong>project</strong>, and <strong>availability zone (AZ)</strong>.</p>
-<p>Read <strong><a href="tenancy-and-console/">Tenancy and console</a></strong> first for organizations, projects, IAM, and how to navigate resources.</p>
+<p>Read <a href="../architecture/#organizations-and-projects">Architecture overview</a> and the <a href="../operations/console/">Web console</a> first for organizations, projects, IAM, and how to navigate resources.</p>
 <h2 id="foundation">Foundation</h2>
 <p>The foundation provides the core capabilities that the rest of the platform relies on.</p>
 <div class="grid cards">
 <ul>
 <li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-server" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><path d="M6 6h.01M6 18h.01"/></svg></span> <strong>Virtualization</strong></p>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-server" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><path d="M6 6h.01M6 18h.01"/></svg></span> <strong>Compute</strong></p>
 <hr />
-<p><strong>Instances (VMs)</strong>, <strong>live migration</strong>, <strong>snapshots</strong> (VM and scheduled volume), <strong>restores</strong>, <strong>cloud-init</strong>, SSH, serial, and VNC.</p>
-<p><a href="virtualization/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Virtualization</a></p>
-</li>
-<li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-network" viewBox="0 0 24 24"><rect width="6" height="6" x="16" y="16" rx="1"/><rect width="6" height="6" x="2" y="16" rx="1"/><rect width="6" height="6" x="9" y="2" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3M12 12V8"/></svg></span> <strong>Network</strong></p>
-<hr />
-<p><strong>VPCs</strong>, <strong>subnets</strong>, <strong>NAT gateways</strong>, <strong>load balancers</strong>, <strong>Elastic IPs (EIPs)</strong>, and <strong>firewalls</strong>: CSP-style networking with IPAM and optional Internet exposure.</p>
-<p><a href="network/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Network</a></p>
+<p><strong>Instances (VMs)</strong>, serial, and VNC, <strong>Instances Snapshots</strong>.</p>
+<p><a href="compute/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Compute</a></p>
 </li>
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-hard-drive" viewBox="0 0 24 24"><path d="M10 16h.01M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11zM21.946 12.013H2.054M6 16h.01"/></svg></span> <strong>Storage</strong></p>
 <hr />
-<p><strong>Disks</strong> and <strong>disk snapshots</strong>: block volumes (and classes such as high-speed), create from <strong>blank</strong>, <strong>HTTP image</strong>, <strong>snapshot</strong>, or <strong>clone</strong>; online resize.</p>
+<p><strong>Disk</strong>, <strong>Snapshot</strong>, <strong>Backup</strong>, <strong>Object Storage</strong>.</p>
 <p><a href="storage/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Storage</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-network" viewBox="0 0 24 24"><rect width="6" height="6" x="16" y="16" rx="1"/><rect width="6" height="6" x="2" y="16" rx="1"/><rect width="6" height="6" x="9" y="2" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3M12 12V8"/></svg></span> <strong>Network</strong></p>
+<hr />
+<p><strong>VPC</strong>, <strong>Subnet</strong>, <strong>EIP</strong>, <strong>Load Balancer</strong>, <strong>Security Group</strong>.</p>
+<p><a href="network/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Network</a></p>
+</li>
+</ul>
+</div>
+<h2 id="managed-services">Managed services</h2>
+<p>These services run on the foundation. Availability depends on your Superphenix version and configuration.</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg></span> <strong>PaaS</strong></p>
+<hr />
+<p><strong>Kubernetes (KaaS)</strong>: VM node pools, <strong>integrated CNI/CSI</strong>, upgrades, and the same VPCs and storage as IaaS. <em>Console availability varies by release.</em></p>
+<p><a href="paas/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> PaaS</a></p>
 </li>
 </ul>
 </div>
 <h2 id="how-they-fit-together">How they fit together</h2>
 <ul>
-<li><strong>Tenancy</strong>: Organizations and projects isolate resources and access; see <a href="tenancy-and-console/">Tenancy and console</a>.</li>
+<li><strong>Tenancy</strong>: Organizations and projects isolate resources and access; see <a href="../architecture/#organizations-and-projects">Architecture overview</a>.</li>
 <li><strong>Foundation</strong>: Virtualization runs VMs; the network layer provides VPCs and subnets; storage backs disks; tooling drives GitOps and the console.</li>
 <li><strong>Managed services</strong>: When enabled, PaaS and SaaS consume the same virtualization, storage, and network primitives.</li>
 </ul>
 <p>See <a href="../architecture/">Architecture overview</a> for AZs, regions, and central administration.</p>
+<h2 id="user-guides">User guides</h2>
+<p>Looking for step-by-step console tutorials? See the <strong>User guides</strong>:</p>
+<ul>
+<li><strong><a href="../user-guides/virtual-machines/create-a-vm/">Create a virtual machine</a></strong>: Walk through provisioning a VM, setting up boot disks, and connecting with SSH.</li>
+<li><strong><a href="../user-guides/network/create-a-subnet/">Create a subnet with a NAT gateway</a></strong>: Configure a custom subnet CIDR with outbound Internet routing.</li>
+<li><strong><a href="../user-guides/virtual-machines/expose-with-eip/">Expose a VM with an Elastic IP</a></strong>: Associate a public Elastic IP with your instance.</li>
+</ul>
 
 
 

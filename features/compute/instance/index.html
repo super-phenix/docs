@@ -10,36 +10,32 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/installation/deployment-guide/installing-an-az/installing-hyperconverged/">
+        <link rel="canonical" href="https://docs.superphenix.net/features/compute/instance/">
       
       
-        <link rel="prev" href="../">
-      
-      
-        <link rel="next" href="../installing-decoupled/">
       
       
         
       
       
-      <link rel="icon" href="../../../../assets/favicon.svg">
+      <link rel="icon" href="../../../assets/favicon.svg">
       <meta name="generator" content="zensical-0.0.62">
     
     
       
-        <title>Installing hyperconverged - Documentation</title>
+        <title>Instance - Documentation</title>
       
     
     
       
         
       
-      <link rel="stylesheet" href="../../../../assets/stylesheets/modern/main.ce62732f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.ce62732f.min.css">
       
         
           
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/modern/palette.812a03bb.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.812a03bb.min.css">
       
       
 
@@ -58,9 +54,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    <script>__md_scope=new URL("../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
 
@@ -85,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installing-hyperconverged" class="md-skip">
+        <a href="#instance" class="md-skip">
           Skip to content
         </a>
       
@@ -118,9 +114,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../../assets/spx.svg" alt="Documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
@@ -137,7 +133,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installing hyperconverged
+              Instance
             
           </span>
         </div>
@@ -226,9 +222,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
+    <a href="../../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="../../../../assets/spx.svg" alt="Documentation">
+  <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
     Documentation
@@ -255,7 +251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../home/" class="md-nav__link">
+      <a href="../../../home/" class="md-nav__link">
         
   
   
@@ -326,7 +322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/" class="md-nav__link">
+      <a href="../../../architecture/" class="md-nav__link">
         
   
   
@@ -353,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/deployment-topology/" class="md-nav__link">
+      <a href="../../../architecture/deployment-topology/" class="md-nav__link">
         
   
   
@@ -380,7 +376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/deployment-requirements/" class="md-nav__link">
+      <a href="../../../architecture/deployment-requirements/" class="md-nav__link">
         
   
   
@@ -407,7 +403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../architecture/network-requirements/" class="md-nav__link">
+      <a href="../../../architecture/network-requirements/" class="md-nav__link">
         
   
   
@@ -438,20 +434,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -471,7 +465,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -488,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/" class="md-nav__link">
+      <a href="../../../installation/getting-started/" class="md-nav__link">
         
   
   
@@ -512,20 +506,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -545,7 +537,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -562,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/" class="md-nav__link">
         
   
   
@@ -634,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-management/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/" class="md-nav__link">
         
   
   
@@ -661,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-management/management-inside-az/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/management-inside-az/" class="md-nav__link">
         
   
   
@@ -733,7 +725,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-management/management-outside-az/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/management-outside-az/" class="md-nav__link">
         
   
   
@@ -760,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-management/full-configuration/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-management/full-configuration/" class="md-nav__link">
         
   
   
@@ -848,7 +840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-the-os/manual-os-installation/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-the-os/manual-os-installation/" class="md-nav__link">
         
   
   
@@ -875,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installing-the-os/automated-os-installation/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-the-os/automated-os-installation/" class="md-nav__link">
         
   
   
@@ -907,20 +899,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_4" >
         
           
           <label class="md-nav__link" for="__nav_3_2_4" id="__nav_3_2_4_label" tabindex="0">
@@ -940,7 +930,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -957,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/" class="md-nav__link">
         
   
   
@@ -981,36 +971,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Installing hyperconverged
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="././" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../installation/deployment-guide/installing-an-az/installing-hyperconverged/" class="md-nav__link">
         
   
   
@@ -1025,82 +989,6 @@
   
 
       </a>
-      
-        
-
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-choose-hyperconverged" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        When to choose hyperconverged
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Prerequisites
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation-overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Installation overview
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-cluster-resource" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Example <code>Cluster</code> resource
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Related
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1113,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installing-decoupled/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/installing-decoupled/" class="md-nav__link">
         
   
   
@@ -1140,7 +1028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../configuring-a-cluster/" class="md-nav__link">
+      <a href="../../../installation/deployment-guide/installing-an-az/configuring-a-cluster/" class="md-nav__link">
         
   
   
@@ -1183,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../production-recommendations/" class="md-nav__link">
+      <a href="../../../installation/production-recommendations/" class="md-nav__link">
         
   
   
@@ -1262,7 +1150,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../features/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -1289,7 +1177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../features/compute/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1316,7 +1204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../features/network/" class="md-nav__link">
+      <a href="../../network/" class="md-nav__link">
         
   
   
@@ -1343,7 +1231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../features/storage/" class="md-nav__link">
+      <a href="../../storage/" class="md-nav__link">
         
   
   
@@ -1467,7 +1355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/network/" class="md-nav__link">
+      <a href="../../../user-guides/network/" class="md-nav__link">
         
   
   
@@ -1494,7 +1382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/network/create-a-subnet/" class="md-nav__link">
+      <a href="../../../user-guides/network/create-a-subnet/" class="md-nav__link">
         
   
   
@@ -1521,7 +1409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/network/create-a-security-group/" class="md-nav__link">
+      <a href="../../../user-guides/network/create-a-security-group/" class="md-nav__link">
         
   
   
@@ -1601,7 +1489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/virtual-machines/" class="md-nav__link">
+      <a href="../../../user-guides/virtual-machines/" class="md-nav__link">
         
   
   
@@ -1628,7 +1516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/virtual-machines/create-a-vm/" class="md-nav__link">
+      <a href="../../../user-guides/virtual-machines/create-a-vm/" class="md-nav__link">
         
   
   
@@ -1655,7 +1543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-guides/virtual-machines/expose-with-eip/" class="md-nav__link">
+      <a href="../../../user-guides/virtual-machines/expose-with-eip/" class="md-nav__link">
         
   
   
@@ -1787,7 +1675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/network/configure-nat-gateways/" class="md-nav__link">
+      <a href="../../../operations/network/configure-nat-gateways/" class="md-nav__link">
         
   
   
@@ -1814,7 +1702,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/network/setting-the-mtu-of-subnets/" class="md-nav__link">
+      <a href="../../../operations/network/setting-the-mtu-of-subnets/" class="md-nav__link">
         
   
   
@@ -1841,7 +1729,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/network/ipv6-configuration/" class="md-nav__link">
+      <a href="../../../operations/network/ipv6-configuration/" class="md-nav__link">
         
   
   
@@ -1868,7 +1756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/network/hairpin-nat/" class="md-nav__link">
+      <a href="../../../operations/network/hairpin-nat/" class="md-nav__link">
         
   
   
@@ -1948,7 +1836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/configuring-the-storage-cluster/" class="md-nav__link">
+      <a href="../../../operations/storage/configuring-the-storage-cluster/" class="md-nav__link">
         
   
   
@@ -1975,7 +1863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/connecting-a-workload-and-storage-cluster/" class="md-nav__link">
+      <a href="../../../operations/storage/connecting-a-workload-and-storage-cluster/" class="md-nav__link">
         
   
   
@@ -2002,7 +1890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/adding-a-storage-class/" class="md-nav__link">
+      <a href="../../../operations/storage/adding-a-storage-class/" class="md-nav__link">
         
   
   
@@ -2029,7 +1917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/adding-an-object-store/" class="md-nav__link">
+      <a href="../../../operations/storage/adding-an-object-store/" class="md-nav__link">
         
   
   
@@ -2056,7 +1944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/storage/using-local-storage/" class="md-nav__link">
+      <a href="../../../operations/storage/using-local-storage/" class="md-nav__link">
         
   
   
@@ -2091,7 +1979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../operations/console/" class="md-nav__link">
+      <a href="../../../operations/console/" class="md-nav__link">
         
   
   
@@ -2215,7 +2103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../paas/kaas/" class="md-nav__link">
+      <a href="../../../paas/kaas/" class="md-nav__link">
         
   
   
@@ -2242,7 +2130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../paas/kaas/basic-operations/" class="md-nav__link">
+      <a href="../../../paas/kaas/basic-operations/" class="md-nav__link">
         
   
   
@@ -2269,7 +2157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../paas/kaas/advanced-configuration/" class="md-nav__link">
+      <a href="../../../paas/kaas/advanced-configuration/" class="md-nav__link">
         
   
   
@@ -2296,7 +2184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../paas/kaas/disaster-recovery/" class="md-nav__link">
+      <a href="../../../paas/kaas/disaster-recovery/" class="md-nav__link">
         
   
   
@@ -2323,7 +2211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../paas/kaas/network-configuration/" class="md-nav__link">
+      <a href="../../../paas/kaas/network-configuration/" class="md-nav__link">
         
   
   
@@ -2365,7 +2253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../contributing/" class="md-nav__link">
+      <a href="../../../contributing/" class="md-nav__link">
         
   
   
@@ -2391,7 +2279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../enterprise-support/" class="md-nav__link">
+      <a href="../../../enterprise-support/" class="md-nav__link">
         
   
   
@@ -2451,10 +2339,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#when-to-choose-hyperconverged" class="md-nav__link">
+  <a href="#provisioning-and-user-guides" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        When to choose hyperconverged
+        Provisioning and User Guides
       </span>
     </span>
   </a>
@@ -2462,10 +2350,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#run-strategies" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Prerequisites
+        Run Strategies
       </span>
     </span>
   </a>
@@ -2473,10 +2361,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#installation-overview" class="md-nav__link">
+  <a href="#compute-sizing-and-cpu-topology" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Installation overview
+        Compute Sizing and CPU Topology
       </span>
     </span>
   </a>
@@ -2484,10 +2372,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-cluster-resource" class="md-nav__link">
+  <a href="#storage-and-media" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Example <code>Cluster</code> resource
+        Storage and Media
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage and Media">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#storage-bus-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Storage Bus Options
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Networking
       </span>
     </span>
   </a>
@@ -2495,10 +2411,82 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
+  <a href="#cloud-init-and-ssh-keys" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Related
+        Cloud-Init and SSH Keys
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#firmware-and-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Firmware and Security
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-to-an-instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Connecting to an Instance
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Connecting to an Instance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        SSH
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#browser-consoles" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Browser Consoles
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guest-agent-qemu-guest-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Guest Agent (<code>qemu-guest-agent</code>)
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#power-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Power Operations
       </span>
     </span>
   </a>
@@ -2523,54 +2511,158 @@
   
 
 
-<h1 id="installing-hyperconverged">Installing hyperconverged</h1>
-<p>In a <strong>hyperconverged</strong> AZ, <strong>storage</strong> and <strong>virtualization</strong> run on the same Kubernetes cluster. Compute and storage share the same nodes. This is the simplest model and fits single-AZ deployments, labs, and proofs of concept.</p>
-<p>Part of the <a href="../../">deployment guide</a>. For separate storage and compute tiers, see <a href="../installing-decoupled/">Installing decoupled</a>.</p>
-<h2 id="when-to-choose-hyperconverged">When to choose hyperconverged</h2>
+<h1 id="instance">Instance</h1>
+<p>An <strong>Instance</strong> is a virtual machine running within a selected Availability Zone (AZ). Instances run on KubeVirt virtualization infrastructure, providing dedicated vCPU, memory, persistent block storage, and private network interfaces.</p>
+<hr />
+<h2 id="provisioning-and-user-guides">Provisioning and User Guides</h2>
+<p>Instances can be provisioned through the Superphenix web console, the API, or GitOps.</p>
+<p>For step-by-step console workflows, refer to the user guides:</p>
 <ul>
-<li><strong>Single AZ</strong> or <strong>first deployment</strong>: minimal footprint and operational complexity.</li>
-<li><strong>Horizontal growth</strong>: add servers to grow both storage and compute together.</li>
-<li><strong>Cost</strong>: hardware is mutualized across storage and virtualization roles.</li>
+<li><strong><a href="../../../user-guides/virtual-machines/create-a-vm/">Create a virtual machine</a></strong>: Sizing vCPU/RAM, provisioning boot storage, injecting SSH keys, and configuring subnets.</li>
+<li><strong><a href="../../../user-guides/virtual-machines/expose-with-eip/">Expose a VM with an Elastic IP</a></strong>: Assigning an Elastic IP (EIP) and connecting over SSH.</li>
+<li><strong><a href="../../../user-guides/virtual-machines/">Virtual machines overview</a></strong>: Default images, cloud-init credentials, and prerequisites.</li>
 </ul>
-<p>See <a href="../../../../architecture/deployment-topology/">Deployment topology</a> for trade-offs versus decoupled layouts.</p>
-<h2 id="prerequisites">Prerequisites</h2>
+<hr />
+<h2 id="run-strategies">Run Strategies</h2>
+<p>The <strong>Run Strategy</strong> controls the power state and restart policy of the virtual machine:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Run Strategy</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Typical Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>Always</code></strong></td>
+<td style="text-align: left;">Keeps the instance running. If the guest stops or crashes, the platform restarts it automatically.</td>
+<td style="text-align: left;">Production services, databases.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>Manual</code></strong></td>
+<td style="text-align: left;">Power state is controlled manually. The instance starts only on explicit start commands and remains off when shut down.</td>
+<td style="text-align: left;">Development, staging, maintenance.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>RerunOnFailure</code></strong></td>
+<td style="text-align: left;">Restarts the instance if the guest process exits with an error or crashes.</td>
+<td style="text-align: left;">Batch jobs, processing pipelines.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>Once</code></strong></td>
+<td style="text-align: left;">Starts the instance once and does not restart it upon termination, even on failure.</td>
+<td style="text-align: left;">Single-run tasks, migration jobs.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>Halted</code></strong></td>
+<td style="text-align: left;">Keeps the instance powered off until the strategy is changed.</td>
+<td style="text-align: left;">Decommissioned or archived instances.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="compute-sizing-and-cpu-topology">Compute Sizing and CPU Topology</h2>
 <ul>
-<li>A Talos Linux cluster bootstrapped on your nodes (<a href="../../installing-the-os/manual-os-installation/">Manual OS installation</a> or <a href="../../installing-the-os/automated-os-installation/">Automated OS installation</a>).</li>
-<li>The <a href="../../installing-management/">management plane installed</a> and able to reach the cluster API.</li>
-<li>Hardware sized for <strong>combined</strong> Ceph and hypervisor needs. See <a href="../../../../architecture/deployment-requirements/">Hardware requirements</a>.</li>
+<li><strong>vCPU</strong>: 1, 2, 4, 8, 16, or 32 virtual cores.</li>
+<li><strong>RAM</strong>: 1, 2, 4, 8, 16, 32, or 64 GB.</li>
+<li><strong>CPU Topology</strong>: By default, cores are allocated as single-threaded virtual sockets. In advanced settings, you can define explicit socket, core, and thread counts to optimize guest NUMA or multithreading behavior.</li>
 </ul>
-<h2 id="installation-overview">Installation overview</h2>
-<ol>
-<li>Provision Kubernetes on your AZ nodes (Talos).</li>
-<li>Register the AZ with a <code>Cluster</code> resource using <code>deploymentTopology: Hyperconverged</code>.</li>
-<li>Let the operator sync the Superphenix stack on that cluster.</li>
-</ol>
-<h2 id="example-cluster-resource">Example <code>Cluster</code> resource</h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix.net/v1alpha1</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">az-local</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperconverged</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">europe-west</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paris-1</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">connection</span><span class="p">:</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remote</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://api.paris-1.superphenix.net:6443</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">secretRef</span><span class="p">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-paris-1-credentials</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.1.0</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://charts.superphenix.net</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">chartName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-stack</span>
+<hr />
+<h2 id="storage-and-media">Storage and Media</h2>
+<p>Instances support persistent disks, removable media, and container disks:</p>
+<ul>
+<li><strong>Root and Secondary Disks</strong>: Persistent block storage volumes (Disks) located in the same Availability Zone.</li>
+<li><strong>CD-ROM</strong>: Mounts an ISO image for manual OS installation or rescue utilities.</li>
+<li><strong>Container Disks</strong>: Mounts an immutable root filesystem directly from an OCI container registry.</li>
+</ul>
+<h3 id="storage-bus-options">Storage Bus Options</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bus Interface</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Compatibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>virtio</code></strong></td>
+<td style="text-align: left;">Paravirtualized driver with direct hypervisor I/O. Delivers maximum performance.</td>
+<td style="text-align: left;">Modern Linux distributions and Windows with VirtIO drivers.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>sata</code></strong></td>
+<td style="text-align: left;">Emulated Serial ATA controller.</td>
+<td style="text-align: left;">Legacy operating systems or rescue media lacking VirtIO drivers.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>auto</code></strong></td>
+<td style="text-align: left;">Platform selects the bus interface automatically based on guest OS type.</td>
+<td style="text-align: left;">Default configuration.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Detaching Disks</p>
+</div>
+<p>Stop the virtual machine before detaching persistent disks to avoid guest filesystem corruption and ensure write caches are flushed.</p>
+<hr />
+<h2 id="networking">Networking</h2>
+<ul>
+<li><strong>Subnet Attachments</strong>: Connect an instance to one or more project subnets. Each attachment generates an interface (<code>eth0</code>, <code>eth1</code>, etc.).</li>
+<li><strong>IP Assignment</strong>:</li>
+<li><strong>Automatic (IPAM)</strong>: An available IP address is leased from the subnet CIDR.</li>
+<li><strong>Static IP</strong>: Assign a specific IPv4 or IPv6 address within the subnet range.</li>
+<li><strong>Interface Model</strong>: <code>virtio</code> is recommended for throughput; <code>e1000</code> provides compatibility for older operating systems.</li>
+<li><strong>Public Access</strong>: Associate an Elastic IP (EIP) with the instance's private IP to route inbound and outbound Internet traffic. See <a href="../../../user-guides/virtual-machines/expose-with-eip/">Expose a VM with an Elastic IP</a>.</li>
+</ul>
+<hr />
+<h2 id="cloud-init-and-ssh-keys">Cloud-Init and SSH Keys</h2>
+<p>Instances can be initialized at first boot via <strong>cloud-init</strong>:</p>
+<ul>
+<li><strong>Default Configuration</strong>: Creates a default <code>spx</code> user with <code>sudo</code> permissions, generates a random initial password, injects selected project SSH keys, and configures default DNS resolvers.</li>
+<li><strong>Custom User Data</strong>: Pass custom <code>#cloud-config</code> scripts to install packages, configure services, run commands, or create users.</li>
+<li><strong>SSH Key Injection</strong>: Public keys stored in the project SSH key catalog are written to <code>~/.ssh/authorized_keys</code> for the default user during initialization.</li>
+</ul>
+<hr />
+<h2 id="firmware-and-security">Firmware and Security</h2>
+<p>Advanced hardware and boot settings include:</p>
+<ul>
+<li><strong>Bootloader</strong>: Select legacy BIOS or UEFI. UEFI is required for modern operating systems and GPT boot partitions.</li>
+<li><strong>Secure Boot</strong>: Enforces signature checks on bootloaders and kernel binaries (requires UEFI).</li>
+<li><strong>Persistent EFI</strong>: Preserves NVRAM variables across instance reboots, maintaining boot order and custom EFI keys.</li>
+<li><strong>vTPM 2.0</strong>: Provides a virtual Trusted Platform Module for cryptographic storage, BitLocker support on Windows, and guest attestation.</li>
+</ul>
+<hr />
+<h2 id="connecting-to-an-instance">Connecting to an Instance</h2>
+<h3 id="ssh">SSH</h3>
+<p>Connect using the default user and an authorized SSH key:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>spx@&lt;instance-ip&gt;
 </span></code></pre></div>
-<p>Set <code>connection.mode: Local</code> when the operator runs on the same cluster as the AZ.</p>
-<p>See <a href="../configuring-a-cluster/">Configure a cluster</a> for the full field reference.</p>
-<h2 id="related">Related</h2>
+<p>If an SSH key was not configured, retrieve the generated one-time password from the <strong>Storage</strong> &gt; <strong>UserData</strong> view on the instance details page.</p>
+<h3 id="browser-consoles">Browser Consoles</h3>
+<p>When network connectivity is unavailable or during early boot:</p>
 <ul>
-<li><a href="../">Installing an AZ</a>: overview of AZ installation paths.</li>
-<li><a href="../../../../architecture/deployment-topology/">Deployment topology</a>: fully integrated vs other deployment types.</li>
+<li><strong>Serial Console</strong>: Interactive text terminal accessible from <strong>Options</strong> &gt; <strong>Serial</strong>.</li>
+<li><strong>VNC Console</strong>: Graphical console accessible from <strong>Options</strong> &gt; <strong>Console</strong>, including a virtual keyboard for combinations such as <code>Ctrl+Alt+Delete</code>.</li>
+</ul>
+<hr />
+<h2 id="guest-agent-qemu-guest-agent">Guest Agent (<code>qemu-guest-agent</code>)</h2>
+<p>Installing <code>qemu-guest-agent</code> inside the guest operating system (<code>apt install qemu-guest-agent</code> on Debian/Ubuntu) enables:</p>
+<ul>
+<li>Accurate reporting of guest IP addresses in the web console.</li>
+<li>Guest memory and resource utilization metrics.</li>
+<li>Filesystem freezing (<code>fsfreeze</code>) during instance snapshots to ensure consistent backups.</li>
+</ul>
+<hr />
+<h2 id="power-operations">Power Operations</h2>
+<p>Power actions available on the instance details page:</p>
+<ul>
+<li><strong>Start</strong>: Powers on a stopped or halted instance.</li>
+<li><strong>Shutdown (ACPI)</strong>: Sends an ACPI shutdown signal to the guest OS for a clean shutdown.</li>
+<li><strong>Force Shutdown</strong>: Immediately cuts power to the virtual machine. Use when the guest OS is unresponsive.</li>
+<li><strong>Restart</strong>: Signals the operating system to perform a reboot.</li>
 </ul>
 
 
@@ -2647,10 +2739,10 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
       
     
   </body>
