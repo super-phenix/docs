@@ -2,10 +2,10 @@
 
 These guides walk you through the console, from an empty project to a virtual machine you can reach from the Internet.
 
-| Guide | You end up with |
-|-------|-----------------|
-| [Create a virtual machine](create-a-vm.md) | A running Ubuntu VM with a private IP on one of your subnets |
-| [Expose a VM with an Elastic IP](expose-with-eip.md) | A public IP that forwards traffic to that VM |
+| Guide                                                | You end up with                                              |
+| ---------------------------------------------------- | ------------------------------------------------------------ |
+| [Create a virtual machine](create-a-vm.md)           | A running Ubuntu VM with a private IP on one of your subnets |
+| [Expose a VM with an Elastic IP](expose-with-eip.md) | A public IP that forwards traffic to that VM                 |
 
 ## What a VM needs
 

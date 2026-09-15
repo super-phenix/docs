@@ -45,11 +45,11 @@ You can change both options later from the subnet details page with **Options â†
 1. Pick the VPC in **VPC Selection**. The list shows the VPCs of the AZ you chose. The guide uses `default`.
 2. Pick the address family in **Protocol selection**:
 
-    | Option | Fields shown | Use it when |
-    |--------|--------------|-------------|
+    | Option | Fields shown  | Use it when                                         |
+    | ------ | ------------- | --------------------------------------------------- |
     | `IPv4` | **CIDR IPv4** | Your workloads use IPv4 alone. This is the default. |
-    | `IPv6` | **CIDR IPv6** | Your workloads use IPv6 alone. |
-    | `Dual` | Both | You want each VM to get one address of each family. |
+    | `IPv6` | **CIDR IPv6** | Your workloads use IPv6 alone.                      |
+    | `Dual` | Both          | You want each VM to get one address of each family. |
 
     ![Protocol selection dropdown with IPv4, IPv6 and Dual](../../assets/screenshots/virtual-machines/subnet-create-protocol.png)
 
