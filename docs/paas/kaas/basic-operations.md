@@ -68,6 +68,12 @@ For a GitOps deployment, you can copy and adjust the example below based on your
 
     Full chart values: [sfs-kaas](https://github.com/super-phenix/superphenix/blob/main/components/dependencies/sfs-kaas/values.yaml).
 
+???+ tip "Accessing your cluster"
+    Once your cluster is ready, you can download its **kubeconfig** file from the console:
+
+    1. Access your cluster's page under **PaaS → Kubernetes**.
+    2. Click **Options → Download kubeconfig** (top right).
+
 ## Scaling a cluster
 
 ### Horizontal scaling
