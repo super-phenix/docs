@@ -2399,21 +2399,21 @@
 <li><strong>Decoupled</strong>: the <strong>storage</strong> cluster (not the workload cluster).</li>
 </ul>
 </div>
-<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">rook-local-cluster</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">cephClusterSpec</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">addressRanges</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">public</span><span class="p">:</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2000::/64</span>
-<span class="w">            </span><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">              </span><span class="c1"># We reserve the first of the 65536 subnets to Ceph; nodes should only be</span>
-<span class="w">              </span><span class="c1"># assigned addresses in that range.</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2001::/96</span>
-<span class="w">        </span><span class="nt">storage</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">deviceFilter</span><span class="p">:</span><span class="w"> </span><span class="s">"nvme*|sd*"</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">rook-local-cluster</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">cephClusterSpec</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span><span class="nt">addressRanges</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="nt">public</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2000::/64</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="nt">cluster</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">              </span><span class="c1"># We reserve the first of the 65536 subnets to Ceph; nodes should only be</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">              </span><span class="c1"># assigned addresses in that range.</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2001::/96</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="nt">storage</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">          </span><span class="nt">deviceFilter</span><span class="p">:</span><span class="w"> </span><span class="s">"nvme*|sd*"</span>
+</span></code></pre></div>
 <ul>
 <li><strong><code>network.addressRanges.public</code></strong>: address range for Ceph client (public) traffic.</li>
 <li><strong><code>network.addressRanges.cluster</code></strong>: address range for Ceph replication and recovery traffic. Keep node addresses within the reserved range.</li>
@@ -2495,7 +2495,7 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>

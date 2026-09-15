@@ -2486,198 +2486,198 @@
 
 <h1 id="configure-a-cluster">Configure a cluster</h1>
 <p>When you define a <code>Cluster</code> resource, you specify the topology, geography, and connection details. Below is an example configuration for a remote workload cluster:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix.net/v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">az-paris-1</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="c1"># -- Deployment and Topology</span>
-<span class="w">  </span><span class="c1"># Defines whether the cluster is Hyperconverged or Decoupled.</span>
-<span class="w">  </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Decoupled</span>
-
-<span class="w">  </span><span class="c1"># Specifies the cluster type (Storage or Virtualization) when deploymentTopology is Decoupled.</span>
-<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Virtualization</span>
-
-<span class="w">  </span><span class="c1"># -- Geography</span>
-<span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">europe-west</span>
-<span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paris-1</span>
-
-<span class="w">  </span><span class="c1"># -- Connection</span>
-<span class="w">  </span><span class="c1"># Defines how the operator connects to the cluster.</span>
-<span class="w">  </span><span class="nt">connection</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remote</span>
-<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://api.paris-1.superphenix.net:6443</span>
-<span class="w">    </span><span class="nt">secretRef</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-paris-1-credentials</span>
-<span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-
-<span class="w">  </span><span class="c1"># -- System configuration</span>
-<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.1.0</span>
-<span class="w">  </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://charts.superphenix.net</span>
-<span class="w">  </span><span class="nt">chartName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-stack</span>
-
-<span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">podCIDR</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.244.0.0/16</span>
-
-<span class="w">  </span><span class="c1"># -- Operations</span>
-<span class="w">  </span><span class="nt">pauseSync</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">cleanupOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-
-<span class="w">  </span><span class="c1"># -- Talos management mode</span>
-<span class="w">  </span><span class="c1"># Specifies how Talos configuration should be managed.</span>
-<span class="w">  </span><span class="c1"># Unmanaged - The Talos cluster is not managed by the operator. This requires an externally managed installation and configuration of Talos. PXE features and talos-operator are disabled.</span>
-<span class="w">  </span><span class="c1"># Import - The operator imports an already installed Talos cluster and manages its configuration. PXE features are disabled.</span>
-<span class="w">  </span><span class="c1"># Full - The Talos cluster is fully installed and configured by the operator.</span>
-<span class="w">  </span><span class="nt">talosManagementMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unmanaged</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix.net/v1alpha1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">az-paris-1</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="c1"># -- Deployment and Topology</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="c1"># Defines whether the cluster is Hyperconverged or Decoupled.</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Decoupled</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="c1"># Specifies the cluster type (Storage or Virtualization) when deploymentTopology is Decoupled.</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Virtualization</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="c1"># -- Geography</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">europe-west</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paris-1</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="c1"># -- Connection</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="c1"># Defines how the operator connects to the cluster.</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="nt">connection</span><span class="p">:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remote</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://api.paris-1.superphenix.net:6443</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">secretRef</span><span class="p">:</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-paris-1-credentials</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="c1"># -- System configuration</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.1.0</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">  </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://charts.superphenix.net</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="nt">chartName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-stack</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">      </span><span class="nt">podCIDR</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.244.0.0/16</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="c1"># -- Operations</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">pauseSync</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">  </span><span class="nt">cleanupOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">  </span><span class="c1"># -- Talos management mode</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">  </span><span class="c1"># Specifies how Talos configuration should be managed.</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">  </span><span class="c1"># Unmanaged - The Talos cluster is not managed by the operator. This requires an externally managed installation and configuration of Talos. PXE features and talos-operator are disabled.</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">  </span><span class="c1"># Import - The operator imports an already installed Talos cluster and manages its configuration. PXE features are disabled.</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">  </span><span class="c1"># Full - The Talos cluster is fully installed and configured by the operator.</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">  </span><span class="nt">talosManagementMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unmanaged</span>
+</span></code></pre></div>
 <p>Set <code>connection.mode: Local</code> when the cluster being defined is the same Kubernetes cluster that hosts the operator (typical for management-on-AZ after bootstrap).</p>
 <h2 id="talos-manager-configuration">talos-manager configuration</h2>
 <p>If you want to use the <a href="../../installing-the-os/automated-os-installation/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> automated OS installation method</a>, you need to specify the configuration for the talos-manager chart using the field <code>talosManagerConfiguration</code>, as well as set <code>talosManagementMode</code> to either <code>Full</code> or <code>Import</code> in your <code>Cluster</code>'s specs. Below are the values of this chart:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Cluster specific variables:</span>
-<span class="c1"># Enable PXE features (optional, overrides the value set automatically by the operator depending on "talosManagementMode"):</span>
-<span class="nt">pxeEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="c1"># Network interface the DHCP server should listen to (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
-<span class="nt">dhcpInterface</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># IP address of the PXE server (the bootstrap server) (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
-<span class="nt">pxeIpAddr</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Name of the Talos cluster:</span>
-<span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Cluster type (can be either "storage" or "virt"):</span>
-<span class="nt">clusterType</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Reconciliation mode of the Talos configuration, as defined by talos-operator ("Reconcile", "Disable" or "DryRun"):</span>
-<span class="nt">reconciliationMode</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Cluster network specifications:</span>
-<span class="nt">clusterNetwork</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">gatewayIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">gatewayIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># Public network specifications (optional if "clusterType" is not "storage"):</span>
-<span class="nt">publicNetwork</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># Storage network specifications (optional):</span>
-<span class="nt">storageNetwork</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># Kubernetes pod subnets specifications:</span>
-<span class="nt">podSubnets</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># Kubernetes service subnets specifications:</span>
-<span class="nt">serviceSubnets</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># IPv4 address of the Talos control plane node (optional if "controlplaneIpv6" is set):</span>
-<span class="nt">controlplaneIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># IPv6 address of the Talos control plane node:</span>
-<span class="nt">controlplaneIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Port of the Talos control plane:</span>
-<span class="nt">controlplanePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="c1"># ArgoCD token:</span>
-<span class="nt">argocdToken</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Version of Talos to install on nodes:</span>
-<span class="nt">talosVersion</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># Version of Kubernetes to install on Talos:</span>
-<span class="nt">k8sVersion</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="c1"># 'MachineConfig' overrides for all types of nodes (array, optional):</span>
-<span class="nt">machineGlobalOverrides</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-<span class="c1"># 'MachineConfig' overrides for control plane nodes (array, optional).</span>
-<span class="c1"># Control planes must enable MutatingAdmissionPolicy:</span>
-<span class="nt">machineOverridesControlPlane</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">controllerManager</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">      </span><span class="nt">apiServer</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">          </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
-<span class="c1"># 'MachineConfig' overrides for worker nodes (array, optional):</span>
-<span class="nt">machineOverridesWorker</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-
-<span class="c1"># Nodes specific variables:</span>
-<span class="nt">nodes</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Talos node type (can be either "controlplane" or "worker"):</span>
-<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># CPU architecture of this node (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
-<span class="w">    </span><span class="nt">cpuArchitecture</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># MAC address used by the PXE firmware (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
-<span class="w">    </span><span class="nt">pxeMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Kernel command line arguments when booting in PXE (optional):</span>
-<span class="w">    </span><span class="nt">kernelCmdlineArgs</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Specifies whether this machine should be set up for PXE:</span>
-<span class="w">    </span><span class="nt">pxeSetup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">    </span><span class="c1"># IPv4 address of the node's IPMI (optional if "pxeSetup" set to "false"):</span>
-<span class="w">    </span><span class="nt">ipmiIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Username of an administrator account on the IPMI (optional if "pxeSetup" set to "false"):</span>
-<span class="w">    </span><span class="nt">ipmiUser</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Password of the aforementioned IPMI account (optional if "pxeSetup" set to "false"):</span>
-<span class="w">    </span><span class="nt">ipmiPassword</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Name of the interface used by the PXE firmware, as given by the IPMI through Redfish (optional if "pxeSetup" set to "false"):</span>
-<span class="w">    </span><span class="nt">pxeInterfaceName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Specifications of the network interface:</span>
-<span class="w">    </span><span class="nt">interface</span><span class="p">:</span>
-<span class="w">      </span><span class="c1"># Name to give to the interface (avoid common names such as "ethX" or "enoXnpY"):</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># IP of this node on the cluster network (IPv6 is optional):</span>
-<span class="w">      </span><span class="nt">clusterNetwork</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># IP of this node on the public network (optional if "clusterType" is not "storage"):</span>
-<span class="w">      </span><span class="nt">publicNetwork</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># IP of this node on the storage network (optional):</span>
-<span class="w">      </span><span class="nt">storageNetwork</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># Specifies whether this interface should be connected to VLANs:</span>
-<span class="w">      </span><span class="nt">useVlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="c1"># Specifications of the LACP bond, if applicable (setting "enabled" to "false" makes other sub-fields optional):</span>
-<span class="w">      </span><span class="nt">lacpBond</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">        </span><span class="nt">lacpRate</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">xmitHashPolicy</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">        </span><span class="nt">miimon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">        </span><span class="nt">updelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">        </span><span class="nt">downdelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">        </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
-<span class="w">        </span><span class="c1"># Physical interfaces to be aggregated:</span>
-<span class="w">        </span><span class="nt">physicalInterfaces</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">            </span><span class="nt">macAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">      </span><span class="c1"># MAC address of the single physical interface, if bond is disabled:</span>
-<span class="w">      </span><span class="nt">physicalMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># Specifications of the installation disk:</span>
-<span class="w">    </span><span class="nt">installDisk</span><span class="p">:</span>
-<span class="w">      </span><span class="c1"># Indicates whether the installation disk should be selected automatically ("true" makes other sub-fields optional):</span>
-<span class="w">      </span><span class="nt">auto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">      </span><span class="c1"># Selector for the installation disk, if not selected automatically (this is the same as the "diskSelector" field from the Talos documentation : https://docs.siderolabs.com/talos/v1.13/reference/configuration/v1alpha1/config#diskselector):</span>
-<span class="w">      </span><span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-<span class="w">    </span><span class="c1"># 'MachineConfig' overrides for this node (array, optional):</span>
-<span class="w">    </span><span class="nt">machineOverrides</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Cluster specific variables:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Enable PXE features (optional, overrides the value set automatically by the operator depending on "talosManagementMode"):</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">pxeEnabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Network interface the DHCP server should listen to (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">dhcpInterface</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># IP address of the PXE server (the bootstrap server) (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nt">pxeIpAddr</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># Name of the Talos cluster:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nt">clusterName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Cluster type (can be either "storage" or "virt"):</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nt">clusterType</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Reconciliation mode of the Talos configuration, as defined by talos-operator ("Reconcile", "Disable" or "DryRun"):</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nt">reconciliationMode</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># Cluster network specifications:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="nt">clusterNetwork</span><span class="p">:</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="nt">gatewayIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="nt">gatewayIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="c1"># Public network specifications (optional if "clusterType" is not "storage"):</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="nt">publicNetwork</span><span class="p">:</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="c1"># Storage network specifications (optional):</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="nt">storageNetwork</span><span class="p">:</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">  </span><span class="nt">vlanId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">  </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="c1"># Kubernetes pod subnets specifications:</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="nt">podSubnets</span><span class="p">:</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="c1"># Kubernetes service subnets specifications:</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="nt">serviceSubnets</span><span class="p">:</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">  </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="w">  </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">  </span><span class="nt">cidrIpv4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">  </span><span class="nt">cidrIpv6</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="c1"># IPv4 address of the Talos control plane node (optional if "controlplaneIpv6" is set):</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="nt">controlplaneIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="c1"># IPv6 address of the Talos control plane node:</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="nt">controlplaneIpv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="c1"># Port of the Talos control plane:</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="nt">controlplanePort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="c1"># ArgoCD token:</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="nt">argocdToken</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="c1"># Version of Talos to install on nodes:</span>
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="nt">talosVersion</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="c1"># Version of Kubernetes to install on Talos:</span>
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="nt">k8sVersion</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="c1"># 'MachineConfig' overrides for all types of nodes (array, optional):</span>
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="nt">machineGlobalOverrides</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="c1"># 'MachineConfig' overrides for control plane nodes (array, optional).</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="c1"># Control planes must enable MutatingAdmissionPolicy:</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="nt">machineOverridesControlPlane</span><span class="p">:</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cluster</span><span class="p">:</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="w">      </span><span class="nt">controllerManager</span><span class="p">:</span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="w">        </span><span class="nt">extraArgs</span><span class="p">:</span>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="w">          </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="w">      </span><span class="nt">apiServer</span><span class="p">:</span>
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="w">        </span><span class="nt">extraArgs</span><span class="p">:</span>
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="w">          </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="w">          </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a><span class="c1"># 'MachineConfig' overrides for worker nodes (array, optional):</span>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="nt">machineOverridesWorker</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a><span class="c1"># Nodes specific variables:</span>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="nt">nodes</span><span class="p">:</span>
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a><span class="w">    </span><span class="c1"># Talos node type (can be either "controlplane" or "worker"):</span>
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a><span class="w">    </span><span class="c1"># CPU architecture of this node (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a><span class="w">    </span><span class="nt">cpuArchitecture</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a><span class="w">    </span><span class="c1"># MAC address used by the PXE firmware (optional if "talosManagementMode" set to "Import" or if "pxeEnabled" set to "false"):</span>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a><span class="w">    </span><span class="nt">pxeMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a><span class="w">    </span><span class="c1"># Kernel command line arguments when booting in PXE (optional):</span>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a><span class="w">    </span><span class="nt">kernelCmdlineArgs</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="w">    </span><span class="c1"># Specifies whether this machine should be set up for PXE:</span>
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a><span class="w">    </span><span class="nt">pxeSetup</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a><span class="w">    </span><span class="c1"># IPv4 address of the node's IPMI (optional if "pxeSetup" set to "false"):</span>
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a><span class="w">    </span><span class="nt">ipmiIpv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a><span class="w">    </span><span class="c1"># Username of an administrator account on the IPMI (optional if "pxeSetup" set to "false"):</span>
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a><span class="w">    </span><span class="nt">ipmiUser</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a><span class="w">    </span><span class="c1"># Password of the aforementioned IPMI account (optional if "pxeSetup" set to "false"):</span>
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a><span class="w">    </span><span class="nt">ipmiPassword</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a><span class="w">    </span><span class="c1"># Name of the interface used by the PXE firmware, as given by the IPMI through Redfish (optional if "pxeSetup" set to "false"):</span>
+</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a><span class="w">    </span><span class="nt">pxeInterfaceName</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a><span class="w">    </span><span class="c1"># Specifications of the network interface:</span>
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a><span class="w">    </span><span class="nt">interface</span><span class="p">:</span>
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a><span class="w">      </span><span class="c1"># Name to give to the interface (avoid common names such as "ethX" or "enoXnpY"):</span>
+</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a><span class="w">      </span><span class="c1"># IP of this node on the cluster network (IPv6 is optional):</span>
+</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a><span class="w">      </span><span class="nt">clusterNetwork</span><span class="p">:</span>
+</span><span id="__span-1-107"><a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a><span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-108"><a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a><span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-109"><a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a><span class="w">      </span><span class="c1"># IP of this node on the public network (optional if "clusterType" is not "storage"):</span>
+</span><span id="__span-1-110"><a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a><span class="w">      </span><span class="nt">publicNetwork</span><span class="p">:</span>
+</span><span id="__span-1-111"><a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a><span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-112"><a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a><span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a><span class="w">      </span><span class="c1"># IP of this node on the storage network (optional):</span>
+</span><span id="__span-1-114"><a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a><span class="w">      </span><span class="nt">storageNetwork</span><span class="p">:</span>
+</span><span id="__span-1-115"><a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a><span class="w">        </span><span class="nt">ipv4</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-116"><a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a><span class="w">        </span><span class="nt">ipv6</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-117"><a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a><span class="w">      </span><span class="c1"># Specifies whether this interface should be connected to VLANs:</span>
+</span><span id="__span-1-118"><a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a><span class="w">      </span><span class="nt">useVlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-1-119"><a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a><span class="w">      </span><span class="c1"># Specifications of the LACP bond, if applicable (setting "enabled" to "false" makes other sub-fields optional):</span>
+</span><span id="__span-1-120"><a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a><span class="w">      </span><span class="nt">lacpBond</span><span class="p">:</span>
+</span><span id="__span-1-121"><a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-1-122"><a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a><span class="w">        </span><span class="nt">lacpRate</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-123"><a id="__codelineno-1-123" name="__codelineno-1-123" href="#__codelineno-1-123"></a><span class="w">        </span><span class="nt">xmitHashPolicy</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-124"><a id="__codelineno-1-124" name="__codelineno-1-124" href="#__codelineno-1-124"></a><span class="w">        </span><span class="nt">miimon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-125"><a id="__codelineno-1-125" name="__codelineno-1-125" href="#__codelineno-1-125"></a><span class="w">        </span><span class="nt">updelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-126"><a id="__codelineno-1-126" name="__codelineno-1-126" href="#__codelineno-1-126"></a><span class="w">        </span><span class="nt">downdelay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-127"><a id="__codelineno-1-127" name="__codelineno-1-127" href="#__codelineno-1-127"></a><span class="w">        </span><span class="nt">linkMtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</span><span id="__span-1-128"><a id="__codelineno-1-128" name="__codelineno-1-128" href="#__codelineno-1-128"></a><span class="w">        </span><span class="c1"># Physical interfaces to be aggregated:</span>
+</span><span id="__span-1-129"><a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a><span class="w">        </span><span class="nt">physicalInterfaces</span><span class="p">:</span>
+</span><span id="__span-1-130"><a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-131"><a id="__codelineno-1-131" name="__codelineno-1-131" href="#__codelineno-1-131"></a><span class="w">            </span><span class="nt">macAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-132"><a id="__codelineno-1-132" name="__codelineno-1-132" href="#__codelineno-1-132"></a><span class="w">      </span><span class="c1"># MAC address of the single physical interface, if bond is disabled:</span>
+</span><span id="__span-1-133"><a id="__codelineno-1-133" name="__codelineno-1-133" href="#__codelineno-1-133"></a><span class="w">      </span><span class="nt">physicalMacAddress</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-134"><a id="__codelineno-1-134" name="__codelineno-1-134" href="#__codelineno-1-134"></a><span class="w">    </span><span class="c1"># Specifications of the installation disk:</span>
+</span><span id="__span-1-135"><a id="__codelineno-1-135" name="__codelineno-1-135" href="#__codelineno-1-135"></a><span class="w">    </span><span class="nt">installDisk</span><span class="p">:</span>
+</span><span id="__span-1-136"><a id="__codelineno-1-136" name="__codelineno-1-136" href="#__codelineno-1-136"></a><span class="w">      </span><span class="c1"># Indicates whether the installation disk should be selected automatically ("true" makes other sub-fields optional):</span>
+</span><span id="__span-1-137"><a id="__codelineno-1-137" name="__codelineno-1-137" href="#__codelineno-1-137"></a><span class="w">      </span><span class="nt">auto</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-1-138"><a id="__codelineno-1-138" name="__codelineno-1-138" href="#__codelineno-1-138"></a><span class="w">      </span><span class="c1"># Selector for the installation disk, if not selected automatically (this is the same as the "diskSelector" field from the Talos documentation : https://docs.siderolabs.com/talos/v1.13/reference/configuration/v1alpha1/config#diskselector):</span>
+</span><span id="__span-1-139"><a id="__codelineno-1-139" name="__codelineno-1-139" href="#__codelineno-1-139"></a><span class="w">      </span><span class="nt">selector</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-1-140"><a id="__codelineno-1-140" name="__codelineno-1-140" href="#__codelineno-1-140"></a><span class="w">    </span><span class="c1"># 'MachineConfig' overrides for this node (array, optional):</span>
+</span><span id="__span-1-141"><a id="__codelineno-1-141" name="__codelineno-1-141" href="#__codelineno-1-141"></a><span class="w">    </span><span class="nt">machineOverrides</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+</span></code></pre></div>
 <h2 id="related">Related</h2>
 <ul>
 <li><a href="../">Installing an AZ</a>: overview of AZ installation.</li>
@@ -2759,7 +2759,7 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>

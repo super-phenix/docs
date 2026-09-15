@@ -2861,10 +2861,10 @@
 <p>To bring a VM into the group later, add the label to it. To take one out, remove the label. Neither change touches the VM's lifecycle.</p>
 <h2 id="test-the-rules">Test the rules</h2>
 <p>Give the VM a public address with <a href="../../virtual-machines/expose-with-eip/">Expose a VM with an Elastic IP</a>, then probe it from a machine outside the allowed range:</p>
-<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-zv<span class="w"> </span>-w<span class="w"> </span><span class="m">5</span><span class="w"> </span>&lt;External<span class="w"> </span>IP&gt;<span class="w"> </span><span class="m">80</span>
-nc<span class="w"> </span>-zv<span class="w"> </span>-w<span class="w"> </span><span class="m">5</span><span class="w"> </span>&lt;External<span class="w"> </span>IP&gt;<span class="w"> </span><span class="m">22</span>
-ping<span class="w"> </span>-c<span class="w"> </span><span class="m">3</span><span class="w"> </span>&lt;External<span class="w"> </span>IP&gt;
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>nc<span class="w"> </span>-zv<span class="w"> </span>-w<span class="w"> </span><span class="m">5</span><span class="w"> </span>&lt;External<span class="w"> </span>IP&gt;<span class="w"> </span><span class="m">80</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>nc<span class="w"> </span>-zv<span class="w"> </span>-w<span class="w"> </span><span class="m">5</span><span class="w"> </span>&lt;External<span class="w"> </span>IP&gt;<span class="w"> </span><span class="m">22</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">3</span><span class="w"> </span>&lt;External<span class="w"> </span>IP&gt;
+</span></code></pre></div>
 <p>Port 80 reports <code>succeeded</code>. Port 22 times out, since your address is outside <code>203.0.113.0/24</code>. <code>ping</code> still gets replies. On macOS, add <code>-G 5</code> to the <code>nc</code> commands so the connect attempt times out. Edit the group, replace the CIDR with your own public address as a <code>/32</code>, and port 22 opens within seconds.</p>
 <h2 id="next">Next</h2>
 <ul>
@@ -2946,7 +2946,7 @@ ping<span class="w"> </span>-c<span class="w"> </span><span class="m">3</span><s
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>

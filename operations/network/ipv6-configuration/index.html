@@ -2514,125 +2514,125 @@
 </div>
 <h2 id="running-dual-stack-with-ipv4-first">Running dual stack with IPv4 first</h2>
 <p>The configuration from <a href="../../../installation/getting-started/">Getting started</a> places IPv4 before IPv6. Configure the Talos pod and service subnets, etcd advertised subnets, and kubelet node IP ranges in that order:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">podSubnets</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/12</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:0000:0::/96</span>
-<span class="w">    </span><span class="nt">serviceSubnets</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.16.0.0/12</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:ffff:0::/112</span>
-<span class="w">  </span><span class="nt">etcd</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">advertisedSubnets</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
-
-<span class="nt">machine</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">kubelet</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">nodeIP</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">validSubnets</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">cluster</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">podSubnets</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/12</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:0000:0::/96</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">serviceSubnets</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.16.0.0/12</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:ffff:0::/112</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">etcd</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">advertisedSubnets</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nt">machine</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">kubelet</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="nt">nodeIP</span><span class="p">:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">      </span><span class="nt">validSubnets</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
+</span></code></pre></div>
 <p>The kubelet and etcd ranges select node addresses, so replace the example ranges with the IPv4 and IPv6 ranges of your node network.</p>
 <p>Configure Kube-OVN with IPv4 first as well. Because IPv4 is preferred, <code>masterNodes</code> must contain the IPv4 addresses of the control-plane nodes:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"192.168.1.150,192.168.1.151,192.168.1.153"</span>
-<span class="w">            </span><span class="nt">networking</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">pods</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.0/12"</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::/96"</span>
-<span class="w">                </span><span class="nt">gateways</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.1"</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::1"</span>
-<span class="w">              </span><span class="nt">services</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.16.0.0/12"</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:ffff:0::/112"</span>
-<span class="w">              </span><span class="nt">join</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:64::/112"</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">clusters</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">local</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"192.168.1.150,192.168.1.151,192.168.1.153"</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="nt">networking</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">              </span><span class="nt">pods</span><span class="p">:</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.0/12"</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::/96"</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">                </span><span class="nt">gateways</span><span class="p">:</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.1"</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::1"</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">              </span><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.16.0.0/12"</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:ffff:0::/112"</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">              </span><span class="nt">join</span><span class="p">:</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:64::/112"</span>
+</span></code></pre></div>
 <p>With this configuration, Superphenix prioritizes IPv4 for communication within the physical node network and virtual workload networks.</p>
 <h2 id="running-dual-stack-with-ipv6-first">Running dual stack with IPv6 first</h2>
 <p>To prefer IPv6, reverse the address-family order everywhere. In the Talos configuration, list IPv6 before IPv4 for the pod and service subnets, etcd advertised subnets, and kubelet node IP ranges:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">podSubnets</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:0000:0::/96</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/12</span>
-<span class="w">    </span><span class="nt">serviceSubnets</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:ffff:0::/112</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.16.0.0/12</span>
-<span class="w">  </span><span class="nt">etcd</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">advertisedSubnets</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
-
-<span class="nt">machine</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">kubelet</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">nodeIP</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">validSubnets</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">cluster</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">podSubnets</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:0000:0::/96</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/12</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">serviceSubnets</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:ffff:0::/112</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.16.0.0/12</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nt">etcd</span><span class="p">:</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">advertisedSubnets</span><span class="p">:</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nt">machine</span><span class="p">:</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span><span class="nt">kubelet</span><span class="p">:</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="nt">nodeIP</span><span class="p">:</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">      </span><span class="nt">validSubnets</span><span class="p">:</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:1::/64</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+</span></code></pre></div>
 <p>Configure the Kube-OVN ranges in the same IPv6-first order. Because IPv6 is preferred, <code>masterNodes</code> must contain the IPv6 addresses of the control-plane nodes:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:1::150,fd00:1::151,fd00:1::153"</span>
-<span class="w">            </span><span class="nt">networking</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">pods</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::/96"</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.0/12"</span>
-<span class="w">                </span><span class="nt">gateways</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::1"</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.1"</span>
-<span class="w">              </span><span class="nt">services</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:ffff:0::/112"</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.16.0.0/12"</span>
-<span class="w">              </span><span class="nt">join</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:64::/112"</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">clusters</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">local</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:1::150,fd00:1::151,fd00:1::153"</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">            </span><span class="nt">networking</span><span class="p">:</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">              </span><span class="nt">pods</span><span class="p">:</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::/96"</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.0/12"</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">                </span><span class="nt">gateways</span><span class="p">:</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:0000:0::1"</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.0.0.1"</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">              </span><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:ffff:0::/112"</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.16.0.0/12"</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">              </span><span class="nt">join</span><span class="p">:</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:100:64::/112"</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
+</span></code></pre></div>
 <p>With this configuration, Superphenix prioritizes IPv6 for communication within the physical node network and virtual workload networks, while IPv4 remains available for IPv4-only destinations.</p>
 <h2 id="configure-ceph-to-use-ipv6">Configure Ceph to use IPv6</h2>
 <p>On the cluster that hosts Ceph, bind the Ceph public and cluster networks to IPv6 subnets through the <code>rook-local-cluster</code> configuration:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">rook-local-cluster</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">cephClusterSpec</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">addressRanges</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">public</span><span class="p">:</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2000::/64</span>
-<span class="w">            </span><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2001::/96</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">rook-local-cluster</span><span class="p">:</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="nt">cephClusterSpec</span><span class="p">:</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">          </span><span class="nt">addressRanges</span><span class="p">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">            </span><span class="nt">public</span><span class="p">:</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2000::/64</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">            </span><span class="nt">cluster</span><span class="p">:</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:ffff:2001::/96</span>
+</span></code></pre></div>
 <p>The <code>public</code> subnet carries Ceph client and monitor traffic. The <code>cluster</code> subnet carries replication, recovery, and other traffic between Ceph daemons. Every Ceph node must have an address in the configured IPv6 subnet or subnets.</p>
 <div class="admonition important">
 <p class="admonition-title">Connecting separate workload and storage clusters</p>
 <p>For a decoupled deployment, follow <a href="../../storage/connecting-a-workload-and-storage-cluster/">Connecting a workload and storage cluster</a>.</p>
 <p>The <code>bootstrapMon.ip</code> used by the workload cluster must be an IPv6 address from the Ceph public network, and <code>bootstrapMon.protocol</code> must be set to <code>IPv6</code>. This ensures that Superphenix bootstraps the connection and retrieves the Ceph monitor list over IPv6.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">bootstrapMon</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
-<span class="w">  </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:ffff:2000::10"</span>
-<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
-<span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">bootstrapMon</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">a</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:ffff:2000::10"</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
+</span></code></pre></div>
 </div>
 
 
@@ -2709,7 +2709,7 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>

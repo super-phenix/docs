@@ -2591,53 +2591,53 @@
 </ol>
 <h2 id="configure-the-external-interface-in-talos">Configure the external interface in Talos</h2>
 <p>Every node must expose the external network through an interface with the same name. This example uses <code>ext0</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">machine</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
-<span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
-<span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.1</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">machine</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.1</span>
+</span></code></pre></div>
 <p>Replace the addressing and gateway with values for your external network. The interface can be a physical NIC, bond, or VLAN, but its Talos name must be identical on every node.</p>
 <p>If physical interface names differ between nodes, add a <code>LinkAliasConfig</code> to each node's Talos configuration. Keep <code>name</code> identical and change the MAC address for each node:</p>
-<div class="highlight"><pre><span></span><code><span class="nn">---</span>
-<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkAliasConfig</span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
-<span class="nt">selector</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac(link.permanent_addr) == "00:1a:2b:3c:4d:5e"</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nn">---</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkAliasConfig</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac(link.permanent_addr) == "00:1a:2b:3c:4d:5e"</span>
+</span></code></pre></div>
 <p>Do not use kernel-style names such as <code>eth0</code>, <code>ens3</code>, or <code>enp0s31f6</code> as the common alias.</p>
 <h2 id="configure-the-external-subnet">Configure the external subnet</h2>
 <p>Define the external subnet and its network attachment in the AZ's system configuration. The network attachment must use the common Talos interface as its <code>master</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">misc</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">objects</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">external-subnet</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
-<span class="w">              </span><span class="nt">cidrBlock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.0/24</span>
-<span class="w">              </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.1</span>
-<span class="w">              </span><span class="nt">excludeIps</span><span class="p">:</span>
-<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.0..10.81.5.31</span>
-<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.255</span>
-<span class="w">          </span><span class="nt">external-subnet-nad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">'{</span>
-<span class="w">                  </span><span class="s">"cniVersion":</span><span class="nv"> </span><span class="s">"0.3.0",</span>
-<span class="w">                  </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"macvlan",</span>
-<span class="w">                  </span><span class="s">"master":</span><span class="nv"> </span><span class="s">"ext0",</span>
-<span class="w">                  </span><span class="s">"mode":</span><span class="nv"> </span><span class="s">"bridge",</span>
-<span class="w">                  </span><span class="s">"ipam":</span><span class="nv"> </span><span class="s">{</span>
-<span class="w">                    </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"kube-ovn",</span>
-<span class="w">                    </span><span class="s">"server_socket":</span><span class="nv"> </span><span class="s">"/run/openvswitch/kube-ovn-daemon.sock",</span>
-<span class="w">                    </span><span class="s">"provider":</span><span class="nv"> </span><span class="s">"external-subnet.kube-system"</span>
-<span class="w">                  </span><span class="s">}</span>
-<span class="w">                </span><span class="s">}'</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">misc</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="nt">objects</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">          </span><span class="nt">external-subnet</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">              </span><span class="nt">cidrBlock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.0/24</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">              </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.1</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">              </span><span class="nt">excludeIps</span><span class="p">:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.0..10.81.5.31</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.255</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">          </span><span class="nt">external-subnet-nad</span><span class="p">:</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">              </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">'{</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">                  </span><span class="s">"cniVersion":</span><span class="nv"> </span><span class="s">"0.3.0",</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">                  </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"macvlan",</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">                  </span><span class="s">"master":</span><span class="nv"> </span><span class="s">"ext0",</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">                  </span><span class="s">"mode":</span><span class="nv"> </span><span class="s">"bridge",</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">                  </span><span class="s">"ipam":</span><span class="nv"> </span><span class="s">{</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">                    </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"kube-ovn",</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">                    </span><span class="s">"server_socket":</span><span class="nv"> </span><span class="s">"/run/openvswitch/kube-ovn-daemon.sock",</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">                    </span><span class="s">"provider":</span><span class="nv"> </span><span class="s">"external-subnet.kube-system"</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">                  </span><span class="s">}</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">                </span><span class="s">}'</span>
+</span></code></pre></div>
 <p>Exclude the network and broadcast addresses, node addresses, router addresses, and any other addresses that Superphenix must not allocate. In a BGP deployment, this subnet is only used to address the NAT gateways and their BGP speakers. A private RFC 1918 range is recommended because these addresses do not need to be public.</p>
 <div class="admonition warning">
 <p class="admonition-title">External network connectivity</p>
@@ -2674,42 +2674,42 @@
 <summary>Create a separate EIP subnet for BGP</summary>
 <p>Create the public EIP subnet in the same way as <code>external-subnet</code>. Unlike the existing <code>external-subnet</code> objects, these are new resources, so include their <code>apiVersion</code>, <code>kind</code>, and <code>metadata</code>.</p>
 <p>A network attachment definition (NAD) is still required, even though BGP-routed EIPs are not mounted on a host interface. Its macvlan <code>master</code> can therefore use a placeholder such as <code>fake</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">misc</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">objects</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">192.0.2.0-24</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubeovn.io/v1</span>
-<span class="w">            </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subnet</span>
-<span class="w">            </span><span class="nt">metadata</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0-24</span>
-<span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
-<span class="w">              </span><span class="nt">cidrBlock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0/24</span>
-<span class="w">              </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.1</span>
-<span class="w">              </span><span class="nt">excludeIps</span><span class="p">:</span>
-<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0..192.0.2.1</span>
-<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.255</span>
-<span class="w">          </span><span class="nt">192.0.2.0-24-nad</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s">"k8s.cni.cncf.io/v1"</span>
-<span class="w">            </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkAttachmentDefinition</span>
-<span class="w">            </span><span class="nt">metadata</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0-24</span>
-<span class="w">              </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
-<span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">'{</span>
-<span class="w">                  </span><span class="s">"cniVersion":</span><span class="nv"> </span><span class="s">"0.3.0",</span>
-<span class="w">                  </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"macvlan",</span>
-<span class="w">                  </span><span class="s">"master":</span><span class="nv"> </span><span class="s">"fake",</span>
-<span class="w">                  </span><span class="s">"mode":</span><span class="nv"> </span><span class="s">"bridge",</span>
-<span class="w">                  </span><span class="s">"ipam":</span><span class="nv"> </span><span class="s">{</span>
-<span class="w">                    </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"kube-ovn",</span>
-<span class="w">                    </span><span class="s">"server_socket":</span><span class="nv"> </span><span class="s">"/run/openvswitch/kube-ovn-daemon.sock",</span>
-<span class="w">                    </span><span class="s">"provider":</span><span class="nv"> </span><span class="s">"192.0.2.0-24.kube-system"</span>
-<span class="w">                  </span><span class="s">}</span>
-<span class="w">                </span><span class="s">}'</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">misc</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="nt">objects</span><span class="p">:</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">          </span><span class="nt">192.0.2.0-24</span><span class="p">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">            </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubeovn.io/v1</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">            </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subnet</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">            </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0-24</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">              </span><span class="nt">cidrBlock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0/24</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">              </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.1</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">              </span><span class="nt">excludeIps</span><span class="p">:</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0..192.0.2.1</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.255</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">          </span><span class="nt">192.0.2.0-24-nad</span><span class="p">:</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">            </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s">"k8s.cni.cncf.io/v1"</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">            </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NetworkAttachmentDefinition</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">            </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.0-24</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">              </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kube-system</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">              </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">'{</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">                  </span><span class="s">"cniVersion":</span><span class="nv"> </span><span class="s">"0.3.0",</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">                  </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"macvlan",</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">                  </span><span class="s">"master":</span><span class="nv"> </span><span class="s">"fake",</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">                  </span><span class="s">"mode":</span><span class="nv"> </span><span class="s">"bridge",</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">                  </span><span class="s">"ipam":</span><span class="nv"> </span><span class="s">{</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">                    </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"kube-ovn",</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">                    </span><span class="s">"server_socket":</span><span class="nv"> </span><span class="s">"/run/openvswitch/kube-ovn-daemon.sock",</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">                    </span><span class="s">"provider":</span><span class="nv"> </span><span class="s">"192.0.2.0-24.kube-system"</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">                  </span><span class="s">}</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">                </span><span class="s">}'</span>
+</span></code></pre></div>
 <p>The placeholder interface is never used to carry EIP traffic. The BGP speaker advertises the EIPs, and the backbone routes their traffic to the NAT gateway through <code>external-subnet</code>.</p>
 </details>
 <h2 id="configure-nat-gateway-defaults">Configure NAT gateway defaults</h2>
@@ -2721,25 +2721,25 @@
 <li>The upstream BGP router is <code>10.81.5.1</code>.</li>
 <li>The EIP subnet created above is named <code>192.0.2.0-24</code> and represents the example public prefix <code>192.0.2.0/24</code>.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">superphenix-controller</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">productsConfig</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">eipDefault</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">externalSubnet</span><span class="p">:</span><span class="w"> </span><span class="s">"192.0.2.0-24"</span>
-<span class="w">          </span><span class="nt">natGatewayDefault</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">bgpSpeaker</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">              </span><span class="nt">asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64892</span>
-<span class="w">              </span><span class="nt">remoteAsn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64890</span>
-<span class="w">              </span><span class="nt">neighbors</span><span class="p">:</span>
-<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.1</span>
-<span class="w">              </span><span class="nt">enableGracefulRestart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">              </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"-v5"</span>
-<span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"--graceful-restart"</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">superphenix-controller</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="nt">productsConfig</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">          </span><span class="nt">eipDefault</span><span class="p">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">            </span><span class="nt">externalSubnet</span><span class="p">:</span><span class="w"> </span><span class="s">"192.0.2.0-24"</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">          </span><span class="nt">natGatewayDefault</span><span class="p">:</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">            </span><span class="nt">bgpSpeaker</span><span class="p">:</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">              </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">              </span><span class="nt">asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64892</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">              </span><span class="nt">remoteAsn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64890</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">              </span><span class="nt">neighbors</span><span class="p">:</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.81.5.1</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">              </span><span class="nt">enableGracefulRestart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">              </span><span class="nt">extraArgs</span><span class="p">:</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"-v5"</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"--graceful-restart"</span>
+</span></code></pre></div>
 <p>Apply this configuration to each AZ that should advertise EIP routes. Values can differ by AZ to match the local routers and autonomous systems.</p>
 <p>The BGP speaker accepts these settings under <code>productsConfig.natGatewayDefault.bgpSpeaker</code>:</p>
 <ul>
@@ -2829,7 +2829,7 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>

@@ -2640,11 +2640,11 @@
 <p>The <strong>Network → EIP</strong> list shows the same address in its <strong>Public IP</strong> column.</p>
 <h2 id="test-the-connection">Test the connection</h2>
 <p>From your workstation, check that the SSH port answers:</p>
-<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-zv<span class="w"> </span>&lt;External<span class="w"> </span>IP&gt;<span class="w"> </span><span class="m">22</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>nc<span class="w"> </span>-zv<span class="w"> </span>&lt;External<span class="w"> </span>IP&gt;<span class="w"> </span><span class="m">22</span>
+</span></code></pre></div>
 <p>Then log in as the default user:</p>
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>spx@&lt;External<span class="w"> </span>IP&gt;
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>spx@&lt;External<span class="w"> </span>IP&gt;
+</span></code></pre></div>
 <p>Use the key you selected in the wizard, or the generated password from the instance's <strong>Storage</strong> tab. Ubuntu asks you to change the password on the first login.</p>
 <h2 id="alternative-internal-cidr-with-dnat">Alternative: Internal CIDR with DNAT</h2>
 <p>Pick <strong>Internal CIDR</strong> in step 3 when you want one public address for a whole range, or when you want to publish only specific ports.</p>
@@ -2735,7 +2735,7 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>

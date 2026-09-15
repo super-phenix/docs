@@ -2520,186 +2520,186 @@
 </ul>
 <h2 id="1-install-talos">1. Install Talos</h2>
 <p>Boot the nodes with the <a href="https://talos.dev/v1.11/introduction/getting-started">Talos getting started</a> guide, then generate configs:</p>
-<div class="highlight"><pre><span></span><code>talosctl<span class="w"> </span>gen<span class="w"> </span>config<span class="w"> </span>spx-local<span class="w"> </span>https://&lt;api-endpoint&gt;:6443
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>talosctl<span class="w"> </span>gen<span class="w"> </span>config<span class="w"> </span>spx-local<span class="w"> </span>https://&lt;api-endpoint&gt;:6443
+</span></code></pre></div>
 <p>Edit <code>controlplane.yaml</code> <strong>before</strong> you apply it. Superphenix installs the CNI and CoreDNS itself; this 3-node lab also schedules workloads on the control planes. Control planes must enable <strong>MutatingAdmissionPolicy</strong>. Replace the interface name, gateway, and <code>192.168.1.0/24</code> subnets with your lab network.</p>
 <details class="example" open="open">
 <summary>controlplane.yaml</summary>
-<div class="highlight"><pre><span></span><code><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">allowSchedulingOnControlPlanes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">cni</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
-<span class="w">    </span><span class="nt">podSubnets</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/12</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:0000:0::/96</span>
-<span class="w">    </span><span class="nt">serviceSubnets</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.16.0.0/12</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:ffff:0::/112</span>
-<span class="w">  </span><span class="nt">coreDNS</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">controllerManager</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">  </span><span class="nt">apiServer</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">      </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
-<span class="w">  </span><span class="nt">etcd</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">advertisedSubnets</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span><span class="w"> </span><span class="c1"># Change this with your lab network</span>
-
-<span class="nt">machine</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">files</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">        </span><span class="no">[plugins]</span>
-<span class="w">          </span><span class="no">[plugins."io.containerd.grpc.v1.cri"]</span>
-<span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
-<span class="w">          </span><span class="no">[plugins."io.containerd.cri.v1.runtime"]</span>
-<span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
-<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/cri/conf.d/20-customization.part</span>
-<span class="w">      </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create</span>
-<span class="w">  </span><span class="nt">kernel</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">modules</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openvswitch</span>
-<span class="w">  </span><span class="nt">kubelet</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">nodeIP</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">validSubnets</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span><span class="w"> </span><span class="c1"># Change this with your lab network</span>
-<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span><span class="w"> </span><span class="c1"># Same name on every node (NIC, bond, or VLAN)</span>
-<span class="w">        </span><span class="nt">dhcp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Ensure DHCP always gives the same addresses to your nodes, or configure static addresses.</span>
-<span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
-<span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.254</span><span class="w"> </span><span class="c1"># Your lab default gateway</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">cluster</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">allowSchedulingOnControlPlanes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">cni</span><span class="p">:</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">podSubnets</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0/12</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:0000:0::/96</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">serviceSubnets</span><span class="p">:</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.16.0.0/12</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fd00:100:ffff:0::/112</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="nt">coreDNS</span><span class="p">:</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nt">controllerManager</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nt">apiServer</span><span class="p">:</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="nt">etcd</span><span class="p">:</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="nt">advertisedSubnets</span><span class="p">:</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span><span class="w"> </span><span class="c1"># Change this with your lab network</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="nt">machine</span><span class="p">:</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">        </span><span class="no">[plugins]</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">          </span><span class="no">[plugins."io.containerd.grpc.v1.cri"]</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">          </span><span class="no">[plugins."io.containerd.cri.v1.runtime"]</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/cri/conf.d/20-customization.part</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">      </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">  </span><span class="nt">kernel</span><span class="p">:</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">    </span><span class="nt">modules</span><span class="p">:</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openvswitch</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">  </span><span class="nt">kubelet</span><span class="p">:</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">    </span><span class="nt">nodeIP</span><span class="p">:</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">      </span><span class="nt">validSubnets</span><span class="p">:</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span><span class="w"> </span><span class="c1"># Change this with your lab network</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span><span class="w"> </span><span class="c1"># Same name on every node (NIC, bond, or VLAN)</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">        </span><span class="nt">dhcp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span><span class="c1"># Ensure DHCP always gives the same addresses to your nodes, or configure static addresses.</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.254</span><span class="w"> </span><span class="c1"># Your lab default gateway</span>
+</span></code></pre></div>
 </details>
 <details class="warning" open="open">
 <summary>Same external interface name on every node</summary>
 <p>The <strong>external</strong> interface must have the <strong>same name on every node</strong> (<code>ext0</code> here). Superphenix uses that name cluster-wide. If kernel names differ, append a <code>LinkAliasConfig</code> per node (physical NICs only; name bonds and VLANs yourself). Keep <code>name: ext0</code> identical; change only the MAC:</p>
-<div class="highlight"><pre><span></span><code><span class="nn">---</span>
-<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkAliasConfig</span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
-<span class="nt">selector</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac(link.permanent_addr) == "00:1a:2b:3c:4d:5e"</span><span class="w"> </span><span class="c1"># this node's NIC MAC</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nn">---</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkAliasConfig</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac(link.permanent_addr) == "00:1a:2b:3c:4d:5e"</span><span class="w"> </span><span class="c1"># this node's NIC MAC</span>
+</span></code></pre></div>
 <p>Do not use kernel-style alias names (<code>eth0</code>, <code>ens3</code>, <code>enp0s31f6</code>, …).</p>
 </details>
 <p>Apply, bootstrap once, then confirm nodes are up:</p>
-<div class="highlight"><pre><span></span><code>talosctl<span class="w"> </span>apply-config<span class="w"> </span>--insecure<span class="w"> </span>--nodes<span class="w"> </span>&lt;node-ip&gt;<span class="w"> </span>--file<span class="w"> </span>controlplane.yaml
-talosctl<span class="w"> </span>bootstrap<span class="w"> </span>--nodes<span class="w"> </span>&lt;first-control-plane-ip&gt;
-talosctl<span class="w"> </span>kubeconfig<span class="w"> </span>.
-kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>talosctl<span class="w"> </span>apply-config<span class="w"> </span>--insecure<span class="w"> </span>--nodes<span class="w"> </span>&lt;node-ip&gt;<span class="w"> </span>--file<span class="w"> </span>controlplane.yaml
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>talosctl<span class="w"> </span>bootstrap<span class="w"> </span>--nodes<span class="w"> </span>&lt;first-control-plane-ip&gt;
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>talosctl<span class="w"> </span>kubeconfig<span class="w"> </span>.
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
 <h2 id="2-install-superphenix">2. Install Superphenix</h2>
 <p>Create <code>values.yaml</code>. Replace domains, node IPs, the external subnet, and <code>ext0</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Required until Superphenix has installed Kube-OVN. Set back to false after the stack is healthy.</span>
-<span class="nt">installOnClusterWithoutCNI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-
-<span class="nt">config</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">argocd</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">server</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">ingress</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">"argocd.example.org"</span><span class="w"> </span><span class="c1"># or argocd.192.168.1.10.nip.io</span>
-
-<span class="nt">management</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">kratos</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">globalSecret</span><span class="p">:</span><span class="w"> </span><span class="s">"a-very-long-string-you-need-to-change"</span>
-<span class="w">      </span><span class="nt">superphenix-console</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console.example.org</span><span class="w"> </span><span class="c1"># or console.192.168.1.10.nip.io</span>
-
-<span class="nt">clusters</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperconverged</span>
-<span class="w">    </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab</span>
-<span class="w">    </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab-a</span>
-<span class="w">    </span><span class="nt">connection</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Local</span>
-<span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">misc</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">objects</span><span class="p">:</span>
-<span class="w">              </span><span class="c1"># Replace the CIDR, gateway and the IPs excluded from</span>
-<span class="w">              </span><span class="c1"># being used by the NAT gateways and elastic IPs.</span>
-<span class="w">              </span><span class="nt">external-subnet</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
-<span class="w">                  </span><span class="nt">cidrBlock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
-<span class="w">                  </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.254</span>
-<span class="w">                  </span><span class="c1"># Those are the IPs you want excluded from the Superphenix IPAM</span>
-<span class="w">                  </span><span class="c1"># You can set individual IPs, or ranges using the ".." separator</span>
-<span class="w">                  </span><span class="nt">excludeIps</span><span class="p">:</span>
-<span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0..192.168.1.200</span>
-<span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.254</span>
-<span class="w">              </span><span class="nt">external-subnet-nad</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">spec</span><span class="p">:</span>
-<span class="w">                  </span><span class="c1"># Replace ext0 with the external interface </span>
-<span class="w">                  </span><span class="c1"># name common to all your nodes</span>
-<span class="w">                  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">'{</span>
-<span class="w">                      </span><span class="s">"cniVersion":</span><span class="nv"> </span><span class="s">"0.3.0",</span>
-<span class="w">                      </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"macvlan",</span>
-<span class="w">                      </span><span class="s">"master":</span><span class="nv"> </span><span class="s">"ext0",</span>
-<span class="w">                      </span><span class="s">"mode":</span><span class="nv"> </span><span class="s">"bridge",</span>
-<span class="w">                      </span><span class="s">"ipam":</span><span class="nv"> </span><span class="s">{</span>
-<span class="w">                        </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"kube-ovn",</span>
-<span class="w">                        </span><span class="s">"server_socket":</span><span class="nv"> </span><span class="s">"/run/openvswitch/kube-ovn-daemon.sock",</span>
-<span class="w">                        </span><span class="s">"provider":</span><span class="nv"> </span><span class="s">"external-subnet.kube-system"</span>
-<span class="w">                      </span><span class="s">}</span>
-<span class="w">                    </span><span class="s">}'</span>
-<span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">            </span><span class="c1"># Replace with the IPs of your 3 masters here</span>
-<span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"192.168.1.150,192.168.1.151,192.168.1.153"</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Required until Superphenix has installed Kube-OVN. Set back to false after the stack is healthy.</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">installOnClusterWithoutCNI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">argocd</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="nt">ingress</span><span class="p">:</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">          </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">"argocd.example.org"</span><span class="w"> </span><span class="c1"># or argocd.192.168.1.10.nip.io</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="nt">management</span><span class="p">:</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">      </span><span class="nt">kratos</span><span class="p">:</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">          </span><span class="nt">globalSecret</span><span class="p">:</span><span class="w"> </span><span class="s">"a-very-long-string-you-need-to-change"</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">      </span><span class="nt">superphenix-console</span><span class="p">:</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">          </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console.example.org</span><span class="w"> </span><span class="c1"># or console.192.168.1.10.nip.io</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="nt">clusters</span><span class="p">:</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">  </span><span class="nt">local</span><span class="p">:</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">    </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperconverged</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">    </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab-a</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">    </span><span class="nt">connection</span><span class="p">:</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">      </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Local</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">        </span><span class="nt">misc</span><span class="p">:</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">            </span><span class="nt">objects</span><span class="p">:</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">              </span><span class="c1"># Replace the CIDR, gateway and the IPs excluded from</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">              </span><span class="c1"># being used by the NAT gateways and elastic IPs.</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">              </span><span class="nt">external-subnet</span><span class="p">:</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">                </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">                  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv4</span>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w">                  </span><span class="nt">cidrBlock</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0/24</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">                  </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.254</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="w">                  </span><span class="c1"># Those are the IPs you want excluded from the Superphenix IPAM</span>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="w">                  </span><span class="c1"># You can set individual IPs, or ranges using the ".." separator</span>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="w">                  </span><span class="nt">excludeIps</span><span class="p">:</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.0..192.168.1.200</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.254</span>
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="w">              </span><span class="nt">external-subnet-nad</span><span class="p">:</span>
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="w">                </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="w">                  </span><span class="c1"># Replace ext0 with the external interface </span>
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="w">                  </span><span class="c1"># name common to all your nodes</span>
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="w">                  </span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="s">'{</span>
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="w">                      </span><span class="s">"cniVersion":</span><span class="nv"> </span><span class="s">"0.3.0",</span>
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a><span class="w">                      </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"macvlan",</span>
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="w">                      </span><span class="s">"master":</span><span class="nv"> </span><span class="s">"ext0",</span>
+</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a><span class="w">                      </span><span class="s">"mode":</span><span class="nv"> </span><span class="s">"bridge",</span>
+</span><span id="__span-4-55"><a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a><span class="w">                      </span><span class="s">"ipam":</span><span class="nv"> </span><span class="s">{</span>
+</span><span id="__span-4-56"><a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="w">                        </span><span class="s">"type":</span><span class="nv"> </span><span class="s">"kube-ovn",</span>
+</span><span id="__span-4-57"><a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a><span class="w">                        </span><span class="s">"server_socket":</span><span class="nv"> </span><span class="s">"/run/openvswitch/kube-ovn-daemon.sock",</span>
+</span><span id="__span-4-58"><a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a><span class="w">                        </span><span class="s">"provider":</span><span class="nv"> </span><span class="s">"external-subnet.kube-system"</span>
+</span><span id="__span-4-59"><a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a><span class="w">                      </span><span class="s">}</span>
+</span><span id="__span-4-60"><a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a><span class="w">                    </span><span class="s">}'</span>
+</span><span id="__span-4-61"><a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
+</span><span id="__span-4-62"><a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a><span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-4-63"><a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a><span class="w">            </span><span class="c1"># Replace with the IPs of your 3 masters here</span>
+</span><span id="__span-4-64"><a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a><span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"192.168.1.150,192.168.1.151,192.168.1.153"</span>
+</span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Local storage for debugging only</p>
 <p>If slow disks perform poorly with Ceph, you can use the <code>local-path</code> storage class to avoid network-storage overhead. Data is tied to one node and is lost if that node or disk is lost, so workloads cannot move freely between nodes. See <a href="../../operations/storage/using-local-storage/">Using local storage</a>.</p>
 </div>
 <p>Install the <strong>superphenix-operator</strong> on the Talos cluster using Helm:
-<div class="highlight"><pre><span></span><code>helm<span class="w"> </span>install<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>oci://ghcr.io/super-phenix/charts/superphenix-operator:0.7.0<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-f<span class="w"> </span>values.yaml
-</code></pre></div></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>helm<span class="w"> </span>install<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>oci://ghcr.io/super-phenix/charts/superphenix-operator:0.7.0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-f<span class="w"> </span>values.yaml
+</span></code></pre></div></p>
 <p>When the stack is healthy, open the console at your domain.</p>
 <details class="note" open="open">
 <summary>Override Kube-OVN CIDRs</summary>
 <p>If your <strong>node subnet overlaps</strong> Kube-OVN defaults (pods <code>10.0.0.0/12</code>, services <code>10.16.0.0/12</code>, join <code>100.64.0.0/12</code>, isolated egress <code>10.32.0.0/16</code>), pick a different  node range or override <code>clusters.local.systemConfiguration.apps.kubeovn.values.networking</code>. A <code>192.168.1.0/24</code> lab does not conflict.</p>
 <p>Example when nodes are on <code>10.1.0.0/24</code> (inside the default pod range <code>10.0.0.0/12</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="nt">clusters</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">values</span><span class="p">:</span>
-<span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"10.1.0.11,10.1.0.12,10.1.0.13"</span>
-<span class="w">            </span><span class="nt">networking</span><span class="p">:</span>
-<span class="w">              </span><span class="nt">pods</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.128.0.0/12"</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:0000:0::/96"</span>
-<span class="w">                </span><span class="nt">gateways</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.128.0.1"</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:0000:0::1"</span>
-<span class="w">              </span><span class="nt">services</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.144.0.0/12"</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:ffff:0::/112"</span>
-<span class="w">              </span><span class="nt">join</span><span class="p">:</span>
-<span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
-<span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
-<span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:64::/112"</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">clusters</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">local</span><span class="p">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">      </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="nt">kubeovn</span><span class="p">:</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">          </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">            </span><span class="nt">masterNodes</span><span class="p">:</span><span class="w"> </span><span class="s">"10.1.0.11,10.1.0.12,10.1.0.13"</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">            </span><span class="nt">networking</span><span class="p">:</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">              </span><span class="nt">pods</span><span class="p">:</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.128.0.0/12"</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:0000:0::/96"</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">                </span><span class="nt">gateways</span><span class="p">:</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.128.0.1"</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:0000:0::1"</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">              </span><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"10.144.0.0/12"</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:ffff:0::/112"</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">              </span><span class="nt">join</span><span class="p">:</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">                </span><span class="nt">cidr</span><span class="p">:</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">                  </span><span class="nt">v4</span><span class="p">:</span><span class="w"> </span><span class="s">"100.64.0.0/12"</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">                  </span><span class="nt">v6</span><span class="p">:</span><span class="w"> </span><span class="s">"fd00:200:64::/112"</span>
+</span></code></pre></div>
 </details>
 <p>Full chart values: <a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-operator/values.yaml">superphenix-operator</a>, <a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-system/values.yaml">superphenix-system</a>.</p>
 <p>For other topologies and production sizing, see the <a href="../deployment-guide/">Deployment guide</a> and <a href="../production-recommendations/">Production recommendations</a>.</p>
@@ -2778,7 +2778,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss"],"redirect":null,"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>

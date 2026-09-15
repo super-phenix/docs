@@ -2671,58 +2671,58 @@
 </ol>
 <h2 id="step-1-generate-cluster-configuration">Step 1: Generate cluster configuration</h2>
 <p>Pick a stable <strong>Kubernetes API endpoint</strong> (VIP, load balancer, or first control-plane IP) and generate configs:</p>
-<div class="highlight"><pre><span></span><code>talosctl<span class="w"> </span>gen<span class="w"> </span>config<span class="w"> </span>spx-cluster<span class="w"> </span>https://&lt;api-endpoint&gt;:6443
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>talosctl<span class="w"> </span>gen<span class="w"> </span>config<span class="w"> </span>spx-cluster<span class="w"> </span>https://&lt;api-endpoint&gt;:6443
+</span></code></pre></div>
 <p>This produces <code>controlplane.yaml</code>, <code>worker.yaml</code>, and <code>talosconfig</code>. Edit the generated files <strong>before</strong> you apply them.</p>
 <p>Set node hostnames, disk selectors, and addressing to match your hardware. Superphenix installs the CNI and CoreDNS itself, so those must be disabled in Talos. Every node also needs the containerd and kernel settings below, plus an <strong>external</strong> interface with the <strong>same name</strong> on every node. Control-plane configs must enable <strong>MutatingAdmissionPolicy</strong>.</p>
 <p>Edit <code>controlplane.yaml</code> (and <code>worker.yaml</code> if you use dedicated workers) with at least:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">machine</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">files</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-<span class="w">        </span><span class="no">[plugins]</span>
-<span class="w">          </span><span class="no">[plugins."io.containerd.grpc.v1.cri"]</span>
-<span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
-<span class="w">          </span><span class="no">[plugins."io.containerd.cri.v1.runtime"]</span>
-<span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
-<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/cri/conf.d/20-customization.part</span>
-<span class="w">      </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create</span>
-<span class="w">  </span><span class="nt">kernel</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">modules</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openvswitch</span>
-<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span><span class="w"> </span><span class="c1"># same name on every node (NIC, bond, or VLAN)</span>
-<span class="w">        </span><span class="nt">dhcp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
-<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
-<span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span><span class="w"> </span><span class="c1"># your default gateway</span>
-
-<span class="nt">cluster</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">network</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">cni</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
-<span class="w">  </span><span class="nt">coreDNS</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">controllerManager</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">  </span><span class="nt">apiServer</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
-<span class="w">      </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">machine</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">files</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="no">[plugins]</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">          </span><span class="no">[plugins."io.containerd.grpc.v1.cri"]</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">          </span><span class="no">[plugins."io.containerd.cri.v1.runtime"]</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="no">device_ownership_from_security_context = true</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/cri/conf.d/20-customization.part</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="nt">op</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">create</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">kernel</span><span class="p">:</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">modules</span><span class="p">:</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openvswitch</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="nt">interfaces</span><span class="p">:</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span><span class="w"> </span><span class="c1"># same name on every node (NIC, bond, or VLAN)</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">        </span><span class="nt">dhcp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0/0</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">            </span><span class="nt">gateway</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.1.1</span><span class="w"> </span><span class="c1"># your default gateway</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nt">cluster</span><span class="p">:</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="nt">cni</span><span class="p">:</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="nt">coreDNS</span><span class="p">:</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="nt">disabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">  </span><span class="nt">controllerManager</span><span class="p">:</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">  </span><span class="nt">apiServer</span><span class="p">:</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="nt">extraArgs</span><span class="p">:</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">      </span><span class="nt">feature-gates</span><span class="p">:</span><span class="w"> </span><span class="s">"MutatingAdmissionPolicy=true"</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">      </span><span class="nt">runtime-config</span><span class="p">:</span><span class="w"> </span><span class="s">"admissionregistration.k8s.io/v1beta1=true"</span>
+</span></code></pre></div>
 <p>For a small hyperconverged lab with only control-plane nodes, also set <code>cluster.allowSchedulingOnControlPlanes: true</code> so Superphenix workloads can run on those nodes. Dedicated workers do not need that flag or the <code>controllerManager</code> / <code>apiServer</code> extraArgs; apply the same <code>machine</code> and <code>cluster.network</code> / <code>coreDNS</code> settings in <code>worker.yaml</code>.</p>
 <p>Replace <code>ext0</code>, DHCP vs static addressing, and the default gateway to match your network. Keep the interface <strong>name</strong> identical on every node.</p>
 <details class="warning" open="open">
 <summary>Same external interface name on every node</summary>
 <p>The <strong>external</strong> interface must have the <strong>same name on every node</strong> (<code>ext0</code> here). Superphenix uses that name cluster-wide. If kernel names differ, append a <code>LinkAliasConfig</code> per node (physical NICs only; name bonds and VLANs yourself). Keep <code>name: ext0</code> identical; change only the MAC:</p>
-<div class="highlight"><pre><span></span><code><span class="nn">---</span>
-<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkAliasConfig</span>
-<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
-<span class="nt">selector</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac(link.permanent_addr) == "00:1a:2b:3c:4d:5e"</span><span class="w"> </span><span class="c1"># this node's NIC MAC</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nn">---</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LinkAliasConfig</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext0</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mac(link.permanent_addr) == "00:1a:2b:3c:4d:5e"</span><span class="w"> </span><span class="c1"># this node's NIC MAC</span>
+</span></code></pre></div>
 <p>Do not use kernel-style alias names (<code>eth0</code>, <code>ens3</code>, <code>enp0s31f6</code>, …).</p>
 </details>
 <p>Official reference: <a href="https://talos.dev/v1.11/introduction/getting-started">Talos Getting Started</a>. For a full 3-node lab walkthrough including Superphenix Helm values, see <a href="../../../getting-started/">Getting started</a>.</p>
@@ -2736,19 +2736,19 @@
 <p>Each node should come up in <strong>maintenance mode</strong> and expose the Talos API on its management/cluster interface.</p>
 <h2 id="step-3-apply-machine-configuration">Step 3: Apply machine configuration</h2>
 <p>Apply the control-plane config to every control-plane node (repeat for each node IP):</p>
-<div class="highlight"><pre><span></span><code>talosctl<span class="w"> </span>apply-config<span class="w"> </span>--insecure<span class="w"> </span>--nodes<span class="w"> </span>&lt;node-ip&gt;<span class="w"> </span>--file<span class="w"> </span>controlplane.yaml
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>talosctl<span class="w"> </span>apply-config<span class="w"> </span>--insecure<span class="w"> </span>--nodes<span class="w"> </span>&lt;node-ip&gt;<span class="w"> </span>--file<span class="w"> </span>controlplane.yaml
+</span></code></pre></div>
 <p>If you use dedicated workers, apply <code>worker.yaml</code> to worker nodes instead.</p>
 <h2 id="step-4-bootstrap-etcd">Step 4: Bootstrap etcd</h2>
 <p>From one control-plane node only, bootstrap the cluster:</p>
-<div class="highlight"><pre><span></span><code>talosctl<span class="w"> </span>bootstrap<span class="w"> </span>--nodes<span class="w"> </span>&lt;first-control-plane-ip&gt;
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>talosctl<span class="w"> </span>bootstrap<span class="w"> </span>--nodes<span class="w"> </span>&lt;first-control-plane-ip&gt;
+</span></code></pre></div>
 <p>Wait until the Kubernetes API responds on <code>https://&lt;api-endpoint&gt;:6443</code>.</p>
 <h2 id="step-5-verify-the-cluster">Step 5: Verify the cluster</h2>
 <p>Fetch kubeconfig and confirm nodes are ready:</p>
-<div class="highlight"><pre><span></span><code>talosctl<span class="w"> </span>kubeconfig<span class="w"> </span>.
-kubectl<span class="w"> </span>get<span class="w"> </span>nodes
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>talosctl<span class="w"> </span>kubeconfig<span class="w"> </span>.
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>kubectl<span class="w"> </span>get<span class="w"> </span>nodes
+</span></code></pre></div>
 <p>All control-plane (and worker, if any) nodes should report <code>Ready</code> before you install Superphenix.</p>
 <h2 id="next-steps">Next steps</h2>
 <ul>
@@ -2831,7 +2831,7 @@ kubectl<span class="w"> </span>get<span class="w"> </span>nodes
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
