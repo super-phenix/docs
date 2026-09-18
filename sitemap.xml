@@ -61,10 +61,40 @@
         <loc>https://docs.superphenix.net/features/compute/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/features/compute/instance/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/compute/instance-snapshot/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/features/network/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/features/network/vpc/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/network/subnet/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/network/eip/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/network/load-balancer/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/features/storage/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/storage/disk/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/storage/snapshot/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/storage/baas/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/storage/bucket/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/user-guides/network/</loc>
