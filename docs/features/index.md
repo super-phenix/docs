@@ -34,6 +34,14 @@ The foundation provides the core capabilities that the rest of the platform reli
 
     [:octicons-arrow-right-24: Network](network/index.md)
 
+-   :lucide-scroll-text:{ .lg .middle } **Audit log**
+
+    ---
+
+    Who changed what, from where, with what outcome. **Per-organization retention**.
+
+    [:octicons-arrow-right-24: Audit log](audit-log.md)
+
 </div>
 
 ## Managed services
@@ -67,3 +75,4 @@ Looking for step-by-step console tutorials? See the **User guides**:
 - **[Create a virtual machine](../user-guides/virtual-machines/create-a-vm.md)**: Walk through provisioning a VM, setting up boot disks, and connecting with SSH.
 - **[Create a subnet with a NAT gateway](../user-guides/network/create-a-subnet.md)**: Configure a custom subnet CIDR with outbound Internet routing.
 - **[Expose a VM with an Elastic IP](../user-guides/virtual-machines/expose-with-eip.md)**: Associate a public Elastic IP with your instance.
+- **[Read the audit log](../user-guides/organization/audit-log.md)**: Find who changed a resource, filter the events and set the retention.

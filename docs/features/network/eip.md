@@ -50,4 +50,4 @@ Attaching a `qosPolicy` applies rate-limiting to the Elastic IP. This enforces b
 
 ## Create and attach an EIP
 
-For a detailed walkthrough, read the [User Guide on how to expose a VM with an EIP](../../docs/user-guides/virtual-machines/expose-with-eip.md).
+For a detailed walkthrough, read the [User Guide on how to expose a VM with an EIP](../../user-guides/virtual-machines/expose-with-eip.md).
