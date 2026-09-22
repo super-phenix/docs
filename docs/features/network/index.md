@@ -1,6 +1,6 @@
 # Network
 
-Superphenix provides software-defined networking (SDN) for its workloads by using **VPCs**, **subnets**, optional **NAT gateways**, **load balancers**, **Elastic IPs (EIPs)**, and **security groups**. All are scoped to an **availability zone (AZ)** and to your **organization** and **project** (see [Tenancy and console](../tenancy-and-console.md)).
+Superphenix provides software-defined networking (SDN) for its workloads by using **VPCs**, **subnets**, optional **NAT gateways**, **load balancers**, **Elastic IPs (EIPs)**, and **security groups**. All are scoped to an **availability zone (AZ)** and to your **organization** and **project** (see [Organizations and projects](../../architecture/index.md#organizations-and-projects)).
 
 These features rely on CRDs from cloud-native networking projects including **Kube-ovn**, **Multus CNI**, and **Cilium**.
 
@@ -180,4 +180,4 @@ Using these five main features, you can build your own SDN within Superphenix. T
 4. The public gateway masquerades the private source IP with the public IP and forwards traffic to the upstream provider network.
 
 
-See [Virtualization](../virtualization.md) for attaching VMs to subnets and [Architecture overview](../../architecture/index.md) for AZ scope.
+See [Compute](../compute/index.md) for attaching VMs to subnets and [Architecture overview](../../architecture/index.md) for AZ scope.

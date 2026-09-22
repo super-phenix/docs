@@ -65,4 +65,4 @@ Subnets **host NAT gateways** when you enable them: the gateway is a resource in
 
 After creation, the subnet detail shows **CIDR**, **gateway**, **VPC**, and (if enabled) the **NAT gateway** IP.
 
-For a detailed walkthrough, read the [User Guide on how to create a Subnet](docs/user-guides/network/create-a-subnet.md).
+For a detailed walkthrough, read the [User Guide on how to create a Subnet](../../user-guides/network/create-a-subnet.md).

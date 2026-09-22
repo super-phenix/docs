@@ -28,4 +28,4 @@ The **Network** section holds five products. Each one lives in a single AZ.
 - Every AZ ships with a `default` VPC and a `default` subnet at `10.10.0.0/16`, without a NAT gateway. Create your own subnet when you need a NAT gateway, a private segment, or a range of your choice.
 - A network resource stays in the AZ you pick at creation. To use the same layout in another AZ, create it again there.
 
-For the concepts behind these pages, read [Network](../../features/network.md).
+For the concepts behind these pages, read [Network](../../features/network/index.md).

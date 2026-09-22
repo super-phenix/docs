@@ -4,7 +4,7 @@ A security group is a set of ingress and egress rules that the platform applies 
 
 The security group does not attach to a VM. It selects VMs by label. You put a label on the VM, then write the same label in the security group's **Target Selection** step, and the rules apply to every VM that carries it. When several security groups select the same VM, the VM accepts any traffic that at least one of them allows.
 
-For the concepts behind network policies, read [Network](../../features/network.md).
+For the concepts behind network policies, read [Network](../../features/network/index.md).
 
 ## Before you start
 
