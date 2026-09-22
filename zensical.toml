@@ -64,6 +64,7 @@ nav = [
       { "Backup & DR" = "features/storage/baas.md" },
       { "Object Storage" = "features/storage/bucket.md" },
     ]},
+    { "Audit Log" = "features/audit-log.md" },
   ]},
   { "User Guides" = [
     { "Network" = [
@@ -75,6 +76,10 @@ nav = [
       { "Overview" = "user-guides/virtual-machines/index.md" },
       { "Create a virtual machine" = "user-guides/virtual-machines/create-a-vm.md" },
       { "Expose a VM with an Elastic IP" = "user-guides/virtual-machines/expose-with-eip.md" }
+    ]},
+    { "Organization" = [
+      { "Overview" = "user-guides/organization/index.md" },
+      { "Read the audit log" = "user-guides/organization/audit-log.md" }
     ]}
   ]},
   { "Operations" = [

@@ -20,7 +20,7 @@ Superphenix can be operated in two main ways: **GitOps** (for operators and auto
 
 - **Authentication**: Typically integrated with an IdP or Kubernetes auth (e.g. OIDC).
 - **Authorization**: RBAC and project/tenant scoping so users only see and act on their resources.
-- **Audit**: Logging of console access and sensitive actions for compliance and debugging.
+- **Audit**: Every write request lands in the [audit log](../features/audit-log.md) with its user, source address and outcome.
 
 ## Relation to GitOps
 
