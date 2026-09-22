@@ -61,11 +61,21 @@ Stop the virtual machine before detaching persistent disks to avoid guest filesy
 
 ## Networking
 
+Instances connect to private virtual networks through project subnets:
+
 - **Subnet Attachments**: Connect an instance to one or more project subnets. Each attachment generates an interface (`eth0`, `eth1`, etc.).
+  - **Primary Interface**: The first interface (`eth0`) is the primary interface (marked with a star in the console). Disabling it requires confirmation to prevent accidental loss of connectivity.
 - **IP Assignment**:
-  - **Automatic (IPAM)**: An available IP address is leased from the subnet CIDR.
+  - **Automatic (IPAM)**: An available IP address is leased dynamically from the subnet CIDR.
   - **Static IP**: Assign a specific IPv4 or IPv6 address within the subnet range.
-- **Interface Model**: `virtio` is recommended for throughput; `e1000` provides compatibility for older operating systems.
+- **Static MAC Address**: Assign a custom MAC address using colon notation (`52:54:00:12:34:56`). Hyphen-separated formats (`52-54-00-12-34-56`) are rejected.
+- **Interface Model**:
+  - **`virtio`** (default): Paravirtualized driver offering the best performance. Supported natively by Linux and via VirtIO drivers on Windows.
+  - **`e1000`**: Emulated Intel Gigabit controller for older operating systems lacking VirtIO support.
+- **Link State**:
+  - **Desired State**: Administrative state (`Up` or `Down`) set in the instance specification.
+  - **Carrier State**: Operational link status reported by the hypervisor and guest (`Link Up`, `Link Down`, or `Instance stopped`).
+    You can toggle an interface's link state in the console using the link button.
 - **Public Access**: Associate an Elastic IP (EIP) with the instance's private IP to route inbound and outbound Internet traffic. See [Expose a VM with an Elastic IP](../../user-guides/virtual-machines/expose-with-eip.md).
 
 ---

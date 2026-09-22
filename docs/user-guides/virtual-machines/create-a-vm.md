@@ -22,7 +22,7 @@ The wizard has four steps: **General Information**, **Compute**, **Storage & SSH
 ![General Information step with name and AZ filled](../../assets/screenshots/virtual-machines/create-vm-general.png)
 
 !!! note
-    The AZ is final. To run the same workload elsewhere, create a new VM in the other AZ.
+The AZ is final. To run the same workload elsewhere, create a new VM in the other AZ.
 
 ## Step 2: Compute
 
@@ -49,9 +49,9 @@ You can attach an existing disk with **Add a disk**, or build one in place with 
 5. Set **Source type selection** to `Http`.
 6. Paste the image URL in **Url**:
 
-    ```text
-    https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
-    ```
+   ```text
+   https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+   ```
 
 7. Click **Add**.
 
@@ -62,7 +62,7 @@ The disk appears under **Disk Configuration** with its own **Mount type** and a 
 ![Storage & SSH step with the disk listed](../../assets/screenshots/virtual-machines/create-vm-storage.png)
 
 !!! warning
-    A disk with source type `Blank` has no operating system. A VM with only a `Blank` disk powers on and stops at the firmware prompt.
+A disk with source type `Blank` has no operating system. A VM with only a `Blank` disk powers on and stops at the firmware prompt.
 
 The other source types are `Snapshot` (restore from an instance snapshot), `Clone` (copy an existing disk) and `Registry` (pull a container disk image).
 
@@ -79,12 +79,14 @@ Pick a key in **Add an SSH key** to inject it into the VM. You manage keys under
 ## Step 4: Network
 
 1. Open **Add a subnet** and pick a subnet from the AZ you selected. The guide uses `docs-demo-subnet (10.20.0.0/24)`, created with a NAT gateway so the next guide can attach a public IP. Any subnet in the AZ works for this step. To create one, follow [Create a subnet with a NAT gateway](../network/create-a-subnet.md).
-2. Leave **IPv4** and **IPv6** empty to get addresses from IPAM, or type the addresses you want.
-3. Click **Create**.
+2. Leave **IPv4** and **IPv6** empty to get addresses from IPAM, or type the static addresses you want.
+3. Optional: specify a custom **MAC address** using IEEE 802 colon notation (for example, `52:54:00:12:34:56`). Hyphen-delimited formats are not supported.
+4. Optional: choose an **Interface Model** (`virtio` for maximum performance, or `e1000` for legacy operating system compatibility).
+5. Click **Create**.
 
 ![Network step with the subnet added as Interface 0](../../assets/screenshots/virtual-machines/create-vm-network.png)
 
-You can add several subnets. Each one becomes a network interface on the VM, numbered from `Interface 0`.
+You can add several subnets. Each one becomes a network interface on the VM, numbered from `Interface 0`. The first interface (`Interface 0`) acts as the primary network interface.
 
 ## Start and access the VM
 
@@ -94,9 +96,16 @@ With RunStrategy `Always`, the VM boots on its own once the disk is ready and th
 
 ![Instance details page with status Running](../../assets/screenshots/virtual-machines/vm-details-general.png)
 
-### Find the private IP
+### Find the private IP and inspect network interfaces
 
-Open the **Network** tab. Each interface shows its subnet and its **Assigned IP**.
+Open the **Network** tab to inspect attached interfaces. Each interface is organized into a dedicated card with clear visual sections:
+
+- **Header**: Shows the interface name (`eth0`), a star icon for the primary interface, a link action button to toggle link state, and warning indicators if the primary interface is disabled.
+- **Link Status**: Shows the administrative **Desired State** (`Up` or `Down`) side-by-side with the guest's real-time operational **Carrier State** (`Link Up`, `Link Down`, or `Instance stopped`).
+- **Network & Addressing**: Displays the subnet name with a direct link button to view subnet details, Subnet ID, CIDR block, and copyable **Assigned IP** addresses.
+- **Hardware Specifications**: Displays the copyable MAC address and interface mount type / driver model (`virtio`, `e1000`).
+
+You can enable or disable an interface without restarting the VM. Disabling the primary interface requires confirmation to prevent accidental loss of remote connectivity.
 
 ![Network tab showing the assigned IP](../../assets/screenshots/virtual-machines/vm-details-network.png)
 
