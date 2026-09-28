@@ -25,6 +25,9 @@
         <loc>https://docs.superphenix.net/features/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/features/audit-log/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/features/compute/</loc>
       </url>
       <url>
@@ -173,6 +176,12 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/user-guides/network/create-a-subnet/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/user-guides/organization/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/user-guides/organization/audit-log/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/user-guides/virtual-machines/</loc>
