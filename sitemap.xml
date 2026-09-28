@@ -1,58 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
-        <loc>https://docs.superphenix.net/home/</loc>
+        <loc>https://docs.superphenix.net/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/architecture/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/architecture/deployment-topology/</loc>
+        <loc>https://docs.superphenix.net/architecture/deployment-requirements/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/architecture/deployment-requirements/</loc>
+        <loc>https://docs.superphenix.net/architecture/deployment-topology/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/architecture/network-requirements/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/getting-started/</loc>
+        <loc>https://docs.superphenix.net/contributing/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/management-inside-az/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/management-outside-az/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/full-configuration/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-the-os/manual-os-installation/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-the-os/automated-os-installation/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/installing-hyperconverged/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/installing-decoupled/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/configuring-a-cluster/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/installation/production-recommendations/</loc>
+        <loc>https://docs.superphenix.net/enterprise-support/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/features/</loc>
@@ -61,19 +28,13 @@
         <loc>https://docs.superphenix.net/features/compute/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/features/compute/instance/</loc>
-      </url>
-      <url>
         <loc>https://docs.superphenix.net/features/compute/instance-snapshot/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/features/compute/instance/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/features/network/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/features/network/vpc/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/features/network/subnet/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/features/network/eip/</loc>
@@ -82,13 +43,22 @@
         <loc>https://docs.superphenix.net/features/network/load-balancer/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/features/network/security-group/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/network/subnet/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/network/vpc/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/paas/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/paas/kaas/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/features/storage/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/features/storage/disk/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/features/storage/snapshot/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/features/storage/baas/</loc>
@@ -97,13 +67,112 @@
         <loc>https://docs.superphenix.net/features/storage/bucket/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/features/storage/disk/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/storage/snapshot/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/home/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/configuring-a-cluster/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/installing-decoupled/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-an-az/installing-hyperconverged/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/full-configuration/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/management-inside-az/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-management/management-outside-az/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-the-os/automated-os-installation/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/deployment-guide/installing-the-os/manual-os-installation/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/getting-started/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/installation/production-recommendations/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/accessing-superphenix/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/console/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/limitations/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/network/configure-nat-gateways/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/network/hairpin-nat/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/network/ipv6-configuration/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/network/setting-the-mtu-of-subnets/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/storage/adding-a-storage-class/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/storage/adding-an-object-store/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/storage/configuring-the-storage-cluster/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/storage/connecting-a-workload-and-storage-cluster/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/storage/using-local-storage/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/paas/kaas/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/paas/kaas/advanced-configuration/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/paas/kaas/basic-operations/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/paas/kaas/disaster-recovery/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/paas/kaas/network-configuration/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/user-guides/network/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/user-guides/network/create-a-subnet/</loc>
+        <loc>https://docs.superphenix.net/user-guides/network/create-a-security-group/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/user-guides/network/create-a-security-group/</loc>
+        <loc>https://docs.superphenix.net/user-guides/network/create-a-subnet/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/user-guides/virtual-machines/</loc>
@@ -113,62 +182,5 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/user-guides/virtual-machines/expose-with-eip/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/accessing-superphenix/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/limitations/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/network/configure-nat-gateways/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/network/setting-the-mtu-of-subnets/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/network/ipv6-configuration/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/network/hairpin-nat/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/storage/configuring-the-storage-cluster/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/storage/connecting-a-workload-and-storage-cluster/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/storage/adding-a-storage-class/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/storage/adding-an-object-store/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/storage/using-local-storage/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/console/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/paas/kaas/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/paas/kaas/basic-operations/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/paas/kaas/advanced-configuration/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/paas/kaas/disaster-recovery/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/paas/kaas/network-configuration/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/contributing/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/enterprise-support/</loc>
       </url>
 </urlset>
