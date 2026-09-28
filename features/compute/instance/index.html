@@ -3367,12 +3367,21 @@
 <p>Stop the virtual machine before detaching persistent disks to avoid guest filesystem corruption and ensure write caches are flushed.</p>
 <hr />
 <h2 id="networking">Networking</h2>
+<p>Instances connect to private virtual networks through project subnets:</p>
 <ul>
 <li><strong>Subnet Attachments</strong>: Connect an instance to one or more project subnets. Each attachment generates an interface (<code>eth0</code>, <code>eth1</code>, etc.).</li>
+<li><strong>Primary Interface</strong>: The first interface (<code>eth0</code>) is the primary interface (marked with a star in the console). Disabling it requires confirmation to prevent accidental loss of connectivity.</li>
 <li><strong>IP Assignment</strong>:</li>
-<li><strong>Automatic (IPAM)</strong>: An available IP address is leased from the subnet CIDR.</li>
+<li><strong>Automatic (IPAM)</strong>: An available IP address is leased dynamically from the subnet CIDR.</li>
 <li><strong>Static IP</strong>: Assign a specific IPv4 or IPv6 address within the subnet range.</li>
-<li><strong>Interface Model</strong>: <code>virtio</code> is recommended for throughput; <code>e1000</code> provides compatibility for older operating systems.</li>
+<li><strong>Static MAC Address</strong>: Assign a custom MAC address using colon notation (<code>52:54:00:12:34:56</code>). Hyphen-separated formats (<code>52-54-00-12-34-56</code>) are rejected.</li>
+<li><strong>Interface Model</strong>:</li>
+<li><strong><code>virtio</code></strong> (default): Paravirtualized driver offering the best performance. Supported natively by Linux and via VirtIO drivers on Windows.</li>
+<li><strong><code>e1000</code></strong>: Emulated Intel Gigabit controller for older operating systems lacking VirtIO support.</li>
+<li><strong>Link State</strong>:</li>
+<li><strong>Desired State</strong>: Administrative state (<code>Up</code> or <code>Down</code>) set in the instance specification.</li>
+<li><strong>Carrier State</strong>: Operational link status reported by the hypervisor and guest (<code>Link Up</code>, <code>Link Down</code>, or <code>Instance stopped</code>).
+    You can toggle an interface's link state in the console using the link button.</li>
 <li><strong>Public Access</strong>: Associate an Elastic IP (EIP) with the instance's private IP to route inbound and outbound Internet traffic. See <a href="../../../user-guides/virtual-machines/expose-with-eip/">Expose a VM with an Elastic IP</a>.</li>
 </ul>
 <hr />

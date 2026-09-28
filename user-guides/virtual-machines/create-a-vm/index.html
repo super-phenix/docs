@@ -2171,10 +2171,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#find-the-private-ip" class="md-nav__link">
+  <a href="#find-the-private-ip-and-inspect-network-interfaces" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Find the private IP
+        Find the private IP and inspect network interfaces
       </span>
     </span>
   </a>
@@ -3203,10 +3203,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#find-the-private-ip" class="md-nav__link">
+  <a href="#find-the-private-ip-and-inspect-network-interfaces" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Find the private IP
+        Find the private IP and inspect network interfaces
       </span>
     </span>
   </a>
@@ -3288,8 +3288,8 @@
 <p><img alt="General Information step with name and AZ filled" src="../../../assets/screenshots/virtual-machines/create-vm-general.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The AZ is final. To run the same workload elsewhere, create a new VM in the other AZ.</p>
 </div>
+<p>The AZ is final. To run the same workload elsewhere, create a new VM in the other AZ.</p>
 <h2 id="step-2-compute">Step 2: Compute</h2>
 <ol>
 <li>Choose a <strong>RunStrategy</strong>. <code>Manual</code> (the default) creates the VM stopped, and you start it yourself. <code>Always</code> boots the VM as soon as its disks are ready and restarts it if it stops. The guide uses <code>Always</code>.</li>
@@ -3308,22 +3308,20 @@
 <li>Set <strong>Disk size</strong> to <code>20</code> Gi. The disk must be larger than the image you import.</li>
 <li>Pick a <strong>Storage class</strong>. <code>Default</code> is fine.</li>
 <li>Set <strong>Source type selection</strong> to <code>Http</code>.</li>
-<li>
-<p>Paste the image URL in <strong>Url</strong>:</p>
+<li>Paste the image URL in <strong>Url</strong>:</li>
+</ol>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
 </span></code></pre></div>
-</li>
-<li>
-<p>Click <strong>Add</strong>.</p>
-</li>
+<ol>
+<li>Click <strong>Add</strong>.</li>
 </ol>
 <p><img alt="Create a Disk dialog filled with the Ubuntu image URL" src="../../../assets/screenshots/virtual-machines/create-vm-disk-dialog.png" /></p>
 <p>The disk appears under <strong>Disk Configuration</strong> with its own <strong>Mount type</strong> and a <strong>CD-Rom</strong> checkbox. Leave both alone for a boot disk.</p>
 <p><img alt="Storage &amp; SSH step with the disk listed" src="../../../assets/screenshots/virtual-machines/create-vm-storage.png" /></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>A disk with source type <code>Blank</code> has no operating system. A VM with only a <code>Blank</code> disk powers on and stops at the firmware prompt.</p>
 </div>
+<p>A disk with source type <code>Blank</code> has no operating system. A VM with only a <code>Blank</code> disk powers on and stops at the firmware prompt.</p>
 <p>The other source types are <code>Snapshot</code> (restore from an instance snapshot), <code>Clone</code> (copy an existing disk) and <code>Registry</code> (pull a container disk image).</p>
 <h3 id="cloud-init">Cloud-init</h3>
 <p>The <strong>CloudInit Configuration</strong> card carries the first-boot configuration. The default one creates a <code>spx</code> user with passwordless <code>sudo</code>, sets a generated password that expires at first login, enables SSH password authentication, and points DNS at <code>1.1.1.1</code>. You read the generated password later on the instance details page.</p>
@@ -3333,17 +3331,26 @@
 <h2 id="step-4-network">Step 4: Network</h2>
 <ol>
 <li>Open <strong>Add a subnet</strong> and pick a subnet from the AZ you selected. The guide uses <code>docs-demo-subnet (10.20.0.0/24)</code>, created with a NAT gateway so the next guide can attach a public IP. Any subnet in the AZ works for this step. To create one, follow <a href="../../network/create-a-subnet/">Create a subnet with a NAT gateway</a>.</li>
-<li>Leave <strong>IPv4</strong> and <strong>IPv6</strong> empty to get addresses from IPAM, or type the addresses you want.</li>
+<li>Leave <strong>IPv4</strong> and <strong>IPv6</strong> empty to get addresses from IPAM, or type the static addresses you want.</li>
+<li>Optional: specify a custom <strong>MAC address</strong> using IEEE 802 colon notation (for example, <code>52:54:00:12:34:56</code>). Hyphen-delimited formats are not supported.</li>
+<li>Optional: choose an <strong>Interface Model</strong> (<code>virtio</code> for maximum performance, or <code>e1000</code> for legacy operating system compatibility).</li>
 <li>Click <strong>Create</strong>.</li>
 </ol>
 <p><img alt="Network step with the subnet added as Interface 0" src="../../../assets/screenshots/virtual-machines/create-vm-network.png" /></p>
-<p>You can add several subnets. Each one becomes a network interface on the VM, numbered from <code>Interface 0</code>.</p>
+<p>You can add several subnets. Each one becomes a network interface on the VM, numbered from <code>Interface 0</code>. The first interface (<code>Interface 0</code>) acts as the primary network interface.</p>
 <h2 id="start-and-access-the-vm">Start and access the VM</h2>
 <p>The console opens the instance details page. The status starts at <code>Pending</code> while the disk imports the image. Open the <strong>Storage</strong> tab to follow the <strong>Progress</strong> column.</p>
 <p>With RunStrategy <code>Always</code>, the VM boots on its own once the disk is ready and the status turns to <code>Running</code>. With <code>Manual</code>, click <strong>Start</strong> at the top of the page when the disk is ready.</p>
 <p><img alt="Instance details page with status Running" src="../../../assets/screenshots/virtual-machines/vm-details-general.png" /></p>
-<h3 id="find-the-private-ip">Find the private IP</h3>
-<p>Open the <strong>Network</strong> tab. Each interface shows its subnet and its <strong>Assigned IP</strong>.</p>
+<h3 id="find-the-private-ip-and-inspect-network-interfaces">Find the private IP and inspect network interfaces</h3>
+<p>Open the <strong>Network</strong> tab to inspect attached interfaces. Each interface is organized into a dedicated card with clear visual sections:</p>
+<ul>
+<li><strong>Header</strong>: Shows the interface name (<code>eth0</code>), a star icon for the primary interface, a link action button to toggle link state, and warning indicators if the primary interface is disabled.</li>
+<li><strong>Link Status</strong>: Shows the administrative <strong>Desired State</strong> (<code>Up</code> or <code>Down</code>) side-by-side with the guest's real-time operational <strong>Carrier State</strong> (<code>Link Up</code>, <code>Link Down</code>, or <code>Instance stopped</code>).</li>
+<li><strong>Network &amp; Addressing</strong>: Displays the subnet name with a direct link button to view subnet details, Subnet ID, CIDR block, and copyable <strong>Assigned IP</strong> addresses.</li>
+<li><strong>Hardware Specifications</strong>: Displays the copyable MAC address and interface mount type / driver model (<code>virtio</code>, <code>e1000</code>).</li>
+</ul>
+<p>You can enable or disable an interface without restarting the VM. Disabling the primary interface requires confirmation to prevent accidental loss of remote connectivity.</p>
 <p><img alt="Network tab showing the assigned IP" src="../../../assets/screenshots/virtual-machines/vm-details-network.png" /></p>
 <h3 id="read-the-generated-password">Read the generated password</h3>
 <p>Open the <strong>Storage</strong> tab and click <strong>Show</strong> next to <strong>UserData</strong>. The <code>chpasswd</code> block holds the password for <code>spx</code>. Ubuntu forces a password change at the first login.</p>
