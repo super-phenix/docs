@@ -10,3 +10,4 @@ The management cluster itself requires configuration to host the web console and
 
 - [Installing outside an AZ](management-outside-az.md): placement model and operator install.
 - [Configure a cluster](../installing-an-az/configuring-a-cluster.md): `Cluster` resource fields for workload AZs.
+- [Cluster toolbox](../../../operations/cluster-toolbox.md): enable a shell with access to every managed cluster.

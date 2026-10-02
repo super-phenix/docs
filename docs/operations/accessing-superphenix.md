@@ -3,7 +3,7 @@
 After Superphenix is deployed, use the web console for day-to-day resource management and Argo CD to monitor the platform deployment.
 
 !!! info "Administration UI in development"
-    We are working on a dedicated administration UI. Until it is available, use Argo CD and `kubectl` to monitor and troubleshoot the platform.
+    We are working on a dedicated administration UI. Until it is available, use Argo CD and `kubectl/k9s` to monitor and troubleshoot the platform.
 
 You need:
 
@@ -75,5 +75,7 @@ kubectl get pods --all-namespaces
 kubectl describe <resource-type> <resource-name> --namespace <namespace>
 kubectl logs <pod-name> --namespace <namespace>
 ```
+
+For remote managed clusters, you can run these commands from the [cluster toolbox](cluster-toolbox.md) on the management cluster.
 
 For multi-container pods, add `--container <container-name>` to the logs command. The resource status, events, and container logs usually show whether the problem is in Argo CD synchronization or in the deployed workload itself.
