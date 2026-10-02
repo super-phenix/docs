@@ -93,6 +93,7 @@ nav = [
   ]},
   { "Operations" = [
     { "Accessing Superphenix" = "operations/accessing-superphenix.md" },
+    { "Cluster toolbox" = "operations/cluster-toolbox.md" },
     { "Limitations" = "operations/limitations.md" },
     { "Network" = [
       { "Configure NAT gateways" = "operations/network/configure-nat-gateways.md" },
