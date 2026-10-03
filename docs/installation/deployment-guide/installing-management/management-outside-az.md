@@ -37,22 +37,25 @@ The control plane runs outside your workload AZs. This is recommended for multi-
 
 ## How to install the operator
 
-Installation of the operator is typically done via Helm on your dedicated management cluster:
+Create `values.yaml` from [Configuring the management stack](full-configuration.md). That page is shared with [Installing inside an AZ](management-inside-az.md). On a dedicated management cluster, leave `installOnClusterWithoutCNI` at `false`.
+
+Install the operator with Helm:
 
 ```bash
-helm upgrade --install superphenix-operator \
-  ghcr.io/super-phenix/charts/superphenix-operator \
-  --namespace superphenix-system \
-  --create-namespace
-```
+OPERATOR_VERSION="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/super-phenix/superphenix/releases/latest | sed 's#.*/v##')"
 
-For advanced Helm values and management stack settings, see [Full configuration](full-configuration.md).
+helm upgrade --install superphenix-operator \
+  "oci://ghcr.io/super-phenix/charts/superphenix-operator:${OPERATOR_VERSION}" \
+  --namespace superphenix-system \
+  --create-namespace \
+  -f values.yaml
+```
 
 ## Next steps
 
 1. Provision a management Kubernetes cluster (any supported distribution).
-2. Install the operator using the Helm command above.
-3. [Full configuration](full-configuration.md): configure the management stack (console, ArgoCD, and related components).
+2. [Configuring the management stack](full-configuration.md): console, identity, database, and Argo CD.
+3. Install the operator using the Helm command above.
 4. [Installing the OS](../installing-the-os/manual-os-installation.md) or [Automated OS installation](../installing-the-os/automated-os-installation.md): provision workload AZ clusters.
 5. [Installing an AZ](../installing-an-az/index.md): register each AZ with a `Cluster` resource (`connection.mode: Remote`).
 
