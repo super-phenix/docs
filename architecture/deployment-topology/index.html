@@ -16,7 +16,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../deployment-requirements/">
+        <link rel="next" href="../hardware-requirements/">
       
       
         
@@ -558,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../deployment-requirements/" class="md-nav__link">
+      <a href="../hardware-requirements/" class="md-nav__link">
         
   
   
@@ -3415,7 +3415,7 @@
 <h2 id="hyperconverged-vs-decoupled">Hyperconverged vs decoupled</h2>
 <p>AZs can be deployed in two ways:</p>
 <ul>
-<li><strong>Hyperconverged</strong>: Both <strong>storage</strong> and <strong>virtualization</strong> run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.</li>
+<li><strong>Hyperconverged</strong>: Both <strong>storage</strong> and <strong>workloads</strong> run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.</li>
 <li><strong>Decoupled (traditional)</strong>: <strong>Storage</strong> runs on separate, dedicated clusters; <strong>workload</strong> clusters run on one or more other Kubernetes clusters that consume that storage. Multiple private workload AZs can <strong>share the same storage</strong> backend. This model is useful when you want to run several workload AZs (e.g. in different racks or sites) against a single, shared storage pool.</li>
 </ul>
 <h3 id="comparison_1">Comparison</h3>
@@ -3483,20 +3483,16 @@
 <tbody>
 <tr>
 <td><strong>Hyperconverged</strong></td>
-<td><strong>Fully integrated</strong>: Storage, virtualization, and the management plane run on a single cluster; the simplest deployment, with one AZ and its control plane colocated.</td>
+<td><strong>Fully integrated</strong>: Storage, workload, and the management plane run on a single cluster; the simplest deployment, with one AZ and its control plane colocated.</td>
 <td><strong>Centrally managed hyperconverged</strong>: Each AZ is a self-contained hyperconverged cluster; a dedicated management cluster orchestrates multiple AZs from a single management plane.</td>
 </tr>
 <tr>
 <td><strong>Decoupled</strong></td>
-<td><strong>Decoupled with local management</strong>: Storage and workload are on separate clusters; the management plane runs on one of them (e.g. a workload AZ), so that AZ hosts both workloads and the control plane.</td>
+<td><strong>Decoupled with local management</strong>: Storage and workload are on separate clusters; the management plane runs on one of them (e.g. a workload cluster), so that AZ hosts both workloads/storage and the control plane.</td>
 <td><strong>Fully decoupled</strong>: Storage, workload, and management are each separate; a dedicated management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration.</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition warning">
-<p class="admonition-title">Supported deployment types</p>
-<p>Currently, the only <strong>supported and tested</strong> installation method is <strong>Fully decoupled</strong> (decoupled AZs with the management plane on a dedicated management cluster outside the AZ). Work is ongoing to support <strong>Fully integrated</strong> (hyperconverged with management on the AZ) and <strong>Centrally managed hyperconverged</strong> (hyperconverged AZs with the management plane on a dedicated management cluster).</p>
-</div>
 <h3 id="recommendations">Recommendations</h3>
 <div class="admonition important">
 <p class="admonition-title">Choose before you install</p>
@@ -3586,7 +3582,9 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+          
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.copy"],"redirect":"../../redirect.json","search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../assets/javascripts/bundle.67a597eb.min.js"></script>

@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://docs.superphenix.net/architecture/deployment-requirements/">
+        <link rel="canonical" href="https://docs.superphenix.net/architecture/hardware-requirements/">
       
       
         <link rel="prev" href="../deployment-topology/">
@@ -440,6 +440,17 @@
       On this page
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements-per-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Requirements per topology
+      </span>
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#alignment-with-ceph" class="md-nav__link">
@@ -3177,6 +3188,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#requirements-per-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Requirements per topology
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#alignment-with-ceph" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3296,24 +3318,19 @@
 
 
 <h1 id="hardware-requirements_1">Hardware requirements</h1>
-<p>Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in <a href="../deployment-topology/">Deployment topology</a>. The same <strong>cluster</strong> can imply very different server counts and configurations depending on whether you run a <strong>hyperconverged</strong> stack (storage and virtualization together) or a <strong>decoupled</strong> stack (dedicated storage and dedicated workload clusters).</p>
-<ul>
-<li><strong><a href="#hyperconverged-setup">Hyperconverged</a></strong>: Storage and virtualization on the same nodes. Size hosts for combined Ceph and hypervisor needs, plus headroom for failure and recovery.</li>
-<li><strong><a href="#decoupled-setup">Decoupled</a></strong>: Requirements are split by role:<ul>
-<li><strong><a href="#storage-node-setup">Storage node</a></strong>: Dedicated Ceph / storage tier in a decoupled topology. Same hardware floors as hyperconverged storage roles, sized for OSD throughput and replication.</li>
-<li><strong><a href="#virtualization-nodes-setup">Virtualization nodes</a></strong>: Dedicated hypervisor tier in a decoupled topology. Same CPU, RAM, and boot-disk expectations as hyperconverged compute roles, sized for VM density and migration.</li>
-</ul>
-</li>
-</ul>
-<div class="admonition important">
-<p class="admonition-title">Choose your topology first</p>
-<p>Decide which <strong>deployment topology</strong> you want (hyperconverged or decoupled) <strong>before</strong> sizing hardware. The <a href="#hardware-requirements">hardware requirements</a> tabs below depend on that choice.</p>
-</div>
+<p>Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in <a href="../deployment-topology/">Deployment topology</a>. The same <strong>cluster</strong> can imply very different server counts and configurations depending on whether you run a <strong>hyperconverged</strong> stack (storage and workload together) or a <strong>decoupled</strong> stack (dedicated storage and dedicated workload clusters).</p>
+<p>The hardware requirements are therefore <strong>per AZ and per deployment topology</strong>.</p>
+<h2 id="requirements-per-topology">Requirements per topology</h2>
 <p>Deployment topology is the main factor that influences the requirements:</p>
 <ul>
 <li><strong>Hyperconverged</strong>: Each node contributes to both storage and virtualization. Disk, CPU, and memory requirements are <strong>combined</strong> on the same machines: size hosts for the sum of what the Ceph storage and the hypervisor need, plus headroom for failure and recovery</li>
 <li><strong>Decoupled</strong>: Requirements <strong>split by role</strong>. The storage tier must satisfy Ceph expectations for OSD throughput, replication, and recovery; the virtualization tier is sized separately for VM density, live migration, and control-plane overhead. You plan distinct footprints for storage hosts, for hypervisor hosts, and for the <strong>management cluster</strong> that runs the platform control plane (see <a href="#management-cluster-decoupled">Management cluster (decoupled)</a>)</li>
 </ul>
+<div class="admonition important">
+<p class="admonition-title">Choose your topology first</p>
+<p>Decide which <strong>deployment topology</strong> you want (hyperconverged or decoupled) <strong>before</strong> sizing hardware. The <a href="#hardware-requirements">hardware requirements</a> tabs below depend on that choice.</p>
+<p>If you have multiple AZs with different topologies, apply the sizing for that topology to each AZ.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Multi-AZ and disaster recovery</p>
 <p>If you deploy <strong>multiple availability zones</strong> and expect <strong>disaster recovery</strong> between them, plan <strong>additional capacity</strong> on each AZ beyond steady-state workload. You need room for <strong>cross-AZ backup and replication</strong> traffic and retention. When an AZ is impaired, you also need room for <strong>absorbing or restarting workloads</strong> that you fail over or relocate from another zone. Without that margin, a zone sized only for its local peak can become overloaded during recovery or when it must temporarily carry part of a neighbor’s load.</p>
@@ -3716,7 +3733,7 @@ Always make sure the disks you select are <strong>fit</strong> for intensive sto
 </tr>
 <tr>
 <td><strong>RAM</strong></td>
-<td>On the order of <strong>1 TiB</strong> for nodes with a lot of VMs; also plan roughly <strong>1 GiB RAM per 1 TiB</strong> of <strong>Ceph-managed</strong> capacity (plus Ceph OSD/daemon RAM per upstream guidance)</td>
+<td>On the order of <strong>256 GiB</strong> for nodes with a medium amount of VMs</td>
 </tr>
 <tr>
 <td><strong>CPU cores</strong></td>
@@ -3760,7 +3777,7 @@ Always make sure the disks you select are <strong>fit</strong> for intensive sto
 </tr>
 <tr>
 <td><strong>RAM</strong></td>
-<td>Extra headroom for growth, peak recovery, and large OSD counts; align with Ceph guidance for <strong>mon/mgr</strong> RAM as the cluster grows</td>
+<td>1 TiB of RAM for nodes with a lot of VMs and workload running on them</td>
 </tr>
 <tr>
 <td><strong>CPU cores</strong></td>
@@ -3768,7 +3785,7 @@ Always make sure the disks you select are <strong>fit</strong> for intensive sto
 </tr>
 <tr>
 <td><strong>CPU architecture</strong></td>
-<td>Same as recommended</td>
+<td><strong>x86-64</strong> with <strong>Intel VT-x</strong> or <strong>AMD-V</strong> enabled in firmware on hypervisor nodes</td>
 </tr>
 <tr>
 <td><strong>NIC / link speed</strong></td>
@@ -3921,7 +3938,9 @@ Always make sure the disks you select are <strong>fit</strong> for intensive sto
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+          
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.copy"],"redirect":"../../redirect.json","search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../assets/javascripts/bundle.67a597eb.min.js"></script>

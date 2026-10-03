@@ -381,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architecture/deployment-requirements/" class="md-nav__link">
+      <a href="../../architecture/hardware-requirements/" class="md-nav__link">
         
   
   
@@ -3200,7 +3200,7 @@
 <p>If you are still on your first cluster, start with <a href="../getting-started/">Getting started</a>. Use the architecture guides for detailed requirements:</p>
 <ul>
 <li><a href="../../architecture/deployment-topology/">Deployment topology</a></li>
-<li><a href="../../architecture/deployment-requirements/">Hardware requirements</a></li>
+<li><a href="../../architecture/hardware-requirements/">Hardware requirements</a></li>
 <li><a href="../../architecture/network-requirements/">Network requirements</a></li>
 </ul>
 <p>For all installation modes and runbooks, see the <a href="../deployment-guide/">deployment guide</a>.</p>
@@ -3211,7 +3211,7 @@
 <li>Prefer a <strong>non-hyperconverged (decoupled)</strong> layout for <strong>high-demand</strong> environments and when you need stronger <strong>security</strong> boundaries between storage and compute. Dedicated storage and hypervisor tiers avoid resource contention and simplify isolation (see <a href="../../architecture/deployment-topology/">Deployment topology</a>).</li>
 <li>For <strong>multi-AZ</strong> deployments, <strong>decoupled management</strong> (control plane outside workload AZs) is advised so a single management cluster can orchestrate many AZs with better redundancy (see <a href="../../architecture/deployment-topology/">Deployment topology</a>).</li>
 <li>A single AZ may <strong>span multiple datacenters</strong> only when sites stay close in <strong>latency</strong>, not in geography for its own sake. Aim for about <strong>2 ms round-trip ping</strong> (or less) between sites. At that level you are usually still in the <strong>same metro</strong>: two halls on one campus, or PoPs <strong>tens of kilometers</strong> apart over low-latency links (roughly same city / metropolitan area, not another region). Fiber and routing overhead mean 2 ms is not “hundreds of kilometers”; treat <strong>~2 ms as a practical ceiling</strong> for one stretched AZ. If ping is higher, use <strong>separate AZs</strong> instead (see <a href="../../architecture/">Architecture overview</a> and <a href="../../architecture/network-requirements/">Network requirements</a>).</li>
-<li>Size nodes using at least the <strong>Recommended</strong> hardware profile; treat <strong>Minimal</strong> as validation only (see <a href="../../architecture/deployment-requirements/">Hardware requirements</a>).</li>
+<li>Size nodes using at least the <strong>Recommended</strong> hardware profile; treat <strong>Minimal</strong> as validation only (see <a href="../../architecture/hardware-requirements/">Hardware requirements</a>).</li>
 <li>Use servers with <strong>IPMI</strong> (for example iDRAC or other BMCs) and a dedicated <strong>out-of-band (OOB)</strong> management network for remote power, console, and recovery without relying on the production data plane.</li>
 </ul>
 <p><strong>Networking</strong></p>
@@ -3225,7 +3225,7 @@
 </ul>
 <p><strong>Storage (Ceph)</strong></p>
 <ul>
-<li>Use <strong>datacenter or enterprise-grade</strong> SSDs and NVMe for Ceph OSDs. <strong>Consumer SSDs</strong> are a poor fit: Ceph is sensitive to write latency and endurance, and performance can <strong>degrade sharply</strong> under sustained or mixed workloads (see <a href="../../architecture/deployment-requirements/">Hardware requirements</a>).</li>
+<li>Use <strong>datacenter or enterprise-grade</strong> SSDs and NVMe for Ceph OSDs. <strong>Consumer SSDs</strong> are a poor fit: Ceph is sensitive to write latency and endurance, and performance can <strong>degrade sharply</strong> under sustained or mixed workloads (see <a href="../../architecture/hardware-requirements/">Hardware requirements</a>).</li>
 <li>Follow <a href="https://docs.ceph.com/en/latest/start/hardware-recommendations/">Ceph hardware recommendations</a> for CPU per OSD, RAM, and network separation of public vs cluster traffic.</li>
 <li>Leave capacity margin for rebuilds, backups, and cross-AZ replication so recovery does not degrade production I/O.</li>
 </ul>
@@ -3367,7 +3367,9 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.copy"],"redirect":null,"search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+          
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.copy"],"redirect":"../../redirect.json","search":"../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
       <script src="../../assets/javascripts/bundle.67a597eb.min.js"></script>
