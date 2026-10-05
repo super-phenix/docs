@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#full-configuration" class="md-skip">
+        <a href="#configuring-the-management-stack" class="md-skip">
           Skip to content
         </a>
       
@@ -829,10 +829,148 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
+  <a href="#what-the-management-cluster-must-provide" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Related
+        What the management cluster must provide
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#values-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Values file
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        DNS
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Management components
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Management components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Console
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kratos" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Kratos
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permify" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Permify
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        PostgreSQL
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#talos-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Talos operator
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idrac-exporter" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        iDRAC exporter
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#argo-cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Argo CD
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operator-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Operator lifecycle
       </span>
     </span>
   </a>
@@ -3094,10 +3232,148 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
+  <a href="#what-the-management-cluster-must-provide" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Related
+        What the management cluster must provide
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#values-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Values file
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        DNS
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Management components
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Management components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#console" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Console
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kratos" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Kratos
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permify" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Permify
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        PostgreSQL
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#talos-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Talos operator
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idrac-exporter" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        iDRAC exporter
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#argo-cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Argo CD
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operator-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Operator lifecycle
       </span>
     </span>
   </a>
@@ -3123,15 +3399,243 @@
   
 
 
-<h1 id="full-configuration">Full configuration</h1>
-<p>This page covers configuring the management stack after you install the operator on a <a href="../management-outside-az/">dedicated management cluster</a>.</p>
-<p>The management cluster itself requires configuration to host the web console and ArgoCD components. This is managed via the <code>Management</code> resource (or via the system chart values).</p>
-<p><em>Coming soon: detailed management stack configuration.</em></p>
-<h2 id="related">Related</h2>
+<h1 id="configuring-the-management-stack">Configuring the management stack</h1>
+<p>The management plane is configured once, through the <code>superphenix-operator</code> Helm values, whether it runs <a href="../management-inside-az/">inside an AZ</a> or <a href="../management-outside-az/">outside an AZ</a>. Both install procedures use the file described here.</p>
+<p>The operator installs two things on the management cluster:</p>
 <ul>
-<li><a href="../management-outside-az/">Installing outside an AZ</a>: placement model and operator install.</li>
-<li><a href="../../installing-an-az/configuring-a-cluster/">Configure a cluster</a>: <code>Cluster</code> resource fields for workload AZs.</li>
+<li><strong>Argo CD</strong>, from the operator chart, which synchronizes every Superphenix application.</li>
+<li>A <code>Cluster</code> of type <code>Management</code> (connection mode <code>Local</code>). Its <code>systemConfiguration</code> is passed to the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart, which renders one Argo CD <code>Application</code> per management component.</li>
 </ul>
+<p>Full upstream values:</p>
+<ul>
+<li><a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-operator/values.yaml">superphenix-operator <code>values.yaml</code></a></li>
+<li><a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-system/values.yaml">superphenix-system <code>values.yaml</code></a></li>
+</ul>
+<h2 id="what-the-management-cluster-must-provide">What the management cluster must provide</h2>
+<p>The management applications expect a <strong>storage class</strong> and an <strong>ingress controller</strong> on the cluster where they run.</p>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Used by</th>
+<th>Where it comes from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Persistent volume</td>
+<td>PostgreSQL (default <strong>8Gi</strong>)</td>
+<td>A default <code>StorageClass</code> on the management cluster</td>
+</tr>
+<tr>
+<td>HTTP on ports 80 and 443</td>
+<td>Console, API, Kratos, and Argo CD</td>
+<td>An ingress controller. Superphenix AZs use Traefik from the system chart</td>
+</tr>
+</tbody>
+</table>
+<p>On a dedicated management cluster, provide both before you rely on the console. When management runs inside an AZ, Rook and Traefik are installed with that AZ, so the console stays unavailable until the AZ is installed. See <a href="../management-inside-az/#console-availability">Installing inside an AZ</a>.</p>
+<h2 id="values-file">Values file</h2>
+<p>Create <code>values.yaml</code> and pass it to Helm from the placement guide you are following. Replace every example secret and hostname.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Set to true only while the management cluster has no CNI yet.</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Required for Installing inside an AZ until Kube-OVN is healthy.</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Leave false when the management cluster already has a CNI.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">installOnClusterWithoutCNI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">argocd</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">ha</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">ingress</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">          </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd.example.org</span><span class="w"> </span><span class="c1"># or argocd.192.168.1.10.nip.io</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nt">management</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="c1"># Optional. Defaults to "management". Not shown to end users.</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">management</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">management</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">lifecycle</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="c1"># Set true to disable autosync of every management application.</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">pause</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">cleanupOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">      </span><span class="nt">superphenix-console</span><span class="p">:</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">          </span><span class="c1"># Public domain for the console, the API, and Kratos.</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">          </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console.example.org</span><span class="w"> </span><span class="c1"># or console.192.168.1.10.nip.io</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="nt">kratos</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">          </span><span class="c1"># Random string, at least 16 characters. Set before the first sync.</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">          </span><span class="nt">globalSecret</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-random-string-at-least-16-characters"</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">          </span><span class="nt">auth</span><span class="p">:</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">            </span><span class="c1"># Shared by the API, Kratos, and Permify. Replace before the first sync.</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">            </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-unique-password"</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">          </span><span class="nt">persistence</span><span class="p">:</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8Gi</span>
+</span></code></pre></div>
+<p><code>management.systemConfiguration</code> is copied onto the management <code>Cluster</code> and becomes the Helm values of <code>superphenix-system</code>. Per-application overrides live under <code>apps.&lt;name&gt;</code>, matching the keys in the system chart.</p>
+<h2 id="dns">DNS</h2>
+<p>The console domain and the Argo CD hostname must resolve to the management cluster.</p>
+<p>On a Superphenix AZ, Traefik listens on <strong>every node</strong> on ports <strong>80</strong> and <strong>443</strong>, so DNS only needs to point at <strong>one</strong> node. For high availability, use a load balancer or DNS round-robin.</p>
+<div class="admonition tip">
+<p class="admonition-title">No DNS?</p>
+<p>Use <a href="https://nip.io">nip.io</a> against a node address, for example <code>console.192.168.1.10.nip.io</code>. Use the same pattern for the Argo CD hostname.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">NAT gateway traffic to a node</p>
+<p>Due to a macvlan limitation, traffic from a NAT gateway is blackholed when its destination is an address on the node hosting that gateway. VMs and Kubernetes as a Service clusters can therefore lose access to the console when DNS points directly at a node. Put a load balancer in front of the nodes and point DNS at the load balancer. See <a href="../../../../operations/limitations/#nat-gateway-traffic-to-its-host-node">Limitations</a>.</p>
+</div>
+<p>One hostname serves the whole console stack. The system chart publishes:</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Component</th>
+<th>TLS secret</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>Web console</td>
+<td><code>superphenix-console-tls</code></td>
+</tr>
+<tr>
+<td><code>/api</code></td>
+<td>API</td>
+<td><code>superphenix-api-tls</code></td>
+</tr>
+<tr>
+<td><code>/accounts</code></td>
+<td>Kratos (login, registration, recovery)</td>
+<td><code>kratos-public-tls</code></td>
+</tr>
+</tbody>
+</table>
+<p>The API URL, Kratos base URL, session cookies, and CORS allowed origins are all rendered from <code>apps.superphenix-console.values.domain</code>. Argo CD uses <code>config.argocd.values.server.ingress.hostname</code> and is a separate name. The chart's built-in Argo CD ingress hostname is <code>argocd.superphenix.net</code>; override it.</p>
+<p>Ingress TLS annotations for cert-manager (<code>cert-manager.io/cluster-issuer: letsencrypt</code>) are present in the chart and commented out. cert-manager is installed with an AZ (hyperconverged, storage, or workload), not with the management components.</p>
+<h2 id="management-components">Management components</h2>
+<p>The system chart deploys an application on a cluster only when that cluster's effective mode is listed in the application's <code>modes</code>. The management <code>Cluster</code> has effective mode <code>Management</code>. These are the applications selected for that mode.</p>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Role</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>superphenix-console</code></td>
+<td>Web UI for operators and tenants</td>
+<td>Enabled, chart <code>0.6.1</code></td>
+</tr>
+<tr>
+<td><code>superphenix-api</code></td>
+<td>Backend for the console and CLI. Stores organizations, projects, and API state in PostgreSQL. Delegates authentication to Kratos and authorization to Permify</td>
+<td>Enabled, version follows the Superphenix release</td>
+</tr>
+<tr>
+<td><code>kratos</code></td>
+<td><a href="https://www.ory.sh/kratos/">Ory Kratos</a> identity, sessions, and self-service flows</td>
+<td>Enabled, chart <code>0.43.1</code></td>
+</tr>
+<tr>
+<td><code>permify</code></td>
+<td>Authorization. The API calls it for permission checks</td>
+<td>Enabled, chart <code>0.3.*</code></td>
+</tr>
+<tr>
+<td><code>postgres</code></td>
+<td>Shared PostgreSQL for the API, Kratos, and Permify</td>
+<td>Enabled, chart <code>0.19.12</code></td>
+</tr>
+<tr>
+<td><code>talos-operator</code></td>
+<td>Bare-metal Talos: PXE boot and machine configuration</td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td><code>idrac-exporter</code></td>
+<td>Prometheus exporter for Dell iDRAC baseboard management controllers</td>
+<td>Disabled</td>
+</tr>
+</tbody>
+</table>
+<h3 id="console">Console</h3>
+<p><code>apps.superphenix-console.values.domain</code> is the public name of the console. Ingress is enabled and serves <code>/</code> on that host.</p>
+<h3 id="api">API</h3>
+<p>The API ingress is enabled on the console domain at <code>/api</code>. It connects to PostgreSQL with the password from the <code>postgres</code> application:</p>
+<ul>
+<li>Host <code>postgres.&lt;namespace&gt;.svc</code>, port <code>5432</code></li>
+<li>Database, username: <code>superphenix</code></li>
+</ul>
+<p><code>userIsActiveOnCreate</code> defaults to <code>true</code>, so a self-service registration can sign in immediately. <a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a> describes the login page and how to restrict registration on a public deployment.</p>
+<p>The chart's local AZ entry (<code>azs.local</code>) points the API at an in-cluster Superphenix controller named "Local AZ". That controller is installed with the AZ, not with the management components.</p>
+<h3 id="kratos">Kratos</h3>
+<p><code>apps.kratos.values.globalSecret</code> derives the default, cookie, and cipher secrets. Use a random string of at least 16 characters and set it before the first sync. Rotating it invalidates existing sessions.</p>
+<p>Kratos stores identities and sessions in the <code>kratos</code> database on the same PostgreSQL instance. The DSN is rendered from <code>apps.postgres.values.auth.password</code>.</p>
+<p>Defaults that matter at install time:</p>
+<ul>
+<li>Code-based login is enabled (15-minute lifespan). Account recovery is enabled. Email verification is disabled.</li>
+<li>Courier SMTP is required by Kratos even when you are not sending mail. The chart default is a placeholder (<code>smtps://dummy@example.org</code> on localhost). To send recovery mail, set <code>apps.kratos.values.kratos.config.courier.smtp</code> (<code>connection_uri</code>, <code>from_address</code>, <code>from_name</code>).</li>
+<li>The public listener is <code>https://&lt;console-domain&gt;/accounts</code>. The ingress strips the <code>/accounts</code> prefix before the request reaches Kratos.</li>
+<li>Database migrations run automatically on upgrade (<code>automigration.enabled: true</code>).</li>
+</ul>
+<h3 id="permify">Permify</h3>
+<p>Permify stores relation tuples in the <code>permify</code> database. The connection URI uses the same PostgreSQL user and password. The default is a single replica with distributed mode disabled. The API reaches it at <code>permify.&lt;namespace&gt;.svc:3478</code>.</p>
+<h3 id="postgresql">PostgreSQL</h3>
+<p>One instance backs the three databases. On first start, an init script creates <code>kratos</code> and <code>permify</code> and grants them to the user <code>superphenix</code>. The API uses the database named <code>superphenix</code>.</p>
+<p>Override <code>apps.postgres.values.auth.password</code>. The chart default is a public placeholder. The same value is substituted into the API, Kratos, and Permify configuration, so it only needs to be set on the <code>postgres</code> application.</p>
+<p><code>apps.postgres.values.persistence.size</code> defaults to <code>8Gi</code>, which the chart describes as enough for most deployments. The volume uses the cluster default storage class. No storage class name is set in the chart.</p>
+<p>The operator connects to this database itself when <code>config.database.autoConnect</code> is <code>true</code> (the default): it reads the <code>postgres</code> secret. To point the operator at another database, set <code>config.database.host</code>, <code>port</code>, <code>user</code>, <code>password</code>, and <code>name</code>, and set <code>autoConnect</code> to <code>false</code>.</p>
+<h3 id="talos-operator">Talos operator</h3>
+<p>Disabled by default (<code>apps.talos-operator.enabled: false</code>). Enable it when this management cluster should run the Talos operator for PXE boot and machine configuration. The chart turns on <code>featureFlags.enablePxeBootStack</code>. How an AZ is provisioned through BMC is covered in <a href="../../installing-the-os/automated-os-installation/">Automated OS installation</a>.</p>
+<h3 id="idrac-exporter">iDRAC exporter</h3>
+<p>Disabled by default (<code>apps.idrac-exporter.enabled: false</code>). Enable it to scrape Dell iDRAC metrics. The chart ships empty Helm values; add the exporter's own settings under <code>apps.idrac-exporter.values</code>.</p>
+<h2 id="argo-cd">Argo CD</h2>
+<p>Argo CD is installed by the operator chart, not by a <code>Management</code>-mode application. <code>config.argocd.values</code> is merged into the Argo CD Helm values. The setting you need at install time is the ingress hostname, under <code>server.ingress.hostname</code>, as in the example above.</p>
+<p><code>config.argocd.ha.enabled: true</code> turns on Redis HA and autoscaling for the server and repo server.</p>
+<p><code>config.argocd.chart.url</code> and <code>config.argocd.chart.version</code> override the Argo CD chart location. Leave them empty to use the chart built into the operator.</p>
+<p>After the ingress controller is serving traffic, sign in as described in <a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>. The initial admin password is in the <code>argocd-initial-admin-secret</code> secret in <code>superphenix-system</code>.</p>
+<h2 id="operator-lifecycle">Operator lifecycle</h2>
+<p>These fields are copied onto the management <code>Cluster</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>management.lifecycle.manual</code></td>
+<td>Disables autosync of every application on the management cluster. Applications stay in place until you sync them in Argo CD or set this back to <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>management.lifecycle.pause</code></td>
+<td>Pauses synchronization of the management stack.</td>
+</tr>
+<tr>
+<td><code>management.lifecycle.cleanupOnDeletion</code></td>
+<td>Cascade-deletes managed resources when the management cluster object is removed.</td>
+</tr>
+<tr>
+<td><code>management.region</code>, <code>management.availabilityZone</code></td>
+<td>Labels stored on the management cluster. Default <code>management</code>. End users do not see this cluster as an AZ.</td>
+</tr>
+<tr>
+<td><code>management.systemLocation</code></td>
+<td>Overrides <code>repoURL</code>, <code>chartName</code>, or <code>version</code> of the system chart used for management. Empty values keep the operator defaults (<code>ghcr.io/super-phenix/charts</code>, chart <code>superphenix-system</code>, version aligned with the operator).</td>
+</tr>
+</tbody>
+</table>
+<p><code>installOnClusterWithoutCNI</code> is an operator-chart flag, not a system-chart value. When <code>true</code>, the operator and Argo CD tolerate <code>NotReady</code> nodes and use the host network, so they can run before a CNI exists. <a href="../management-inside-az/">Installing inside an AZ</a> sets it to <code>true</code> until Kube-OVN is healthy, then back to <code>false</code>. A management cluster that already has a CNI leaves it <code>false</code>.</p>
 
 
 

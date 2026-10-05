@@ -3144,25 +3144,26 @@
 
 
 <h1 id="installing-management-plane">Installing management plane</h1>
-<p>This section covers the <strong>management cluster</strong>: where to place it, how the Superphenix operator is installed, and how you configure the management stack.</p>
-<p>Part of the <a href="../">deployment guide</a>. Choose your placement model first:</p>
+<p>This section covers where the management plane runs, how the Superphenix operator is installed, and how the management stack is configured.</p>
+<p>Part of the <a href="../">deployment guide</a>. Placement (inside an AZ or on a dedicated cluster), failure domains, and how that choice combines with hyperconverged and decoupled AZs are in <a href="../../../architecture/deployment-topology/#management-plane">Deployment topology</a>. Cluster, AZ, and region concepts are in the <a href="../../../architecture/">Architecture overview</a>.</p>
 <ul>
-<li><strong><a href="management-inside-az/">Installing inside an AZ</a></strong>: management runs on one of your AZ clusters.</li>
-<li><strong><a href="management-outside-az/">Installing outside an AZ</a></strong>: management runs on a dedicated cluster.</li>
+<li><strong><a href="management-inside-az/">Installing inside an AZ</a></strong>: install management on an AZ cluster after its operating system is in place.</li>
+<li><strong><a href="management-outside-az/">Installing outside an AZ</a></strong>: install management on a dedicated cluster.</li>
+<li><strong><a href="full-configuration/">Configuring the management stack</a></strong>: console domain, identity, database, Argo CD, and the management components. Both placements use this page.</li>
 </ul>
 <h2 id="how-the-installation-process-works">How the installation process works</h2>
-<p>Superphenix is installed through an operator running on the management cluster.
-The operator handles installation of the Superphenix clusters based on the configuration provided in the <code>Cluster</code> resource.</p>
-<p>The management stack is installed on the management cluster by the operator, providing:</p>
+<p>Superphenix is installed through an operator running on the management cluster. The operator installs each Superphenix cluster from the configuration in its <code>Cluster</code> resource, and it owns installation, upgrades, and lifecycle for those clusters.</p>
+<p>On the management cluster itself, the operator installs Argo CD and a <code>Cluster</code> of type <code>Management</code>. That cluster pulls the management applications from the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart:</p>
 <ul>
-<li>The Superphenix web console</li>
-<li>The ArgoCD instance used to synchronize the Superphenix system</li>
-<li>The talos-operator used to manage physical nodes (optional)</li>
+<li>The Superphenix web console, API, Kratos, and Permify</li>
+<li>PostgreSQL, shared by the API, Kratos, and Permify</li>
+<li>The Talos operator and the iDRAC exporter, both optional and disabled by default</li>
 </ul>
-<p>The operator handles the installations, upgrades, and lifecycle management of Superphenix clusters entirely.</p>
+<p>Storage for the database and ingress for HTTP are not part of that management set. They have to exist on the management cluster. When management runs inside an AZ, they arrive with the local AZ. See <a href="full-configuration/">Configuring the management stack</a>.</p>
 <h2 id="next-steps">Next steps</h2>
 <ul>
-<li><a href="management-inside-az/">Installing inside an AZ</a> or <a href="management-outside-az/">Installing outside an AZ</a>: install the operator for your chosen placement.</li>
+<li><a href="management-inside-az/">Installing inside an AZ</a> or <a href="management-outside-az/">Installing outside an AZ</a>: install the operator for your placement.</li>
+<li><a href="full-configuration/">Configuring the management stack</a>: fill in the operator values before or with that install.</li>
 <li><a href="../installing-an-az/">Installing an AZ</a>: define <code>Cluster</code> resources and deploy your availability zones.</li>
 <li><a href="../installing-the-os/automated-os-installation/">Automated OS installation</a>: provision physical servers through the operator.</li>
 </ul>

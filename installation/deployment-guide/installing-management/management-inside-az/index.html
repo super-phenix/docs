@@ -727,10 +727,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#before-you-start" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Overview
+        Before you start
       </span>
     </span>
   </a>
@@ -738,10 +738,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-choose-this-model" class="md-nav__link">
+  <a href="#1-prepare-the-operator-values" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        When to choose this model
+        1. Prepare the operator values
       </span>
     </span>
   </a>
@@ -749,10 +749,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#2-install-the-operator" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Requirements
+        2. Install the operator
       </span>
     </span>
   </a>
@@ -760,21 +760,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
+  <a href="#console-availability" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Trade-offs
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-install-the-operator" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        How to install the operator
+        Console availability
       </span>
     </span>
   </a>
@@ -3147,10 +3136,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#before-you-start" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Overview
+        Before you start
       </span>
     </span>
   </a>
@@ -3158,10 +3147,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-choose-this-model" class="md-nav__link">
+  <a href="#1-prepare-the-operator-values" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        When to choose this model
+        1. Prepare the operator values
       </span>
     </span>
   </a>
@@ -3169,10 +3158,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
+  <a href="#2-install-the-operator" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Requirements
+        2. Install the operator
       </span>
     </span>
   </a>
@@ -3180,21 +3169,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#trade-offs" class="md-nav__link">
+  <a href="#console-availability" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Trade-offs
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-install-the-operator" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        How to install the operator
+        Console availability
       </span>
     </span>
   </a>
@@ -3232,85 +3210,55 @@
 
 
 <h1 id="installing-inside-an-az">Installing inside an AZ</h1>
-<p>In this model, the <strong>management cluster</strong> runs on the same Kubernetes cluster as one of your Superphenix availability zones. The operator, web console, and GitOps components live alongside the workload stack on that AZ.</p>
-<p>Part of the <a href="../../">deployment guide</a>. For the alternative placement, see <a href="../management-outside-az/">Installing outside an AZ</a>.</p>
-<h2 id="overview">Overview</h2>
-<p><img alt="Management on an AZ" src="../../../../sketch/mgmt-inside-az.svg" /></p>
-<p>The operator and console run on one of the workload clusters. This is easier to bootstrap but creates a dependency on the hosting AZ.</p>
-<h2 id="when-to-choose-this-model">When to choose this model</h2>
+<p>Install the management plane on a cluster whose operating system is already in place. The operator, web console, and GitOps components run on the same Kubernetes cluster as one of your availability zones.</p>
+<p>Where the management plane should run, and how that choice interacts with hyperconverged and decoupled AZs, is covered in <a href="../../../../architecture/deployment-topology/#management-plane">Deployment topology</a>. Cluster, AZ, and region concepts are in the <a href="../../../../architecture/">Architecture overview</a>.</p>
+<p>Part of the <a href="../../">deployment guide</a>. The other placement is <a href="../management-outside-az/">Installing outside an AZ</a>. Settings for the console, identity, database, and Argo CD are in <a href="../full-configuration/">Configuring the management stack</a>.</p>
+<h2 id="before-you-start">Before you start</h2>
+<p>Finish <a href="../../installing-the-os/manual-os-installation/">Manual OS installation</a> on the cluster that will host management. From the bootstrap host:</p>
 <ul>
-<li><strong>Single AZ</strong> or <strong>isolated AZs</strong>: each AZ has its own management cluster and control plane manages only that AZ.</li>
-<li><strong>Security boundaries</strong>: strict isolation between AZs, with no shared management plane.</li>
-<li><strong>Labs and first deployments</strong>: simplest path when you start from one hyperconverged cluster.</li>
+<li><code>kubectl</code> uses the kubeconfig from that guide (<code>talosctl kubeconfig</code>).</li>
+<li><strong>Helm</strong> is installed (<a href="https://helm.sh/docs/intro/install/">install Helm</a>).</li>
+<li>Talos was generated with <code>cluster.network.cni.name: none</code>. Nodes stay <code>NotReady</code> until the local AZ installs Kube-OVN. That state is expected until you finish <a href="../../installing-an-az/">Installing an AZ</a>.</li>
 </ul>
-<h2 id="requirements">Requirements</h2>
+<h2 id="1-prepare-the-operator-values">1. Prepare the operator values</h2>
+<p>Create a <code>values.yaml</code> for the <code>superphenix-operator</code> chart. Copy the management settings from <a href="../full-configuration/">Configuring the management stack</a>: console domain, Kratos secret, PostgreSQL password, and Argo CD hostname.</p>
+<p>This cluster has no CNI yet, so the operator and its Argo CD instance must schedule on <code>NotReady</code> nodes and use the host network. Set:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Required until the local AZ has installed Kube-OVN.</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Set back to false after that AZ is healthy.</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">installOnClusterWithoutCNI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span></code></pre></div>
+<p>While the local AZ is still absent, you can hold GitOps synchronization of the management applications by setting <code>management.lifecycle.manual: true</code> in the same file. Set it back to <code>false</code> once storage and ingress from that AZ are healthy. The field is described in <a href="../full-configuration/#operator-lifecycle">Configuring the management stack</a>.</p>
+<h2 id="2-install-the-operator">2. Install the operator</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">OPERATOR_VERSION</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s1">'%{url_effective}'</span><span class="w"> </span>https://github.com/super-phenix/superphenix/releases/latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s#.*/v##'</span><span class="k">)</span><span class="s2">"</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="s2">"oci://ghcr.io/super-phenix/charts/superphenix-operator:</span><span class="si">${</span><span class="nv">OPERATOR_VERSION</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span>-f<span class="w"> </span>values.yaml
+</span></code></pre></div>
+<p>The chart creates a <code>Cluster</code> named <code>management</code> (<code>type: Management</code>, <code>connection.mode: Local</code>). The operator then installs the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> management components on this cluster: the web console, API, Kratos, Permify, and PostgreSQL, together with Argo CD. Optional components stay disabled unless you enable them in the configuration file.</p>
+<p>Confirm the operator is up:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span>get<span class="w"> </span>pods
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span>get<span class="w"> </span>clusters.operator.superphenix.net
+</span></code></pre></div>
+<p>The <code>management</code> cluster should be listed. PostgreSQL stays pending until a storage class exists, which is described in the next section.</p>
+<h2 id="console-availability">Console availability</h2>
+<div class="admonition warning">
+<p class="admonition-title">The console stays unavailable until the local AZ is installed</p>
+<p>PostgreSQL and the console's HTTP routes depend on storage and ingress from the local AZ. Those are installed by the AZ stack in the same <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart, when you install this cluster as an AZ:</p>
 <ul>
-<li>The management cluster must be a <strong>pre-existing Talos Linux</strong> cluster before you install the <code>superphenix-operator</code> Helm chart.</li>
-<li>Bootstrap that cluster with <a href="../../installing-the-os/manual-os-installation/">Manual OS installation</a> (or an existing Talos cluster you already operate).</li>
-<li>Size the AZ for both <strong>workload</strong> and <strong>management</strong> components on the same nodes.</li>
+<li><strong>Storage, for the database.</strong> PostgreSQL requests a persistent volume (8Gi by default). Rook creates the default storage class when the local AZ is installed (<code>spx-rbd-3x</code> on a hyperconverged AZ). Until that class exists, the database volume stays pending, and the API, Kratos, and Permify cannot start.</li>
+<li><strong>Ingress, for HTTP.</strong> The console, API, and Kratos are HTTP routes. Traefik serves ports <strong>80</strong> and <strong>443</strong> on every node and is installed with the AZ (hyperconverged, workload, or storage). Until Traefik is running, nothing answers on the console domain.</li>
 </ul>
-<h2 id="trade-offs">Trade-offs</h2>
-<table>
-<thead>
-<tr>
-<th>Aspect</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Deployment</strong></td>
-<td>Easier to deploy: one cluster to provision</td>
-</tr>
-<tr>
-<td><strong>Maintenance</strong></td>
-<td>Easier day-to-day: no separate management fleet</td>
-</tr>
-<tr>
-<td><strong>Multiple AZs</strong></td>
-<td>If one management cluster controls several AZs, the hosting AZ is a <strong>single point of failure</strong></td>
-</tr>
-<tr>
-<td><strong>Failover</strong></td>
-<td>Management is tied to one AZ; failover is harder</td>
-</tr>
-<tr>
-<td><strong>Dependency</strong></td>
-<td>Management runs on Superphenix (same stack as the AZ)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-to-install-the-operator">How to install the operator</h2>
-<p>Installation of the operator is typically done via Helm on the AZ cluster that will host management:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>ghcr.io/super-phenix/charts/superphenix-operator<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>--create-namespace
-</span></code></pre></div>
-<p>When the operator runs on the same cluster as the AZ, define that cluster with <code>connection.mode: Local</code>. The operator connects in-process and does not need a remote API URL or credentials secret.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operator.superphenix.net/v1alpha1</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-local</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperconverged</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-west-2</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us-west-2a</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0-latest</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">connection</span><span class="p">:</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Local</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-</span></code></pre></div>
-<p>See <a href="../../installing-an-az/configuring-a-cluster/">Configure a cluster</a> for the full <code>Cluster</code> resource reference.</p>
+<p>Open the console only after that AZ is installed and healthy. Argo CD's UI uses the same ingress.</p>
+</div>
 <h2 id="next-steps">Next steps</h2>
 <ol>
-<li><a href="../../installing-the-os/manual-os-installation/">Manual OS installation</a>: bootstrap Talos on the AZ that will host management (if not already done).</li>
-<li>Install the operator using the Helm command above.</li>
-<li><a href="../../installing-an-az/">Installing an AZ</a>: define <code>Cluster</code> resources for your AZs (<code>Local</code> for the hosting cluster, <code>Remote</code> for any others).</li>
+<li><a href="../../installing-an-az/">Installing an AZ</a> on this cluster. Register it with <code>connection.mode: Local</code> (<a href="../../installing-an-az/installing-hyperconverged/">Installing hyperconverged</a> or <a href="../../installing-an-az/installing-decoupled/">Installing decoupled</a>).</li>
+<li>When Kube-OVN is healthy, set <code>installOnClusterWithoutCNI</code> back to <code>false</code> (and <code>management.lifecycle.manual</code> back to <code>false</code> if you enabled it) and run the Helm command again with the same values file.</li>
+<li><a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>: open the console, retrieve the initial Argo CD password, and follow synchronization.</li>
 </ol>
-<p>See <a href="../../../../architecture/deployment-topology/">Deployment topology</a> for the full comparison with management outside an AZ.</p>
 
 
 
