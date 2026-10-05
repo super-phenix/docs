@@ -36,3 +36,5 @@ Tenant clusters are backed by **pools of VMs** where you define:
 ## Version support
 
 Each version of Superphenix will support 3 minor Kubernetes versions at a time. You may encounter different supported versions for a single Superphenix deployment as some AZs might be more up to date than others.
+
+The console only lists the Kubernetes versions supported by the AZ selected for the cluster. Operators configure these versions per Superphenix version, see [Configuring KaaS versions](../../operations/kaas-versions.md).

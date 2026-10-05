@@ -107,6 +107,7 @@ nav = [
       { "Adding an object store" = "operations/storage/adding-an-object-store.md" },
       { "Using local storage" = "operations/storage/using-local-storage.md" }
     ]},
+    { "KaaS versions" = "operations/kaas-versions.md" },
     { "Web console" = "operations/console.md" }
   ]},
   { "Contributing" = "contributing.md" },
