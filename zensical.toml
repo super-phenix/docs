@@ -31,7 +31,8 @@ nav = [
       ]},
       { "Installing the OS" = [
         { "Manual OS installation" = "installation/deployment-guide/installing-the-os/manual-os-installation.md" },
-        { "Automated OS installation" = "installation/deployment-guide/installing-the-os/automated-os-installation.md" }
+        { "Automated OS installation" = "installation/deployment-guide/installing-the-os/automated-os-installation.md" },
+        { "Installing GPU nodes" = "installation/deployment-guide/installing-the-os/gpu-node-installation.md" }
       ]},
       { "Installing an AZ" = [
         { "Overview" = "installation/deployment-guide/installing-an-az/index.md" },
