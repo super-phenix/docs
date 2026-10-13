@@ -25,7 +25,7 @@ lspci -nn | grep -i nvidia
 The pair in brackets, for example `10de:xxxx`, is the vendor and device ID.
 
 !!! tip "NVIDIA GPU Operator"
-    Instead of binding cards to `vfio-pci` by hand, you can deploy the NVIDIA GPU Operator with sandbox workloads enabled. It binds the cards and runs a device plugin that exposes them as resources named like `nvidia.com/GB202GL_RTX_PRO_6000_BLACKWELL_SERVER_EDITION`. In that case, set `externalResourceProvider: true` in the next step.
+Instead of binding cards to `vfio-pci` by hand, you can deploy the NVIDIA GPU Operator with sandbox workloads enabled. It binds the cards and runs a device plugin that exposes them as resources named like `nvidia.com/GB202GL_RTX_PRO_6000_BLACKWELL_SERVER_EDITION`. In that case, set `externalResourceProvider: true` in the next step.
 
 ## Allow the devices in KubeVirt
 
@@ -55,7 +55,7 @@ systemConfiguration:
 ```
 
 !!! warning "Keep the existing feature gates"
-    Helm replaces lists instead of merging them. Your `featureGates` list replaces the default one, so it must repeat every gate already enabled on the platform, plus `HostDevices`.
+Helm replaces lists instead of merging them. Your `featureGates` list replaces the default one, so it must repeat every gate already enabled on the platform, plus `HostDevices`.
 
 ## Publish GPU classes
 
@@ -75,34 +75,39 @@ systemConfiguration:
                   displayName: "NVIDIA RTX PRO 6000 Blackwell Server Edition"
 ```
 
-| Field | Required | Description |
-| :--- | :--- | :--- |
-| key (`nvidia-rtx-pro-6000-bse`) | Yes | Class identifier stored on the VMs. Use **lowercase** only: the controller lowercases map keys when it loads its configuration. Do not rename a class while VMs use it. |
-| `deviceName` | Yes | KubeVirt resource name. It must match a `resourceName` in `permittedHostDevices`. Classes without it are ignored and logged at startup. |
-| `displayName` | No | Label shown in the console. Defaults to the class identifier. |
+| Field                           | Required | Description                                                                                                                                                             |
+| :------------------------------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| key (`nvidia-rtx-pro-6000-bse`) | Yes      | Class identifier stored on the VMs. Use **lowercase** only: the controller lowercases map keys when it loads its configuration. Do not rename a class while VMs use it. |
+| `deviceName`                    | Yes      | KubeVirt resource name. It must match a `resourceName` in `permittedHostDevices`. Classes without it are ignored and logged at startup.                                 |
+| `displayName`                   | No       | Label shown in the console. Defaults to the class identifier.                                                                                                           |
 
 The classes appear in the console as soon as the controller restarts with the new configuration. An AZ without `deviceMapping` shows no GPU option.
 
 !!! note "GitOps deployments"
-    VMs deployed with the `sfs-iaas` chart use their own `deviceMapping` value, a flat `class: deviceName` map. Use the same class identifiers in both places.
+VMs deployed with the `sfs-iaas` chart use their own `deviceMapping` value, a flat `class: deviceName` map. Use the same class identifiers in both places. The chart also gives them the `host-model` CPU model (see below).
 
 ## CPU model of GPU VMs
 
-Superphenix gives every VM that has a GPU the **`host-passthrough`** CPU model, instead of the cluster-wide CPU model. It does this automatically when a GPU is added, and restores the cluster model when the GPU is removed.
+Superphenix gives every VM that has a GPU the **`host-model`** CPU model, instead of the cluster-wide CPU model. It does this automatically when a GPU is added, and restores the cluster model when the GPU is removed.
 
-This matters for GPUs with a lot of memory, such as the 96 GB RTX PRO 6000:
+This matters for GPUs with a lot of memory, such as the 96 GB RTX PRO 6000, whose largest memory region is **128 GB**:
 
-- VMs boot with UEFI firmware (OVMF), which reserves a 64-bit PCI memory window sized from the CPU's **physical address width**.
-- A generic cluster CPU model such as `Broadwell-noTSX-IBRS` reports a small address width. The window then stays around **32 GB**, while the GPU needs a **128 GB** region.
-- Without `host-passthrough`, the region is left unassigned:
-    - **Windows** hangs at the UEFI boot screen once the NVIDIA driver is installed.
-    - **Linux** boots, but the NVIDIA driver fails with `NVRM: BAR2 is 0M @ 0x0` and `modprobe: … No such device`.
-- With `host-passthrough`, the guest sees the host's real address width and OVMF sizes the window correctly.
+- VMs boot with UEFI firmware (OVMF), which must place that region in its 64-bit PCI memory window before the guest starts.
+- OVMF needs the CPU's **1 GB pages** (`pdpe1gb`) to map a large address space. A generic cluster CPU model such as `Broadwell-noTSX-IBRS` doesn't have them, so OVMF limits itself to 40 address bits, and its window is too small for the GPU.
+- Without 1 GB pages, the region is left unassigned:
+  - **Windows** hangs at the UEFI boot screen once the NVIDIA driver is installed.
+  - **Linux** boots, but the NVIDIA driver fails with `NVRM: BAR2 is 0M @ 0x0` and `modprobe: … No such device`.
+- `host-model` gives the guest the closest named CPU model to the host's (for example `EPYC-Genoa` on AMD EPYC 9365 hosts), with the host's extra features. It has 1 GB pages, so OVMF places the region and the driver works.
 
-`host-passthrough` prevents live migration between hosts with different CPUs. GPU VMs cannot be live-migrated anyway, so this has no extra cost.
+`host-model` relies on the CPU-model labels that KubeVirt's node labeller sets on the nodes (enabled by default). A GPU VM can only start on a node whose CPU supports the resolved model, so keep the CPUs of a GPU class's nodes of the same generation. GPU VMs cannot be live-migrated anyway, so the CPU model doesn't restrict them further.
 
 !!! note "VMs created before this change"
-    The CPU model is set when the GPU is attached. For a GPU VM created before this change, edit it to remove the GPU and save, edit it again to add the GPU back and save, then restart it. Linux guests that used the `pci=realloc,nocrs` kernel parameter as a workaround no longer need it.
+The CPU model is set when the GPU is attached:
+
+    - VMs that got `host-passthrough` from an earlier version keep it, and keep working. They switch to `host-model` the next time their GPU is changed.
+    - VMs that have neither, attached before either version: edit the VM to remove the GPU and save, edit it again to add the GPU back and save, then restart it.
+
+    Linux guests that used the `pci=realloc,nocrs` kernel parameter as a workaround no longer need it.
 
 ## Operational notes
 
