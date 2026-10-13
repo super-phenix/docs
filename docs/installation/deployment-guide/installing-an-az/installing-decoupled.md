@@ -14,7 +14,7 @@ See [Deployment topology](../../../architecture/deployment-topology.md) for the 
 
 - Talos clusters for **storage** and **workload** tiers ([Manual OS installation](../installing-the-os/manual-os-installation.md) or [Automated OS installation](../installing-the-os/automated-os-installation.md)).
 - The [management plane installed](../installing-management/index.md) with Kubernetes API access to every cluster.
-- Hardware sized **per role**. See [Hardware requirements](../../../architecture/deployment-requirements.md).
+- Hardware sized **per role**. See [Hardware requirements](../../../architecture/hardware-requirements.md).
 
 ## Installation overview
 

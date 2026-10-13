@@ -5,7 +5,7 @@ This section gives recommendations on how to configure Superphenix clusters for 
 If you are still on your first cluster, start with [Getting started](getting-started.md). Use the architecture guides for detailed requirements:
 
 - [Deployment topology](../architecture/deployment-topology.md)
-- [Hardware requirements](../architecture/deployment-requirements.md)
+- [Hardware requirements](../architecture/hardware-requirements.md)
 - [Network requirements](../architecture/network-requirements.md)
 
 For all installation modes and runbooks, see the [deployment guide](deployment-guide/index.md).
@@ -19,7 +19,7 @@ Production workloads need predictable latency and headroom for failure and recov
 - Prefer a **non-hyperconverged (decoupled)** layout for **high-demand** environments and when you need stronger **security** boundaries between storage and compute. Dedicated storage and hypervisor tiers avoid resource contention and simplify isolation (see [Deployment topology](../architecture/deployment-topology.md)).
 - For **multi-AZ** deployments, **decoupled management** (control plane outside workload AZs) is advised so a single management cluster can orchestrate many AZs with better redundancy (see [Deployment topology](../architecture/deployment-topology.md)).
 - A single AZ may **span multiple datacenters** only when sites stay close in **latency**, not in geography for its own sake. Aim for about **2 ms round-trip ping** (or less) between sites. At that level you are usually still in the **same metro**: two halls on one campus, or PoPs **tens of kilometers** apart over low-latency links (roughly same city / metropolitan area, not another region). Fiber and routing overhead mean 2 ms is not “hundreds of kilometers”; treat **~2 ms as a practical ceiling** for one stretched AZ. If ping is higher, use **separate AZs** instead (see [Architecture overview](../architecture/index.md) and [Network requirements](../architecture/network-requirements.md)).
-- Size nodes using at least the **Recommended** hardware profile; treat **Minimal** as validation only (see [Hardware requirements](../architecture/deployment-requirements.md)).
+- Size nodes using at least the **Recommended** hardware profile; treat **Minimal** as validation only (see [Hardware requirements](../architecture/hardware-requirements.md)).
 - Use servers with **IPMI** (for example iDRAC or other BMCs) and a dedicated **out-of-band (OOB)** management network for remote power, console, and recovery without relying on the production data plane.
 
 **Networking**
@@ -33,7 +33,7 @@ Production workloads need predictable latency and headroom for failure and recov
 
 **Storage (Ceph)**
 
-- Use **datacenter or enterprise-grade** SSDs and NVMe for Ceph OSDs. **Consumer SSDs** are a poor fit: Ceph is sensitive to write latency and endurance, and performance can **degrade sharply** under sustained or mixed workloads (see [Hardware requirements](../architecture/deployment-requirements.md)).
+- Use **datacenter or enterprise-grade** SSDs and NVMe for Ceph OSDs. **Consumer SSDs** are a poor fit: Ceph is sensitive to write latency and endurance, and performance can **degrade sharply** under sustained or mixed workloads (see [Hardware requirements](../architecture/hardware-requirements.md)).
 - Follow [Ceph hardware recommendations](https://docs.ceph.com/en/latest/start/hardware-recommendations/) for CPU per OSD, RAM, and network separation of public vs cluster traffic.
 - Leave capacity margin for rebuilds, backups, and cross-AZ replication so recovery does not degrade production I/O.
 

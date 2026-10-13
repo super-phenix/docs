@@ -1,12 +1,12 @@
 # Network requirements
 
-Network design for Superphenix should be planned alongside hardware sizing and AZ topology. This page defines baseline expectations for link speed, VLAN segmentation, external connectivity, and IP announcement models. For server sizing and NIC assumptions, see [Hardware requirements](deployment-requirements.md). For AZ design constraints, see [Architecture overview](index.md).
+Network design for Superphenix should be planned alongside hardware sizing and AZ topology. This page defines baseline expectations for link speed, VLAN segmentation, external connectivity, and IP announcement models. For server sizing and NIC assumptions, see [Hardware requirements](hardware-requirements.md). For AZ design constraints, see [Architecture overview](index.md).
 
 ---
 
 ## Baseline and interface sizing
 
-Use the NIC sizing from the [Hardware requirements](deployment-requirements.md) as the baseline for network planning:
+Use the NIC sizing from the [Hardware requirements](hardware-requirements.md) as the baseline for network planning:
 
 - **Minimum**: **10 Gb/s** per port
 - **Recommended**: **25 Gb/s** per port (or faster), typically with redundant uplinks
@@ -34,7 +34,7 @@ For hyperconverged deployments, a common baseline is:
 
 ### Decoupled storage tier
 
-For storage clusters, follow Ceph network guidance referenced in [Hardware requirements](deployment-requirements.md), and separate traffic classes when possible:
+For storage clusters, follow Ceph network guidance referenced in [Hardware requirements](hardware-requirements.md), and separate traffic classes when possible:
 
 - One network/VLAN for storage client consumption (public/client side)
 - One network/VLAN for storage replication and recovery (cluster side)

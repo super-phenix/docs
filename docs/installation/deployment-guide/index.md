@@ -7,7 +7,7 @@ This guide walks through installing Superphenix end to end: deploying the manage
 Before you begin, confirm that your environment meets these specifications and follows our recommended patterns:
 
 - **Helm**: Required for the initial operator installation.
-- **Hardware & network**: See [Hardware requirements](../../architecture/deployment-requirements.md) and [Network requirements](../../architecture/network-requirements.md).
+- **Hardware & network**: See [Hardware requirements](../../architecture/hardware-requirements.md) and [Network requirements](../../architecture/network-requirements.md).
 - **Best practices**: See [Production recommendations](../production-recommendations.md) for sizing and high availability.
 
 ## Installing the Management Plane

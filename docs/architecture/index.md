@@ -1,6 +1,6 @@
 # Architecture overview
 
-This page describes how Superphenix is organized: **Superphenix clusters**, how they are grouped into **availability zones (AZs)** and **regions**, tenant **organizations** and **projects**, where resources live, and how disaster recovery fits in. For deployment layouts and management placement, see [Deployment topology](deployment-topology.md). For infrastructure planning, see [Hardware requirements](deployment-requirements.md) and [Network requirements](network-requirements.md).
+This page describes how Superphenix is organized: **Superphenix clusters**, how they are grouped into **availability zones (AZs)** and **regions**, tenant **organizations** and **projects**, where resources live, and how disaster recovery fits in. For deployment layouts and management placement, see [Deployment topology](deployment-topology.md). For infrastructure planning, see [Hardware requirements](hardware-requirements.md) and [Network requirements](network-requirements.md).
 
 ## Superphenix clusters
 
@@ -8,10 +8,8 @@ A **Superphenix cluster** is a **Kubernetes cluster** (typically Talos Linux) on
 
 Each cluster uses one of two **deployment topologies**:
 
-- **Hyperconverged**: storage and virtualization on the **same** cluster; the simplest layout, usually one cluster per AZ.
+- **Hyperconverged**: storage and workload on the **same** cluster; the simplest layout, usually one cluster per AZ.
 - **Decoupled**: clusters are dedicated to **storage** or **virtualization**; an AZ can therefore comprise **several** Superphenix clusters (for example, one storage cluster and one or more workload clusters).
-
-Set `deploymentTopology` and, when decoupled, `type: Storage` or `type: Virtualization` on the `Cluster` resource. See [Deployment topology](deployment-topology.md) and [Configure a cluster](../installation/deployment-guide/installing-an-az/configuring-a-cluster.md).
 
 ## Availability zones
 
@@ -23,7 +21,7 @@ An AZ may **span multiple nearby datacenters** (a stretched AZ) only when inter-
 
 ## Regions
 
-A **region** is primarily a **label** for grouping availability zones—set via the `region` field on each `Cluster` resource and reflected in the console and GitOps. It is an organizational indicator only; it does **not** by itself define failure domains, peering scope, storage reachability, or other platform behavior.
+A **region** is primarily a **label** for grouping availability zones. It is an organizational indicator only; it does **not** by itself define failure domains, peering scope, storage reachability, or other platform behavior.
 
 **AZ peering** for mirroring, backups, and disaster recovery can be configured **within a region or across regions**. Region boundaries do not limit where peers can be established.
 

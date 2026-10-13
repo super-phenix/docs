@@ -25,13 +25,13 @@ The project is named **Superphenix** (SPX) after the [Superphénix](https://en.w
 
 For more detail, see [Features](features/index.md).
 
-## Who is Superphenix for?
+## Who Superphenix is for
 
 - **At scale**: Build a cloud platform across **multiple datacenters and regions**. Deploy several AZs, group them into regions, mirror data and backups between AZs, and operate everything from a single interface.
 - **Single datacenter**: Run one or more AZs in **one datacenter**. Ideal for MSPs, enterprises, or labs that want a full CSP stack without multi-site complexity.
 - **Single rack**: Run in a **single rack** for small actors, labs, or even **at home**. Evaluate the stack, learn the platform, or host a small private cloud on minimal hardware.
 
-If you need **independence** and **total control** of your infrastructure for **SaaS, PaaS and IaaS**, Superphenix should cover most of your use cases. If it doesn't, feel free to share why so we can improve the project.
+If you need **independence** and **total control** of your infrastructure for **SaaS, PaaS and IaaS**, Superphenix should cover most of your use cases.
 
 ## Philosophy
 

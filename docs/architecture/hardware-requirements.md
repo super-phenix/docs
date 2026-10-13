@@ -1,20 +1,22 @@
 # Hardware requirements
 
-Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in [Deployment topology](deployment-topology.md). The same **cluster** can imply very different server counts and configurations depending on whether you run a **hyperconverged** stack (storage and virtualization together) or a **decoupled** stack (dedicated storage and dedicated workload clusters).
+Hardware planning for Superphenix starts from how you deploy availability zones and storage relative to compute, as described in [Deployment topology](deployment-topology.md). The same **cluster** can imply very different server counts and configurations depending on whether you run a **hyperconverged** stack (storage and workload together) or a **decoupled** stack (dedicated storage and dedicated workload clusters).
 
-- **[Hyperconverged](#hyperconverged-setup)**: Storage and virtualization on the same nodes. Size hosts for combined Ceph and hypervisor needs, plus headroom for failure and recovery.
-- **[Decoupled](#decoupled-setup)**: Requirements are split by role:
-    - **[Storage node](#storage-node-setup)**: Dedicated Ceph / storage tier in a decoupled topology. Same hardware floors as hyperconverged storage roles, sized for OSD throughput and replication.
-    - **[Virtualization nodes](#virtualization-nodes-setup)**: Dedicated hypervisor tier in a decoupled topology. Same CPU, RAM, and boot-disk expectations as hyperconverged compute roles, sized for VM density and migration.
+The hardware requirements are therefore **per AZ and per deployment topology**.
 
-!!! important "Choose your topology first"
-
-    Decide which **deployment topology** you want (hyperconverged or decoupled) **before** sizing hardware. The [hardware requirements](#hardware-requirements) tabs below depend on that choice.
+## Requirements per topology
 
 Deployment topology is the main factor that influences the requirements:
 
 - **Hyperconverged**: Each node contributes to both storage and virtualization. Disk, CPU, and memory requirements are **combined** on the same machines: size hosts for the sum of what the Ceph storage and the hypervisor need, plus headroom for failure and recovery
 - **Decoupled**: Requirements **split by role**. The storage tier must satisfy Ceph expectations for OSD throughput, replication, and recovery; the virtualization tier is sized separately for VM density, live migration, and control-plane overhead. You plan distinct footprints for storage hosts, for hypervisor hosts, and for the **management cluster** that runs the platform control plane (see [Management cluster (decoupled)](#management-cluster-decoupled))
+
+
+!!! important "Choose your topology first"
+
+    Decide which **deployment topology** you want (hyperconverged or decoupled) **before** sizing hardware. The [hardware requirements](#hardware-requirements) tabs below depend on that choice.
+
+    If you have multiple AZs with different topologies, apply the sizing for that topology to each AZ.
 
 !!! warning "Multi-AZ and disaster recovery"
 
@@ -161,7 +163,7 @@ Use the **Minimal**, **Recommended**, and **Optimal** tabs below to compare tier
     |--------|---------------|
     | **Chassis** | Physical servers |
     | **Node count** | 3 |
-    | **RAM** | On the order of **1 TiB** for nodes with a lot of VMs; also plan roughly **1 GiB RAM per 1 TiB** of **Ceph-managed** capacity (plus Ceph OSD/daemon RAM per upstream guidance) |
+    | **RAM** | On the order of **256 GiB** for nodes with a medium amount of VMs |
     | **CPU cores** | ≥ **32** |
     | **CPU architecture** | **x86-64** with **Intel VT-x** or **AMD-V** enabled in firmware on hypervisor nodes |
     | **NIC / link speed** | **2x25 Gb/s** (or faster) for inter-node traffic and storage access |
@@ -174,9 +176,9 @@ Use the **Minimal**, **Recommended**, and **Optimal** tabs below to compare tier
     |--------|---------------|
     | **Chassis** | Redundant PSUs and clear **failure-domain** separation (rack/row) where possible |
     | **Node count** | 6 |
-    | **RAM** | Extra headroom for growth, peak recovery, and large OSD counts; align with Ceph guidance for **mon/mgr** RAM as the cluster grows |
+    | **RAM** | 1 TiB of RAM for nodes with a lot of VMs and workload running on them |
     | **CPU cores** | **≥ 96** on nodes with very high VM density; favor **higher clock** |
-    | **CPU architecture** | Same as recommended |
+    | **CPU architecture** | **x86-64** with **Intel VT-x** or **AMD-V** enabled in firmware on hypervisor nodes |
     | **NIC / link speed** | 2 NICs with **dual 25Gb/s ports** (active/active bonding), with 2 ports dedicated to the storage and 2 dedicated to the data |
     | **Boot / OS** | Enterprise disks, NVMe for VM storage, and HDDs for backups |
     | **MTU** | 9000 |

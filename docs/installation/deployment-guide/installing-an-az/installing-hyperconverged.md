@@ -16,7 +16,7 @@ See [Deployment topology](../../../architecture/deployment-topology.md) for trad
 
 - A Talos Linux cluster bootstrapped on your nodes ([Manual OS installation](../installing-the-os/manual-os-installation.md) or [Automated OS installation](../installing-the-os/automated-os-installation.md)).
 - The [management plane installed](../installing-management/index.md) and able to reach the cluster API.
-- Hardware sized for **combined** Ceph and hypervisor needs. See [Hardware requirements](../../../architecture/deployment-requirements.md).
+- Hardware sized for **combined** Ceph and hypervisor needs. See [Hardware requirements](../../../architecture/hardware-requirements.md).
 
 ## Installation overview
 

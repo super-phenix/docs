@@ -14,7 +14,7 @@ nav = [
   { "Architecture" = [
     { "Overview" = "architecture/index.md" },
     { "Deployment topology" = "architecture/deployment-topology.md" },
-    { "Hardware requirements" = "architecture/deployment-requirements.md" },
+    { "Hardware requirements" = "architecture/hardware-requirements.md" },
     { "Network requirements" = "architecture/network-requirements.md" }
   ]},
   { "Installation" = [
@@ -31,7 +31,8 @@ nav = [
       ]},
       { "Installing the OS" = [
         { "Manual OS installation" = "installation/deployment-guide/installing-the-os/manual-os-installation.md" },
-        { "Automated OS installation" = "installation/deployment-guide/installing-the-os/automated-os-installation.md" }
+        { "Automated OS installation" = "installation/deployment-guide/installing-the-os/automated-os-installation.md" },
+        { "Installing GPU nodes" = "installation/deployment-guide/installing-the-os/gpu-node-installation.md" }
       ]},
       { "Installing an AZ" = [
         { "Overview" = "installation/deployment-guide/installing-an-az/index.md" },
@@ -113,6 +114,9 @@ nav = [
   { "Contributing" = "contributing.md" },
   { "Enterprise support" = "enterprise-support.md" }
 ]
+
+[project.plugins.redirects.redirect_maps]
+"index.md" = "home.md"
 
 # SEO and meta tags
 [[project.extra.meta]]

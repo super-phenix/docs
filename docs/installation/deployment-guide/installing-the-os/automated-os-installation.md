@@ -31,7 +31,7 @@ The operator reads `Cluster` (and related) resources in the `superphenix-system`
     - The **Kubernetes API** of every Superphenix cluster it will manage.
     - The **out-of-band (OOB)** management network of every physical server (IPMI, Redfish, or equivalent BMC).
 - **`superphenix-operator`** installed via Helm: see [Installing outside an AZ](../installing-management/management-outside-az.md) (typical for automated provisioning) or [Installing inside an AZ](../installing-management/management-inside-az.md).
-- **Hardware** sized for your topology: see [Hardware requirements](../../../architecture/deployment-requirements.md). Production deployments should use servers with **IPMI** and a dedicated OOB network (see [Production recommendations](../../production-recommendations.md)).
+- **Hardware** sized for your topology: see [Hardware requirements](../../../architecture/hardware-requirements.md). Production deployments should use servers with **IPMI** and a dedicated OOB network (see [Production recommendations](../../production-recommendations.md)).
 - **Network** layout planned (cluster VLAN, public VLAN, storage fabric): see [Network requirements](../../../architecture/network-requirements.md).
 
 !!! important

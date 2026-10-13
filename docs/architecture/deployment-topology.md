@@ -43,7 +43,7 @@ The management plane can run **inside an AZ** (the same Kubernetes cluster as on
 
 AZs can be deployed in two ways:
 
-- **Hyperconverged**: Both **storage** and **virtualization** run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.
+- **Hyperconverged**: Both **storage** and **workloads** run on the same cluster. Compute and storage share the same nodes. This is the simplest model and is well suited to single-AZ deployments.
 - **Decoupled (traditional)**: **Storage** runs on separate, dedicated clusters; **workload** clusters run on one or more other Kubernetes clusters that consume that storage. Multiple private workload AZs can **share the same storage** backend. This model is useful when you want to run several workload AZs (e.g. in different racks or sites) against a single, shared storage pool.
 
 ### Comparison
@@ -78,12 +78,8 @@ The matrix below combines the two dimensions (AZ mode and management placement) 
 
 |  | Management on an AZ | Management outside the AZ |
 |---|---------------------|---------------------------|
-| **Hyperconverged** | **Fully integrated**: Storage, virtualization, and the management plane run on a single cluster; the simplest deployment, with one AZ and its control plane colocated. | **Centrally managed hyperconverged**: Each AZ is a self-contained hyperconverged cluster; a dedicated management cluster orchestrates multiple AZs from a single management plane. |
-| **Decoupled** | **Decoupled with local management**: Storage and workload are on separate clusters; the management plane runs on one of them (e.g. a workload AZ), so that AZ hosts both workloads and the control plane. | **Fully decoupled**: Storage, workload, and management are each separate; a dedicated management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration. |
-
-!!! warning "Supported deployment types"
-
-    Currently, the only **supported and tested** installation method is **Fully decoupled** (decoupled AZs with the management plane on a dedicated management cluster outside the AZ). Work is ongoing to support **Fully integrated** (hyperconverged with management on the AZ) and **Centrally managed hyperconverged** (hyperconverged AZs with the management plane on a dedicated management cluster).
+| **Hyperconverged** | **Fully integrated**: Storage, workload, and the management plane run on a single cluster; the simplest deployment, with one AZ and its control plane colocated. | **Centrally managed hyperconverged**: Each AZ is a self-contained hyperconverged cluster; a dedicated management cluster orchestrates multiple AZs from a single management plane. |
+| **Decoupled** | **Decoupled with local management**: Storage and workload are on separate clusters; the management plane runs on one of them (e.g. a workload cluster), so that AZ hosts both workloads/storage and the control plane. | **Fully decoupled**: Storage, workload, and management are each separate; a dedicated management cluster sits outside all workload AZs for maximum redundancy and multi-AZ orchestration. |
 
 ### Recommendations
 

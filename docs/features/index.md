@@ -34,27 +34,11 @@ The foundation provides the core capabilities that the rest of the platform reli
 
     [:octicons-arrow-right-24: Network](network/index.md)
 
--   :lucide-scroll-text:{ .lg .middle } **Audit log**
+-   :lucide-layers:{ .lg .middle } **PaaS/SaaS**
 
     ---
 
-    Who changed what, from where, with what outcome. **Per-organization retention**.
-
-    [:octicons-arrow-right-24: Audit log](audit-log.md)
-
-</div>
-
-## Managed services
-
-These services run on the foundation. Availability depends on your Superphenix version and configuration.
-
-<div class="grid cards" markdown>
-
--   :lucide-layers:{ .lg .middle } **PaaS**
-
-    ---
-
-    **Kubernetes (KaaS)**: VM node pools, **integrated CNI/CSI**, upgrades, and the same VPCs and storage as IaaS. _Console availability varies by release._
+    **Kubernetes (KaaS)**, **DBaaS (soon)**
 
     [:octicons-arrow-right-24: PaaS](paas/index.md)
 
