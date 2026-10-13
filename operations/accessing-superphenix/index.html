@@ -17,7 +17,7 @@
         <link rel="prev" href="../../user-guides/organization/audit-log/">
       
       
-        <link rel="next" href="../limitations/">
+        <link rel="next" href="../cluster-toolbox/">
       
       
         
@@ -2645,6 +2645,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../cluster-toolbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Cluster toolbox
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../limitations/" class="md-nav__link">
         
   
@@ -2680,10 +2707,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
         
           
-          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
             
   
   
@@ -2701,8 +2728,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_3">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_4">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -2843,10 +2870,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
         
           
-          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
             
   
   
@@ -2864,8 +2891,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_4">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_5">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -3213,7 +3240,7 @@
 <p>After Superphenix is deployed, use the web console for day-to-day resource management and Argo CD to monitor the platform deployment.</p>
 <div class="admonition info">
 <p class="admonition-title">Administration UI in development</p>
-<p>We are working on a dedicated administration UI. Until it is available, use Argo CD and <code>kubectl</code> to monitor and troubleshoot the platform.</p>
+<p>We are working on a dedicated administration UI. Until it is available, use Argo CD and <code>kubectl/k9s</code> to monitor and troubleshoot the platform.</p>
 </div>
 <p>You need:</p>
 <ul>
@@ -3267,6 +3294,7 @@
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>kubectl<span class="w"> </span>describe<span class="w"> </span>&lt;resource-type&gt;<span class="w"> </span>&lt;resource-name&gt;<span class="w"> </span>--namespace<span class="w"> </span>&lt;namespace&gt;
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>kubectl<span class="w"> </span>logs<span class="w"> </span>&lt;pod-name&gt;<span class="w"> </span>--namespace<span class="w"> </span>&lt;namespace&gt;
 </span></code></pre></div>
+<p>For remote managed clusters, you can run these commands from the <a href="../cluster-toolbox/">cluster toolbox</a> on the management cluster.</p>
 <p>For multi-container pods, add <code>--container &lt;container-name&gt;</code> to the logs command. The resource status, events, and container logs usually show whether the problem is in Argo CD synchronization or in the deployed workload itself.</p>
 
 
