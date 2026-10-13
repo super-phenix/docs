@@ -48,6 +48,7 @@ nav = [
       { "Overview" = "features/compute/index.md" },
       { "Instance" = "features/compute/instance.md" },
       { "Instance Snapshot" = "features/compute/instance-snapshot.md" },
+      { "GPU" = "features/compute/gpu.md" },
     ]},
     { "Network" = [
       { "Overview" = "features/network/index.md" },
@@ -114,6 +115,9 @@ nav = [
     { "Kernel optimization" = [
       { "Manual tuning" = "operations/kernel-optimization/manual-tuning.md" },
       { "Automated tuning" = "operations/kernel-optimization/automated-tuning.md" }
+    ]},
+    { "Compute" = [
+      { "Enabling GPU passthrough" = "operations/compute/gpu-passthrough.md" }
     ]},
     { "Network" = [
       { "Configure NAT gateways" = "operations/network/configure-nat-gateways.md" },

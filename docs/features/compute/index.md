@@ -22,6 +22,14 @@ Superphenix Compute manages virtual machine instances and full-state instance sn
 
     [:octicons-arrow-right-24: Instance snapshots](instance-snapshot.md)
 
+-   **[:material-expansion-card: GPU](gpu.md)**
+
+    ---
+
+    Dedicated GPUs attached to virtual machines with PCI passthrough, chosen by GPU class.
+
+    [:octicons-arrow-right-24: GPU](gpu.md)
+
 </div>
 
 ## Core Capabilities
@@ -30,6 +38,7 @@ Superphenix Compute manages virtual machine instances and full-state instance sn
 - **Multi-Interface Networking**: Attach multiple isolated L2 subnets with automatic IPAM or static IP assignment.
 - **Persistent Storage**: Attach bootable root volumes, secondary block disks, CD-ROM ISOs, or OCI container disks.
 - **Access and Consoles**: Connect via SSH, or use the browser-based web serial terminal and graphical VNC console.
+- **GPU Passthrough**: Attach a dedicated GPU to a VM, chosen from the GPU classes available in the AZ.
 - **Firmware Options**: Support for legacy BIOS, UEFI, Secure Boot, persistent EFI variables, and vTPM 2.0.
 - **Cloud-Init Initialization**: Automatic user creation, SSH key injection, and custom user data execution on first boot.
 
