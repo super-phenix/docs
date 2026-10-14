@@ -1,6 +1,11 @@
 # Installing an AZ
 
-Once the [management plane is installed](../installing-management/index.md), you install each AZ by creating `Cluster` resources in the namespace of the operator. These resources tell the operator where and how to deploy the Superphenix stack on each target.
+Install an availability zone only after both of these are done:
+
+- The [management plane is installed](../installing-management/index.md).
+- The [operating system is installed](../installing-the-os/manual-os-installation.md) on every node that will join the AZ ([automated installation](../installing-the-os/automated-os-installation.md) when the management cluster provisions the machines).
+
+You then describe the AZ in the `superphenix-operator` Helm values, under `clusters`. The chart turns each entry into the stack installed on that cluster.
 
 ## In this section
 

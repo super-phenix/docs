@@ -61,6 +61,6 @@ The `management` cluster should be listed. PostgreSQL stays pending until a stor
 
 ## Next steps
 
-1. [Installing an AZ](../installing-an-az/index.md) on this cluster.
+1. [Installing hyperconverged](../installing-an-az/installing-hyperconverged.md) on this cluster, using the operator chart key `clusters.local`. That AZ is already registered with the API. Do not add a second one. See [The default local AZ](index.md#the-default-local-az).
 2. When Kube-OVN is healthy, set `installOnClusterWithoutCNI` back to `false` (and `management.lifecycle.manual` back to `false` if you enabled it) and run the Helm command again with the same values file.
 3. [Accessing Superphenix](../../../operations/accessing-superphenix.md): open the console, retrieve the initial ArgoCD password, and follow synchronization.

@@ -5,7 +5,7 @@ The management plane is configured once, through the `superphenix-operator` Helm
 The operator installs two things on the management cluster:
 
 - **ArgoCD**, from the operator chart, which synchronizes every Superphenix application.
-- A `Cluster` of type `Management` (connection mode `Local`). Its `systemConfiguration` is passed to the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) chart, which renders one ArgoCD `Application` per management component.
+- A `Cluster` of type `Management`. Its `systemConfiguration` is passed to the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) chart, which renders one ArgoCD `Application` per management component.
 
 Full upstream values:
 
@@ -38,15 +38,13 @@ installOnClusterWithoutCNI: false
 
 config:
   argocd:
-    ha:
-      enabled: false
     values:
       server:
         ingress:
           hostname: argocd.example.org # or argocd.192.168.1.10.nip.io
 
 management:
-  # Optional. Defaults to "management". Not shown to end users.
+  # Optional. Defaults to "management".
   region: management
   availabilityZone: management
   lifecycle:
@@ -95,9 +93,9 @@ One hostname serves the whole console stack. The system chart publishes:
 | `/api` | API | `superphenix-api-tls` |
 | `/accounts` | Kratos (login, registration, recovery) | `kratos-public-tls` |
 
-The API URL, Kratos base URL, session cookies, and CORS allowed origins are all rendered from `apps.superphenix-console.values.domain`. ArgoCD uses `config.argocd.values.server.ingress.hostname` and is a separate name. The chart's built-in ArgoCD ingress hostname is `argocd.superphenix.net`; override it.
+Ingress TLS annotations for cert-manager (`cert-manager.io/cluster-issuer: letsencrypt`) are present in the chart and commented out. Cert-manager is installed with an AZ (hyperconverged, storage, or workload), not with the management components.
 
-Ingress TLS annotations for cert-manager (`cert-manager.io/cluster-issuer: letsencrypt`) are present in the chart and commented out. cert-manager is installed with an AZ (hyperconverged, storage, or workload), not with the management components.
+If you're installing the management on a standalone cluster and wish for certificates to be auto-generated, you need to install cert-manager.
 
 ## Management components
 
@@ -126,7 +124,7 @@ The API ingress is enabled on the console domain at `/api`. It connects to Postg
 
 `userIsActiveOnCreate` defaults to `true`, so a self-service registration can sign in immediately. [Accessing Superphenix](../../../operations/accessing-superphenix.md) describes the login page and how to restrict registration on a public deployment.
 
-The chart's local AZ entry (`azs.local`) points the API at an in-cluster Superphenix controller named "Local AZ". That controller is installed with the AZ, not with the management components.
+The chart's local AZ entry (`config.azs.local`) points the API at an in-cluster Superphenix controller named "Local AZ". Keep it when a hyperconverged AZ runs on this cluster. Set it to `null` when it does not. See [The default local AZ](index.md#the-default-local-az). Register any other AZ with [Add an availability zone](../../../operations/adding-an-az.md).
 
 ### Kratos
 
@@ -147,7 +145,7 @@ Permify stores relation tuples in the `permify` database. The connection URI use
 
 ### PostgreSQL
 
-One instance backs the three databases. On first start, an init script creates `kratos` and `permify` and grants them to the user `superphenix`. The API uses the database named `superphenix`.
+One instance backs the three databases used by Superphenix components.
 
 Override `apps.postgres.values.auth.password`. The chart default is a public placeholder. The same value is substituted into the API, Kratos, and Permify configuration, so it only needs to be set on the `postgres` application.
 
@@ -165,7 +163,7 @@ Disabled by default (`apps.idrac-exporter.enabled: false`). Enable it to scrape 
 
 ## ArgoCD
 
-ArgoCD is installed by the operator chart, not by a `Management`-mode application. `config.argocd.values` is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under `server.ingress.hostname`, as in the example above.
+ArgoCD is installed by the operator chart. `config.argocd.values` is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under `server.ingress.hostname`, as in the example above.
 
 `config.argocd.ha.enabled: true` turns on Redis HA and autoscaling for the server and repo server.
 
