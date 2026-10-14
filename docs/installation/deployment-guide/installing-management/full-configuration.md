@@ -9,6 +9,9 @@ The operator installs two things on the management cluster:
 
 Full upstream values:
 
+- [Installing outside an AZ](management-outside-az.md): placement model and operator install.
+- [Configure a cluster](../installing-an-az/configuring-a-cluster.md): `Cluster` resource fields for workload AZs.
+- [Cluster toolbox](../../../operations/cluster-toolbox.md): enable a shell with access to every managed cluster.
 - [superphenix-operator `values.yaml`](https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-operator/values.yaml)
 - [superphenix-system `values.yaml`](https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-system/values.yaml)
 

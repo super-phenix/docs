@@ -29,7 +29,8 @@ nav = [
       ]},
       { "Installing the OS" = [
         { "Manual OS installation" = "installation/deployment-guide/installing-the-os/manual-os-installation.md" },
-        { "Automated OS installation" = "installation/deployment-guide/installing-the-os/automated-os-installation.md" }
+        { "Automated OS installation" = "installation/deployment-guide/installing-the-os/automated-os-installation.md" },
+        { "Installing GPU nodes" = "installation/deployment-guide/installing-the-os/gpu-node-installation.md" }
       ]},
       { "Installing an AZ" = [
         { "Overview" = "installation/deployment-guide/installing-an-az/index.md" },
@@ -91,6 +92,7 @@ nav = [
   ]},
   { "Operations" = [
     { "Accessing Superphenix" = "operations/accessing-superphenix.md" },
+    { "Cluster toolbox" = "operations/cluster-toolbox.md" },
     { "Limitations" = "operations/limitations.md" },
     { "Network" = [
       { "Configure NAT gateways" = "operations/network/configure-nat-gateways.md" },
