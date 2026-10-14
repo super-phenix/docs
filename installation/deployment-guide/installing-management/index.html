@@ -698,17 +698,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-the-installation-process-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        How the installation process works
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -761,52 +750,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2_2_3" id="__nav_3_2_2_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Installing outside an AZ
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_3_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_3_2_2_3">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  Installing outside an AZ
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
-              
-                
-                  
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="./management-outside-az/" class="md-nav__link">
         
@@ -815,7 +758,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Installing outside an AZ
 
     
   </span>
@@ -842,7 +785,7 @@
   <span class="md-ellipsis">
     
   
-  Full configuration
+  Configuring the management stack
 
     
   </span>
@@ -850,15 +793,6 @@
   
 
       </a>
-    </li>
-  
-
-                
-              
-            </ul>
-          </nav>
-        
-      
     </li>
   
 
@@ -3155,17 +3089,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-the-installation-process-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        How the installation process works
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3197,16 +3120,8 @@
 
 
 <h1 id="installing-management-plane">Installing management plane</h1>
-<p>This section covers where the management plane runs, how the Superphenix operator is installed, and how the management stack is configured.</p>
-<p>Part of the <a href="../">deployment guide</a>. Placement (inside an AZ or on a dedicated cluster), failure domains, and how that choice combines with hyperconverged and decoupled AZs are in <a href="../../../architecture/deployment-topology/#management-plane">Deployment topology</a>. Cluster, AZ, and region concepts are in the <a href="../../../architecture/">Architecture overview</a>.</p>
-<ul>
-<li><strong><a href="management-inside-az/">Installing inside an AZ</a></strong>: install management on an AZ cluster after its operating system is in place.</li>
-<li><strong><a href="management-outside-az/">Installing outside an AZ</a></strong>: install management on a dedicated cluster.</li>
-<li><strong><a href="full-configuration/">Configuring the management stack</a></strong>: console domain, identity, database, Argo CD, and the management components. Both placements use this page.</li>
-</ul>
-<h2 id="how-the-installation-process-works">How the installation process works</h2>
 <p>Superphenix is installed through an operator running on the management cluster. The operator installs each Superphenix cluster from the configuration in its <code>Cluster</code> resource, and it owns installation, upgrades, and lifecycle for those clusters.</p>
-<p>On the management cluster itself, the operator installs Argo CD and a <code>Cluster</code> of type <code>Management</code>. That cluster pulls the management applications from the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart:</p>
+<p>On the management cluster itself, the operator installs ArgoCD and a <code>Cluster</code> of type <code>Management</code>. That cluster pulls the management applications from the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart:</p>
 <ul>
 <li>The Superphenix web console, API, Kratos, and Permify</li>
 <li>PostgreSQL, shared by the API, Kratos, and Permify</li>
@@ -3217,8 +3132,6 @@
 <ul>
 <li><a href="management-inside-az/">Installing inside an AZ</a> or <a href="management-outside-az/">Installing outside an AZ</a>: install the operator for your placement.</li>
 <li><a href="full-configuration/">Configuring the management stack</a>: fill in the operator values before or with that install.</li>
-<li><a href="../installing-an-az/">Installing an AZ</a>: define <code>Cluster</code> resources and deploy your availability zones.</li>
-<li><a href="../installing-the-os/automated-os-installation/">Automated OS installation</a>: provision physical servers through the operator.</li>
 </ul>
 
 

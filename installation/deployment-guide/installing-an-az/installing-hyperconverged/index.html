@@ -690,52 +690,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2_2_3" id="__nav_3_2_2_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Installing outside an AZ
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_3_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_3_2_2_3">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  Installing outside an AZ
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
-              
-                
-                  
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../installing-management/management-outside-az/" class="md-nav__link">
         
@@ -744,7 +698,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Installing outside an AZ
 
     
   </span>
@@ -771,7 +725,7 @@
   <span class="md-ellipsis">
     
   
-  Full configuration
+  Configuring the management stack
 
     
   </span>
@@ -779,15 +733,6 @@
   
 
       </a>
-    </li>
-  
-
-                
-              
-            </ul>
-          </nav>
-        
-      
     </li>
   
 
@@ -3285,7 +3230,7 @@
 <li>Let the operator sync the Superphenix stack on that cluster.</li>
 </ol>
 <h2 id="example-cluster-resource">Example <code>Cluster</code> resource</h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix.net/v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operator.superphenix.net/v1alpha1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">az-local</span>
@@ -3300,15 +3245,12 @@
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">secretRef</span><span class="p">:</span>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-paris-1-credentials</span>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v0.1.0</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">repoURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://charts.superphenix.net</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">chartName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-stack</span>
 </span></code></pre></div>
 <p>Set <code>connection.mode: Local</code> when the operator runs on the same cluster as the AZ.</p>
 <p>See <a href="../configuring-a-cluster/">Configure a cluster</a> for the full field reference.</p>
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>: open the console and monitor the deployment in Argo CD.</li>
+<li><a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>: open the console and monitor the deployment in ArgoCD.</li>
 <li><a href="../">Installing an AZ</a>: overview of AZ installation paths.</li>
 <li><a href="../../../../architecture/deployment-topology/">Deployment topology</a>: fully integrated vs other deployment types.</li>
 </ul>

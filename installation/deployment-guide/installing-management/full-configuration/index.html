@@ -28,7 +28,7 @@
     
     
       
-        <title>Full configuration - Documentation</title>
+        <title>Configuring the management stack - Documentation</title>
       
     
     
@@ -135,7 +135,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Full configuration
+              Configuring the management stack
             
           </span>
         </div>
@@ -690,54 +690,6 @@
                   
   
   
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_3" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_3_2_2_3" id="__nav_3_2_2_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Installing outside an AZ
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_3_label" aria-expanded="true">
-            <label class="md-nav__title" for="__nav_3_2_2_3">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  Installing outside an AZ
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
-              
-                
-                  
-  
-  
   
   
     <li class="md-nav__item">
@@ -748,7 +700,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Installing outside an AZ
 
     
   </span>
@@ -784,7 +736,7 @@
   <span class="md-ellipsis">
     
   
-  Full configuration
+  Configuring the management stack
 
     
   </span>
@@ -801,7 +753,7 @@
   <span class="md-ellipsis">
     
   
-  Full configuration
+  Configuring the management stack
 
     
   </span>
@@ -954,10 +906,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#argo-cd" class="md-nav__link">
+  <a href="#argocd" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Argo CD
+        ArgoCD
       </span>
     </span>
   </a>
@@ -978,15 +930,6 @@
     </ul>
   
 </nav>
-      
-    </li>
-  
-
-                
-              
-            </ul>
-          </nav>
-        
       
     </li>
   
@@ -3411,10 +3354,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#argo-cd" class="md-nav__link">
+  <a href="#argocd" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Argo CD
+        ArgoCD
       </span>
     </span>
   </a>
@@ -3456,8 +3399,8 @@
 <p>The management plane is configured once, through the <code>superphenix-operator</code> Helm values, whether it runs <a href="../management-inside-az/">inside an AZ</a> or <a href="../management-outside-az/">outside an AZ</a>. Both install procedures use the file described here.</p>
 <p>The operator installs two things on the management cluster:</p>
 <ul>
-<li><strong>Argo CD</strong>, from the operator chart, which synchronizes every Superphenix application.</li>
-<li>A <code>Cluster</code> of type <code>Management</code> (connection mode <code>Local</code>). Its <code>systemConfiguration</code> is passed to the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart, which renders one Argo CD <code>Application</code> per management component.</li>
+<li><strong>ArgoCD</strong>, from the operator chart, which synchronizes every Superphenix application.</li>
+<li>A <code>Cluster</code> of type <code>Management</code> (connection mode <code>Local</code>). Its <code>systemConfiguration</code> is passed to the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart, which renders one ArgoCD <code>Application</code> per management component.</li>
 </ul>
 <p>Full upstream values:</p>
 <ul>
@@ -3485,7 +3428,7 @@
 </tr>
 <tr>
 <td>HTTP on ports 80 and 443</td>
-<td>Console, API, Kratos, and Argo CD</td>
+<td>Console, API, Kratos, and ArgoCD</td>
 <td>An ingress controller. Superphenix AZs use Traefik from the system chart</td>
 </tr>
 </tbody>
@@ -3536,11 +3479,11 @@
 </span></code></pre></div>
 <p><code>management.systemConfiguration</code> is copied onto the management <code>Cluster</code> and becomes the Helm values of <code>superphenix-system</code>. Per-application overrides live under <code>apps.&lt;name&gt;</code>, matching the keys in the system chart.</p>
 <h2 id="dns">DNS</h2>
-<p>The console domain and the Argo CD hostname must resolve to the management cluster.</p>
+<p>The console domain and the ArgoCD hostname must resolve to the management cluster.</p>
 <p>On a Superphenix AZ, Traefik listens on <strong>every node</strong> on ports <strong>80</strong> and <strong>443</strong>, so DNS only needs to point at <strong>one</strong> node. For high availability, use a load balancer or DNS round-robin.</p>
 <div class="admonition tip">
 <p class="admonition-title">No DNS?</p>
-<p>Use <a href="https://nip.io">nip.io</a> against a node address, for example <code>console.192.168.1.10.nip.io</code>. Use the same pattern for the Argo CD hostname.</p>
+<p>Use <a href="https://nip.io">nip.io</a> against a node address, for example <code>console.192.168.1.10.nip.io</code>. Use the same pattern for the ArgoCD hostname.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">NAT gateway traffic to a node</p>
@@ -3573,7 +3516,7 @@
 </tr>
 </tbody>
 </table>
-<p>The API URL, Kratos base URL, session cookies, and CORS allowed origins are all rendered from <code>apps.superphenix-console.values.domain</code>. Argo CD uses <code>config.argocd.values.server.ingress.hostname</code> and is a separate name. The chart's built-in Argo CD ingress hostname is <code>argocd.superphenix.net</code>; override it.</p>
+<p>The API URL, Kratos base URL, session cookies, and CORS allowed origins are all rendered from <code>apps.superphenix-console.values.domain</code>. ArgoCD uses <code>config.argocd.values.server.ingress.hostname</code> and is a separate name. The chart's built-in ArgoCD ingress hostname is <code>argocd.superphenix.net</code>; override it.</p>
 <p>Ingress TLS annotations for cert-manager (<code>cert-manager.io/cluster-issuer: letsencrypt</code>) are present in the chart and commented out. cert-manager is installed with an AZ (hyperconverged, storage, or workload), not with the management components.</p>
 <h2 id="management-components">Management components</h2>
 <p>The system chart deploys an application on a cluster only when that cluster's effective mode is listed in the application's <code>modes</code>. The management <code>Cluster</code> has effective mode <code>Management</code>. These are the applications selected for that mode.</p>
@@ -3589,7 +3532,7 @@
 <tr>
 <td><code>superphenix-console</code></td>
 <td>Web UI for operators and tenants</td>
-<td>Enabled, chart <code>0.6.1</code></td>
+<td>Enabled</td>
 </tr>
 <tr>
 <td><code>superphenix-api</code></td>
@@ -3599,17 +3542,17 @@
 <tr>
 <td><code>kratos</code></td>
 <td><a href="https://www.ory.sh/kratos/">Ory Kratos</a> identity, sessions, and self-service flows</td>
-<td>Enabled, chart <code>0.43.1</code></td>
+<td>Enabled</td>
 </tr>
 <tr>
 <td><code>permify</code></td>
 <td>Authorization. The API calls it for permission checks</td>
-<td>Enabled, chart <code>0.3.*</code></td>
+<td>Enabled, chart</td>
 </tr>
 <tr>
 <td><code>postgres</code></td>
 <td>Shared PostgreSQL for the API, Kratos, and Permify</td>
-<td>Enabled, chart <code>0.19.12</code></td>
+<td>Enabled, chart</td>
 </tr>
 <tr>
 <td><code>talos-operator</code></td>
@@ -3654,10 +3597,10 @@
 <p>Disabled by default (<code>apps.talos-operator.enabled: false</code>). Enable it when this management cluster should run the Talos operator for PXE boot and machine configuration. The chart turns on <code>featureFlags.enablePxeBootStack</code>. How an AZ is provisioned through BMC is covered in <a href="../../installing-the-os/automated-os-installation/">Automated OS installation</a>.</p>
 <h3 id="idrac-exporter">iDRAC exporter</h3>
 <p>Disabled by default (<code>apps.idrac-exporter.enabled: false</code>). Enable it to scrape Dell iDRAC metrics. The chart ships empty Helm values; add the exporter's own settings under <code>apps.idrac-exporter.values</code>.</p>
-<h2 id="argo-cd">Argo CD</h2>
-<p>Argo CD is installed by the operator chart, not by a <code>Management</code>-mode application. <code>config.argocd.values</code> is merged into the Argo CD Helm values. The setting you need at install time is the ingress hostname, under <code>server.ingress.hostname</code>, as in the example above.</p>
+<h2 id="argocd">ArgoCD</h2>
+<p>ArgoCD is installed by the operator chart, not by a <code>Management</code>-mode application. <code>config.argocd.values</code> is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under <code>server.ingress.hostname</code>, as in the example above.</p>
 <p><code>config.argocd.ha.enabled: true</code> turns on Redis HA and autoscaling for the server and repo server.</p>
-<p><code>config.argocd.chart.url</code> and <code>config.argocd.chart.version</code> override the Argo CD chart location. Leave them empty to use the chart built into the operator.</p>
+<p><code>config.argocd.chart.url</code> and <code>config.argocd.chart.version</code> override the ArgoCD chart location. Leave them empty to use the chart built into the operator.</p>
 <p>After the ingress controller is serving traffic, sign in as described in <a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>. The initial admin password is in the <code>argocd-initial-admin-secret</code> secret in <code>superphenix-system</code>.</p>
 <h2 id="operator-lifecycle">Operator lifecycle</h2>
 <p>These fields are copied onto the management <code>Cluster</code>:</p>
@@ -3671,7 +3614,7 @@
 <tbody>
 <tr>
 <td><code>management.lifecycle.manual</code></td>
-<td>Disables autosync of every application on the management cluster. Applications stay in place until you sync them in Argo CD or set this back to <code>false</code>.</td>
+<td>Disables autosync of every application on the management cluster. Applications stay in place until you sync them in ArgoCD or set this back to <code>false</code>.</td>
 </tr>
 <tr>
 <td><code>management.lifecycle.pause</code></td>
@@ -3686,12 +3629,16 @@
 <td>Labels stored on the management cluster. Default <code>management</code>. End users do not see this cluster as an AZ.</td>
 </tr>
 <tr>
-<td><code>management.systemLocation</code></td>
-<td>Overrides <code>repoURL</code>, <code>chartName</code>, or <code>version</code> of the system chart used for management. Empty values keep the operator defaults (<code>ghcr.io/super-phenix/charts</code>, chart <code>superphenix-system</code>, version aligned with the operator).</td>
+<td><code>management.version</code></td>
+<td>Superphenix version for the management <code>Cluster</code>. Empty inherits the operator chart version. Must be a semantic version.</td>
+</tr>
+<tr>
+<td><code>management.systemLocation.repoURL</code>, <code>management.systemLocation.chartName</code></td>
+<td>Override the system chart repository and name. The operator default is <code>ghcr.io/super-phenix/charts</code> and <code>superphenix-system</code>. There is no version field on <code>systemLocation</code>.</td>
 </tr>
 </tbody>
 </table>
-<p><code>installOnClusterWithoutCNI</code> is an operator-chart flag, not a system-chart value. When <code>true</code>, the operator and Argo CD tolerate <code>NotReady</code> nodes and use the host network, so they can run before a CNI exists. <a href="../management-inside-az/">Installing inside an AZ</a> sets it to <code>true</code> until Kube-OVN is healthy, then back to <code>false</code>. A management cluster that already has a CNI leaves it <code>false</code>.</p>
+<p><code>installOnClusterWithoutCNI</code> is an operator-chart flag, not a system-chart value. When <code>true</code>, the operator and ArgoCD tolerate <code>NotReady</code> nodes and use the host network, so they can run before a CNI exists. <a href="../management-inside-az/">Installing inside an AZ</a> sets it to <code>true</code> until Kube-OVN is healthy, then back to <code>false</code>. A management cluster that already has a CNI leaves it <code>false</code>.</p>
 
 
 

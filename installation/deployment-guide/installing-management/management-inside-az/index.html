@@ -794,52 +794,6 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_2_2_3" id="__nav_3_2_2_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Installing outside an AZ
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        
-          <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_3_2_2_3_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_3_2_2_3">
-              <span class="md-nav__icon md-icon"></span>
-              
-  
-  Installing outside an AZ
-
-            </label>
-            <ul class="md-nav__list" data-md-scrollfix>
-              
-                
-                  
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../management-outside-az/" class="md-nav__link">
         
@@ -848,7 +802,7 @@
   <span class="md-ellipsis">
     
   
-  Overview
+  Installing outside an AZ
 
     
   </span>
@@ -875,7 +829,7 @@
   <span class="md-ellipsis">
     
   
-  Full configuration
+  Configuring the management stack
 
     
   </span>
@@ -883,15 +837,6 @@
   
 
       </a>
-    </li>
-  
-
-                
-              
-            </ul>
-          </nav>
-        
-      
     </li>
   
 
@@ -3264,8 +3209,7 @@
 
 <h1 id="installing-inside-an-az">Installing inside an AZ</h1>
 <p>Install the management plane on a cluster whose operating system is already in place. The operator, web console, and GitOps components run on the same Kubernetes cluster as one of your availability zones.</p>
-<p>Where the management plane should run, and how that choice interacts with hyperconverged and decoupled AZs, is covered in <a href="../../../../architecture/deployment-topology/#management-plane">Deployment topology</a>. Cluster, AZ, and region concepts are in the <a href="../../../../architecture/">Architecture overview</a>.</p>
-<p>Part of the <a href="../../">deployment guide</a>. The other placement is <a href="../management-outside-az/">Installing outside an AZ</a>. Settings for the console, identity, database, and Argo CD are in <a href="../full-configuration/">Configuring the management stack</a>.</p>
+<p>Where the management plane should run, and how that choice interacts with hyperconverged and decoupled AZs, is covered in <a href="../../../../architecture/deployment-topology/#management-plane">Deployment topology</a>.</p>
 <h2 id="before-you-start">Before you start</h2>
 <p>Finish <a href="../../installing-the-os/manual-os-installation/">Manual OS installation</a> on the cluster that will host management. From the bootstrap host:</p>
 <ul>
@@ -3274,8 +3218,8 @@
 <li>Talos was generated with <code>cluster.network.cni.name: none</code>. Nodes stay <code>NotReady</code> until the local AZ installs Kube-OVN. That state is expected until you finish <a href="../../installing-an-az/">Installing an AZ</a>.</li>
 </ul>
 <h2 id="1-prepare-the-operator-values">1. Prepare the operator values</h2>
-<p>Create a <code>values.yaml</code> for the <code>superphenix-operator</code> chart. Copy the management settings from <a href="../full-configuration/">Configuring the management stack</a>: console domain, Kratos secret, PostgreSQL password, and Argo CD hostname.</p>
-<p>This cluster has no CNI yet, so the operator and its Argo CD instance must schedule on <code>NotReady</code> nodes and use the host network. Set:</p>
+<p>Create a <code>values.yaml</code> for the <code>superphenix-operator</code> chart. Copy the management settings from <a href="../full-configuration/">Configuring the management stack</a>: console domain, Kratos secret, PostgreSQL password, and ArgoCD hostname.</p>
+<p>This cluster has no CNI yet, so the operator and its ArgoCD instance must schedule on <code>NotReady</code> nodes and use the host network. Set:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Required until the local AZ has installed Kube-OVN.</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Set back to false after that AZ is healthy.</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">installOnClusterWithoutCNI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
@@ -3290,7 +3234,7 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span>-f<span class="w"> </span>values.yaml
 </span></code></pre></div>
-<p>The chart creates a <code>Cluster</code> named <code>management</code> (<code>type: Management</code>, <code>connection.mode: Local</code>). The operator then installs the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> management components on this cluster: the web console, API, Kratos, Permify, and PostgreSQL, together with Argo CD. Optional components stay disabled unless you enable them in the configuration file.</p>
+<p>The chart creates a <code>Cluster</code> named <code>management</code>. The operator then installs the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> management components on this cluster: the web console, API, Kratos, Permify, and PostgreSQL, together with ArgoCD. Optional components stay disabled unless you enable them in the configuration file.</p>
 <p>Confirm the operator is up:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span>get<span class="w"> </span>pods
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span>get<span class="w"> </span>clusters.operator.superphenix.net
@@ -3304,13 +3248,13 @@
 <li><strong>Storage, for the database.</strong> PostgreSQL requests a persistent volume (8Gi by default). Rook creates the default storage class when the local AZ is installed (<code>spx-rbd-3x</code> on a hyperconverged AZ). Until that class exists, the database volume stays pending, and the API, Kratos, and Permify cannot start.</li>
 <li><strong>Ingress, for HTTP.</strong> The console, API, and Kratos are HTTP routes. Traefik serves ports <strong>80</strong> and <strong>443</strong> on every node and is installed with the AZ (hyperconverged, workload, or storage). Until Traefik is running, nothing answers on the console domain.</li>
 </ul>
-<p>Open the console only after that AZ is installed and healthy. Argo CD's UI uses the same ingress.</p>
+<p>Open the console only after that AZ is installed and healthy. ArgoCD's UI uses the same ingress.</p>
 </div>
 <h2 id="next-steps">Next steps</h2>
 <ol>
-<li><a href="../../installing-an-az/">Installing an AZ</a> on this cluster. Register it with <code>connection.mode: Local</code> (<a href="../../installing-an-az/installing-hyperconverged/">Installing hyperconverged</a> or <a href="../../installing-an-az/installing-decoupled/">Installing decoupled</a>).</li>
+<li><a href="../../installing-an-az/">Installing an AZ</a> on this cluster.</li>
 <li>When Kube-OVN is healthy, set <code>installOnClusterWithoutCNI</code> back to <code>false</code> (and <code>management.lifecycle.manual</code> back to <code>false</code> if you enabled it) and run the Helm command again with the same values file.</li>
-<li><a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>: open the console, retrieve the initial Argo CD password, and follow synchronization.</li>
+<li><a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>: open the console, retrieve the initial ArgoCD password, and follow synchronization.</li>
 </ol>
 
 
