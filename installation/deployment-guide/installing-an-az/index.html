@@ -2588,6 +2588,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../operations/adding-an-az/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Add an availability zone
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../operations/limitations/" class="md-nav__link">
         
   
@@ -2623,10 +2650,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
         
           
-          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
             
   
   
@@ -2644,8 +2671,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_4">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_5">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -2786,10 +2813,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
             
   
   
@@ -2807,8 +2834,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_5">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_6">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -3120,7 +3147,12 @@
 
 
 <h1 id="installing-an-az">Installing an AZ</h1>
-<p>Once the <a href="../installing-management/">management plane is installed</a>, you install each AZ by creating <code>Cluster</code> resources in the namespace of the operator. These resources tell the operator where and how to deploy the Superphenix stack on each target.</p>
+<p>Install an availability zone only after both of these are done:</p>
+<ul>
+<li>The <a href="../installing-management/">management plane is installed</a>.</li>
+<li>The <a href="../installing-the-os/manual-os-installation/">operating system is installed</a> on every node that will join the AZ (<a href="../installing-the-os/automated-os-installation/">automated installation</a> when the management cluster provisions the machines).</li>
+</ul>
+<p>You then describe the AZ in the <code>superphenix-operator</code> Helm values, under <code>clusters</code>. The chart turns each entry into the stack installed on that cluster.</p>
 <h2 id="in-this-section">In this section</h2>
 <ul>
 <li><strong><a href="installing-hyperconverged/">Installing hyperconverged</a></strong>: storage and virtualization on the same cluster.</li>

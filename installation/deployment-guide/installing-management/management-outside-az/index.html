@@ -2632,6 +2632,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../operations/adding-an-az/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Add an availability zone
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../operations/limitations/" class="md-nav__link">
         
   
@@ -2667,10 +2694,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
         
           
-          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
             
   
   
@@ -2688,8 +2715,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_4">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_5">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -2830,10 +2857,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
             
   
   
@@ -2851,8 +2878,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_5">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_6">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -3222,6 +3249,7 @@
 </ul>
 <h2 id="1-prepare-the-operator-values">1. Prepare the operator values</h2>
 <p>Create a <code>values.yaml</code> for the <code>superphenix-operator</code> chart. Copy the management settings from <a href="../full-configuration/">Configuring the management stack</a>: console domain, Kratos secret, PostgreSQL password, and ArgoCD hostname.</p>
+<p>This cluster does not host an AZ. Disable the default <code>local</code> AZ as described in <a href="../#the-default-local-az">The default local AZ</a>.</p>
 <h2 id="2-install-the-operator">2. Install the operator</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">OPERATOR_VERSION</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s1">'%{url_effective}'</span><span class="w"> </span>https://github.com/super-phenix/superphenix/releases/latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s#.*/v##'</span><span class="k">)</span><span class="s2">"</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -3250,7 +3278,7 @@
 <h2 id="next-steps">Next steps</h2>
 <ol>
 <li><a href="../../installing-the-os/manual-os-installation/">Manual OS installation</a> or <a href="../../installing-the-os/automated-os-installation/">Automated OS installation</a> on the workload clusters.</li>
-<li><a href="../../installing-an-az/">Installing an AZ</a>. Register each AZ with <code>connection.mode: Remote</code>.</li>
+<li><a href="../../installing-an-az/">Installing an AZ</a> with <code>connection.mode: Remote</code>, then <a href="../../../../operations/adding-an-az/">add each AZ to the management plane</a>.</li>
 <li><a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>: open the console, retrieve the initial ArgoCD password, and follow synchronization.</li>
 </ol>
 

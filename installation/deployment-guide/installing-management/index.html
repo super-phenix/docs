@@ -698,6 +698,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-default-local-az" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The default local AZ
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -2588,6 +2599,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../operations/adding-an-az/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Add an availability zone
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../operations/limitations/" class="md-nav__link">
         
   
@@ -2623,10 +2661,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
         
           
-          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
             
   
   
@@ -2644,8 +2682,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_4">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_5">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -2786,10 +2824,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
             
   
   
@@ -2807,8 +2845,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_5">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_6">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -3089,6 +3127,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#the-default-local-az" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The default local AZ
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#next-steps" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3128,6 +3177,25 @@
 <li>The Talos operator and the iDRAC exporter, both optional and disabled by default</li>
 </ul>
 <p>Storage for the database and ingress for HTTP are not part of that management set. They have to exist on the management cluster. When management runs inside an AZ, they arrive with the local AZ. See <a href="full-configuration/">Configuring the management stack</a>.</p>
+<h2 id="the-default-local-az">The default local AZ</h2>
+<p>The system chart registers one AZ with the API under the code <strong><code>local</code></strong>, displayed as <strong>Local AZ</strong>.</p>
+<p>That entry is the hyperconverged AZ that shares the management cluster. Install it with the operator chart key <code>clusters.local</code>, as described in <a href="../installing-an-az/installing-hyperconverged/">Installing hyperconverged</a>.</p>
+<p>When this management cluster should not run an AZ, disable that default. Set <code>local</code> to <code>null</code> in the API configuration, and do not set <code>clusters.local</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">management</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">superphenix-api</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span><span class="nt">config</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="nt">azs</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">              </span><span class="nt">local</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="nt">productsConfig</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">              </span><span class="nt">argoApp</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">                </span><span class="nt">kubernetes</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">                  </span><span class="nt">azDomains</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">                    </span><span class="nt">local</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span></code></pre></div>
+<p><a href="management-outside-az/">Installing outside an AZ</a> uses this override. <a href="../../../operations/adding-an-az/">Add an availability zone</a> covers registering every other AZ with the API and its controller.</p>
 <h2 id="next-steps">Next steps</h2>
 <ul>
 <li><a href="management-inside-az/">Installing inside an AZ</a> or <a href="management-outside-az/">Installing outside an AZ</a>: install the operator for your placement.</li>

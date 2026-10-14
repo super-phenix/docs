@@ -2726,6 +2726,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../operations/adding-an-az/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Add an availability zone
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../operations/limitations/" class="md-nav__link">
         
   
@@ -2761,10 +2788,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
         
           
-          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
             
   
   
@@ -2782,8 +2809,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_4">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_5">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -2924,10 +2951,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
         
           
-          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
             
   
   
@@ -2945,8 +2972,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_5">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_6">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -3400,7 +3427,7 @@
 <p>The operator installs two things on the management cluster:</p>
 <ul>
 <li><strong>ArgoCD</strong>, from the operator chart, which synchronizes every Superphenix application.</li>
-<li>A <code>Cluster</code> of type <code>Management</code> (connection mode <code>Local</code>). Its <code>systemConfiguration</code> is passed to the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart, which renders one ArgoCD <code>Application</code> per management component.</li>
+<li>A <code>Cluster</code> of type <code>Management</code>. Its <code>systemConfiguration</code> is passed to the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart, which renders one ArgoCD <code>Application</code> per management component.</li>
 </ul>
 <p>Full upstream values:</p>
 <ul>
@@ -3443,39 +3470,37 @@
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">config</span><span class="p">:</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">argocd</span><span class="p">:</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">ha</span><span class="p">:</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">values</span><span class="p">:</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">server</span><span class="p">:</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">ingress</span><span class="p">:</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">          </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd.example.org</span><span class="w"> </span><span class="c1"># or argocd.192.168.1.10.nip.io</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nt">management</span><span class="p">:</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="c1"># Optional. Defaults to "management". Not shown to end users.</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">management</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">management</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">lifecycle</span><span class="p">:</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="c1"># Set true to disable autosync of every management application.</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">pause</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">cleanupOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">      </span><span class="nt">superphenix-console</span><span class="p">:</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">          </span><span class="c1"># Public domain for the console, the API, and Kratos.</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">          </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console.example.org</span><span class="w"> </span><span class="c1"># or console.192.168.1.10.nip.io</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="nt">kratos</span><span class="p">:</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">          </span><span class="c1"># Random string, at least 16 characters. Set before the first sync.</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">          </span><span class="nt">globalSecret</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-random-string-at-least-16-characters"</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">          </span><span class="nt">auth</span><span class="p">:</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">            </span><span class="c1"># Shared by the API, Kratos, and Permify. Replace before the first sync.</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">            </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-unique-password"</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">          </span><span class="nt">persistence</span><span class="p">:</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8Gi</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">server</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="nt">ingress</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">          </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd.example.org</span><span class="w"> </span><span class="c1"># or argocd.192.168.1.10.nip.io</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nt">management</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="c1"># Optional. Defaults to "management".</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">management</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">management</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">lifecycle</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="c1"># Set true to disable autosync of every management application.</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">pause</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">cleanupOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="nt">superphenix-console</span><span class="p">:</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">          </span><span class="c1"># Public domain for the console, the API, and Kratos.</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">          </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console.example.org</span><span class="w"> </span><span class="c1"># or console.192.168.1.10.nip.io</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="nt">kratos</span><span class="p">:</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">          </span><span class="c1"># Random string, at least 16 characters. Set before the first sync.</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">          </span><span class="nt">globalSecret</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-random-string-at-least-16-characters"</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">          </span><span class="nt">auth</span><span class="p">:</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">            </span><span class="c1"># Shared by the API, Kratos, and Permify. Replace before the first sync.</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">            </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-unique-password"</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">          </span><span class="nt">persistence</span><span class="p">:</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8Gi</span>
 </span></code></pre></div>
 <p><code>management.systemConfiguration</code> is copied onto the management <code>Cluster</code> and becomes the Helm values of <code>superphenix-system</code>. Per-application overrides live under <code>apps.&lt;name&gt;</code>, matching the keys in the system chart.</p>
 <h2 id="dns">DNS</h2>
@@ -3516,8 +3541,8 @@
 </tr>
 </tbody>
 </table>
-<p>The API URL, Kratos base URL, session cookies, and CORS allowed origins are all rendered from <code>apps.superphenix-console.values.domain</code>. ArgoCD uses <code>config.argocd.values.server.ingress.hostname</code> and is a separate name. The chart's built-in ArgoCD ingress hostname is <code>argocd.superphenix.net</code>; override it.</p>
-<p>Ingress TLS annotations for cert-manager (<code>cert-manager.io/cluster-issuer: letsencrypt</code>) are present in the chart and commented out. cert-manager is installed with an AZ (hyperconverged, storage, or workload), not with the management components.</p>
+<p>Ingress TLS annotations for cert-manager (<code>cert-manager.io/cluster-issuer: letsencrypt</code>) are present in the chart and commented out. Cert-manager is installed with an AZ (hyperconverged, storage, or workload), not with the management components.</p>
+<p>If you're installing the management on a standalone cluster and wish for certificates to be auto-generated, you need to install cert-manager.</p>
 <h2 id="management-components">Management components</h2>
 <p>The system chart deploys an application on a cluster only when that cluster's effective mode is listed in the application's <code>modes</code>. The management <code>Cluster</code> has effective mode <code>Management</code>. These are the applications selected for that mode.</p>
 <table>
@@ -3575,7 +3600,7 @@
 <li>Database, username: <code>superphenix</code></li>
 </ul>
 <p><code>userIsActiveOnCreate</code> defaults to <code>true</code>, so a self-service registration can sign in immediately. <a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a> describes the login page and how to restrict registration on a public deployment.</p>
-<p>The chart's local AZ entry (<code>azs.local</code>) points the API at an in-cluster Superphenix controller named "Local AZ". That controller is installed with the AZ, not with the management components.</p>
+<p>The chart's local AZ entry (<code>config.azs.local</code>) points the API at an in-cluster Superphenix controller named "Local AZ". Keep it when a hyperconverged AZ runs on this cluster. Set it to <code>null</code> when it does not. See <a href="../#the-default-local-az">The default local AZ</a>. Register any other AZ with <a href="../../../../operations/adding-an-az/">Add an availability zone</a>.</p>
 <h3 id="kratos">Kratos</h3>
 <p><code>apps.kratos.values.globalSecret</code> derives the default, cookie, and cipher secrets. Use a random string of at least 16 characters and set it before the first sync. Rotating it invalidates existing sessions.</p>
 <p>Kratos stores identities and sessions in the <code>kratos</code> database on the same PostgreSQL instance. The DSN is rendered from <code>apps.postgres.values.auth.password</code>.</p>
@@ -3589,7 +3614,7 @@
 <h3 id="permify">Permify</h3>
 <p>Permify stores relation tuples in the <code>permify</code> database. The connection URI uses the same PostgreSQL user and password. The default is a single replica with distributed mode disabled. The API reaches it at <code>permify.&lt;namespace&gt;.svc:3478</code>.</p>
 <h3 id="postgresql">PostgreSQL</h3>
-<p>One instance backs the three databases. On first start, an init script creates <code>kratos</code> and <code>permify</code> and grants them to the user <code>superphenix</code>. The API uses the database named <code>superphenix</code>.</p>
+<p>One instance backs the three databases used by Superphenix components.</p>
 <p>Override <code>apps.postgres.values.auth.password</code>. The chart default is a public placeholder. The same value is substituted into the API, Kratos, and Permify configuration, so it only needs to be set on the <code>postgres</code> application.</p>
 <p><code>apps.postgres.values.persistence.size</code> defaults to <code>8Gi</code>, which the chart describes as enough for most deployments. The volume uses the cluster default storage class. No storage class name is set in the chart.</p>
 <p>The operator connects to this database itself when <code>config.database.autoConnect</code> is <code>true</code> (the default): it reads the <code>postgres</code> secret. To point the operator at another database, set <code>config.database.host</code>, <code>port</code>, <code>user</code>, <code>password</code>, and <code>name</code>, and set <code>autoConnect</code> to <code>false</code>.</p>
@@ -3598,7 +3623,7 @@
 <h3 id="idrac-exporter">iDRAC exporter</h3>
 <p>Disabled by default (<code>apps.idrac-exporter.enabled: false</code>). Enable it to scrape Dell iDRAC metrics. The chart ships empty Helm values; add the exporter's own settings under <code>apps.idrac-exporter.values</code>.</p>
 <h2 id="argocd">ArgoCD</h2>
-<p>ArgoCD is installed by the operator chart, not by a <code>Management</code>-mode application. <code>config.argocd.values</code> is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under <code>server.ingress.hostname</code>, as in the example above.</p>
+<p>ArgoCD is installed by the operator chart. <code>config.argocd.values</code> is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under <code>server.ingress.hostname</code>, as in the example above.</p>
 <p><code>config.argocd.ha.enabled: true</code> turns on Redis HA and autoscaling for the server and repo server.</p>
 <p><code>config.argocd.chart.url</code> and <code>config.argocd.chart.version</code> override the ArgoCD chart location. Leave them empty to use the chart built into the operator.</p>
 <p>After the ingress controller is serving traffic, sign in as described in <a href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>. The initial admin password is in the <code>argocd-initial-admin-secret</code> secret in <code>superphenix-system</code>.</p>
