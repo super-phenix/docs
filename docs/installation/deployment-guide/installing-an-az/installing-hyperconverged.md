@@ -27,7 +27,7 @@ See [Deployment topology](../../../architecture/deployment-topology.md) for trad
 ## Example `Cluster` resource
 
 ```yaml
-apiVersion: superphenix.net/v1alpha1
+apiVersion: operator.superphenix.net/v1alpha1
 kind: Cluster
 metadata:
   name: az-local
@@ -42,9 +42,6 @@ spec:
     secretRef:
       name: cluster-paris-1-credentials
       namespace: superphenix-system
-  version: v0.1.0
-  repoURL: https://charts.superphenix.net
-  chartName: superphenix-stack
 ```
 
 Set `connection.mode: Local` when the operator runs on the same cluster as the AZ.
@@ -53,6 +50,6 @@ See [Configure a cluster](configuring-a-cluster.md) for the full field reference
 
 ## Related
 
-- [Accessing Superphenix](../../../operations/accessing-superphenix.md): open the console and monitor the deployment in Argo CD.
+- [Accessing Superphenix](../../../operations/accessing-superphenix.md): open the console and monitor the deployment in ArgoCD.
 - [Installing an AZ](index.md): overview of AZ installation paths.
 - [Deployment topology](../../../architecture/deployment-topology.md): fully integrated vs other deployment types.

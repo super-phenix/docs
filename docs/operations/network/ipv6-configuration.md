@@ -129,15 +129,16 @@ On the cluster that hosts Ceph, bind the Ceph public and cluster networks to IPv
 
 ```yaml
 systemConfiguration:
-  rook-local-cluster:
-    values:
-      cephClusterSpec:
-        network:
-          addressRanges:
-            public:
-              - fd00:ffff:2000::/64
-            cluster:
-              - fd00:ffff:2001::/96
+  apps:
+    rook-local-cluster:
+      values:
+        cephClusterSpec:
+          network:
+            addressRanges:
+              public:
+                - fd00:ffff:2000::/64
+              cluster:
+                - fd00:ffff:2001::/96
 ```
 
 The `public` subnet carries Ceph client and monitor traffic. The `cluster` subnet carries replication, recovery, and other traffic between Ceph daemons. Every Ceph node must have an address in the configured IPv6 subnet or subnets.

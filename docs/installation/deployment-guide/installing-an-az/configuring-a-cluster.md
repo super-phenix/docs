@@ -3,20 +3,20 @@
 When you define a `Cluster` resource, you specify the topology, geography, and connection details. Below is an example configuration for a remote workload cluster:
 
 ```yaml
-apiVersion: superphenix.net/v1alpha1
+apiVersion: operator.superphenix.net/v1alpha1
 kind: Cluster
 metadata:
   name: az-paris-1
   namespace: superphenix-system
 spec:
-  # -- Deployment and Topology
-  # Defines whether the cluster is Hyperconverged or Decoupled.
+  # Hyperconverged, or Decoupled. Empty only for a management cluster (type Management).
   deploymentTopology: Decoupled
 
-  # Specifies the cluster type (Storage or Virtualization) when deploymentTopology is Decoupled.
-  type: Virtualization
+  # Required when deploymentTopology is Decoupled: Storage or Workload.
+  # Required when deploymentTopology is empty: Management.
+  type: Workload
 
-  # -- Geography
+  # -- Geography information
   region: europe-west
   availabilityZone: paris-1
 
@@ -29,25 +29,24 @@ spec:
       name: cluster-paris-1-credentials
       namespace: superphenix-system
 
-  # -- System configuration
+  # Optional. Semantic version of the cluster. Empty inherits the operator's system chart version.
   version: v0.1.0
-  repoURL: https://charts.superphenix.net
-  chartName: superphenix-stack
+  # Optional. Empty uses the operator defaults (ghcr.io/super-phenix/charts, superphenix-system).
+  systemLocation:
+    repoURL: ghcr.io/super-phenix/charts
+    chartName: superphenix-system
 
-  systemConfiguration:
-    network:
-      podCIDR: 10.244.0.0/16
+  # Passed through to the superphenix-system chart. Per-application overrides live under apps.<name>.
+  systemConfiguration: {}
 
-  # -- Operations
-  pauseSync: false
-  manual: false
-  cleanupOnDeletion: false
+  lifecycle:
+    pause: false
+    manual: false
+    cleanupOnDeletion: false
 
-  # -- Talos management mode
-  # Specifies how Talos configuration should be managed.
-  # Unmanaged - The Talos cluster is not managed by the operator. This requires an externally managed installation and configuration of Talos. PXE features and talos-operator are disabled.
-  # Import - The operator imports an already installed Talos cluster and manages its configuration. PXE features are disabled.
-  # Full - The Talos cluster is fully installed and configured by the operator.
+  # Unmanaged (default) - Talos is installed outside the operator.
+  # Import - the operator imports an already installed Talos cluster and manages its configuration.
+  # Full - the operator installs and configures Talos.
   talosManagementMode: Unmanaged
 ```
 

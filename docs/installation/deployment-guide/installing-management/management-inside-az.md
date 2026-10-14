@@ -2,9 +2,7 @@
 
 Install the management plane on a cluster whose operating system is already in place. The operator, web console, and GitOps components run on the same Kubernetes cluster as one of your availability zones.
 
-Where the management plane should run, and how that choice interacts with hyperconverged and decoupled AZs, is covered in [Deployment topology](../../../architecture/deployment-topology.md#management-plane). Cluster, AZ, and region concepts are in the [Architecture overview](../../../architecture/index.md).
-
-Part of the [deployment guide](../index.md). The other placement is [Installing outside an AZ](management-outside-az.md). Settings for the console, identity, database, and Argo CD are in [Configuring the management stack](full-configuration.md).
+Where the management plane should run, and how that choice interacts with hyperconverged and decoupled AZs, is covered in [Deployment topology](../../../architecture/deployment-topology.md#management-plane).
 
 ## Before you start
 
@@ -16,9 +14,9 @@ Finish [Manual OS installation](../installing-the-os/manual-os-installation.md) 
 
 ## 1. Prepare the operator values
 
-Create a `values.yaml` for the `superphenix-operator` chart. Copy the management settings from [Configuring the management stack](full-configuration.md): console domain, Kratos secret, PostgreSQL password, and Argo CD hostname.
+Create a `values.yaml` for the `superphenix-operator` chart. Copy the management settings from [Configuring the management stack](full-configuration.md): console domain, Kratos secret, PostgreSQL password, and ArgoCD hostname.
 
-This cluster has no CNI yet, so the operator and its Argo CD instance must schedule on `NotReady` nodes and use the host network. Set:
+This cluster has no CNI yet, so the operator and its ArgoCD instance must schedule on `NotReady` nodes and use the host network. Set:
 
 ```yaml
 # Required until the local AZ has installed Kube-OVN.
@@ -40,7 +38,7 @@ helm upgrade --install superphenix-operator \
   -f values.yaml
 ```
 
-The chart creates a `Cluster` named `management` (`type: Management`, `connection.mode: Local`). The operator then installs the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) management components on this cluster: the web console, API, Kratos, Permify, and PostgreSQL, together with Argo CD. Optional components stay disabled unless you enable them in the configuration file.
+The chart creates a `Cluster` named `management`. The operator then installs the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) management components on this cluster: the web console, API, Kratos, Permify, and PostgreSQL, together with ArgoCD. Optional components stay disabled unless you enable them in the configuration file.
 
 Confirm the operator is up:
 
@@ -59,10 +57,10 @@ The `management` cluster should be listed. PostgreSQL stays pending until a stor
     - **Storage, for the database.** PostgreSQL requests a persistent volume (8Gi by default). Rook creates the default storage class when the local AZ is installed (`spx-rbd-3x` on a hyperconverged AZ). Until that class exists, the database volume stays pending, and the API, Kratos, and Permify cannot start.
     - **Ingress, for HTTP.** The console, API, and Kratos are HTTP routes. Traefik serves ports **80** and **443** on every node and is installed with the AZ (hyperconverged, workload, or storage). Until Traefik is running, nothing answers on the console domain.
 
-    Open the console only after that AZ is installed and healthy. Argo CD's UI uses the same ingress.
+    Open the console only after that AZ is installed and healthy. ArgoCD's UI uses the same ingress.
 
 ## Next steps
 
-1. [Installing an AZ](../installing-an-az/index.md) on this cluster. Register it with `connection.mode: Local` ([Installing hyperconverged](../installing-an-az/installing-hyperconverged.md) or [Installing decoupled](../installing-an-az/installing-decoupled.md)).
+1. [Installing an AZ](../installing-an-az/index.md) on this cluster.
 2. When Kube-OVN is healthy, set `installOnClusterWithoutCNI` back to `false` (and `management.lifecycle.manual` back to `false` if you enabled it) and run the Helm command again with the same values file.
-3. [Accessing Superphenix](../../../operations/accessing-superphenix.md): open the console, retrieve the initial Argo CD password, and follow synchronization.
+3. [Accessing Superphenix](../../../operations/accessing-superphenix.md): open the console, retrieve the initial ArgoCD password, and follow synchronization.

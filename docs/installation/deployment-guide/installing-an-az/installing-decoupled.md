@@ -19,13 +19,13 @@ See [Deployment topology](../../../architecture/deployment-topology.md) for the 
 ## Installation overview
 
 1. Provision a **storage** cluster and one or more **workload** clusters.
-2. Register each with a `Cluster` resource (`deploymentTopology: Decoupled`, with `type: Storage` or `type: Virtualization`).
+2. Register each with a `Cluster` resource (`deploymentTopology: Decoupled`, with `type: Storage` or `type: Workload`).
 3. [Add a storage class to the workload cluster](../../../operations/storage/adding-a-storage-class.md#adding-a-block-storage-class).
 4. Let the operator sync the Superphenix stack on each cluster.
 
 ## Installing a workload and storage cluster
 
-To install the storage and workload cluster, upgrade the release with the chart `clusters:` values. The example below adds two new decoupled clusters in the same availability zone: one `Storage` cluster and one `Virtualization` (workload) cluster.
+To install the storage and workload cluster, upgrade the release with the chart `clusters:` values. The example below adds two new decoupled clusters in the same availability zone: one `Storage` cluster and one `Workload` cluster.
 
 ```yaml
 clusters:
@@ -48,12 +48,13 @@ clusters:
         password: ""
         insecure: false
         serverName: ""
-    pauseSync: false
-    manual: false
+    lifecycle:
+      pause: false
+      manual: false
 
   spx-us-west01-workload:
     deploymentTopology: Decoupled
-    type: Virtualization
+    type: Workload
     region: us-west-1
     availabilityZone: west01
     version: v0.1.0
@@ -70,14 +71,17 @@ clusters:
         password: ""
         insecure: false
         serverName: ""
-    pauseSync: false
-    manual: false
+    lifecycle:
+      pause: false
+      manual: false
 ```
 
 
 ```bash
+OPERATOR_VERSION="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/super-phenix/superphenix/releases/latest | sed 's#.*/v##')"
+
 helm upgrade superphenix-operator \
-  ghcr.io/super-phenix/charts/superphenix-operator \
+  "oci://ghcr.io/super-phenix/charts/superphenix-operator:${OPERATOR_VERSION}" \
   --namespace superphenix-system \
   -f spx-clusters-values.yaml
 ```
@@ -86,4 +90,4 @@ You can monitor the status of the `Cluster` CR to check how far along the instal
 
 You'll then need to [add a storage class to the workload cluster](../../../operations/storage/adding-a-storage-class.md#adding-a-block-storage-class).
 
-When the deployment is ready, continue with [Accessing Superphenix](../../../operations/accessing-superphenix.md) to open the console and monitor applications in Argo CD.
+When the deployment is ready, continue with [Accessing Superphenix](../../../operations/accessing-superphenix.md) to open the console and monitor applications in ArgoCD.
