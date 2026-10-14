@@ -2,7 +2,7 @@
 
 This guide covers installing **Talos Linux** on your servers and bootstrapping a **Kubernetes** cluster by hand, using `talosctl`. Use this path when you already have physical or virtual machines ready and want full control over the Talos machine configuration before handing the cluster to Superphenix.
 
-Part of the [deployment guide](../index.md). For the automated alternative, see [Automated OS installation](automated-os-installation.md).
+For the automated alternative, see [Automated OS installation](automated-os-installation.md).
 
 For the installation of Talos Linux on **GPU nodes**, see [Installing GPU Nodes](gpu-node-installation.md).
 
@@ -103,7 +103,7 @@ Replace `ext0`, DHCP vs static addressing, and the default gateway to match your
 
     Do not use kernel-style alias names (`eth0`, `ens3`, `enp0s31f6`, …).
 
-Official reference: [Talos Getting Started](https://talos.dev/v1.11/introduction/getting-started). For a full 3-node lab walkthrough including Superphenix Helm values, see [Getting started](../../getting-started.md).
+Official reference: [Talos Getting Started](https://talos.dev/v1.11/introduction/getting-started).
 
 ## Step 2: Boot the nodes
 
@@ -150,4 +150,3 @@ All control-plane (and worker, if any) nodes should report `Ready` before you in
 
 - Install the operator: [Installing inside an AZ](../installing-management/management-inside-az.md) or [Installing outside an AZ](../installing-management/management-outside-az.md).
 - Define your AZ: [Configure a cluster](../installing-an-az/configuring-a-cluster.md).
-- For production sizing and tuning: [Production recommendations](../../production-recommendations.md).

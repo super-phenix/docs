@@ -19,6 +19,8 @@ Provide a Kubernetes cluster that will host only the management plane. From the 
 
 Create a `values.yaml` for the `superphenix-operator` chart. Copy the management settings from [Configuring the management stack](full-configuration.md): console domain, Kratos secret, PostgreSQL password, and ArgoCD hostname.
 
+This cluster does not host an AZ. Disable the default `local` AZ as described in [The default local AZ](index.md#the-default-local-az).
+
 ## 2. Install the operator
 
 ```bash
@@ -55,5 +57,5 @@ The `management` cluster should be listed. PostgreSQL binds a volume from the de
 ## Next steps
 
 1. [Manual OS installation](../installing-the-os/manual-os-installation.md) or [Automated OS installation](../installing-the-os/automated-os-installation.md) on the workload clusters.
-2. [Installing an AZ](../installing-an-az/index.md). Register each AZ with `connection.mode: Remote`.
+2. [Installing an AZ](../installing-an-az/index.md) with `connection.mode: Remote`, then [add each AZ to the management plane](../../../operations/adding-an-az.md).
 3. [Accessing Superphenix](../../../operations/accessing-superphenix.md): open the console, retrieve the initial ArgoCD password, and follow synchronization.
