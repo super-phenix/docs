@@ -121,7 +121,6 @@ config:
           hostname: "argocd.example.org" # or argocd.192.168.1.10.nip.io
 
 management:
-  manual: true
   systemConfiguration:
     apps:
       kratos:
@@ -190,7 +189,7 @@ helm install superphenix-operator \
   -f values.yaml
 ```
 
-When the stack is healthy, continue with [Accessing Superphenix](../operations/accessing-superphenix.md) to open the console, retrieve the initial Argo CD password, and monitor application synchronization.
+When the stack is healthy, continue with [Accessing Superphenix](../operations/accessing-superphenix.md) to open the console, retrieve the initial ArgoCD password, and monitor application synchronization.
 
 ???+ note "Override Kube-OVN CIDRs"
     If your **node subnet overlaps** Kube-OVN defaults (pods `10.0.0.0/12`, services `10.16.0.0/12`, join `100.64.0.0/12`, isolated egress `10.32.0.0/16`), pick a different  node range or override `clusters.local.systemConfiguration.apps.kubeovn.values.networking`. A `192.168.1.0/24` lab does not conflict.

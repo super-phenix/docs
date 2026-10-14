@@ -156,9 +156,9 @@ BGP requires coordination with the network team and matching peer configuration 
 
 ## Configure NAT gateway defaults
 
-Pass the EIP and NAT gateway defaults through the AZ's `systemConfiguration`. To use ARP announcements, set `eipDefault.externalSubnet` to `external-subnet` and omit `bgpSpeaker`, or leave it disabled.
+Pass the EIP and NAT gateway defaults through the AZ's `systemConfiguration`, under `apps.superphenix-controller.values.config.productsConfig`. To use ARP announcements, set `eipDefault.externalSubnet` to `external-subnet` and omit `bgpSpeaker`, or leave it disabled.
 
-For BGP, set `eipDefault.externalSubnet` to the separate IPAM subnet that contains the public EIP pool. This adjusts the controller so that it allocates EIPs from the public prefix instead of the private subnet used by the NAT gateways.
+For BGP, set `config.productsConfig.eipDefault.externalSubnet` to the separate IPAM subnet that contains the public EIP pool. This adjusts the controller so that it allocates EIPs from the public prefix instead of the private subnet used by the NAT gateways.
 
 The following example assumes:
 
@@ -171,25 +171,26 @@ systemConfiguration:
   apps:
     superphenix-controller:
       values:
-        productsConfig:
-          eipDefault:
-            externalSubnet: "192.0.2.0-24"
-          natGatewayDefault:
-            bgpSpeaker:
-              enabled: true
-              asn: 64892
-              remoteAsn: 64890
-              neighbors:
-                - 10.81.5.1
-              enableGracefulRestart: true
-              extraArgs:
-                - "-v5"
-                - "--graceful-restart"
+        config:
+          productsConfig:
+            eipDefault:
+              externalSubnet: "192.0.2.0-24"
+            natGatewayDefault:
+              bgpSpeaker:
+                enabled: true
+                asn: 64892
+                remoteAsn: 64890
+                neighbors:
+                  - 10.81.5.1
+                enableGracefulRestart: true
+                extraArgs:
+                  - "-v5"
+                  - "--graceful-restart"
 ```
 
 Apply this configuration to each AZ that should advertise EIP routes. Values can differ by AZ to match the local routers and autonomous systems.
 
-The BGP speaker accepts these settings under `productsConfig.natGatewayDefault.bgpSpeaker`:
+The BGP speaker accepts these settings under `config.productsConfig.natGatewayDefault.bgpSpeaker`:
 
 - `enabled`: enables or disables BGP route advertisement.
 - `asn`: the local ASN used by the AZ's NAT gateways.

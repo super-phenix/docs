@@ -22,14 +22,15 @@ It is possible to set a specific MTU for **subnets** created within an AZ.
 If you wish to force the MTU, disable `mtuAutodetection` on the controller of the AZ. Then, set your desired MTU:
 
 ```yaml
-systemsSettings:
+systemConfiguration:
   apps:
     superphenix-controller:
       values:
-        productsConfig:
-          subnets:
-            mtuAutodetection: false
-            mtu: 9000
+        config:
+          productsConfig:
+            subnets:
+              mtuAutodetection: false
+              mtu: 9000
 ```
 
 Use a value supported end to end by every physical link, VLAN, bond, and switch port in the path.
@@ -37,4 +38,4 @@ Use a value supported end to end by every physical link, VLAN, bond, and switch 
 !!! warning "Internet-facing workloads"
     Internet paths generally support an MTU of `1500`. When the platform links use an MTU greater than `1600`, pods and VMs can send packets larger than the Internet path supports after accounting for the 100-byte GENEVE overhead. This can cause fragmentation or PMTU black holes.
 
-    For subnets whose pods or VMs access the Internet, force **`productsConfig.subnets.mtu` to `1500`**.
+    For subnets whose pods or VMs access the Internet, force **`config.productsConfig.subnets.mtu` to `1500`**.

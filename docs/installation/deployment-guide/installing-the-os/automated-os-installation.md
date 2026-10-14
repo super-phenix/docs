@@ -56,10 +56,13 @@ The operator reads `Cluster` (and related) resources in the `superphenix-system`
 On your management cluster:
 
 ```bash
+OPERATOR_VERSION="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/super-phenix/superphenix/releases/latest | sed 's#.*/v##')"
+
 helm upgrade --install superphenix-operator \
-  ghcr.io/super-phenix/charts/superphenix-operator \
+  "oci://ghcr.io/super-phenix/charts/superphenix-operator:${OPERATOR_VERSION}" \
   --namespace superphenix-system \
-  --create-namespace --set "management.values.talos-operator.enabled=true"
+  --create-namespace \
+  --set "management.systemConfiguration.apps.talos-operator.enabled=true"
 ```
 
 ## Step 2: Define cluster resources
@@ -67,14 +70,14 @@ helm upgrade --install superphenix-operator \
 Create `Cluster` resources in `superphenix-system` that describe each Superphenix AZ. For operator-provisioned clusters, set connection details so the management plane can reach the cluster once bootstrap completes:
 
 ```yaml
-apiVersion: superphenix.net/v1alpha1
+apiVersion: operator.superphenix.net/v1alpha1
 kind: Cluster
 metadata:
   name: az-paris-1
   namespace: superphenix-system
 spec:
   deploymentTopology: Decoupled
-  type: Virtualization
+  type: Workload
   region: europe-west
   availabilityZone: paris-1
   connection:
@@ -84,8 +87,9 @@ spec:
       name: cluster-paris-1-credentials
       namespace: superphenix-system
   version: v0.1.0
-  repoURL: https://charts.superphenix.net
-  chartName: superphenix-stack
+  systemLocation:
+    repoURL: ghcr.io/super-phenix/charts
+    chartName: superphenix-system
   talosManagementMode: Full
   talosManagerConfiguration:
     dhcpInterface: "enp0s1"

@@ -50,29 +50,30 @@ Add the pool under `systemConfiguration` on the `Cluster` resource (or via the `
 
     ```yaml
     systemConfiguration:
-      rook-local-cluster:
-        values:
-          cephBlockPools:
-            - name: "[pool-name]"
-              spec:
-                # Media for this pool. Valid values: hdd, ssd, nvme.
-                # Device class is detected automatically on physical disks and must
-                # match your failure domain. With failureDomain "host" and size 3,
-                # you need three servers that each have disks of this class.
-                deviceClass: hdd
-                # Where replicas are placed. "host" spreads data across servers so
-                # you can lose a machine. "osd" spreads across disks and may place
-                # all copies on one server. Losing that server can mean permanent
-                # data loss. With size 3 and failureDomain "host", you can lose
-                # two hosts and still recover.
-                failureDomain: "host"
-                # Number of replicas across failure domains. With "host", size 3
-                # means three different servers. Higher size uses more raw capacity
-                # (1 TB usable ≈ 3 TB raw at size 3).
-                replicated:
-                  size: 3
-                # Per-disk RBD metrics in Prometheus. Recommended.
-                enableRBDStats: true
+      apps:
+        rook-local-cluster:
+          values:
+            cephBlockPools:
+              - name: "[pool-name]"
+                spec:
+                  # Media for this pool. Valid values: hdd, ssd, nvme.
+                  # Device class is detected automatically on physical disks and must
+                  # match your failure domain. With failureDomain "host" and size 3,
+                  # you need three servers that each have disks of this class.
+                  deviceClass: hdd
+                  # Where replicas are placed. "host" spreads data across servers so
+                  # you can lose a machine. "osd" spreads across disks and may place
+                  # all copies on one server. Losing that server can mean permanent
+                  # data loss. With size 3 and failureDomain "host", you can lose
+                  # two hosts and still recover.
+                  failureDomain: "host"
+                  # Number of replicas across failure domains. With "host", size 3
+                  # means three different servers. Higher size uses more raw capacity
+                  # (1 TB usable ≈ 3 TB raw at size 3).
+                  replicated:
+                    size: 3
+                  # Per-disk RBD metrics in Prometheus. Recommended.
+                  enableRBDStats: true
     ```
 
 === "Erasure coded"
@@ -98,32 +99,33 @@ Add the pool under `systemConfiguration` on the `Cluster` resource (or via the `
 
     ```yaml
     systemConfiguration:
-      rook-local-cluster:
-        values:
-          cephECBlockPools:
-            - name: "[pool-name]"
-              spec:
-                # Replicated pool used for RBD image metadata.
-                metadataPool:
-                  failureDomain: "host"
-                  replicated:
-                    size: 3
-                # Erasure-coded pool that holds the image data.
-                dataPool:
-                  # Media for this pool. Valid values: hdd, ssd, nvme.
-                  deviceClass: hdd
-                  # Where EC chunks are placed. "host" spreads chunks across
-                  # servers so you can lose a machine. "osd" spreads across
-                  # disks and may place several chunks on one server. Losing
-                  # that server can exceed codingChunks and mean permanent
-                  # data loss. Prefer "host". You need dataChunks +
-                  # codingChunks failure domains (6 hosts for 4+2).
-                  failureDomain: "host"
-                  # k data chunks + m coding chunks. Overhead =
-                  # (k + m) / k. Recommend at least 4+2 in production.
-                  erasureCoded:
-                    dataChunks: 4
-                    codingChunks: 2
+      apps:
+        rook-local-cluster:
+          values:
+            cephECBlockPools:
+              - name: "[pool-name]"
+                spec:
+                  # Replicated pool used for RBD image metadata.
+                  metadataPool:
+                    failureDomain: "host"
+                    replicated:
+                      size: 3
+                  # Erasure-coded pool that holds the image data.
+                  dataPool:
+                    # Media for this pool. Valid values: hdd, ssd, nvme.
+                    deviceClass: hdd
+                    # Where EC chunks are placed. "host" spreads chunks across
+                    # servers so you can lose a machine. "osd" spreads across
+                    # disks and may place several chunks on one server. Losing
+                    # that server can exceed codingChunks and mean permanent
+                    # data loss. Prefer "host". You need dataChunks +
+                    # codingChunks failure domains (6 hosts for 4+2).
+                    failureDomain: "host"
+                    # k data chunks + m coding chunks. Overhead =
+                    # (k + m) / k. Recommend at least 4+2 in production.
+                    erasureCoded:
+                      dataChunks: 4
+                      codingChunks: 2
     ```
 
 For advanced pool options, see the [rook-ceph-cluster](https://artifacthub.io/packages/helm/rook/rook-ceph-cluster) Helm chart values.
@@ -154,34 +156,35 @@ Add the block storage class under `systemConfiguration` on the `Cluster` resourc
 
     ```yaml
     systemConfiguration:
-      rook-connection:
-        values:
-          clusters:
-            - name: "[cluster-name]" # Can be the name of your hyperconverged cluster
-              blockPools:
-                # Name must match an existing storage pool. If you're creating a storage class for an erasure
-                # coded pool, you need to specify the name of the metadata pool here. If you followed the previous
-                # steps to add an EC pool, the name of the metadata pool will be [pool name]-metadata.
-                - name: "[pool-name]"
-                  storageClasses:
-                    - name: "[storage-class-name]"
-                      # StorageClass name will be "<cluster>.<name>" unless fullName is set.
-                      # Name must be unique across every storage class in the cluster.
-                      # fullName: ""
-                      # Data pool for erasure-coded storage classes (leave empty for replicated).
-                      # If you followed the previous steps to add an EC pool, the name of the data pool will be
-                      # the name of your pool.
-                      dataPool: ""
-                      # If set to true, this storage class will be used as the default when none is specified.
-                      # Only one can be set per cluster. We recommend setting the pool with the less costly media (e.g. HDD).
-                      default: true
-                      # Enables encryption of the individual disks created from this storage class.
-                      # The data will be stored within the pool encrypted.
-                      encryption:
-                        # Set to true to enable encryption, and provide a random passphrase.
-                        enabled: false
-                        # Encryption passphrase, can be a random string of characters.
-                        passphrase: ""
+      apps:
+        rook-connection:
+          values:
+            clusters:
+              - name: "[cluster-name]" # Can be the name of your hyperconverged cluster
+                blockPools:
+                  # Name must match an existing storage pool. If you're creating a storage class for an erasure
+                  # coded pool, you need to specify the name of the metadata pool here. If you followed the previous
+                  # steps to add an EC pool, the name of the metadata pool will be [pool name]-metadata.
+                  - name: "[pool-name]"
+                    storageClasses:
+                      - name: "[storage-class-name]"
+                        # StorageClass name will be "<cluster>.<name>" unless fullName is set.
+                        # Name must be unique across every storage class in the cluster.
+                        # fullName: ""
+                        # Data pool for erasure-coded storage classes (leave empty for replicated).
+                        # If you followed the previous steps to add an EC pool, the name of the data pool will be
+                        # the name of your pool.
+                        dataPool: ""
+                        # If set to true, this storage class will be used as the default when none is specified.
+                        # Only one can be set per cluster. We recommend setting the pool with the less costly media (e.g. HDD).
+                        default: true
+                        # Enables encryption of the individual disks created from this storage class.
+                        # The data will be stored within the pool encrypted.
+                        encryption:
+                          # Set to true to enable encryption, and provide a random passphrase.
+                          enabled: false
+                          # Encryption passphrase, can be a random string of characters.
+                          passphrase: ""
     ```
 
 === "Decoupled"
@@ -193,52 +196,53 @@ Add the block storage class under `systemConfiguration` on the `Cluster` resourc
 
     ```yaml
     systemConfiguration:
-      rook-connection:
-        values:
-          clusters:
-            - name: "[storage-cluster-name]" # The name of the remote storage cluster
-              # Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833
-              clusterID: ""
-              username: "[csi-user]"
-              token: ""
-              # Initial MON used to retrieve the full MON list
-              bootstrapMon:
-                # MON ID (must be a single letter)
-                id: ""
-                # IP of the MON
-                ip: ""
-                # Port of the MON
-                port: "6789"
-                # Protocol of the IP (IPv4 or IPv6)
-                protocol: IPv6
-              # Used by Rook to check remote cluster health and refresh the MON list
-              healthCheck:
-                username: "client.csi-health"
+      apps:
+        rook-connection:
+          values:
+            clusters:
+              - name: "[storage-cluster-name]" # The name of the remote storage cluster
+                # Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833
+                clusterID: ""
+                username: "[csi-user]"
                 token: ""
-              blockPools:
-                # Name must match an existing storage pool. If you're creating a storage class for an erasure
-                # coded pool, you need to specify the name of the metadata pool here. If you followed the previous
-                # steps to add an EC pool, the name of the metadata pool will be [pool name]-metadata.
-                - name: "[pool-name]" # Must match an existing pool on the storage cluster
-                  storageClasses:
-                    - name: "[storage-class-name]"
-                      # StorageClass name will be "<cluster>.<name>" unless fullName is set.
-                      # Name must be unique across every storage class in the cluster.
-                      # fullName: ""
-                      # Data pool for erasure-coded storage classes (leave empty for replicated).
-                      # If you followed the previous steps to add an EC pool, the name of the data pool will be
-                      # the name of your pool.
-                      dataPool: ""
-                      # If set to true, this storage class will be used as the default when none is specified.
-                      # Only one can be set per cluster. We recommend setting the pool with the less costly media (e.g. HDD).
-                      default: true
-                      # Enables encryption of the individual disks created from this storage class.
-                      # The data will be stored within the pool encrypted.
-                      encryption:
-                        # Set to true to enable encryption, and provide a random passphrase.
-                        enabled: false
-                        # Encryption passphrase, can be a random string of characters.
-                        passphrase: ""
+                # Initial MON used to retrieve the full MON list
+                bootstrapMon:
+                  # MON ID (must be a single letter)
+                  id: ""
+                  # IP of the MON
+                  ip: ""
+                  # Port of the MON
+                  port: "6789"
+                  # Protocol of the IP (IPv4 or IPv6)
+                  protocol: IPv6
+                # Used by Rook to check remote cluster health and refresh the MON list
+                healthCheck:
+                  username: "client.csi-health"
+                  token: ""
+                blockPools:
+                  # Name must match an existing storage pool. If you're creating a storage class for an erasure
+                  # coded pool, you need to specify the name of the metadata pool here. If you followed the previous
+                  # steps to add an EC pool, the name of the metadata pool will be [pool name]-metadata.
+                  - name: "[pool-name]" # Must match an existing pool on the storage cluster
+                    storageClasses:
+                      - name: "[storage-class-name]"
+                        # StorageClass name will be "<cluster>.<name>" unless fullName is set.
+                        # Name must be unique across every storage class in the cluster.
+                        # fullName: ""
+                        # Data pool for erasure-coded storage classes (leave empty for replicated).
+                        # If you followed the previous steps to add an EC pool, the name of the data pool will be
+                        # the name of your pool.
+                        dataPool: ""
+                        # If set to true, this storage class will be used as the default when none is specified.
+                        # Only one can be set per cluster. We recommend setting the pool with the less costly media (e.g. HDD).
+                        default: true
+                        # Enables encryption of the individual disks created from this storage class.
+                        # The data will be stored within the pool encrypted.
+                        encryption:
+                          # Set to true to enable encryption, and provide a random passphrase.
+                          enabled: false
+                          # Encryption passphrase, can be a random string of characters.
+                          passphrase: ""
     ```
 
 For advanced storage class and connection options, see the [spx-rook-connection](https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection) chart values.
@@ -269,17 +273,18 @@ Add the object storage class under `systemConfiguration` on the `Cluster` resour
 
     ```yaml
     systemConfiguration:
-      rook-connection:
-        values:
-          clusters:
-            - name: "[cluster-name]" # Can be the name of your hyperconverged cluster
-              objectStores:
-                - name: "[object-store-name]" # CephObjectStore CR name
-                  storageClasses:
-                    - name: "[storage-class-name]"
-                      # StorageClass name will be "<cluster>.<name>" unless fullName is set.
-                      # Name must be unique across every storage class in the cluster.
-                      # fullName: ""
+      apps:
+        rook-connection:
+          values:
+            clusters:
+              - name: "[cluster-name]" # Can be the name of your hyperconverged cluster
+                objectStores:
+                  - name: "[object-store-name]" # CephObjectStore CR name
+                    storageClasses:
+                      - name: "[storage-class-name]"
+                        # StorageClass name will be "<cluster>.<name>" unless fullName is set.
+                        # Name must be unique across every storage class in the cluster.
+                        # fullName: ""
     ```
 
 === "Decoupled"
@@ -291,49 +296,50 @@ Add the object storage class under `systemConfiguration` on the `Cluster` resour
 
     ```yaml
     systemConfiguration:
-      rook-connection:
-        values:
-          clusters:
-            - name: "[storage-cluster-name]" # The name of the remote storage cluster
-              # Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833
-              clusterID: ""
-              username: "[csi-user]"
-              token: ""
-              # Initial MON used to retrieve the full MON list
-              bootstrapMon:
-                # MON ID (must be a single letter)
-                id: ""
-                # IP of the MON
-                ip: ""
-                # Port of the MON
-                port: "6789"
-                # Protocol of the IP (IPv4 or IPv6)
-                protocol: IPv6
-              # Used by Rook to check remote cluster health and refresh the MON list
-              healthCheck:
-                username: "client.csi-health"
+      apps:
+        rook-connection:
+          values:
+            clusters:
+              - name: "[storage-cluster-name]" # The name of the remote storage cluster
+                # Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833
+                clusterID: ""
+                username: "[csi-user]"
                 token: ""
-              objectStores:
-                - name: "[object-store-name]" # CephObjectStore CR name (also used to derive the TLS secret name)
-                  # External RGW endpoints. Each entry accepts either `ip` or `hostname`.
-                  endpoints:
-                    - ip: ""
-                      # hostname: ""
-                  # Gateway HTTP port
-                  port: 80
-                  # Gateway HTTPS port (only set when TLS is enabled)
-                  # securePort: 443
-                  # TLS configuration for the remote RGW
-                  # tls:
-                  #   enabled: false
-                  #   # PEM-encoded certificate the operator will trust when talking to the RGW
-                  #   cert: ""
-                  storageClasses:
-                    - name: "[storage-class-name]"
-                      # StorageClass name will be "<cluster>.<name>" unless fullName is set.
-                      # Name must be unique across every storage class in the cluster.
-                      # fullName: ""
-                      reclaimPolicy: Delete
+                # Initial MON used to retrieve the full MON list
+                bootstrapMon:
+                  # MON ID (must be a single letter)
+                  id: ""
+                  # IP of the MON
+                  ip: ""
+                  # Port of the MON
+                  port: "6789"
+                  # Protocol of the IP (IPv4 or IPv6)
+                  protocol: IPv6
+                # Used by Rook to check remote cluster health and refresh the MON list
+                healthCheck:
+                  username: "client.csi-health"
+                  token: ""
+                objectStores:
+                  - name: "[object-store-name]" # CephObjectStore CR name (also used to derive the TLS secret name)
+                    # External RGW endpoints. Each entry accepts either `ip` or `hostname`.
+                    endpoints:
+                      - ip: ""
+                        # hostname: ""
+                    # Gateway HTTP port
+                    port: 80
+                    # Gateway HTTPS port (only set when TLS is enabled)
+                    # securePort: 443
+                    # TLS configuration for the remote RGW
+                    # tls:
+                    #   enabled: false
+                    #   # PEM-encoded certificate the operator will trust when talking to the RGW
+                    #   cert: ""
+                    storageClasses:
+                      - name: "[storage-class-name]"
+                        # StorageClass name will be "<cluster>.<name>" unless fullName is set.
+                        # Name must be unique across every storage class in the cluster.
+                        # fullName: ""
+                        reclaimPolicy: Delete
     ```
 
 For advanced storage class and connection options, see the [spx-rook-connection](https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection) chart values.

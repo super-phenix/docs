@@ -25,28 +25,29 @@ Retrieve the connection values from the remote **storage** cluster as follows:
 
 ```yaml
 systemConfiguration:
-  rook-connection:
-    values:
-      clusters:
-        - name: "[storage-cluster-name]" # The name of the remote storage cluster
-          # From .status.cephClusters on the remote Cluster CR (dictionary key = FSID)
-          clusterID: ""
-          username: "[csi-user]" # TBD
-          token: "" # TBD
-          # Public address of one MON; used only to bootstrap, then the full MON list is refreshed
-          bootstrapMon:
-            # MON ID (must be a single letter)
-            id: ""
-            # IP of the MON
-            ip: ""
-            # Port of the MON
-            port: "6789"
-            # Protocol of the IP (IPv4 or IPv6)
-            protocol: IPv6
-          # TBD
-          healthCheck:
-            username: "client.csi-health"
-            token: ""
+  apps:
+    rook-connection:
+      values:
+        clusters:
+          - name: "[storage-cluster-name]" # The name of the remote storage cluster
+            # From .status.cephClusters on the remote Cluster CR (dictionary key = FSID)
+            clusterID: ""
+            username: "[csi-user]" # TBD
+            token: "" # TBD
+            # Public address of one MON; used only to bootstrap, then the full MON list is refreshed
+            bootstrapMon:
+              # MON ID (must be a single letter)
+              id: ""
+              # IP of the MON
+              ip: ""
+              # Port of the MON
+              port: "6789"
+              # Protocol of the IP (IPv4 or IPv6)
+              protocol: IPv6
+            # TBD
+            healthCheck:
+              username: "client.csi-health"
+              token: ""
 ```
 
 ## Consuming object storage
@@ -55,25 +56,26 @@ Connect the workload cluster to a storage cluster so it can consume an RGW objec
 
 ```yaml
 systemConfiguration:
-  rook-connection:
-    values:
-      clusters:
-        - name: "[storage-cluster-name]" # The name of the remote storage cluster
-          objectStores:
-            - name: "[object-store-name]" # CephObjectStore CR name (also used to derive the TLS secret name)
-              # External RGW endpoints. Each entry accepts either `ip` or `hostname`.
-              endpoints:
-                - ip: ""
-                  # hostname: ""
-              # Gateway HTTP port
-              port: 80
-              # Gateway HTTPS port (only set when TLS is enabled)
-              # securePort: 443
-              # TLS configuration for the remote RGW
-              # tls:
-              #   enabled: false
-              #   # PEM-encoded certificate the operator will trust when talking to the RGW
-              #   cert: ""
+  apps:
+    rook-connection:
+      values:
+        clusters:
+          - name: "[storage-cluster-name]" # The name of the remote storage cluster
+            objectStores:
+              - name: "[object-store-name]" # CephObjectStore CR name (also used to derive the TLS secret name)
+                # External RGW endpoints. Each entry accepts either `ip` or `hostname`.
+                endpoints:
+                  - ip: ""
+                    # hostname: ""
+                # Gateway HTTP port
+                port: 80
+                # Gateway HTTPS port (only set when TLS is enabled)
+                # securePort: 443
+                # TLS configuration for the remote RGW
+                # tls:
+                #   enabled: false
+                #   # PEM-encoded certificate the operator will trust when talking to the RGW
+                #   cert: ""
 ```
 
 For advanced connection options, see the [spx-rook-connection](https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection) chart values.

@@ -69,7 +69,7 @@ apiVersion: operator.superphenix.net/v1alpha1
 kind: Cluster
 metadata:
   name: cluster-local
-  namespace: spx
+  namespace: superphenix-system
 spec:
   deploymentTopology: Hyperconverged
   region: us

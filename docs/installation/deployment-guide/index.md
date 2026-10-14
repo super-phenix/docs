@@ -94,4 +94,4 @@ See [Deployment topology](../../architecture/deployment-topology.md#hyperconverg
 
 ## After installation
 
-When the management plane and availability zones are deployed, continue with [Accessing Superphenix](../../operations/accessing-superphenix.md) to open the console, retrieve the initial Argo CD password, monitor synchronization, and troubleshoot deployment resources.
+When the management plane and availability zones are deployed, continue with [Accessing Superphenix](../../operations/accessing-superphenix.md) to open the console, retrieve the initial ArgoCD password, monitor synchronization, and troubleshoot deployment resources.

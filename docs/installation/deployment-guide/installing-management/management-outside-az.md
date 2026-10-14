@@ -1,45 +1,25 @@
 # Installing outside an AZ
 
-In this model, the **management cluster** runs on a **dedicated, neutral** Kubernetes cluster separate from every workload AZ. A single control plane can orchestrate one or many Superphenix clusters from that management environment.
+Install the management plane on a dedicated Kubernetes cluster, separate from every workload availability zone. One operator on that cluster installs and operates every AZ.
 
-Part of the [deployment guide](../index.md). For the alternative placement, see [Installing inside an AZ](management-inside-az.md).
+Where the management plane should run, and how that choice interacts with hyperconverged and decoupled AZs, is covered in [Deployment topology](../../../architecture/deployment-topology.md#management-plane).
 
-## Overview
+## Before you start
 
-![Management outside the AZ](../../../sketch/mgmt-outside-az.svg)
+Provide a Kubernetes cluster that will host only the management plane. From the bootstrap host:
 
-The control plane runs outside your workload AZs. This is recommended for multi-AZ orchestration and maximum redundancy.
+- `kubectl` uses a kubeconfig for that cluster.
+- **Helm** is installed ([install Helm](https://helm.sh/docs/intro/install/)).
+- The cluster is Kubernetes **v1.28+**. It can be Talos, another distribution, or a cluster hosted on another cloud.
+- The cluster can reach the **Kubernetes API** of every Superphenix AZ it will manage.
+- A default **StorageClass** and an **ingress controller** are already running. PostgreSQL, the console, and ArgoCD use them, and the management components do not install Rook or Traefik.
+- A CNI to operate the network of the cluster
 
-## When to choose this model
+## 1. Prepare the operator values
 
-- **Multi-AZ at scale**: one management cluster orchestrates many AZs.
-- **Redundancy**: management is independent of any workload AZ.
-- **Greenfield datacenters**: pair with [Automated OS installation](../installing-the-os/automated-os-installation.md) for hands-off server provisioning on workload clusters.
+Create a `values.yaml` for the `superphenix-operator` chart. Copy the management settings from [Configuring the management stack](full-configuration.md): console domain, Kratos secret, PostgreSQL password, and ArgoCD hostname.
 
-## Requirements
-
-!!! important
-    The management cluster needs connectivity to the **Kubernetes API** of every Superphenix cluster it will manage.
-
-- You can install the operator on **any conformant Kubernetes cluster** (v1.28+), as long as it can reach the control plane of each destination cluster.
-- The management cluster does **not** need to be Talos; it can run on vanilla Kubernetes or even another cloud, as long as network paths to your AZs are reliable.
-- Plan **GitOps** and **API** connectivity from management to every AZ before you define `Cluster` resources.
-
-## Trade-offs
-
-| Aspect | Notes |
-|--------|--------|
-| **Deployment** | Harder: an additional cluster to provision and operate |
-| **Maintenance** | Harder: separate management fleet to patch and monitor |
-| **Multiple AZs** | Easier to manage many AZs from one neutral control plane |
-| **Failover** | Easier: management is not tied to any workload AZ |
-| **Dependency** | No chicken-and-egg: management does not depend on Superphenix workload stacks |
-
-## How to install the operator
-
-Create `values.yaml` from [Configuring the management stack](full-configuration.md). That page is shared with [Installing inside an AZ](management-inside-az.md). On a dedicated management cluster, leave `installOnClusterWithoutCNI` at `false`.
-
-Install the operator with Helm:
+## 2. Install the operator
 
 ```bash
 OPERATOR_VERSION="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/super-phenix/superphenix/releases/latest | sed 's#.*/v##')"
@@ -51,12 +31,29 @@ helm upgrade --install superphenix-operator \
   -f values.yaml
 ```
 
+The chart creates a `Cluster` named `management`. The operator then installs the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) management components on this cluster: the web console, API, Kratos, Permify, and PostgreSQL, together with ArgoCD. Optional components stay disabled unless you enable them in the configuration file.
+
+Confirm the operator is up:
+
+```bash
+kubectl --namespace superphenix-system get pods
+kubectl --namespace superphenix-system get clusters.operator.superphenix.net
+```
+
+The `management` cluster should be listed. PostgreSQL binds a volume from the default storage class on this cluster.
+
+## Console availability
+
+!!! warning "Provide storage and ingress on this cluster"
+    PostgreSQL and the console's HTTP routes use a storage class and an ingress controller that you run on the management cluster. Workload AZs do not provide them.
+
+    - **Storage, for the database.** PostgreSQL requests a persistent volume (8Gi by default) from the default storage class. Until that volume is bound, the API, Kratos, and Permify cannot start.
+    - **Ingress, for HTTP.** The console, API, Kratos, and ArgoCD are HTTP routes. Your ingress controller must serve the console domain and the ArgoCD hostname, including ports **80** and **443** if you terminate TLS the way a Superphenix AZ does with Traefik.
+
+    The console can be opened once those two are healthy. It does not wait for a workload AZ.
+
 ## Next steps
 
-1. Provision a management Kubernetes cluster (any supported distribution).
-2. [Configuring the management stack](full-configuration.md): console, identity, database, and Argo CD.
-3. Install the operator using the Helm command above.
-4. [Installing the OS](../installing-the-os/manual-os-installation.md) or [Automated OS installation](../installing-the-os/automated-os-installation.md): provision workload AZ clusters.
-5. [Installing an AZ](../installing-an-az/index.md): register each AZ with a `Cluster` resource (`connection.mode: Remote`).
-
-See [Deployment topology](../../../architecture/deployment-topology.md) for the full comparison with management on an AZ.
+1. [Manual OS installation](../installing-the-os/manual-os-installation.md) or [Automated OS installation](../installing-the-os/automated-os-installation.md) on the workload clusters.
+2. [Installing an AZ](../installing-an-az/index.md). Register each AZ with `connection.mode: Remote`.
+3. [Accessing Superphenix](../../../operations/accessing-superphenix.md): open the console, retrieve the initial ArgoCD password, and follow synchronization.

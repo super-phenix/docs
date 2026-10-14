@@ -1,14 +1,14 @@
 # Accessing Superphenix
 
-After Superphenix is deployed, use the web console for day-to-day resource management and Argo CD to monitor the platform deployment.
+After Superphenix is deployed, use the web console for day-to-day resource management and ArgoCD to monitor the platform deployment.
 
 !!! info "Administration UI in development"
-    We are working on a dedicated administration UI. Until it is available, use Argo CD and `kubectl` to monitor and troubleshoot the platform.
+    We are working on a dedicated administration UI. Until it is available, use ArgoCD and `kubectl` to monitor and troubleshoot the platform.
 
 You need:
 
-- Network access to the console and Argo CD hostnames configured during installation.
-- A working `kubectl` context for the management cluster to retrieve the initial Argo CD password and inspect cluster resources.
+- Network access to the console and ArgoCD hostnames configured during installation.
+- A working `kubectl` context for the management cluster to retrieve the initial ArgoCD password and inspect cluster resources.
 
 ## Open the web console
 
@@ -25,9 +25,9 @@ The URL redirects you to the console login page. By default, self-service regist
 
 After signing in, use the console to create and manage tenant resources such as virtual machines, networks, and storage.
 
-## Open Argo CD
+## Open ArgoCD
 
-Open the Argo CD hostname configured during installation, for example:
+Open the ArgoCD hostname configured during installation, for example:
 
 ```text
 https://argocd.example.org
@@ -42,26 +42,26 @@ echo
 ```
 
 !!! note
-    If Argo CD was installed in a different namespace, replace `argocd` in the command with that namespace.
+    If ArgoCD was installed in a different namespace, replace `argocd` in the command with that namespace.
 
 Change the initial password after your first login.
 
 ## Monitor deployment and synchronization
 
-Argo CD is the primary place to follow Superphenix deployment activity. The applications shown there represent the platform components managed through GitOps.
+ArgoCD is the primary place to follow Superphenix deployment activity. The applications shown there represent the platform components managed through GitOps.
 
-Use Argo CD to:
+Use ArgoCD to:
 
 - Check whether applications are **Synced** or **OutOfSync**.
 - Check whether applications and their resources are **Healthy**, **Progressing**, **Degraded**, or **Missing**.
 - Inspect synchronization history and failed sync operations.
 - View the Kubernetes resources that belong to an application and the events reported for them.
 
-All application deployments and synchronizations are performed through Argo CD. Avoid making persistent manual changes to resources managed by Argo CD, because a later synchronization can overwrite them.
+All application deployments and synchronizations are performed through ArgoCD. Avoid making persistent manual changes to resources managed by ArgoCD, because a later synchronization can overwrite them.
 
 ## Troubleshoot a deployment
 
-Start with Argo CD when an application does not deploy or synchronize:
+Start with ArgoCD when an application does not deploy or synchronize:
 
 1. Open the affected application.
 2. Check its synchronization and health status.
@@ -76,4 +76,4 @@ kubectl describe <resource-type> <resource-name> --namespace <namespace>
 kubectl logs <pod-name> --namespace <namespace>
 ```
 
-For multi-container pods, add `--container <container-name>` to the logs command. The resource status, events, and container logs usually show whether the problem is in Argo CD synchronization or in the deployed workload itself.
+For multi-container pods, add `--container <container-name>` to the logs command. The resource status, events, and container logs usually show whether the problem is in ArgoCD synchronization or in the deployed workload itself.

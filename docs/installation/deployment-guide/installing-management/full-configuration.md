@@ -4,8 +4,8 @@ The management plane is configured once, through the `superphenix-operator` Helm
 
 The operator installs two things on the management cluster:
 
-- **Argo CD**, from the operator chart, which synchronizes every Superphenix application.
-- A `Cluster` of type `Management` (connection mode `Local`). Its `systemConfiguration` is passed to the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) chart, which renders one Argo CD `Application` per management component.
+- **ArgoCD**, from the operator chart, which synchronizes every Superphenix application.
+- A `Cluster` of type `Management` (connection mode `Local`). Its `systemConfiguration` is passed to the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) chart, which renders one ArgoCD `Application` per management component.
 
 Full upstream values:
 
@@ -19,7 +19,7 @@ The management applications expect a **storage class** and an **ingress controll
 | Need | Used by | Where it comes from |
 |------|---------|---------------------|
 | Persistent volume | PostgreSQL (default **8Gi**) | A default `StorageClass` on the management cluster |
-| HTTP on ports 80 and 443 | Console, API, Kratos, and Argo CD | An ingress controller. Superphenix AZs use Traefik from the system chart |
+| HTTP on ports 80 and 443 | Console, API, Kratos, and ArgoCD | An ingress controller. Superphenix AZs use Traefik from the system chart |
 
 On a dedicated management cluster, provide both before you rely on the console. When management runs inside an AZ, Rook and Traefik are installed with that AZ, so the console stays unavailable until the AZ is installed. See [Installing inside an AZ](management-inside-az.md#console-availability).
 
@@ -74,12 +74,12 @@ management:
 
 ## DNS
 
-The console domain and the Argo CD hostname must resolve to the management cluster.
+The console domain and the ArgoCD hostname must resolve to the management cluster.
 
 On a Superphenix AZ, Traefik listens on **every node** on ports **80** and **443**, so DNS only needs to point at **one** node. For high availability, use a load balancer or DNS round-robin.
 
 !!! tip "No DNS?"
-    Use [nip.io](https://nip.io) against a node address, for example `console.192.168.1.10.nip.io`. Use the same pattern for the Argo CD hostname.
+    Use [nip.io](https://nip.io) against a node address, for example `console.192.168.1.10.nip.io`. Use the same pattern for the ArgoCD hostname.
 
 !!! warning "NAT gateway traffic to a node"
     Due to a macvlan limitation, traffic from a NAT gateway is blackholed when its destination is an address on the node hosting that gateway. VMs and Kubernetes as a Service clusters can therefore lose access to the console when DNS points directly at a node. Put a load balancer in front of the nodes and point DNS at the load balancer. See [Limitations](../../../operations/limitations.md#nat-gateway-traffic-to-its-host-node).
@@ -92,7 +92,7 @@ One hostname serves the whole console stack. The system chart publishes:
 | `/api` | API | `superphenix-api-tls` |
 | `/accounts` | Kratos (login, registration, recovery) | `kratos-public-tls` |
 
-The API URL, Kratos base URL, session cookies, and CORS allowed origins are all rendered from `apps.superphenix-console.values.domain`. Argo CD uses `config.argocd.values.server.ingress.hostname` and is a separate name. The chart's built-in Argo CD ingress hostname is `argocd.superphenix.net`; override it.
+The API URL, Kratos base URL, session cookies, and CORS allowed origins are all rendered from `apps.superphenix-console.values.domain`. ArgoCD uses `config.argocd.values.server.ingress.hostname` and is a separate name. The chart's built-in ArgoCD ingress hostname is `argocd.superphenix.net`; override it.
 
 Ingress TLS annotations for cert-manager (`cert-manager.io/cluster-issuer: letsencrypt`) are present in the chart and commented out. cert-manager is installed with an AZ (hyperconverged, storage, or workload), not with the management components.
 
@@ -102,11 +102,11 @@ The system chart deploys an application on a cluster only when that cluster's ef
 
 | Application | Role | Default |
 |-------------|------|---------|
-| `superphenix-console` | Web UI for operators and tenants | Enabled, chart `0.6.1` |
+| `superphenix-console` | Web UI for operators and tenants | Enabled |
 | `superphenix-api` | Backend for the console and CLI. Stores organizations, projects, and API state in PostgreSQL. Delegates authentication to Kratos and authorization to Permify | Enabled, version follows the Superphenix release |
-| `kratos` | [Ory Kratos](https://www.ory.sh/kratos/) identity, sessions, and self-service flows | Enabled, chart `0.43.1` |
-| `permify` | Authorization. The API calls it for permission checks | Enabled, chart `0.3.*` |
-| `postgres` | Shared PostgreSQL for the API, Kratos, and Permify | Enabled, chart `0.19.12` |
+| `kratos` | [Ory Kratos](https://www.ory.sh/kratos/) identity, sessions, and self-service flows | Enabled |
+| `permify` | Authorization. The API calls it for permission checks | Enabled, chart |
+| `postgres` | Shared PostgreSQL for the API, Kratos, and Permify | Enabled, chart |
 | `talos-operator` | Bare-metal Talos: PXE boot and machine configuration | Disabled |
 | `idrac-exporter` | Prometheus exporter for Dell iDRAC baseboard management controllers | Disabled |
 
@@ -160,13 +160,13 @@ Disabled by default (`apps.talos-operator.enabled: false`). Enable it when this 
 
 Disabled by default (`apps.idrac-exporter.enabled: false`). Enable it to scrape Dell iDRAC metrics. The chart ships empty Helm values; add the exporter's own settings under `apps.idrac-exporter.values`.
 
-## Argo CD
+## ArgoCD
 
-Argo CD is installed by the operator chart, not by a `Management`-mode application. `config.argocd.values` is merged into the Argo CD Helm values. The setting you need at install time is the ingress hostname, under `server.ingress.hostname`, as in the example above.
+ArgoCD is installed by the operator chart, not by a `Management`-mode application. `config.argocd.values` is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under `server.ingress.hostname`, as in the example above.
 
 `config.argocd.ha.enabled: true` turns on Redis HA and autoscaling for the server and repo server.
 
-`config.argocd.chart.url` and `config.argocd.chart.version` override the Argo CD chart location. Leave them empty to use the chart built into the operator.
+`config.argocd.chart.url` and `config.argocd.chart.version` override the ArgoCD chart location. Leave them empty to use the chart built into the operator.
 
 After the ingress controller is serving traffic, sign in as described in [Accessing Superphenix](../../../operations/accessing-superphenix.md). The initial admin password is in the `argocd-initial-admin-secret` secret in `superphenix-system`.
 
@@ -176,10 +176,11 @@ These fields are copied onto the management `Cluster`:
 
 | Field | Effect |
 |-------|--------|
-| `management.lifecycle.manual` | Disables autosync of every application on the management cluster. Applications stay in place until you sync them in Argo CD or set this back to `false`. |
+| `management.lifecycle.manual` | Disables autosync of every application on the management cluster. Applications stay in place until you sync them in ArgoCD or set this back to `false`. |
 | `management.lifecycle.pause` | Pauses synchronization of the management stack. |
 | `management.lifecycle.cleanupOnDeletion` | Cascade-deletes managed resources when the management cluster object is removed. |
 | `management.region`, `management.availabilityZone` | Labels stored on the management cluster. Default `management`. End users do not see this cluster as an AZ. |
-| `management.systemLocation` | Overrides `repoURL`, `chartName`, or `version` of the system chart used for management. Empty values keep the operator defaults (`ghcr.io/super-phenix/charts`, chart `superphenix-system`, version aligned with the operator). |
+| `management.version` | Superphenix version for the management `Cluster`. Empty inherits the operator chart version. Must be a semantic version. |
+| `management.systemLocation.repoURL`, `management.systemLocation.chartName` | Override the system chart repository and name. The operator default is `ghcr.io/super-phenix/charts` and `superphenix-system`. There is no version field on `systemLocation`. |
 
-`installOnClusterWithoutCNI` is an operator-chart flag, not a system-chart value. When `true`, the operator and Argo CD tolerate `NotReady` nodes and use the host network, so they can run before a CNI exists. [Installing inside an AZ](management-inside-az.md) sets it to `true` until Kube-OVN is healthy, then back to `false`. A management cluster that already has a CNI leaves it `false`.
+`installOnClusterWithoutCNI` is an operator-chart flag, not a system-chart value. When `true`, the operator and ArgoCD tolerate `NotReady` nodes and use the host network, so they can run before a CNI exists. [Installing inside an AZ](management-inside-az.md) sets it to `true` until Kube-OVN is healthy, then back to `false`. A management cluster that already has a CNI leaves it `false`.

@@ -12,19 +12,20 @@ The parameters below are the ones changed most often: Ceph network address range
 
 ```yaml
 systemConfiguration:
-  rook-local-cluster:
-    values:
-      cephClusterSpec:
-        network:
-          addressRanges:
-            public:
-              - fd00:ffff:2000::/64
-            cluster:
-              # We reserve the first of the 65536 subnets to Ceph; nodes should only be
-              # assigned addresses in that range.
-              - fd00:ffff:2001::/96
-        storage:
-          deviceFilter: "nvme*|sd*"
+  apps:
+    rook-local-cluster:
+      values:
+        cephClusterSpec:
+          network:
+            addressRanges:
+              public:
+                - fd00:ffff:2000::/64
+              cluster:
+                # We reserve the first of the 65536 subnets to Ceph; nodes should only be
+                # assigned addresses in that range.
+                - fd00:ffff:2001::/96
+          storage:
+            deviceFilter: "nvme*|sd*"
 ```
 
 - **`network.addressRanges.public`**: address range for Ceph client (public) traffic.
