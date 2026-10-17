@@ -111,8 +111,13 @@ nav = [
     { "Web console" = "operations/console.md" }
   ]},
   { "Contributing" = "contributing.md" },
-  { "Enterprise support" = "enterprise-support.md" }
+  { "Enterprise support" = "enterprise-support.md" },
+  { "Blog" = ["blog/index.md"] }
 ]
+
+[project.plugins.blog]
+archive = false
+categories = false
 
 [project.plugins.redirects.redirect_maps]
 "index.md" = "home.md"
