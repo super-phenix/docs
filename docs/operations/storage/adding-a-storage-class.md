@@ -2,7 +2,7 @@
 
 **Storage classes** are how end users choose what type of storage they get on the platform. When someone creates a disk or bucket, they pick a class that defines what they get: media type (HDD, SSD, NVMe), QoS (IOPS, bandwidth), data protection (replication, erasure coding), and options such as encryption.
 
-On each cluster, you define storage classes and expose them to users. The steps depend on your AZ layout:
+On each cluster, you define storage classes. A class appears in the console only after you map it on the AZ controller, which is covered at the end of each section below. Creating the class depends on your AZ layout:
 
 - **Hyperconverged**: storage runs on the same cluster as workloads.
 - **Decoupled**: the workload cluster connects to storage provided by a dedicated storage cluster.
@@ -130,6 +130,32 @@ Add the block storage class under `systemConfiguration` on the `Cluster` resourc
 
 For advanced storage class and connection options, see the [spx-rook-connection](https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection) chart values.
 
+### Expose block classes in the console
+
+The class above exists in Kubernetes. Console users can select it when they create a disk only after the AZ controller maps a catalog name to that StorageClass.
+
+Set the mapping on the **AZ** (the cluster that runs `superphenix-controller`), under `apps.superphenix-controller.values.config.productsConfig`. The key is the name shown in the console. The value is the Kubernetes StorageClass name: `<cluster>.<name>`, where `<cluster>` is the `rook-connection` cluster `name` and `<name>` is the storage class `name`. If you set `fullName`, use that value instead.
+
+```yaml
+systemConfiguration:
+  apps:
+    superphenix-controller:
+      values:
+        config:
+          productsConfig:
+            blockStorage:
+              storageClassMapping:
+                # Console name: Kubernetes StorageClass name
+                block-highspeed: "[cluster].default"
+                block-highspeed-encrypted: "[cluster].block-highspeed-encrypted"
+                block-standard: "[cluster].block-standard"
+                block-standard-encrypted: "[cluster].block-standard-encrypted"
+                block-hdd: "[cluster].block-hdd"
+                block-hdd-encrypted: "[cluster].block-hdd-encrypted"
+```
+
+A class that is missing from `storageClassMapping` is not offered when users create disks.
+
 ## Adding an object storage class
 
 This section covers adding a **storage class for object (S3) storage**. They're used by end users when they create buckets and consume S3-compatible storage.
@@ -212,3 +238,24 @@ Add the object storage class under `systemConfiguration` on the `Cluster` resour
     ```
 
 For advanced storage class and connection options, see the [spx-rook-connection](https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection) chart values.
+
+### Expose object classes in the console
+
+The class above exists in Kubernetes. Console users can select it when they create a bucket only after the AZ controller maps a catalog name to that StorageClass.
+
+Set the mapping on the **AZ**, in the same controller configuration as [block classes](#expose-block-classes-in-the-console). The key is the name shown in the console. The value is the Kubernetes StorageClass name: `<cluster>.<name>`, or `fullName` when that is set.
+
+```yaml
+systemConfiguration:
+  apps:
+    superphenix-controller:
+      values:
+        config:
+          productsConfig:
+            objectStorage:
+              storageClassMapping:
+                # Console name: Kubernetes StorageClass name
+                object-silver: "[cluster].rgw-silver"
+```
+
+A class that is missing from `storageClassMapping` is not offered when users create buckets.
