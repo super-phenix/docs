@@ -61,12 +61,15 @@ systemConfiguration:
       values:
         clusters:
           - name: "[storage-cluster-name]" # The name of the remote storage cluster
+            rgwAdminOps:
+              accessKey: "TBD"
+              secretKey: "TBD"
             objectStores:
               - name: "[object-store-name]" # CephObjectStore CR name (also used to derive the TLS secret name)
                 # External RGW endpoints. Each entry accepts either `ip` or `hostname`.
                 endpoints:
-                  - ip: ""
-                    # hostname: ""
+                  - hostname: "s3.example.org"
+                    # ip: ""
                 # Gateway HTTP port
                 port: 80
                 # Gateway HTTPS port (only set when TLS is enabled)
