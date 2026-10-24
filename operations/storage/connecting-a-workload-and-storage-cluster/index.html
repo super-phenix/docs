@@ -2887,6 +2887,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Consuming block storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csi-health-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        CSI health account
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pool-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pool client
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-the-workload-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Connect the workload cluster
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2897,6 +2936,34 @@
       </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Consuming object storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-admin-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Create the admin user
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-the-workload-cluster_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Connect the workload cluster
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3243,6 +3310,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Consuming block storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csi-health-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        CSI health account
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pool-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pool client
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-the-workload-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Connect the workload cluster
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3253,6 +3359,34 @@
       </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Consuming object storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-admin-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Create the admin user
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-the-workload-cluster_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Connect the workload cluster
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3284,68 +3418,163 @@
 <li>One <strong>storage</strong> cluster can be consumed by <strong>many</strong> workload clusters.</li>
 </ul>
 <p>This article applies only to <strong>decoupled</strong> deployments. On hyperconverged clusters, storage and workloads already share the same cluster, so no cross-cluster connection is required.</p>
-<p>Apply this configuration under <code>systemConfiguration</code> on the <strong>workload</strong> <code>Cluster</code> resource (or via the <code>superphenix-operator</code> Helm chart), using the <strong><code>rook-connection</code></strong> chart.</p>
+<p>Create the Ceph accounts on the <strong>storage</strong> cluster, in the <code>spx-storage</code> namespace. Then apply the connection under <code>systemConfiguration</code> on the <strong>workload</strong> <code>Cluster</code> resource (or via the <code>superphenix-operator</code> Helm chart), using the <strong><code>rook-connection</code></strong> chart.</p>
 <h2 id="consuming-block-storage">Consuming block storage</h2>
 <p>Connect the workload cluster to a storage cluster so it can consume Ceph block pools. After the connection is in place, expose pools to tenants with <a href="../adding-a-storage-class/#adding-a-block-storage-class">block storage classes</a>.</p>
-<p>Retrieve the connection values from the remote <strong>storage</strong> cluster as follows:</p>
+<p>Block access uses two Ceph clients on the storage cluster:</p>
+<ul>
+<li><strong><code>csi-health</code></strong> checks cluster health and refreshes the monitor list.</li>
+<li>A <strong>pool client</strong> is what the workload cluster uses to provision and attach RBD volumes. Create one client per workload cluster.</li>
+</ul>
+<h3 id="csi-health-account">CSI health account</h3>
+<p>Apply this on the storage cluster:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ceph.rook.io/v1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CephClient</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csi-health</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spx-storage</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">caps</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">mon</span><span class="p">:</span><span class="w"> </span><span class="s">"allow</span><span class="nv"> </span><span class="s">r,</span><span class="nv"> </span><span class="s">allow</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">quorum_status,</span><span class="nv"> </span><span class="s">allow</span><span class="nv"> </span><span class="s">command</span><span class="nv"> </span><span class="s">version"</span>
+</span></code></pre></div>
+<p>Rook creates the Ceph user <code>client.csi-health</code> and stores its key in the Secret <code>rook-ceph-client-csi-health</code>. That key is the health-check token:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>rook-ceph-client-csi-health<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.csi-health}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">echo</span>
+</span></code></pre></div>
+<h3 id="pool-client">Pool client</h3>
+<p>Apply a <code>CephClient</code> on the storage cluster. <code>[name]</code> is the client name you choose for this workload cluster. Rook creates the Ceph user <code>client.[name]</code> and the Secret <code>rook-ceph-client-[name]</code>.</p>
+<p>The same pool list goes on both <code>mgr</code> and <code>osd</code>. Each entry is <code>profile rbd pool=&lt;ceph-pool-name&gt;</code>. The name is the <code>CephBlockPool</code> name (<code>kubectl -n spx-storage get cephblockpool</code>). An erasure-coded pool is two Ceph pools. If you followed <a href="../adding-a-storage-pool/">Adding a storage pool</a>, those names are <code>[pool-name]-metadata</code> and <code>[pool-name]</code>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Selected pools</label><label for="__tabbed_1_2">Entire cluster</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>List only the pools this workload cluster may use:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ceph.rook.io/v1</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CephClient</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[name]"</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spx-storage</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">caps</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">mon</span><span class="p">:</span><span class="w"> </span><span class="s">"profile</span><span class="nv"> </span><span class="s">rbd"</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="c1"># One "profile rbd pool=&lt;name&gt;" entry per Ceph pool, on both mgr and osd.</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">mgr</span><span class="p">:</span><span class="w"> </span><span class="s">"profile</span><span class="nv"> </span><span class="s">rbd</span><span class="nv"> </span><span class="s">pool=[pool-name],</span><span class="nv"> </span><span class="s">profile</span><span class="nv"> </span><span class="s">rbd</span><span class="nv"> </span><span class="s">pool=[ec-pool-name]-metadata,</span><span class="nv"> </span><span class="s">profile</span><span class="nv"> </span><span class="s">rbd</span><span class="nv"> </span><span class="s">pool=[ec-pool-name]"</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nt">osd</span><span class="p">:</span><span class="w"> </span><span class="s">"profile</span><span class="nv"> </span><span class="s">rbd</span><span class="nv"> </span><span class="s">pool=[pool-name],</span><span class="nv"> </span><span class="s">profile</span><span class="nv"> </span><span class="s">rbd</span><span class="nv"> </span><span class="s">pool=[ec-pool-name]-metadata,</span><span class="nv"> </span><span class="s">profile</span><span class="nv"> </span><span class="s">rbd</span><span class="nv"> </span><span class="s">pool=[ec-pool-name]"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Omit every <code>pool=</code> directive to grant this client access to every pool on the storage cluster:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ceph.rook.io/v1</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CephClient</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[name]"</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spx-storage</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">caps</span><span class="p">:</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">mon</span><span class="p">:</span><span class="w"> </span><span class="s">"profile</span><span class="nv"> </span><span class="s">rbd"</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">mgr</span><span class="p">:</span><span class="w"> </span><span class="s">"profile</span><span class="nv"> </span><span class="s">rbd"</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">osd</span><span class="p">:</span><span class="w"> </span><span class="s">"profile</span><span class="nv"> </span><span class="s">rbd"</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>Read the key after the client is ready. This key is the connection token. The connection <code>username</code> is the <code>CephClient</code> name, without the <code>client.</code> prefix:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>rook-ceph-client-<span class="o">[</span>name<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.[name]}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">echo</span>
+</span></code></pre></div>
+<h3 id="connect-the-workload-cluster">Connect the workload cluster</h3>
+<p>Apply this on the <strong>workload</strong> cluster. Retrieve the remaining connection values from the remote <strong>storage</strong> cluster as follows:</p>
 <ul>
 <li><strong><code>clusterID</code></strong>: from <code>.status.cephClusters</code> on the Superphenix <code>Cluster</code> CR for the remote storage cluster. The Ceph FSID is the <strong>key</strong> of that dictionary (for example <code>e2a62ea1-6428-496e-a5bf-366936a8c833</code>).</li>
-<li><strong><code>username</code></strong>: TBD.</li>
-<li><strong><code>token</code></strong>: TBD.</li>
+<li><strong><code>username</code></strong>: the pool client's <code>CephClient</code> name (<code>[name]</code>), without the <code>client.</code> prefix.</li>
+<li><strong><code>token</code></strong>: the key from Secret <code>rook-ceph-client-[name]</code>.</li>
 <li><strong><code>bootstrapMon</code></strong>: the public address of <strong>one</strong> Ceph monitor on the storage cluster (<code>id</code>, <code>ip</code>, <code>port</code>, and <code>protocol</code>). It is used only to bootstrap the connection. After that, the full MON list is pulled and kept fresh; this bootstrap MON is not used again.</li>
-<li><strong><code>healthCheck</code></strong>: TBD.</li>
+<li><strong><code>healthCheck.username</code></strong>: <code>client.csi-health</code>.</li>
+<li><strong><code>healthCheck.token</code></strong>: the key from Secret <code>rook-ceph-client-csi-health</code>.</li>
 </ul>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">rook-connection</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="c1"># From .status.cephClusters on the remote Cluster CR (dictionary key = FSID)</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"[csi-user]"</span><span class="w"> </span><span class="c1"># TBD</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span><span class="w"> </span><span class="c1"># TBD</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="c1"># Public address of one MON; used only to bootstrap, then the full MON list is refreshed</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="nt">bootstrapMon</span><span class="p">:</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">              </span><span class="c1"># MON ID (must be a single letter)</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">              </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">              </span><span class="c1"># IP of the MON</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">              </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">              </span><span class="c1"># Port of the MON</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">              </span><span class="c1"># Protocol of the IP (IPv4 or IPv6)</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span><span class="c1"># TBD</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">            </span><span class="nt">healthCheck</span><span class="p">:</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"client.csi-health"</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">              </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">rook-connection</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">            </span><span class="c1"># From .status.cephClusters on the remote Cluster CR (dictionary key = FSID)</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">            </span><span class="nt">clusterID</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">            </span><span class="c1"># CephClient name of the pool client, without the client. prefix</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">            </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"[name]"</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">            </span><span class="c1"># Key from Secret rook-ceph-client-[name] on the storage cluster</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">            </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">            </span><span class="c1"># Public address of one MON; used only to bootstrap, then the full MON list is refreshed</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">            </span><span class="nt">bootstrapMon</span><span class="p">:</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">              </span><span class="c1"># MON ID (must be a single letter)</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">              </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">              </span><span class="c1"># IP of the MON</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">              </span><span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">              </span><span class="c1"># Port of the MON</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">              </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="s">"6789"</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">              </span><span class="c1"># Protocol of the IP (IPv4 or IPv6)</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">              </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IPv6</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">            </span><span class="c1"># client.csi-health, and the key from Secret rook-ceph-client-csi-health</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">            </span><span class="nt">healthCheck</span><span class="p">:</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">              </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s">"client.csi-health"</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">              </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 </span></code></pre></div>
 <h2 id="consuming-object-storage">Consuming object storage</h2>
 <p>Connect the workload cluster to a storage cluster so it can consume an RGW object store. After the connection is in place, expose the store to tenants with <a href="../adding-a-storage-class/#adding-an-object-storage-class">object storage classes</a>.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">rook-connection</span><span class="p">:</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="nt">rgwAdminOps</span><span class="p">:</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">              </span><span class="nt">accessKey</span><span class="p">:</span><span class="w"> </span><span class="s">"TBD"</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">              </span><span class="nt">secretKey</span><span class="p">:</span><span class="w"> </span><span class="s">"TBD"</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">            </span><span class="nt">objectStores</span><span class="p">:</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]"</span><span class="w"> </span><span class="c1"># CephObjectStore CR name (also used to derive the TLS secret name)</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">                </span><span class="c1"># External RGW endpoints. Each entry accepts either `ip` or `hostname`.</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">                </span><span class="nt">endpoints</span><span class="p">:</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">"s3.example.org"</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">                    </span><span class="c1"># ip: ""</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">                </span><span class="c1"># Gateway HTTP port</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">                </span><span class="c1"># Gateway HTTPS port (only set when TLS is enabled)</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">                </span><span class="c1"># securePort: 443</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">                </span><span class="c1"># TLS configuration for the remote RGW</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">                </span><span class="c1"># tls:</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">                </span><span class="c1">#   enabled: false</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">                </span><span class="c1">#   # PEM-encoded certificate the operator will trust when talking to the RGW</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">                </span><span class="c1">#   cert: ""</span>
+<h3 id="create-the-admin-user">Create the admin user</h3>
+<p>Apply a <code>CephObjectStoreUser</code> on the storage cluster, one per object store. The user name matches the store name. <code>displayName</code> is the RGW display name. The capabilities below let the workload cluster manage buckets and read usage for that store.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ceph.rook.io/v1</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CephObjectStoreUser</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[store]"</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spx-storage</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="nt">store</span><span class="p">:</span><span class="w"> </span><span class="s">"[store]"</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="nt">displayName</span><span class="p">:</span><span class="w"> </span><span class="s">"admin"</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="nt">capabilities</span><span class="p">:</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="s">"*"</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="nt">users</span><span class="p">:</span><span class="w"> </span><span class="s">"*"</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="nt">usage</span><span class="p">:</span><span class="w"> </span><span class="s">"read"</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w"> </span><span class="s">"read"</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="nt">zone</span><span class="p">:</span><span class="w"> </span><span class="s">"read"</span>
+</span></code></pre></div>
+<p><code>[store]</code> is the <code>CephObjectStore</code> name from <a href="../adding-an-object-store/">Adding an object store</a>. Rook stores the S3 keys in the Secret <code>rook-ceph-object-user-[store]-[store]</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>rook-ceph-object-user-<span class="o">[</span>store<span class="o">]</span>-<span class="o">[</span>store<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.AccessKey}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">echo</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>rook-ceph-object-user-<span class="o">[</span>store<span class="o">]</span>-<span class="o">[</span>store<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.SecretKey}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">echo</span>
+</span></code></pre></div>
+<p><code>AccessKey</code> is <code>rgwAdminOps.accessKey</code>. <code>SecretKey</code> is <code>rgwAdminOps.secretKey</code>.</p>
+<h3 id="connect-the-workload-cluster_1">Connect the workload cluster</h3>
+<p>Apply this on the <strong>workload</strong> cluster:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nt">rook-connection</span><span class="p">:</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="nt">clusters</span><span class="p">:</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[storage-cluster-name]"</span><span class="w"> </span><span class="c1"># The name of the remote storage cluster</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">            </span><span class="c1"># Keys from Secret rook-ceph-object-user-[store]-[store] on the storage cluster</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">            </span><span class="nt">rgwAdminOps</span><span class="p">:</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">              </span><span class="nt">accessKey</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">              </span><span class="nt">secretKey</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">            </span><span class="nt">objectStores</span><span class="p">:</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]"</span><span class="w"> </span><span class="c1"># CephObjectStore CR name (also used to derive the TLS secret name)</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">                </span><span class="c1"># External RGW endpoints. Each entry accepts either `ip` or `hostname`.</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">                </span><span class="nt">endpoints</span><span class="p">:</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">                  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="s">"s3.example.org"</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">                    </span><span class="c1"># ip: ""</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">                </span><span class="c1"># Gateway HTTP port</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">                </span><span class="c1"># Gateway HTTPS port (only set when TLS is enabled)</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">                </span><span class="c1"># securePort: 443</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">                </span><span class="c1"># TLS configuration for the remote RGW</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">                </span><span class="c1"># tls:</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">                </span><span class="c1">#   enabled: false</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">                </span><span class="c1">#   # PEM-encoded certificate the operator will trust when talking to the RGW</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">                </span><span class="c1">#   cert: ""</span>
 </span></code></pre></div>
 <p>For advanced connection options, see the <a href="https://github.com/super-phenix/superphenix/tree/main/components/dependencies/spx-rook-connection">spx-rook-connection</a> chart values.</p>
 
