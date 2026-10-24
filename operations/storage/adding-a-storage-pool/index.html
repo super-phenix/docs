@@ -3202,6 +3202,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replication
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Replication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-mirroring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Enable mirroring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#share-the-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Share the token
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-mirror-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Run the mirror daemon
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3742,6 +3792,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Replication
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Replication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-mirroring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Enable mirroring
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#share-the-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Share the token
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-mirror-daemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Run the mirror daemon
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3954,6 +4054,64 @@
 </div>
 </div>
 <p>For advanced pool options, see the <a href="https://artifacthub.io/packages/helm/rook/rook-ceph-cluster">rook-ceph-cluster</a> Helm chart values.</p>
+<h2 id="replication">Replication</h2>
+<p>Replication copies the pool's content to a pool on another storage cluster. The peer keeps the latest mirrored snapshot, so a failover can start from that export.</p>
+<p>Replication has to be setup between pools, but is then enabled per project or per disk within a project. You don't have to synchronize the entire content of the pool.</p>
+<p>Use it together with <a data-preview="" href="../configuring-backups/">backups</a>. A backup rebuilds a project, including its metadata, from the copy stored in S3. Restoring that copy is slower than attaching the latest replicated export, so replication is what keeps the recovery time objective (RTO) low.</p>
+<p>Replication is asynchronous. Keep the backup as well: the peer holds the latest mirrored snapshot, and the backup the metadata and an history of the data over multiple days (depending on your retention).</p>
+<p>Configure replication on <strong>both</strong> clusters that host the storage, in the same <code>rook-local-cluster</code> values as the pool:</p>
+<ul>
+<li>The pool name is identical on both clusters. For an erasure-coded pool, that includes both Ceph pools, <code>[pool-name]</code> and <code>[pool-name]-metadata</code>.</li>
+<li>The data protection and the device class can differ. One side can be a 3-replica NVMe pool while the other is an erasure-coded pool on HDD (to save on storage on the recovery cluster).</li>
+<li>Mirroring is enabled on the pool on both clusters, and each cluster holds a secret that contains the other cluster's bootstrap token.</li>
+<li>Each storage cluster runs at least one RBD mirror daemon.</li>
+</ul>
+<h3 id="enable-mirroring">Enable mirroring</h3>
+<p>Add <code>mirroring</code> under the pool <code>spec</code> on both clusters. On an erasure-coded pool, add it only on the <code>metadataPool</code> and the<code>dataPool</code> will get automatically replicated.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">mirroring</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="c1"># Mirror each RBD image, including its snapshots.</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">image</span>
+</span></code></pre></div>
+<p>Rook then stores a bootstrap token in a Secret in the <code>spx-storage</code> namespace. Its name is reported on the pool:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>get<span class="w"> </span>cephblockpool<span class="w"> </span><span class="o">[</span>pool-name<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.info.rbdMirrorBootstrapPeerSecretName}{"\n"}'</span>
+</span></code></pre></div>
+<p>The Secret is usually named <code>pool-peer-token-[pool-name]</code>. Read the token:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>get<span class="w"> </span>secret<span class="w"> </span>pool-peer-token-<span class="o">[</span>pool-name<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.data.token}'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>--decode<span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
+</span></code></pre></div>
+<h3 id="share-the-token">Share the token</h3>
+<p>On <strong>each</strong> cluster, create a Secret that holds the <strong>other</strong> cluster's token. <code>[pool-name]</code> is the pool name on this cluster, which is the same name as on the peer.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span><span class="o">[</span>peer-secret<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--from-literal<span class="o">=</span><span class="nv">token</span><span class="o">=</span><span class="s1">'[token]'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--from-literal<span class="o">=</span><span class="nv">pool</span><span class="o">=</span><span class="s1">'[pool-name]'</span>
+</span></code></pre></div>
+<p>Point the pool at that Secret:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">mirroring</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">image</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">peers</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="c1"># Secret in spx-storage that holds the other cluster's bootstrap token.</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nt">secretNames</span><span class="p">:</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"[peer-secret]"</span>
+</span></code></pre></div>
+<p>Repeat in the other direction, so each pool lists the Secret that contains the remote token. For an erasure-coded pool, import a token and set <code>peers.secretNames</code> on both <code>[pool-name]</code> and <code>[pool-name]-metadata</code>.</p>
+<h3 id="run-the-mirror-daemon">Run the mirror daemon</h3>
+<p>Apply this manifest on both storage clusters. One daemon is enough for the pools on that cluster. The Rook chart has no value for it, so apply the manifest directly.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ceph.rook.io/v1</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CephRBDMirror</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rbd-mirror</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spx-storage</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="c1"># At least one daemon serves every mirrored pool on the cluster.</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="nt">count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span></code></pre></div>
+<p>Check that the daemon is running:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>rook-ceph-rbd-mirror
+</span></code></pre></div>
+<p>See the <a href="https://rook.io/docs/rook/latest/CRDs/Block-Storage/ceph-block-pool-crd/#mirroring">CephBlockPool mirroring reference</a> for the full spec.</p>
 <p>Expose the pool to tenants with a <a data-preview="" href="../adding-a-storage-class/#adding-a-block-storage-class">block storage class</a>. On a decoupled AZ, <a data-preview="" href="../connecting-a-workload-and-storage-cluster/#consuming-block-storage">connect the workload cluster</a> first.</p>
 
 

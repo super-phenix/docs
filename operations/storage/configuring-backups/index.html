@@ -3806,7 +3806,7 @@ Configure a backup location on <strong>every AZ</strong>. Until that location ex
 <li><strong>Disaster recovery across availability zones.</strong> One AZ fails, and another AZ restores the project from the backups it has been receiving.</li>
 <li><strong>A restore on the AZ that created the backup</strong>, using the remote copy.</li>
 </ul>
-<p><a data-preview="" href="../../../features/storage/snapshot/">Snapshots</a> stay on the cluster and protect disks locally. Backups leave the cluster.</p>
+<p><a data-preview="" href="../../../features/storage/snapshot/">Snapshots</a> stay on the cluster and protect disks locally. Backups leave the cluster. For a shorter recovery of the disks themselves, <a data-preview="" href="../adding-a-storage-pool/#replication">enable block pool replication</a>. Starting from the latest replicated export is faster than restoring a backup.</p>
 <h2 id="where-the-backups-go">Where the backups go</h2>
 <p>The destination is an S3 bucket. It can be:</p>
 <ul>
