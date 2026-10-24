@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.svg">
-      <meta name="generator" content="zensical-0.0.71">
+      <meta name="generator" content="zensical-0.0.72">
     
     
       
@@ -35,7 +35,7 @@
       
         
       
-      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.e442bf79.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.4ab2de0c.min.css">
       
         
           
@@ -121,9 +121,10 @@
   <img src="../../../assets/spx.svg" alt="Documentation">
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+    <label class="md-header__button md-icon" for="__drawer">
       
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+      <span class="md-visually-hidden">Navigation</span>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -175,9 +176,10 @@
     
       
       
-        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+        <label class="md-header__button md-icon" for="__search">
           
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+          <span class="md-visually-hidden">Search</span>
         </label>
         <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
   <button type="button" class="md-search__button">
@@ -2845,6 +2847,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../adding-a-storage-pool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Adding a storage pool
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../adding-a-storage-class/" class="md-nav__link">
         
   
@@ -2881,6 +2910,23 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Adding an object store
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="././" class="md-nav__link md-nav__link--active">
         
   
@@ -2896,6 +2942,48 @@
   
 
       </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-object-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Verify the object store
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3123,6 +3211,11 @@
                       
                     
                     
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
                   
                   <div class="md-sidebar__inner">
                     
@@ -3134,6 +3227,36 @@
   
     
   
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Configuration
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-the-object-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Verify the object store
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -3154,7 +3277,155 @@
 
 
 <h1 id="adding-an-object-store">Adding an object store</h1>
-<p><em>Coming soon.</em></p>
+<p>An <strong>object store</strong> is the Ceph RADOS Gateway (RGW) that serves the S3 API. Buckets created by tenants are stored there. Each store has:</p>
+<ul>
+<li>A <strong>metadata pool</strong>. It holds the bucket index and the rest of the RGW metadata. It stays small next to the object data and is sensitive to latency, so SSD or NVMe is a good fit.</li>
+<li>A <strong>data pool</strong>. It holds the objects. It can be replicated or erasure coded.</li>
+<li>One or more <strong>gateway</strong> that serves the S3 API.</li>
+</ul>
+<p>Superphenix ships with <code>cephObjectStores</code> empty, so a cluster has no object store until you add one. Add it on the cluster that hosts Ceph, then publish it to tenants with an <a href="../adding-a-storage-class/#adding-an-object-storage-class">object storage class</a>.</p>
+<p>Both pools use the same media, failure domain, and data protection as a <a href="../adding-a-storage-pool/">storage pool</a>. Follow that article for device classes, replication, and erasure coding, including the host counts each profile needs. Disks Rook is allowed to claim are set in <a href="../configuring-the-storage-cluster/">Configuring the storage cluster</a>. Add another object store when those choices should differ, for example an erasure-coded HDD store for capacity and a replicated NVMe store for latency.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Add the store under <code>systemConfiguration</code> on the <code>Cluster</code> resource (or via the <code>superphenix-operator</code> Helm chart), using the <strong><code>rook-local-cluster</code></strong> chart. Choose the example that matches the <strong>data</strong> pool. The metadata pool always uses the replicated layout.</p>
+<div class="admonition info">
+<p class="admonition-title">Where to apply this configuration</p>
+<p>Configure the object store on the cluster that <strong>hosts the storage</strong>:</p>
+<ul>
+<li><strong>Hyperconverged</strong>: the same cluster that will consume the storage.</li>
+<li><strong>Decoupled</strong>: the <strong>storage</strong> cluster (not the workload cluster).</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Replicated</label><label for="__tabbed_1_2">Erasure coded</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Use this when the data pool should be replicated. The pool fields are the ones documented for a <a href="../adding-a-storage-pool/">replicated storage pool</a>.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">rook-local-cluster</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nt">cephObjectStores</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]"</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">              </span><span class="nt">metadataPool</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">                </span><span class="c1"># RGW metadata. Always replicated. See "Adding a storage pool".</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">                </span><span class="c1"># We recommend SSD/NVMes here, but can also be HDD</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">                </span><span class="nt">deviceClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssd</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">                </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">"host"</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">                </span><span class="nt">replicated</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">                  </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">              </span><span class="nt">dataPool</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">                </span><span class="c1"># Object data. Same fields as a replicated storage pool.</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">                </span><span class="nt">deviceClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hdd</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">                </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">"host"</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">                </span><span class="nt">replicated</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">                  </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">              </span><span class="c1"># Keep the pools if this object store is deleted, so the objects</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">              </span><span class="c1"># remain. Set false only when you intend to drop the data with the store.</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">              </span><span class="nt">preservePoolsOnDelete</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">              </span><span class="nt">gateway</span><span class="p">:</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">                </span><span class="c1"># HTTP port on which the store will listen.</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8090</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">                </span><span class="c1"># Number of gateways we'll deploy. The more we have, the more traffic we can</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">                </span><span class="c1"># ingress. Any node of the cluster can act as a gateway.</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">                </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">            </span><span class="c1"># Tenant-facing classes are created with rook-connection.</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">            </span><span class="c1"># Leave the chart's own bucket class disabled.</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">            </span><span class="nt">storageClass</span><span class="p">:</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">              </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">            </span><span class="c1"># The ingress to expose the storage class and make every node respond to S3 traffic.</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">            </span><span class="c1"># Traefik terminates TLS and forwards to the gateway port.</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">            </span><span class="nt">ingress</span><span class="p">:</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">              </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">              </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">                </span><span class="nt">cert-manager.io/cluster-issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">letsencrypt</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/ssl-redirect</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/proxy-body-size</span><span class="p">:</span><span class="w"> </span><span class="s">"0"</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/proxy-request-buffering</span><span class="p">:</span><span class="w"> </span><span class="s">"off"</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/proxy-buffering</span><span class="p">:</span><span class="w"> </span><span class="s">"off"</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/backend-protocol</span><span class="p">:</span><span class="w"> </span><span class="s">"HTTP"</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">              </span><span class="nt">host</span><span class="p">:</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">                </span><span class="c1"># Public S3 hostname. Point DNS at the cluster.</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3.example.org</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">                </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">              </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3.example.org</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">                  </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]-tls"</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Use this when the data pool should be erasure coded. The data pool fields are the ones documented for an <a href="../adding-a-storage-pool/">erasure-coded storage pool</a>. The metadata pool stays replicated.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">rook-local-cluster</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nt">cephObjectStores</span><span class="p">:</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]"</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">              </span><span class="nt">metadataPool</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">                </span><span class="c1"># RGW metadata. Always replicated, including when object data is erasure coded.</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">                </span><span class="c1"># See "Adding a storage pool".</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">                </span><span class="c1"># We recommend SSD/NVMes here, but can also be HDD</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">                </span><span class="nt">deviceClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssd</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">                </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">"host"</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">                </span><span class="nt">replicated</span><span class="p">:</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">                  </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">              </span><span class="nt">dataPool</span><span class="p">:</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">                </span><span class="c1"># Object data. Same fields as an erasure-coded storage pool.</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">                </span><span class="nt">deviceClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">hdd</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">                </span><span class="nt">failureDomain</span><span class="p">:</span><span class="w"> </span><span class="s">"host"</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">                </span><span class="nt">erasureCoded</span><span class="p">:</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">                  </span><span class="nt">dataChunks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">                  </span><span class="nt">codingChunks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">              </span><span class="c1"># Keep the pools if this object store is deleted, so the objects</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">              </span><span class="c1"># remain. Set false only when you intend to drop the data with the store.</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">              </span><span class="nt">preservePoolsOnDelete</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">              </span><span class="nt">gateway</span><span class="p">:</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">                </span><span class="c1"># HTTP port on which the store will listen.</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8090</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">                </span><span class="c1"># Number of gateways we'll deploy. The more we have, the more traffic we can</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">                </span><span class="c1"># ingress. Any node of the cluster can act as a gateway.</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">                </span><span class="nt">instances</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">            </span><span class="c1"># Tenant-facing classes are created with rook-connection.</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">            </span><span class="c1"># Leave the chart's own bucket class disabled.</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">            </span><span class="nt">storageClass</span><span class="p">:</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">              </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">            </span><span class="c1"># The ingress to expose the storage class and make every node respond to S3 traffic.</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">            </span><span class="c1"># Traefik terminates TLS and forwards to the gateway port.</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">            </span><span class="nt">ingress</span><span class="p">:</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">              </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">              </span><span class="nt">annotations</span><span class="p">:</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">                </span><span class="nt">cert-manager.io/cluster-issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">letsencrypt</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/ssl-redirect</span><span class="p">:</span><span class="w"> </span><span class="s">"true"</span>
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/proxy-body-size</span><span class="p">:</span><span class="w"> </span><span class="s">"0"</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/proxy-request-buffering</span><span class="p">:</span><span class="w"> </span><span class="s">"off"</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/proxy-buffering</span><span class="p">:</span><span class="w"> </span><span class="s">"off"</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">                </span><span class="nt">nginx.ingress.kubernetes.io/backend-protocol</span><span class="p">:</span><span class="w"> </span><span class="s">"HTTP"</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">              </span><span class="nt">host</span><span class="p">:</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">                </span><span class="c1"># Public S3 hostname. Point DNS at the cluster.</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="w">                </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3.example.org</span>
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">                </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/</span>
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">              </span><span class="nt">tls</span><span class="p">:</span>
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">                </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">hosts</span><span class="p">:</span>
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">                    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">s3.example.org</span>
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="w">                  </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="s">"[object-store-name]-tls"</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>The <code>name</code> is the <code>CephObjectStore</code> name on this cluster. Use that same <code>[object-store-name]</code> when you <a href="../adding-a-storage-class/#adding-an-object-storage-class">add an object storage class</a>.</p>
+<p>The Ingress is the S3 endpoint clients use (<code>https://s3.example.org</code>). Replace the hostname and point DNS at the nodes of the cluster. Any node of the cluster is capable of handling S3.</p>
+<p>For advanced pool and gateway options, see the <a href="https://artifacthub.io/packages/helm/rook/rook-ceph-cluster">rook-ceph-cluster</a> Helm chart values.</p>
+<h2 id="verify-the-object-store">Verify the object store</h2>
+<p>The store is created in the <code>rook-local-cluster</code> namespace, <code>spx-storage</code>. Wait until its phase is <code>Ready</code> and one gateway pod is running for each <code>gateway.instances</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>get<span class="w"> </span>cephobjectstore
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>kubectl<span class="w"> </span>-n<span class="w"> </span>spx-storage<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-l<span class="w"> </span><span class="nv">app</span><span class="o">=</span>rook-ceph-rgw
+</span></code></pre></div>
+<p>Then expose the store to tenants:</p>
+<ul>
+<li><strong>Hyperconverged</strong>: add an <a href="../adding-a-storage-class/#adding-an-object-storage-class">object storage class</a> on this cluster.</li>
+<li><strong>Decoupled</strong>: <a href="../connecting-a-workload-and-storage-cluster/#consuming-object-storage">connect the workload cluster</a>, then add the object storage class there.</li>
+</ul>
 
 
 
@@ -3235,7 +3506,7 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy"],"redirect":"../../../redirect.json","search":"../../../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.a2388154.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.10ee5ab6.min.js"></script>
       
     
   </body>
