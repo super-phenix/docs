@@ -117,4 +117,93 @@ Add the pool under `systemConfiguration` on the `Cluster` resource (or via the `
 
 For advanced pool options, see the [rook-ceph-cluster](https://artifacthub.io/packages/helm/rook/rook-ceph-cluster) Helm chart values.
 
+## Replication
+
+Replication copies the pool's content to a pool on another storage cluster. The peer keeps the latest mirrored snapshot, so a failover can start from that export.
+
+Replication has to be setup between pools, but is then enabled per project or per disk within a project. You don't have to synchronize the entire content of the pool.
+
+Use it together with [backups](configuring-backups.md). A backup rebuilds a project, including its metadata, from the copy stored in S3. Restoring that copy is slower than attaching the latest replicated export, so replication is what keeps the recovery time objective (RTO) low.
+
+Replication is asynchronous. Keep the backup as well: the peer holds the latest mirrored snapshot, and the backup the metadata and an history of the data over multiple days (depending on your retention).
+
+Configure replication on **both** clusters that host the storage, in the same `rook-local-cluster` values as the pool:
+
+- The pool name is identical on both clusters. For an erasure-coded pool, that includes both Ceph pools, `[pool-name]` and `[pool-name]-metadata`.
+- The data protection and the device class can differ. One side can be a 3-replica NVMe pool while the other is an erasure-coded pool on HDD (to save on storage on the recovery cluster).
+- Mirroring is enabled on the pool on both clusters, and each cluster holds a secret that contains the other cluster's bootstrap token.
+- Each storage cluster runs at least one RBD mirror daemon.
+
+### Enable mirroring
+
+Add `mirroring` under the pool `spec` on both clusters. On an erasure-coded pool, add it only on the `metadataPool` and the`dataPool` will get automatically replicated.
+
+```yaml
+mirroring:
+  enabled: true
+  # Mirror each RBD image, including its snapshots.
+  mode: image
+```
+
+Rook then stores a bootstrap token in a Secret in the `spx-storage` namespace. Its name is reported on the pool:
+
+```bash
+kubectl -n spx-storage get cephblockpool [pool-name] \
+  -o jsonpath='{.status.info.rbdMirrorBootstrapPeerSecretName}{"\n"}'
+```
+
+The Secret is usually named `pool-peer-token-[pool-name]`. Read the token:
+
+```bash
+kubectl -n spx-storage get secret pool-peer-token-[pool-name] \
+  -o jsonpath='{.data.token}' | base64 --decode; echo
+```
+
+### Share the token
+
+On **each** cluster, create a Secret that holds the **other** cluster's token. `[pool-name]` is the pool name on this cluster, which is the same name as on the peer.
+
+```bash
+kubectl -n spx-storage create secret generic [peer-secret] \
+  --from-literal=token='[token]' \
+  --from-literal=pool='[pool-name]'
+```
+
+Point the pool at that Secret:
+
+```yaml
+mirroring:
+  enabled: true
+  mode: image
+  peers:
+    # Secret in spx-storage that holds the other cluster's bootstrap token.
+    secretNames:
+      - "[peer-secret]"
+```
+
+Repeat in the other direction, so each pool lists the Secret that contains the remote token. For an erasure-coded pool, import a token and set `peers.secretNames` on both `[pool-name]` and `[pool-name]-metadata`.
+
+### Run the mirror daemon
+
+Apply this manifest on both storage clusters. One daemon is enough for the pools on that cluster. The Rook chart has no value for it, so apply the manifest directly.
+
+```yaml
+apiVersion: ceph.rook.io/v1
+kind: CephRBDMirror
+metadata:
+  name: rbd-mirror
+  namespace: spx-storage
+spec:
+  # At least one daemon serves every mirrored pool on the cluster.
+  count: 1
+```
+
+Check that the daemon is running:
+
+```bash
+kubectl -n spx-storage get pods -l app=rook-ceph-rbd-mirror
+```
+
+See the [CephBlockPool mirroring reference](https://rook.io/docs/rook/latest/CRDs/Block-Storage/ceph-block-pool-crd/#mirroring) for the full spec.
+
 Expose the pool to tenants with a [block storage class](adding-a-storage-class.md#adding-a-block-storage-class). On a decoupled AZ, [connect the workload cluster](connecting-a-workload-and-storage-cluster.md#consuming-block-storage) first.

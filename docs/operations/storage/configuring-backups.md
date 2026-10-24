@@ -11,7 +11,7 @@ Backups are the recovery copy used in two cases:
 - **Disaster recovery across availability zones.** One AZ fails, and another AZ restores the project from the backups it has been receiving.
 - **A restore on the AZ that created the backup**, using the remote copy.
 
-[Snapshots](../../features/storage/snapshot.md) stay on the cluster and protect disks locally. Backups leave the cluster.
+[Snapshots](../../features/storage/snapshot.md) stay on the cluster and protect disks locally. Backups leave the cluster. For a shorter recovery of the disks themselves, [enable block pool replication](adding-a-storage-pool.md#replication). Starting from the latest replicated export is faster than restoring a backup.
 
 ## Where the backups go
 
