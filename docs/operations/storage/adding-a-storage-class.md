@@ -84,7 +84,9 @@ Add the block storage class under `systemConfiguration` on the `Cluster` resourc
               - name: "[storage-cluster-name]" # The name of the remote storage cluster
                 # Ceph cluster ID (FSID), e.g. e2a62ea1-6428-496e-a5bf-366936a8c833
                 clusterID: ""
-                username: "[csi-user]"
+                # Pool client CephClient name, without the client. prefix
+                username: "[name]"
+                # Key from Secret rook-ceph-client-[name] on the storage cluster
                 token: ""
                 # Initial MON used to retrieve the full MON list
                 bootstrapMon:
@@ -96,7 +98,7 @@ Add the block storage class under `systemConfiguration` on the `Cluster` resourc
                   port: "6789"
                   # Protocol of the IP (IPv4 or IPv6)
                   protocol: IPv6
-                # Used by Rook to check remote cluster health and refresh the MON list
+                # client.csi-health, and the key from Secret rook-ceph-client-csi-health
                 healthCheck:
                   username: "client.csi-health"
                   token: ""
@@ -173,7 +175,7 @@ Add the object storage class under `systemConfiguration` on the `Cluster` resour
     !!! info
         Values used to connect to a remote cluster are detailed in [Connecting a workload and storage cluster](connecting-a-workload-and-storage-cluster.md#consuming-object-storage).
 
-    On a decoupled AZ, create the object storage class on the **workload** cluster and connect it to an object store on the **storage** cluster. That requires Ceph connection details, the remote RGW endpoints, and the object store storage class definitions.
+    On a decoupled AZ, create the object storage class on the **workload** cluster and connect it to an object store on the **storage** cluster. That requires the RGW admin keys, the remote RGW endpoints, and the object store storage class definitions.
 
     ```yaml
     systemConfiguration:
@@ -182,6 +184,10 @@ Add the object storage class under `systemConfiguration` on the `Cluster` resour
           values:
             clusters:
               - name: "[storage-cluster-name]" # The name of the remote storage cluster
+                # Keys from Secret rook-ceph-object-user-[store]-[store] on the storage cluster
+                rgwAdminOps:
+                  accessKey: ""
+                  secretKey: ""
                 objectStores:
                   - name: "[object-store-name]"
                     # External RGW endpoints. Each entry accepts either `ip` or `hostname`.
