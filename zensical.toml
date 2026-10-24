@@ -117,8 +117,10 @@ nav = [
 ]
 
 [project.plugins.blog]
-archive = false
-categories = false
+archive = true
+categories = true
+authors = true
+authors_profiles = true
 
 [project.plugins.redirects.redirect_maps]
 "index.md" = "home.md"
@@ -150,13 +152,18 @@ pygments_lang_class = true
 alternate_style = true
 [project.markdown_extensions.pymdownx.details]
 
+# Instant previews on header links across the site.
+# https://zensical.org/docs/setup/navigation/#instant-previews
+[[project.markdown_extensions.zensical.extensions.preview.configurations]]
+targets.include = ["**"]
+
 # Theme
 [project.theme]
 # variant = "classic"
 custom_dir = "overrides"
 logo = "assets/spx.svg"
 favicon = "assets/favicon.svg"
-features = ["announce.dismiss", "content.code.copy"]
+features = ["announce.dismiss", "content.code.copy", "navigation.tabs", "navigation.path"]
 
 # Light/dark palette toggle (same as Material)
 [[project.theme.palette]]
