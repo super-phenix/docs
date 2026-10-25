@@ -1365,34 +1365,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Kernel optimization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manual-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Manual tuning
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#automated-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Automated tuning
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -2958,7 +2930,7 @@
   <span class="md-ellipsis">
     
   
-  Network
+  Kernel optimization
 
     
   </span>
@@ -2971,6 +2943,118 @@
         
           <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
             <label class="md-nav__title" for="__nav_6_5">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Kernel optimization
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kernel-optimization/manual-tuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Manual tuning
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kernel-optimization/automated-tuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Automated tuning
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Network
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_6">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -3114,10 +3198,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_7" >
         
           
-          <label class="md-nav__link" for="__nav_6_6" id="__nav_6_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="0">
             
   
   
@@ -3135,8 +3219,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_6_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_6">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_7">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -3744,34 +3828,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Kernel optimization">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#manual-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Manual tuning
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#automated-tuning" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Automated tuning
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -3843,60 +3899,11 @@
 <h2 id="kernel-optimization">Kernel optimization</h2>
 <p>Kernel tuning is often where you get the largest gains in responsiveness. The main levers are setting the CPU governor to <strong><code>performance</code></strong> (instead of <code>schedutil</code> or <code>powersave</code>) and reducing <strong>C-states</strong> to their minimum.</p>
 <p>When servers are lightly loaded and the governor favors power saving, nodes can feel <strong>sluggish</strong> and slow to react to small bursts of traffic. CPUs must wake from deep sleep before they can service work. Raising the governor to <code>performance</code> and limiting C-states improves that behavior at the cost of <strong>higher power consumption</strong>.</p>
-<p>You can apply these settings in two ways: <strong>manually through Talos</strong> (static, reboot required) or <strong>through the Superphenix TuneD agent</strong> (runtime, no reboot for profile changes).</p>
-<h3 id="manual-tuning">Manual tuning</h3>
-<p>Optimizations at this layer are configured where <a href="https://talos.dev/">Talos Linux</a> runs your nodes. The Talos guide <a href="https://docs.siderolabs.com/talos/v1.13/configure-your-talos-cluster/system-configuration/performance-tuning">Performance tuning</a> is a good starting point for CPU scaling governors, processor sleep states, and related kernel command-line parameters.</p>
-<p>Typical changes include <code>cpufreq.default_governor=performance</code> and limits on C-states (for example <code>intel_idle.max_cstate=0</code> on Intel, or <code>amd_pstate=active</code> on AMD. See the Talos guide for your hardware).</p>
-<div class="admonition warning">
-<p class="admonition-title">Reboot required</p>
-<p>Kernel parameters applied through Talos machine configuration (for example <code>.machine.install.extraKernelArgs</code>) take effect after a node <strong>reboot</strong> or a no-op upgrade to the same Talos version. Plan a maintenance window when tuning production nodes this way.</p>
-</div>
-<h3 id="automated-tuning">Automated tuning</h3>
-<p>Superphenix ships a <a href="https://tuned-project.org/">TuneD</a>-based daemon that applies performance-oriented settings at <strong>runtime</strong>. Enable it from the <strong><code>superphenix-system</code></strong> chart values, or from the <code>Cluster</code> CRD:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">operator.superphenix.net/v1alpha1</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Cluster</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">metadata</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cluster-local</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">superphenix-system</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">deploymentTopology</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Hyperconverged</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">us</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">west</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0-latest</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">connection</span><span class="p">:</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Local</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="nt">tuned</span><span class="p">:</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span></code></pre></div>
-<p>A privileged DaemonSet runs on every node (including control-plane nodes). At startup, each pod reads a <strong>per-node label</strong> to choose the active profile, runs <code>tuned</code>, and reloads if the default profile changes. If the node has no label, it uses the default profile which optimizes for <strong>throughput</strong>, <strong>compute latency</strong>, and <strong>network latency</strong>.</p>
-<p><strong>Per-node profile selection</strong></p>
-<p>Assign a profile with the node label (default key: <code>performance.superphenix.net/profile</code>):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>&lt;node-name&gt;<span class="w"> </span>performance.superphenix.net/profile<span class="o">=</span>latency-performance
-</span></code></pre></div>
-<p>Remove the label to revert to the default:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>&lt;node-name&gt;<span class="w"> </span>performance.superphenix.net/profile-
-</span></code></pre></div>
-<p>The label value must match a profile name defined in chart values (or already present on the node image).</p>
-<div class="admonition note">
-<p class="admonition-title">Restart required after label changes</p>
-<p>Updating the profile label on a node does <strong>not</strong> cause the running tuned pod to pick up the new value. <strong>Restart the tuned DaemonSet pod on that node manually</strong> so it reads the label again at startup.</p>
-</div>
-<p><strong>Custom profiles</strong></p>
-<p>Declare additional or replacement profiles under the <code>profiles</code> key in the tuned chart values. Each key is a profile name; the value is the raw <code>tuned.conf</code> content:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">profiles</span><span class="p">:</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">my-custom-profile</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="no">[main]</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="no">summary=My custom tuning profile</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="no">[cpu]</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="no">governor=performance</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="no">[sysctl]</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="no">vm.swappiness=10</span>
-</span></code></pre></div>
-<p>Profile names must be unique, start with a letter or number, and may contain letters, numbers, hyphens, dots, and underscores. Use custom profiles when you need workload-specific sysctl, CPU, or network tuning beyond the defaults.</p>
+<p>Apply these settings in one of two ways:</p>
+<ul>
+<li><strong><a data-preview="" href="../../operations/kernel-optimization/manual-tuning/">Manual tuning</a></strong> through Talos (static, reboot required).</li>
+<li><strong><a data-preview="" href="../../operations/kernel-optimization/automated-tuning/">Automated tuning</a></strong> through the Superphenix TuneD agent (runtime, no reboot for profile changes).</li>
+</ul>
 
 
 
