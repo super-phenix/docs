@@ -102,4 +102,4 @@ These events belong to you, so they never appear in the organization log. The fo
 ## Next
 
 - [Audit Log](../../features/audit-log.md) for the event fields, the full list of event types and the permissions.
-- [Web console](../../operations/console.md) for how authentication and roles fit together.
+- [Organizations and projects](../../architecture/index.md#organizations-and-projects) for how users, roles, and projects fit together.

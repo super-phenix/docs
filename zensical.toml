@@ -75,6 +75,7 @@ nav = [
     { "Audit Log" = "features/audit-log.md" },
   ]},
   { "User Guides" = [
+    { "Overview" = "user-guides/index.md" },
     { "Network" = [
       { "Overview" = "user-guides/network/index.md" },
       { "Create a subnet with a NAT gateway" = "user-guides/network/create-a-subnet.md" },
@@ -92,9 +93,7 @@ nav = [
   ]},
   { "Operations" = [
     { "Accessing Superphenix" = "operations/accessing-superphenix.md" },
-    { "Cluster toolbox" = "operations/cluster-toolbox.md" },
     { "Add an availability zone" = "operations/adding-an-az.md" },
-    { "Limitations" = "operations/limitations.md" },
     { "Kernel optimization" = [
       { "Manual tuning" = "operations/kernel-optimization/manual-tuning.md" },
       { "Automated tuning" = "operations/kernel-optimization/automated-tuning.md" }
@@ -114,7 +113,7 @@ nav = [
       { "Configuring backups" = "operations/storage/configuring-backups.md" },
       { "Using local storage" = "operations/storage/using-local-storage.md" }
     ]},
-    { "Web console" = "operations/console.md" }
+    { "Limitations" = "operations/limitations.md" }
   ]},
   { "Contributing" = "contributing.md" },
   { "Enterprise support" = "enterprise-support.md" },
@@ -129,6 +128,8 @@ authors_profiles = true
 
 [project.plugins.redirects.redirect_maps]
 "index.md" = "home.md"
+"operations/cluster-toolbox.md" = "operations/accessing-superphenix.md"
+"operations/console.md" = "operations/accessing-superphenix.md"
 
 # SEO and meta tags
 [[project.extra.meta]]

@@ -2,7 +2,7 @@
 
 Superphenix is organized in two layers: the **foundation** provides the infrastructure platform (IaaS and operations), and **managed services** consume it to deliver higher-level offerings. The **web console** exposes these capabilities as **products** (compute, storage, network, SSH keys, and more), scoped by **organization**, **project**, and **availability zone (AZ)**.
 
-Read [Architecture overview](../architecture/index.md#organizations-and-projects) and the [Web console](../operations/console.md) first for organizations, projects, IAM, and how to navigate resources.
+Read [Architecture overview](../architecture/index.md#organizations-and-projects) first for organizations, projects, and roles.
 
 ## Foundation
 
@@ -54,7 +54,7 @@ See [Architecture overview](../architecture/index.md) for AZs, regions, and cent
 
 ## User guides
 
-Looking for step-by-step console tutorials? See the **User guides**:
+Looking for step-by-step console tutorials? Start with the [User guides](../user-guides/index.md):
 
 - **[Create a virtual machine](../user-guides/virtual-machines/create-a-vm.md)**: Walk through provisioning a VM, setting up boot disks, and connecting with SSH.
 - **[Create a subnet with a NAT gateway](../user-guides/network/create-a-subnet.md)**: Configure a custom subnet CIDR with outbound Internet routing.
