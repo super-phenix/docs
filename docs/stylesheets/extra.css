@@ -64,3 +64,10 @@
 .md-typeset [data-preview]::after {
   display: none;
 }
+
+/* Keep footer social icons clear of the sidebar toggle below 60em */
+@media screen and (max-width: 59.984375em) {
+  .md-social {
+    margin-inline-end: 3rem;
+  }
+}

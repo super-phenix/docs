@@ -136,7 +136,7 @@ Use the **Minimal**, **Recommended**, and **Optimal** tabs below to compare tier
     | **RAM** | ≥ **128 GiB** per server |
     | **CPU cores** | ≥ **32** |
     | **Disks (storage)** | ≥ **16** raw disk per node |
-    | **NIC / link speed** | 2 NICs with **dual 25Gb/s ports** (active/active bonding), with 2 ports dedicated to the storage and 2 dedicated to the data |
+    | **NIC / link speed** | 2 NICs with **dual 25Gb/s ports** for a total of 100Gb/s (active/active bonding) |
     | **Boot / OS** | Fast enterprise SSD acceptable |
     | **Storage media** | **Enterprise** SSD or NVMe |
     | **MTU** | 9000 |
@@ -183,9 +183,13 @@ Use the **Minimal**, **Recommended**, and **Optimal** tabs below to compare tier
     | **Boot / OS** | Enterprise disks, NVMe for VM storage, and HDDs for backups |
     | **MTU** | 9000 |
 
-### Management cluster (decoupled) {#management-cluster-decoupled}
+### Management cluster {#management-cluster-decoupled}
 
-In a **decoupled** topology, the **management cluster** is the small **Kubernetes** cluster that hosts the Superphenix control-plane and operational services **separate** from your storage and workload virtualization nodes. It does not replace sizing for Ceph or hypervisors; it is an additional slice of machines sized for API controllers, GitOps, monitoring, and related components at modest density.
+The **management cluster** is the small **Kubernetes** cluster that hosts the Superphenix control-plane and operational services.
+
+If you choose to host your management cluster outside of your AZs (not on a workload/storage/hyperconverged cluster), you need a separate location on which to install it.
+
+It does not replace sizing for Ceph or hypervisors; it is an additional slice of machines sized for API controllers, GitOps, monitoring, and related components at modest density.
 
 === "Minimal"
 

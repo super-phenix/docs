@@ -1,6 +1,6 @@
 # Network requirements
 
-Network design for Superphenix should be planned alongside hardware sizing and AZ topology. This page defines baseline expectations for link speed, VLAN segmentation, external connectivity, and IP announcement models. For server sizing and NIC assumptions, see [Hardware requirements](hardware-requirements.md). For AZ design constraints, see [Architecture overview](index.md).
+Network design for Superphenix should be planned alongside hardware sizing and AZ topology. This page defines baseline expectations for link speed, MTU, VLAN segmentation, external connectivity, and IP announcement models. For server sizing and NIC assumptions, see [Hardware requirements](hardware-requirements.md). For AZ design constraints, see [Architecture overview](index.md).
 
 ---
 
@@ -8,8 +8,16 @@ Network design for Superphenix should be planned alongside hardware sizing and A
 
 Use the NIC sizing from the [Hardware requirements](hardware-requirements.md) as the baseline for network planning:
 
-- **Minimum**: **10 Gb/s** per port
+- **Minimum**: **10 Gb/s** per port (can work with less, but stability isn't guaranteed)
 - **Recommended**: **25 Gb/s** per port (or faster), typically with redundant uplinks
+
+Superphenix can work with more than one NIC on the nodes. If you're installing a node with multiple NICs, we recommend doing bonds with ports that are on different NICs for more resilience to hardware failure.
+
+We recommend setting the link MTU to **9000** (jumbo frames) end to end. On each node, set the interface MTU to `9000` in the Talos machine configuration. On the switches, set the MTU to `9000` on every port and VLAN that carries node traffic. A larger MTU improves throughput and lowers CPU overhead for storage replication, recovery, and east-west workload traffic.
+
+!!! warning "Some switches include the Ethernet header in the MTU"
+
+    Some switches count the Ethernet header in the configured MTU. On those platforms, an MTU of `9000` is too small for a 9000-byte packet from the node. The header adds a small amount of extra overhead (commonly a little over a dozen bytes) and the exact count depends on the vendor and on whether a VLAN tag is included. Set the switch MTU higher to cover that overhead, as high as the interface allows.
 
 !!! important "Align network and hardware recommendations"
 
@@ -21,7 +29,7 @@ Use the NIC sizing from the [Hardware requirements](hardware-requirements.md) as
 
 VLAN layout depends on whether you run hyperconverged or decoupled clusters. The goal is to keep external north-south traffic separated from cluster east-west traffic whenever practical.
 
-!!! note "Single VLAN is possible"
+!!! info "Single VLAN is possible"
 
     It is entirely possible to run all traffic on a single VLAN, especially in small environments or labs. However, this is generally not recommended for production when you need stronger security boundaries and more predictable performance under load.
 
