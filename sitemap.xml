@@ -136,12 +136,6 @@
         <loc>https://docs.superphenix.net/operations/adding-an-az/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/operations/cluster-toolbox/</loc>
-      </url>
-      <url>
-        <loc>https://docs.superphenix.net/operations/console/</loc>
-      </url>
-      <url>
         <loc>https://docs.superphenix.net/operations/kernel-optimization/automated-tuning/</loc>
       </url>
       <url>
@@ -200,6 +194,9 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/paas/kaas/network-configuration/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/user-guides/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/user-guides/network/</loc>
