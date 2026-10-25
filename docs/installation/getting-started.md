@@ -2,12 +2,12 @@
 
 This guide will walk you through the steps to install a lab using the simplest layout: **3 nodes**, one AZ, **hyperconverged**, management on the same cluster, one switch / flat VLAN.
 
-Run every command from a **bootstrap host** that can reach the nodes (typically a laptop on that switch).
+Run every command from a **bootstrap host** that can reach the nodes (typically a laptop on that switch). Each command is shown for **Linux** and **Windows**. On Windows, use PowerShell.
 
 ## Prerequisites
 
-- **talosctl** ([CLI reference](https://www.talos.dev/latest/reference/cli/)), **Helm** ([install](https://helm.sh/docs/intro/install/)), **kubectl**, and **curl**
-- **Talos 1.12.6 or older** — newer versions hit a Linux kernel bug that breaks the SDN. Superphenix is **only officially supported on Talos**.
+- **talosctl** ([CLI reference](https://www.talos.dev/latest/reference/cli/)), **Helm** ([install](https://helm.sh/docs/intro/install/)), and **kubectl**. Linux commands also use **curl**.
+- **Talos 1.12.6 or older**: newer versions hit a Linux kernel bug that breaks the SDN. Superphenix is **only officially supported on Talos**.
 - An **IPv4 range on the network behind the external interface**. Superphenix picks addresses from that subnet at random and assigns them to **NAT gateways** and **elastic IPs**. If the subnet is shared with node addresses or other devices, those IPs can be excluded from the IPAM. Ideally, reserve the whole range (or a dedicated part of it) for Superphenix.
 - A **domain name** for the console. The cluster serves HTTP(S) on **every node** on ports **80** and **443**, so DNS only needs to point at **one** node. For HA, use a load balancer or DNS round-robin.
 
@@ -21,9 +21,17 @@ Run every command from a **bootstrap host** that can reach the nodes (typically 
 
 Boot the nodes with the [Talos getting started](https://talos.dev/v1.11/introduction/getting-started) guide, then generate configs:
 
-```bash
-talosctl gen config spx-local https://<api-endpoint>:6443
-```
+=== "Linux"
+
+    ```bash
+    talosctl gen config spx-local https://<api-endpoint>:6443
+    ```
+
+=== "Windows"
+
+    ```powershell
+    talosctl gen config spx-local "https://<api-endpoint>:6443"
+    ```
 
 Edit `controlplane.yaml` **before** you apply it. Superphenix installs the CNI and CoreDNS itself; this 3-node lab also schedules workloads on the control planes. Control planes must enable **MutatingAdmissionPolicy**. Replace the interface name, gateway, and `192.168.1.0/24` subnets with your lab network.
 
@@ -98,12 +106,27 @@ Edit `controlplane.yaml` **before** you apply it. Superphenix installs the CNI a
 
 Apply, bootstrap once, then confirm nodes are up:
 
-```bash
-talosctl apply-config --insecure --nodes <node-ip> --file controlplane.yaml
-talosctl bootstrap --nodes <first-control-plane-ip>
-talosctl kubeconfig .
-kubectl get nodes
-```
+=== "Linux"
+
+    ```bash
+    talosctl apply-config --insecure --nodes <node-ip> --file controlplane.yaml
+    talosctl bootstrap --nodes <first-control-plane-ip>
+    talosctl kubeconfig .
+    kubectl get nodes
+    ```
+
+=== "Windows"
+
+    `TALOSCONFIG` and `KUBECONFIG` apply to the current PowerShell session only. Set them again in each new window.
+
+    ```powershell
+    talosctl apply-config --insecure --nodes "<node-ip>" --file controlplane.yaml
+    $env:TALOSCONFIG = (Resolve-Path "talosconfig").Path
+    talosctl bootstrap --nodes "<first-control-plane-ip>"
+    talosctl kubeconfig .
+    $env:KUBECONFIG = (Resolve-Path "kubeconfig").Path
+    kubectl get nodes
+    ```
 
 ## 2. Install Superphenix
 
@@ -179,15 +202,31 @@ clusters:
     If slow disks perform poorly with Ceph, you can use the `local-path` storage class to avoid network-storage overhead. Data is tied to one node and is lost if that node or disk is lost, so workloads cannot move freely between nodes. See [Using local storage](../operations/storage/using-local-storage.md).
 
 Install the **superphenix-operator** on the Talos cluster using Helm:
-```bash
-OPERATOR_VERSION="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/super-phenix/superphenix/releases/latest | sed 's#.*/v##')"
 
-helm install superphenix-operator \
-  "oci://ghcr.io/super-phenix/charts/superphenix-operator:${OPERATOR_VERSION}" \
-  --namespace superphenix-system \
-  --create-namespace \
-  -f values.yaml
-```
+=== "Linux"
+
+    ```bash
+    OPERATOR_VERSION="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/super-phenix/superphenix/releases/latest | sed 's#.*/v##')"
+
+    helm install superphenix-operator \
+      "oci://ghcr.io/super-phenix/charts/superphenix-operator:${OPERATOR_VERSION}" \
+      --namespace superphenix-system \
+      --create-namespace \
+      -f values.yaml
+    ```
+
+=== "Windows"
+
+    ```powershell
+    $Release = Invoke-RestMethod -Uri "https://api.github.com/repos/super-phenix/superphenix/releases/latest"
+    $OperatorVersion = $Release.tag_name.TrimStart("v")
+
+    helm install superphenix-operator `
+      "oci://ghcr.io/super-phenix/charts/superphenix-operator:$OperatorVersion" `
+      --namespace superphenix-system `
+      --create-namespace `
+      -f values.yaml
+    ```
 
 When the stack is healthy, continue with [Accessing Superphenix](../operations/accessing-superphenix.md) to open the console, retrieve the initial ArgoCD password, and monitor application synchronization.
 

@@ -2,6 +2,8 @@
 
 This guide covers installing **Talos Linux** on your servers and bootstrapping a **Kubernetes** cluster by hand, using `talosctl`. Use this path when you already have physical or virtual machines ready and want full control over the Talos machine configuration before handing the cluster to Superphenix.
 
+Each command is shown for **Linux** and **Windows**. On Windows, use PowerShell.
+
 For the automated alternative, see [Automated OS installation](automated-os-installation.md).
 
 For the installation of Talos Linux on **GPU nodes**, see [Installing GPU Nodes](gpu-node-installation.md).
@@ -38,9 +40,17 @@ Before you start, confirm:
 
 Pick a stable **Kubernetes API endpoint** (VIP, load balancer, or first control-plane IP) and generate configs:
 
-```bash
-talosctl gen config spx-cluster https://<api-endpoint>:6443
-```
+=== "Linux"
+
+    ```bash
+    talosctl gen config spx-cluster https://<api-endpoint>:6443
+    ```
+
+=== "Windows"
+
+    ```powershell
+    talosctl gen config spx-cluster "https://<api-endpoint>:6443"
+    ```
 
 This produces `controlplane.yaml`, `worker.yaml`, and `talosconfig`. Edit the generated files **before** you apply them.
 
@@ -119,9 +129,17 @@ Each node should come up in **maintenance mode** and expose the Talos API on its
 
 Apply the control-plane config to every control-plane node (repeat for each node IP):
 
-```bash
-talosctl apply-config --insecure --nodes <node-ip> --file controlplane.yaml
-```
+=== "Linux"
+
+    ```bash
+    talosctl apply-config --insecure --nodes <node-ip> --file controlplane.yaml
+    ```
+
+=== "Windows"
+
+    ```powershell
+    talosctl apply-config --insecure --nodes "<node-ip>" --file controlplane.yaml
+    ```
 
 If you use dedicated workers, apply `worker.yaml` to worker nodes instead.
 
@@ -129,9 +147,20 @@ If you use dedicated workers, apply `worker.yaml` to worker nodes instead.
 
 From one control-plane node only, bootstrap the cluster:
 
-```bash
-talosctl bootstrap --nodes <first-control-plane-ip>
-```
+=== "Linux"
+
+    ```bash
+    talosctl bootstrap --nodes <first-control-plane-ip>
+    ```
+
+=== "Windows"
+
+    `TALOSCONFIG` applies to the current PowerShell session only. Set it again in each new window.
+
+    ```powershell
+    $env:TALOSCONFIG = (Resolve-Path "talosconfig").Path
+    talosctl bootstrap --nodes "<first-control-plane-ip>"
+    ```
 
 Wait until the Kubernetes API responds on `https://<api-endpoint>:6443`.
 
@@ -139,10 +168,23 @@ Wait until the Kubernetes API responds on `https://<api-endpoint>:6443`.
 
 Fetch kubeconfig and confirm nodes are ready:
 
-```bash
-talosctl kubeconfig .
-kubectl get nodes
-```
+=== "Linux"
+
+    ```bash
+    talosctl kubeconfig .
+    kubectl get nodes
+    ```
+
+=== "Windows"
+
+    `TALOSCONFIG` and `KUBECONFIG` apply to the current PowerShell session only. Set them again in each new window.
+
+    ```powershell
+    $env:TALOSCONFIG = (Resolve-Path "talosconfig").Path
+    talosctl kubeconfig .
+    $env:KUBECONFIG = (Resolve-Path "kubeconfig").Path
+    kubectl get nodes
+    ```
 
 All control-plane (and worker, if any) nodes should report `Ready` before you install Superphenix.
 
