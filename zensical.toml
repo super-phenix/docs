@@ -47,6 +47,7 @@ nav = [
       { "Overview" = "features/compute/index.md" },
       { "Instance" = "features/compute/instance.md" },
       { "Instance Snapshot" = "features/compute/instance-snapshot.md" },
+      { "GPU" = "features/compute/gpu.md" },
     ]},
     { "Network" = [
       { "Overview" = "features/network/index.md" },
@@ -95,6 +96,9 @@ nav = [
     { "Cluster toolbox" = "operations/cluster-toolbox.md" },
     { "Add an availability zone" = "operations/adding-an-az.md" },
     { "Limitations" = "operations/limitations.md" },
+    { "Compute" = [
+      { "Enabling GPU passthrough" = "operations/compute/gpu-passthrough.md" }
+    ]},
     { "Network" = [
       { "Configure NAT gateways" = "operations/network/configure-nat-gateways.md" },
       { "Setting the MTU of subnets" = "operations/network/setting-the-mtu-of-subnets.md" },
