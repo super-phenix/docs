@@ -59,3 +59,8 @@
 .md-typeset img {
   border-radius: 8px;
 }
+
+/* Hide the pointer icon that marks links with an instant preview */
+.md-typeset [data-preview]::after {
+  display: none;
+}
