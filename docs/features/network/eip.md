@@ -44,6 +44,7 @@ Attaching a `qosPolicy` applies rate-limiting to the Elastic IP. This enforces b
 
 - **IP Retention**: Detaching an Elastic IP from an instance does not release the IP address. The address remains reserved in your project until explicitly deleted.
 - **Failover**: An Elastic IP can be detached from one instance and reattached to another in seconds, providing rapid service recovery without public DNS propagation delays.
+- **Load balancers**: An Elastic IP can map to the VIP of a load balancer in the subnet, which exposes the load balancer to the Internet. See [Load Balancer](load-balancer.md).
 - **GitOps Tracking**: EIPs managed via GitOps manifests display reconciliation state and links to ArgoCD applications.
 
 ---

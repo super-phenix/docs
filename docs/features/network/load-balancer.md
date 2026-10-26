@@ -2,12 +2,22 @@
 
 A **Load Balancer** is a Layer 3/Layer 4 (TCP/UDP) reverse proxy and traffic distributor. It exposes a dedicated **Virtual IP (VIP)** within an Availability Zone (AZ) and forwards incoming connections to pools of backend VMs or pods using **TCP**, **UDP**, or **SCTP** (protocol availability may vary by release). Listeners can reference **named ports** for clarity in larger configs.
 
+## Subnet and VPC
+
+Every load balancer takes a **subnet** when you create it. The platform pins the load balancer to that subnet and to the **VPC** that owns the subnet.
+
+- Pick a subnet of a VPC you own or that is shared with your project.- Any VM in the VPC reaches the VIP, whatever its subnet, as long as the VPC routes between the subnets.
+- The subnet cannot change after creation. To move a load balancer to another subnet, delete it and create it again.
+- Health check **source** addresses come from this subnet.
+- To reach the load balancer from the Internet, map an [Elastic IP](eip.md) to its VIP. The subnet needs a NAT gateway.
+
+![A load balancer pinned to a subnet, reached from the Internet through an Elastic IP and from another subnet through its VIP, with the same VIP reused in a second VPC](../../assets/diagrams/load-balancer-vpc.svg)
+
 ## Virtual IP range
 
-- The front **virtual IP** is chosen by you from **`198.18.0.0/16`** (IPv4 only at the time of writing).
-- **Do not** reuse the same virtual IP on two load balancers.
-
-A load balancer is tied to a **subnet**; routing inside the **VPC** lets **any VM in that VPC** reach the VIP when the VPC routes to the subnet that owns it. The **subnet** is inferred from **load balancer mapping** (see below).
+- You choose the front **virtual IP** from **`198.18.0.0/16`** (IPv4 only at the time of writing).
+- A VIP is **unique within a VPC**. The platform checks every load balancer of the AZ and rejects a second one on the same VIP with an error.
+- Two load balancers in **different VPCs** can use the same VIP.
 
 ## Mapping (backends)
 
@@ -20,12 +30,11 @@ A load balancer is tied to a **subnet**; routing inside the **VPC** lets **any V
 
 You then define **ports** (for example **80** / **443**) for forwarding.
 
-**Health checks** probe backends; failing members are removed. Health check **source** addresses come from the **subnet** attached to the load balancer.
+**Health checks** probe backends; failing members are removed.
 
-!!! warning "Same subnet for all backends"
+!!! warning "Backends must sit in the load balancer's subnet"
 
-    Selector or endpoint configuration must resolve to backends on a **single subnet**. Only the **first network interface** of each VM participates in load balancing: **secondary NICs** are not used. **All VMs behind one load balancer should sit in the same subnet.**
-
+    Every backend must be in the subnet you chose for the load balancer. The platform refuses endpoints and matching VMs from any other subnet. Only the **first network interface** of each VM participates in load balancing: **secondary NICs** are not used.
 ---
 
 ## Backend Pool Strategies
@@ -59,5 +68,9 @@ When session affinity is enabled, incoming connections from the same client IP a
 ## Operational Constraints
 
 - **AZ Scoping**: The Virtual IP and its target backends must reside within the same Availability Zone.
+- **Pinned subnet**: A load balancer keeps the subnet it was created with. Updates cannot change it.
+- **Earlier load balancers**: Load balancers created before subnet pinning keep running and you can delete them. An update returns an error until you delete the load balancer and create it again with a subnet. Their VIPs still count toward the uniqueness check.
 - **Cluster Locks**: Load balancers created and managed by Kubernetes-as-a-Service (KaaS) clusters (such as Ingress controller LBs) are protected against destructive manual modifications in the console.
 - **GitOps Tracking**: Load Balancers managed declaratively display synchronization status and links to their associated ArgoCD applications.
+
+For a step-by-step walkthrough, see [Create a load balancer](../../user-guides/network/create-a-load-balancer.md).

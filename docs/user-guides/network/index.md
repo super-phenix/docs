@@ -6,6 +6,7 @@ These guides cover the **Network** entry of the sidenav: the address space your 
 |-------|-----------------|
 | [Create a subnet with a NAT gateway](create-a-subnet.md) | A private range of your own, with outbound Internet access and an attachment point for public IPs |
 | [Expose a VM with an Elastic IP](../virtual-machines/expose-with-eip.md) | A public IPv4 address that forwards traffic to one VM |
+| [Create a load balancer](create-a-load-balancer.md) | A Virtual IP in a subnet that spreads TCP or UDP traffic across your backends |
 | [Create a security group](create-a-security-group.md) | Ingress and egress rules applied to the VMs that carry a label |
 
 ## What the console offers
@@ -18,7 +19,7 @@ The **Network** section holds five products. Each one lives in a single AZ.
 
 **EIP** maps a public IPv4 address onto a subnet that has a NAT gateway. **Internal IP** mode is a one-to-one NAT with one VM. **Internal CIDR** mode gives a whole range outbound access through the address and publishes single ports with DNAT rules. [Expose a VM with an Elastic IP](../virtual-machines/expose-with-eip.md) walks through it.
 
-**Load Balancer** exposes a **Virtual IP** from `198.18.0.0/16` and forwards TCP or UDP ports to backends. Backends come from a label **Selector** or from a list of **Endpoint** addresses, and each rule maps a **Port** to a **Target Port**. No guide covers it yet.
+**Load Balancer** exposes a **Virtual IP** from `198.18.0.0/16` and forwards TCP or UDP ports to backends. You pick a subnet, and the load balancer stays pinned to it and to its VPC. Backends come from a label **Selector** or from a list of **Endpoint** addresses in that subnet, and each rule maps a **Port** to a **Target Port**. [Create a load balancer](create-a-load-balancer.md) walks through it.
 
 **Security Group** filters the traffic of the VMs it selects by label. Ingress and egress rules each allow everything, deny everything, or allow listed ports from listed sources. [Create a security group](create-a-security-group.md) walks through it and explains what an empty rule list does.
 
