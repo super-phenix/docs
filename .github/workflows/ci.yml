@@ -1,12 +1,75 @@
 name: ci
+
 on:
+  pull_request:
   push:
     branches:
       - main
+
 permissions:
-  contents: write
+  contents: read
+
 jobs:
+  zensical:
+    name: zensical
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+      - uses: actions/cache@v4
+        with:
+          key: zensical-${{ env.cache_id }}
+          path: ~/.cache
+          restore-keys: |
+            zensical-
+      - run: pip install zensical
+      - name: Build the site
+        run: zensical build --strict --config-file zensical.toml
+
+  dco:
+    name: dco
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Check Developer Certificate of Origin
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin "$BASE_REF"
+          missing=0
+          while IFS= read -r sha; do
+            [ -z "$sha" ] && continue
+            author="$(git log -1 --format='%an <%ae>' "$sha")"
+            expected="Signed-off-by: ${author}"
+            if ! git log -1 --format='%B' "$sha" | grep -Fxq "$expected"; then
+              echo "::error::Commit ${sha} is missing a DCO sign-off that matches its author."
+              echo "  $(git log -1 --format='%h %s' "$sha")"
+              echo "  Expected: ${expected}"
+              missing=1
+            fi
+          done < <(git rev-list --no-merges FETCH_HEAD..HEAD)
+          if [ "$missing" -ne 0 ]; then
+            echo "Sign off each commit with: git commit -s"
+            echo "The Signed-off-by trailer must use the commit author name and email."
+            echo "https://developercertificate.org/"
+            exit 1
+          fi
+          echo "All commits are signed off."
+
   deploy:
+    name: deploy
+    needs: zensical
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,7 +88,7 @@ jobs:
           restore-keys: |
             zensical-
       - run: pip install zensical
-      - run: zensical build --config-file zensical.toml
+      - run: zensical build --strict --config-file zensical.toml
       - name: Copy CNAME for custom domain
         run: cp docs/CNAME site/CNAME 2>/dev/null || true
       - uses: peaceiris/actions-gh-pages@v4

@@ -137,6 +137,7 @@ Zensical is configured for admonitions, details, content tabs, superfences, attr
 - Theme and CSS changes are global. Justified paragraphs and the dark-mode logo invert are intentional.
 - Do not add dependencies beyond `zensical`. Do not commit `.venv/`, `site/`, or editor directories.
 - Secrets stay out of pages. Document how to retrieve a credential; do not paste one.
+- Sign off every commit with `git commit -s`. CI rejects a pull request unless each commit has a `Signed-off-by` trailer that matches its author name and email. The site build must pass `zensical build --strict`.
 
 ## Knowledge retrieval
 
