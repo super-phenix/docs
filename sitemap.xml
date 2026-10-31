@@ -196,6 +196,72 @@
         <loc>https://docs.superphenix.net/paas/kaas/network-configuration/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/reference/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/api/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/api/cluster/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/api/organization/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/api/project/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/kaas-datastore/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/kaas-essentials/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/misc/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/sfs-baas/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/sfs-gitops/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/sfs-iaas/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/sfs-kaas/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/spx-policies/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/spx-rook-connection/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/superphenix-api/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/superphenix-controller/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/superphenix-operator/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/superphenix-system/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/talos-backup/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/talos-manager/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/helm/tuned/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/user-guides/</loc>
       </url>
       <url>
