@@ -151,6 +151,8 @@ When a page needs a field, a default, or a behavior this site does not already s
 
 Document a default only when `defaultConfig` or a chart `values.yaml` sets it. Leave credentials and internal addresses out of the page.
 
+The published reference for those CRDs and chart values is `docs/reference/`. Update that section when the API or a chart value changes, and add the page to `nav` if it is new.
+
 ## Tests
 
 If a CI is present, make sure the changes to the documentation are going to pass it.

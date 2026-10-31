@@ -1,6 +1,6 @@
 # Configure a cluster
 
-When you define a `Cluster` resource, you specify the topology, geography, and connection details. Below is an example configuration for a remote workload cluster:
+When you define a `Cluster` resource, you specify the topology, geography, and connection details. The field reference is [Cluster](../../../reference/api/cluster.md). Below is an example configuration for a remote workload cluster:
 
 ```yaml
 apiVersion: operator.superphenix.net/v1alpha1

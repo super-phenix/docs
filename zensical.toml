@@ -115,6 +115,38 @@ nav = [
     ]},
     { "Limitations" = "operations/limitations.md" }
   ]},
+  { "Reference" = [
+    { "Overview" = "reference/index.md" },
+    { "API" = [
+      { "Overview" = "reference/api/index.md" },
+      { "Cluster" = "reference/api/cluster.md" },
+      { "Organization" = "reference/api/organization.md" },
+      { "Project" = "reference/api/project.md" }
+    ]},
+    { "Helm charts" = [
+      { "Overview" = "reference/helm/index.md" },
+      { "Platform" = [
+        { "superphenix-operator" = "reference/helm/superphenix-operator.md" },
+        { "superphenix-system" = "reference/helm/superphenix-system.md" },
+        { "superphenix-api" = "reference/helm/superphenix-api.md" },
+        { "superphenix-controller" = "reference/helm/superphenix-controller.md" }
+      ]},
+      { "Components" = [
+        { "sfs-iaas" = "reference/helm/sfs-iaas.md" },
+        { "sfs-kaas" = "reference/helm/sfs-kaas.md" },
+        { "sfs-baas" = "reference/helm/sfs-baas.md" },
+        { "sfs-gitops" = "reference/helm/sfs-gitops.md" },
+        { "spx-policies" = "reference/helm/spx-policies.md" },
+        { "spx-rook-connection" = "reference/helm/spx-rook-connection.md" },
+        { "talos-manager" = "reference/helm/talos-manager.md" },
+        { "talos-backup" = "reference/helm/talos-backup.md" },
+        { "tuned" = "reference/helm/tuned.md" },
+        { "kaas-essentials" = "reference/helm/kaas-essentials.md" },
+        { "kaas-datastore" = "reference/helm/kaas-datastore.md" },
+        { "misc" = "reference/helm/misc.md" }
+      ]}
+    ]}
+  ]},
   { "Contributing" = "contributing.md" },
   { "Enterprise support" = "enterprise-support.md" },
   { "Blog" = ["blog/index.md"] }
