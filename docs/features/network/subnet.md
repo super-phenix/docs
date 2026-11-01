@@ -51,7 +51,7 @@ A **Subnet** is a Layer 2/Layer 3 IP network segment with an IP range (**CIDR**)
 
 If you **do not** set a static IP on a VM, **IPAM** picks a free address **inside the subnet CIDR** (DHCP-style allocation). **Static** assignments bypass IPAM for that address.
 
-## NAT gateway and “fully private” subnets
+## NAT gateway and “fully private” subnets {#nat-gateway-and-fully-private-subnets}
 
 When creating a subnet you can:
 

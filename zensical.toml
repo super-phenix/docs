@@ -94,6 +94,17 @@ nav = [
   ]},
   { "Operations" = [
     { "Accessing Superphenix" = "operations/accessing-superphenix.md" },
+    { "Applying configuration changes" = "operations/applying-configuration-changes.md" },
+    { "Configuring the management components" = [
+      { "Sending emails" = "operations/management/sending-emails.md" },
+      { "Validating users manually" = "operations/management/validating-users.md" },
+      { "Auto-creating resources for users on project creation" = "operations/management/default-project-resources.md" },
+      { "MFA and recovery" = "operations/management/mfa-and-recovery.md" },
+      { "Setting super-admins" = "operations/management/super-admins.md" },
+      { "Private availability zones" = "operations/management/private-azs.md" },
+      { "Custom CSS" = "operations/management/custom-css.md" },
+      { "Hardening exposed dashboards" = "operations/management/hardening-dashboards.md" }
+    ]},
     { "Add an availability zone" = "operations/adding-an-az.md" },
     { "Kernel optimization" = [
       { "Manual tuning" = "operations/kernel-optimization/manual-tuning.md" },

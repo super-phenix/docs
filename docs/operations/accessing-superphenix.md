@@ -18,10 +18,10 @@ Open the URL configured for the Superphenix console, for example:
 https://console.example.org
 ```
 
-The URL redirects you to the console login page. By default, self-service registration is enabled: anyone who can reach the page can create an account and sign in.
+The URL redirects you to the console login page. By default, self-service registration is enabled: anyone who can reach the page can create an account and sign in. [Validating users manually](management/validating-users.md) holds new accounts until an administrator activates them.
 
 !!! warning "Secure public deployments"
-    Restrict network access to the console if you do not want to allow public registration. Configuring authentication and pre-created accounts is covered separately.
+    Restrict network access to the console if you do not want to allow public registration. Mail, second factors, and super-admins are covered in [Sending emails](management/sending-emails.md), [MFA and recovery](management/mfa-and-recovery.md), and [Setting super-admins](management/super-admins.md).
 
 After signing in, use the console to create and manage tenant resources such as virtual machines, networks, and storage.
 

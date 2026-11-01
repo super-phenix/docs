@@ -1,6 +1,6 @@
 # Configuring the storage cluster
 
-Configure the storage cluster through the **`rook-local-cluster`** chart under `systemConfiguration` on the `Cluster` resource (or via the `superphenix-operator` Helm chart). The same pattern applies to both **hyperconverged** and **decoupled** deployments: set these values on the cluster that hosts Ceph.
+Configure the storage cluster through the **`rook-local-cluster`** chart under `systemConfiguration` on the cluster that hosts Ceph. [Applying configuration changes](../applying-configuration-changes.md) is how that values file is upgraded. The same pattern applies to both **hyperconverged** and **decoupled** deployments.
 
 The parameters below are the ones changed most often: Ceph network address ranges and which disks Rook claims for OSDs.
 
