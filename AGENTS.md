@@ -75,6 +75,8 @@ Write American English, in complete sentences, for someone who will follow the p
 - Prefer the words already on the site. Use **Instance** when describing the console product, and **virtual machine** in user guides and in prose about the guest.
 - Mark work that is not shipped yet with *Soon*, as the home page does for file storage, databases, and inference.
 - Link upstream for Talos, Ceph, Helm, and Kubernetes instead of restating their manuals. Ceph's hardware and network docs are the authority for storage-node sizing.
+- Avoid unnecessary links between articles when they're not related, or to avoid clutter.
+- Do not make excessive reference or comparisons between features. Only do it when relevant.
 
 Do not invent CLI flags, CRD fields, API names, UI labels, versions, default CIDRs, or support claims. If a page does not already state the fact, leave a gap or ask. Do not copy command output or screenshots from memory.
 
