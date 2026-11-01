@@ -2,7 +2,7 @@
 
 The audit log lists each change made through the API of your organization: who did it, on which resource, from which address, and whether it worked. This guide answers one question with it, who stopped a VM yesterday and when, then covers the retention setting and your own sign-in history.
 
-For the concepts behind the page, read [Audit Log](../../features/audit-log.md).
+For the concepts behind the page, read [Audit Log](../../features/multi-tenancy/audit-log.md).
 
 ## Before you start
 
@@ -101,5 +101,5 @@ These events belong to you, so they never appear in the organization log. The fo
 
 ## Next
 
-- [Audit Log](../../features/audit-log.md) for the event fields, the full list of event types and the permissions.
+- [Audit Log](../../features/multi-tenancy/audit-log.md) for the event fields, the full list of event types and the permissions.
 - [Organizations and projects](../../architecture/index.md#organizations-and-projects) for how users, roles, and projects fit together.

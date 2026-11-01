@@ -34,7 +34,7 @@ Superphenix uses a two-level hierarchy for tenant isolation and resource groupin
 - **Organizations**: Top-level container. Users are assigned to organizations and receive roles that apply to the projects within that organization.
 - **Projects**: Live inside an organization. Projects are where **resources** (VMs, networks, volumes, etc.) are created and stored. All resources are scoped to a project.
 
-Users are assigned to **organizations** and have **roles on projects** (e.g. viewer, editor, admin). Access control and quotas are applied at the project level, so teams can share an organization while keeping project boundaries clear.
+Users are assigned to **organizations** and have **roles on projects** (e.g. viewer, editor, admin). Access control is applied on the organization and on each project, so teams can share an organization while keeping project boundaries clear. [Quotas](../features/multi-tenancy/quotas.md) limit CPU, memory, and disk for the organization, then for each project and availability zone.
 
 ## Resources and availability zones
 

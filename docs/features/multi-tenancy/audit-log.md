@@ -14,7 +14,7 @@ The gateway records events on its own. Nothing runs inside your VMs, and no reso
 
 An event that stays `attempted` means the gateway never wrote the outcome, for example because the process stopped mid-request. The console shows it as **Attempted**.
 
-Audited routes are the write requests: create, update, delete and the action endpoints of each product, plus sign-ins, API tokens, invitation codes, memberships, IAM groups, projects, organizations and the retention setting itself. Reads leave no event. A request refused before authentication leaves no event either, so a wrong password never shows up: Kratos rejects it before the gateway sees the request.
+Audited routes are the write requests: create, update, delete and the action endpoints of each product, plus sign-ins, API tokens, invitation codes, memberships, IAM groups, projects, project and availability-zone quotas, organizations and the retention setting itself. Reads leave no event. A request refused before authentication leaves no event either, so a wrong password never shows up: Kratos rejects it before the gateway sees the request.
 
 A failed write to the log never blocks the request. The gateway logs the error, increments a Prometheus counter and completes the request as usual.
 
@@ -42,7 +42,7 @@ The event holds no request body, no response body and no user agent.
 
 ---
 
-## Event Types
+## Event Types {#event-types}
 
 The **Event** filter in the console lists the types your platform version declares, grouped by resource. As of this release:
 
@@ -56,6 +56,7 @@ The **Event** filter in the console lists the types your platform version declar
 | `ssh`                                                                                      | `create`, `delete`                                                                                                    |
 | `organization`                                                                             | `create`, `update`, `delete`, `transfer`                                                                              |
 | `project`                                                                                  | `save`, `delete`                                                                                                      |
+| `quota`                                                                                    | `update`, `delete`                                                                                                    |
 | `iam.group`                                                                                | `save`, `duplicate`, `delete`                                                                                         |
 | `iam.member`                                                                               | `invite`, `remove`                                                                                                    |
 | `audit-log.retention`                                                                      | `update`                                                                                                              |
@@ -107,4 +108,4 @@ Both permissions are organization-scoped. There is no project-level audit permis
 
 `AuditLogFullAccess` and `AuditLogReadOnly` are permission sets you attach to IAM groups. The predefined **Admin** group ships with `AuditLogFullAccess`. Give auditors a group with `AuditLogReadOnly` so they read the log without touching retention. The **Audit log** entry in the sidenav appears only for users who hold the read permission.
 
-For the console walkthrough, read [Read the audit log](../user-guides/organization/audit-log.md).
+For the console walkthrough, read [Read the audit log](../../user-guides/organization/audit-log.md).

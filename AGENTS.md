@@ -38,7 +38,7 @@ Match the section. Do not put a console click-path in Features, or a concept ess
 | Home (`home.md`) | What Superphenix is, who it is for, where to go next. | Short sections, bold terms, links into the rest of the site. |
 | Architecture | How the platform is organized: clusters, AZs, regions, organizations, projects, topology, hardware, network. | Concept first. Open with what the page decides. Comparison tables. No console steps. |
 | Installation | How to install. Getting started is the 3-node lab. The deployment guide is the full path (management plane, OS, AZ). | Numbered procedures, prerequisites, Linux and Windows command tabs. |
-| Features | What a product does, its fields, and its constraints. | Definition, behavior, tables, a link to the user guide. |
+| Features | What a product does, its fields, and its constraints. | Definition, behavior, tables, a link to the user guide. Superphenix terms only. |
 | User guides | Console walkthroughs a tenant can follow. | Sidenav path, numbered steps, one screenshot per meaningful step, `docs-demo-*` names. |
 | Operations | Day-2 work for operators| Procedure or constraint, with the failure mode stated. |
 | Blog | Narrative posts. | YAML frontmatter (`date`, `authors`, optional `links`). Authors live in `docs/blog/.authors.yml`. |
@@ -73,6 +73,7 @@ Write American English, in complete sentences, for someone who will follow the p
 - Open every page with one paragraph that says what the page is for and links to the pages that sit beside it.
 - State the constraint and the consequence together. Hardware and network pages do this with `!!! warning` and `!!! important`.
 - Prefer the words already on the site. Use **Instance** when describing the console product, and **virtual machine** in user guides and in prose about the guest.
+- Features speak only in Superphenix terms: organization, project, availability zone, Instance, Disk, VPC, and the other product names on the site. Do not name Kubernetes objects or fields (`ResourceQuota`, Pod, Namespace, `requests.cpu`, and the rest). A feature page should be readable without knowing Kubernetes. Architecture, installation, and operations may name the cluster technology when the operator has to act on it.
 - Mark work that is not shipped yet with *Soon*, as the home page does for file storage, databases, and inference.
 - Link upstream for Talos, Ceph, Helm, and Kubernetes instead of restating their manuals. Ceph's hardware and network docs are the authority for storage-node sizing.
 - Avoid unnecessary links between articles when they're not related, or to avoid clutter.
@@ -110,6 +111,7 @@ Zensical is configured for admonitions, details, content tabs, superfences, attr
 - Long reference pages may separate major sections with `---`.
 - Code fences declare a language. Placeholders use angle brackets (`<node-ip>`, `<api-endpoint>`). Comments inside YAML say what the reader must change.
 - Images use a descriptive alt string. Screenshots live in `docs/assets/screenshots/<area>/`. Diagrams are SVG from `docs/sketch/`, referenced by relative path. Attribute classes with attr_list (`{ .index-logo }`, `{ .rayshift-logo }`).
+- A relationship that belongs in the page, such as how a quota splits, uses a `mermaid` fence. Zensical renders it. Prefer a flowchart. Do not add a diagram library.
 
 ```markdown
 !!! warning "NAT gateway traffic to a node"
