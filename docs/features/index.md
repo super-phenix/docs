@@ -42,11 +42,19 @@ The foundation provides the core capabilities that the rest of the platform reli
 
     [:octicons-arrow-right-24: PaaS](paas/index.md)
 
+-   :lucide-users:{ .lg .middle } **Multi-tenancy**
+
+    ---
+
+    **Audit log** and **quotas** for an organization and its projects.
+
+    [:octicons-arrow-right-24: Multi-tenancy](multi-tenancy/index.md)
+
 </div>
 
 ## How they fit together
 
-- **Tenancy**: Organizations and projects isolate resources and access; see [Architecture overview](../architecture/index.md#organizations-and-projects).
+- **Tenancy**: Organizations and projects isolate resources and access; see [Architecture overview](../architecture/index.md#organizations-and-projects). [Multi-tenancy](multi-tenancy/index.md) covers the audit log and quotas.
 - **Foundation**: Virtualization runs VMs; the network layer provides VPCs and subnets; storage backs disks; tooling drives GitOps and the console.
 - **Managed services**: When enabled, PaaS and SaaS consume the same virtualization, storage, and network primitives.
 

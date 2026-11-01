@@ -73,7 +73,11 @@ nav = [
         { "Network configuration" = "paas/kaas/network-configuration.md" }
       ]}
     ]},
-    { "Audit Log" = "features/audit-log.md" },
+    { "Multi-tenancy" = [
+      { "Overview" = "features/multi-tenancy/index.md" },
+      { "Audit Log" = "features/multi-tenancy/audit-log.md" },
+      { "Quotas" = "features/multi-tenancy/quotas.md" },
+    ]},
   ]},
   { "User Guides" = [
     { "Overview" = "user-guides/index.md" },
@@ -106,6 +110,7 @@ nav = [
       { "Hardening exposed dashboards" = "operations/management/hardening-dashboards.md" }
     ]},
     { "Add an availability zone" = "operations/adding-an-az.md" },
+    { "Add an organization quota" = "operations/adding-an-organization-quota.md" },
     { "Kernel optimization" = [
       { "Manual tuning" = "operations/kernel-optimization/manual-tuning.md" },
       { "Automated tuning" = "operations/kernel-optimization/automated-tuning.md" }
@@ -201,6 +206,9 @@ pygments_lang_class = true
 [project.markdown_extensions.pymdownx.inlinehilite]
 [project.markdown_extensions.pymdownx.snippets]
 [project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true
 [project.markdown_extensions.pymdownx.details]
