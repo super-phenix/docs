@@ -34,9 +34,6 @@
         <loc>https://docs.superphenix.net/features/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/features/audit-log/</loc>
-      </url>
-      <url>
         <loc>https://docs.superphenix.net/features/compute/</loc>
       </url>
       <url>
@@ -44,6 +41,15 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/features/compute/instance/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/multi-tenancy/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/multi-tenancy/audit-log/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/features/multi-tenancy/quotas/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/features/network/</loc>
@@ -134,6 +140,9 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/adding-an-az/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/adding-an-organization-quota/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/applying-configuration-changes/</loc>
