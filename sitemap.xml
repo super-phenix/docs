@@ -136,6 +136,9 @@
         <loc>https://docs.superphenix.net/operations/adding-an-az/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/operations/applying-configuration-changes/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/operations/kernel-optimization/automated-tuning/</loc>
       </url>
       <url>
@@ -143,6 +146,33 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/limitations/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/accepting-new-users/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/custom-css/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/default-project-resources/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/hardening-dashboards/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/mfa-and-recovery/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/private-azs/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/sending-emails/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/super-admins/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/validating-users/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/network/configure-nat-gateways/</loc>
