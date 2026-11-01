@@ -199,16 +199,16 @@
         <loc>https://docs.superphenix.net/reference/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/reference/api/</loc>
+        <loc>https://docs.superphenix.net/reference/crds/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/reference/api/cluster/</loc>
+        <loc>https://docs.superphenix.net/reference/crds/cluster/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/reference/api/organization/</loc>
+        <loc>https://docs.superphenix.net/reference/crds/organization/</loc>
       </url>
       <url>
-        <loc>https://docs.superphenix.net/reference/api/project/</loc>
+        <loc>https://docs.superphenix.net/reference/crds/project/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/reference/helm/</loc>
@@ -260,6 +260,15 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/reference/helm/tuned/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/openapi/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/openapi/superphenix-api/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/reference/openapi/superphenix-controller/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/user-guides/</loc>
