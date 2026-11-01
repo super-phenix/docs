@@ -151,7 +151,9 @@ When a page needs a field, a default, or a behavior this site does not already s
 
 Document a default only when `defaultConfig` or a chart `values.yaml` sets it. Leave credentials and internal addresses out of the page.
 
-The published reference for those CRDs and chart values is `docs/reference/`. Update that section when the API or a chart value changes, and add the page to `nav` if it is new.
+The published reference for those CRDs and chart values is `docs/reference/crds/` and `docs/reference/helm/`. Update that section when a CRD or a chart value changes, and add the page to `nav` if it is new.
+
+HTTP APIs are the Swagger documents in `docs/assets/openapi/`, rendered under Reference → OpenAPI. Refresh them from the product checkout with `python3 scripts/sync-openapi.py`.
 
 ## Tests
 

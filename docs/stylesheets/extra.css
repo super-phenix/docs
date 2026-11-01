@@ -13,6 +13,40 @@
   text-align: justify;
 }
 
+/* Swagger pages use the width to the right of the content column. */
+.md-main__inner.md-grid:has(#swagger-ui) {
+  max-width: none;
+}
+.md-main__inner.md-grid:has(#swagger-ui) > .md-sidebar--secondary {
+  display: none;
+}
+.md-typeset .swagger-ui .wrapper {
+  max-width: none;
+  padding: 0;
+}
+.md-typeset .swagger-ui p,
+.md-typeset .swagger-ui li {
+  text-align: left;
+}
+.swagger-ui .topbar {
+  display: none;
+}
+.swagger-ui .information-container {
+  padding-top: 0;
+}
+/* Empty schemes list leaves Authorize alone in a full-width bar. */
+.md-typeset .swagger-ui .scheme-container:not(:has(.schemes-server-container)) {
+  background: transparent;
+  box-shadow: none;
+  padding: 0 0 1.25rem;
+}
+.md-typeset .swagger-ui .scheme-container .schemes:not(:has(.schemes-server-container)) {
+  justify-content: flex-start;
+}
+.md-typeset .swagger-ui .info__contact {
+  display: none;
+}
+
 .md-header__button.md-logo img, .md-header__button.md-logo svg,
 .md-nav__button.md-logo img, .md-nav__button.md-logo svg {
   display: block;

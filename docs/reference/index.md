@@ -1,18 +1,26 @@
 # Reference
 
-Field-level reference for the Superphenix API and for the Helm charts that install and configure the platform.
+Field-level reference for the Superphenix custom resources, the HTTP APIs, and the Helm charts that install and configure the platform.
 
-The API is the `operator.superphenix.net/v1alpha1` group: **Cluster**, **Organization**, and **Project**. Chart values are the keys and defaults an operator sets on the platform charts and on the component charts those platforms render.
+This section is useful for configuration values and learning how to automate tasks through the Superphenix API.
 
 <div class="grid cards" markdown>
 
--   :lucide-braces:{ .lg .middle } **API**
+-   :lucide-braces:{ .lg .middle } **CRDs**
 
     ---
 
     Custom resources for clusters, organizations, and projects.
 
-    [:octicons-arrow-right-24: API](api/index.md)
+    [:octicons-arrow-right-24: CRDs](crds/index.md)
+
+-   :lucide-file-json:{ .lg .middle } **OpenAPI**
+
+    ---
+
+    Swagger documents for the API and the per-AZ controller.
+
+    [:octicons-arrow-right-24: OpenAPI](openapi/index.md)
 
 -   :lucide-package:{ .lg .middle } **Helm charts**
 
@@ -23,5 +31,3 @@ The API is the `operator.superphenix.net/v1alpha1` group: **Cluster**, **Organiz
     [:octicons-arrow-right-24: Helm charts](helm/index.md)
 
 </div>
-
-For how a cluster is deployed, see [Configure a cluster](../installation/deployment-guide/installing-an-az/configuring-a-cluster.md). For what an availability zone and a project mean, see [Architecture overview](../architecture/index.md).

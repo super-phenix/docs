@@ -8,6 +8,7 @@ repo_name = "super-phenix/superphenix"
 docs_dir = "docs"
 site_dir = "site"
 extra_css = ["stylesheets/extra.css"]
+extra_javascript = ["javascripts/swagger.js"]
 
 nav = [
   { "Home" = "home.md" },
@@ -117,11 +118,16 @@ nav = [
   ]},
   { "Reference" = [
     { "Overview" = "reference/index.md" },
-    { "API" = [
-      { "Overview" = "reference/api/index.md" },
-      { "Cluster" = "reference/api/cluster.md" },
-      { "Organization" = "reference/api/organization.md" },
-      { "Project" = "reference/api/project.md" }
+    { "CRDs" = [
+      { "Overview" = "reference/crds/index.md" },
+      { "Cluster" = "reference/crds/cluster.md" },
+      { "Organization" = "reference/crds/organization.md" },
+      { "Project" = "reference/crds/project.md" }
+    ]},
+    { "OpenAPI" = [
+      { "Overview" = "reference/openapi/index.md" },
+      { "superphenix-api" = "reference/openapi/superphenix-api.md" },
+      { "superphenix-controller" = "reference/openapi/superphenix-controller.md" }
     ]},
     { "Helm charts" = [
       { "Overview" = "reference/helm/index.md" },
