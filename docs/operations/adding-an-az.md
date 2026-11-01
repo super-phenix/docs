@@ -79,17 +79,10 @@ management:
 | `authSecret` | Shared with `apps.superphenix-controller.values.config.http.authSecret` on that AZ. |
 | `destination` | Argo CD cluster that receives this AZ's applications. |
 | `logoUrl` | Optional logo for the console. |
-| `whitelist` | Optional list of organization IDs allowed to see this AZ. Empty means every organization. |
+| `whitelist` | Optional list of organization IDs allowed to see this AZ. Empty means every organization. [Private availability zones](management/private-azs.md) details how to add whitelisted organizations. |
 | `azDomains.<code>.internal` | Host used inside the cluster to reach Kubernetes control planes for this AZ. |
 | `azDomains.<code>.external` | Public control-plane hostname template. `%s` is the cluster ID. |
 
-```bash
-OPERATOR_VERSION="$(curl -fsSL -o /dev/null -w '%{url_effective}' https://github.com/super-phenix/superphenix/releases/latest | sed 's#.*/v##')"
-
-helm upgrade superphenix-operator \
-  "oci://ghcr.io/super-phenix/charts/superphenix-operator:${OPERATOR_VERSION}" \
-  --namespace superphenix-system \
-  -f values.yaml
-```
+Upgrade the operator release as described in [Applying configuration changes](applying-configuration-changes.md#apply-a-change).
 
 The AZ appears in the console once the API can reach the controller. Open it from [Accessing Superphenix](accessing-superphenix.md).

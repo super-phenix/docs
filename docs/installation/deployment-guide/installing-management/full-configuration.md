@@ -122,7 +122,7 @@ The API ingress is enabled on the console domain at `/api`. It connects to Postg
 - Host `postgres.<namespace>.svc`, port `5432`
 - Database, username: `superphenix`
 
-`userIsActiveOnCreate` defaults to `true`, so a self-service registration can sign in immediately. [Accessing Superphenix](../../../operations/accessing-superphenix.md) describes the login page and how to restrict registration on a public deployment.
+`userIsActiveOnCreate` defaults to `true`, so a self-service registration can sign in immediately. [Validating users manually](../../../operations/management/validating-users.md) holds new accounts until an administrator activates them. [Accessing Superphenix](../../../operations/accessing-superphenix.md) describes the login page.
 
 The chart's local AZ entry (`config.azs.local`) points the API at an in-cluster Superphenix controller named "Local AZ". Keep it when a hyperconverged AZ runs on this cluster. Set it to `null` when it does not. See [The default local AZ](index.md#the-default-local-az). Register any other AZ with [Add an availability zone](../../../operations/adding-an-az.md).
 
@@ -135,7 +135,7 @@ Kratos stores identities and sessions in the `kratos` database on the same Postg
 Defaults that matter at install time:
 
 - Code-based login is enabled (15-minute lifespan). Account recovery is enabled. Email verification is disabled.
-- Courier SMTP is required by Kratos even when you are not sending mail. The chart default is a placeholder (`smtps://dummy@example.org` on localhost). To send recovery mail, set `apps.kratos.values.kratos.config.courier.smtp` (`connection_uri`, `from_address`, `from_name`).
+- Courier SMTP is required by Kratos even when you are not sending mail. The chart default is a placeholder (`smtps://dummy@example.org` on localhost). To send recovery mail, set `apps.kratos.values.kratos.config.courier.smtp` (`connection_uri`, `from_address`, `from_name`). [Sending emails](../../../operations/management/sending-emails.md) is the procedure. Recovery and second factors are in [MFA and recovery](../../../operations/management/mfa-and-recovery.md).
 - The public listener is `https://<console-domain>/accounts`. The ingress strips the `/accounts` prefix before the request reaches Kratos.
 - Database migrations run automatically on upgrade (`automigration.enabled: true`).
 
