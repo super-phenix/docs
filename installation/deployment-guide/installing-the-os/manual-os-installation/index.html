@@ -5527,7 +5527,7 @@
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Official support scope</p>
-<p>Superphenix is <strong>only officially supported on Talos</strong>. Use <strong>Talos 1.12.6 or older</strong>: newer versions hit a Linux kernel bug that breaks the SDN.</p>
+<p>Superphenix is <strong>only officially supported on Talos</strong>. Use <strong>Talos newer than 1.13.6 (or older than 1.13)</strong>: versions in-between hit a Linux kernel bug that breaks the SDN.</p>
 </div>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>Before you start, confirm:</p>
@@ -5535,7 +5535,7 @@
 <li><strong>Hardware and network</strong> meet the profile for your topology: see <a data-preview="" href="../../../../architecture/hardware-requirements/">Hardware requirements</a> and <a data-preview="" href="../../../../architecture/network-requirements/">Network requirements</a>.</li>
 <li><strong>Deployment topology</strong> is chosen (hyperconverged vs decoupled, management in vs out): see <a data-preview="" href="../../../../architecture/deployment-topology/">Deployment topology</a>.</li>
 <li><strong><code>talosctl</code></strong> (<a href="https://www.talos.dev/latest/reference/cli/">CLI reference</a>) and <strong><code>kubectl</code></strong> on your workstation.</li>
-<li><strong>Talos 1.12.6 or older</strong> installer media (ISO, PXE, or disk image).</li>
+<li><strong>Talos &gt;= 1.13.6, or &lt; 1.13</strong> installer media (ISO, PXE, or disk image).</li>
 <li>Servers can reach each other on the <strong>cluster VLAN</strong> and your workstation can reach each node on the Talos API port during bootstrap.</li>
 </ul>
 <h2 id="installation-overview">Installation overview</h2>
@@ -5615,7 +5615,7 @@
 </details>
 <p>Official reference: <a href="https://talos.dev/v1.11/introduction/getting-started">Talos Getting Started</a>.</p>
 <h2 id="step-2-boot-the-nodes">Step 2: Boot the nodes</h2>
-<p>Install <strong>Talos 1.12.6 or older</strong> on each server using one of:</p>
+<p>Install <strong>Talos</strong> on each server using one of:</p>
 <ul>
 <li><strong>ISO</strong>: boot from the Talos installer image and install to disk.</li>
 <li><strong>PXE</strong>: network boot for repeatable datacenter provisioning.</li>
