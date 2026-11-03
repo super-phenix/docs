@@ -15,7 +15,7 @@ For the installation of Talos Linux on **GPU nodes**, see [Installing GPU Nodes]
 - **Bring your own cluster**: you manage Talos upgrades, machine configs, and node lifecycle yourself; Superphenix connects to the cluster via a `Cluster` resource with `connection.mode: Local` or `Remote`.
 
 !!! warning "Official support scope"
-    Superphenix is **only officially supported on Talos**. Use **Talos 1.12.6 or older**: newer versions hit a Linux kernel bug that breaks the SDN.
+    Superphenix is **only officially supported on Talos**. Use **Talos newer than 1.13.6 (or older than 1.13)**: versions in-between hit a Linux kernel bug that breaks the SDN.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ Before you start, confirm:
 - **Hardware and network** meet the profile for your topology: see [Hardware requirements](../../../architecture/hardware-requirements.md) and [Network requirements](../../../architecture/network-requirements.md).
 - **Deployment topology** is chosen (hyperconverged vs decoupled, management in vs out): see [Deployment topology](../../../architecture/deployment-topology.md).
 - **`talosctl`** ([CLI reference](https://www.talos.dev/latest/reference/cli/)) and **`kubectl`** on your workstation.
-- **Talos 1.12.6 or older** installer media (ISO, PXE, or disk image).
+- **Talos >= 1.13.6, or < 1.13** installer media (ISO, PXE, or disk image).
 - Servers can reach each other on the **cluster VLAN** and your workstation can reach each node on the Talos API port during bootstrap.
 
 ## Installation overview
@@ -117,7 +117,7 @@ Official reference: [Talos Getting Started](https://talos.dev/v1.11/introduction
 
 ## Step 2: Boot the nodes
 
-Install **Talos 1.12.6 or older** on each server using one of:
+Install **Talos** on each server using one of:
 
 - **ISO**: boot from the Talos installer image and install to disk.
 - **PXE**: network boot for repeatable datacenter provisioning.

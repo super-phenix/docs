@@ -7,7 +7,7 @@ Run every command from a **bootstrap host** that can reach the nodes (typically 
 ## Prerequisites
 
 - **talosctl** ([CLI reference](https://www.talos.dev/latest/reference/cli/)), **Helm** ([install](https://helm.sh/docs/intro/install/)), and **kubectl**. Linux commands also use **curl**.
-- **Talos 1.12.6 or older**: newer versions hit a Linux kernel bug that breaks the SDN. Superphenix is **only officially supported on Talos**.
+- **Talos newer than 1.13.6, or older than 1.13**: versions in-between hit a Linux kernel bug that breaks the SDN. Superphenix is **only officially supported on Talos**.
 - An **IPv4 range on the network behind the external interface**. Superphenix picks addresses from that subnet at random and assigns them to **NAT gateways** and **elastic IPs**. If the subnet is shared with node addresses or other devices, those IPs can be excluded from the IPAM. Ideally, reserve the whole range (or a dedicated part of it) for Superphenix.
 - A **domain name** for the console. The cluster serves HTTP(S) on **every node** on ports **80** and **443**, so DNS only needs to point at **one** node. For HA, use a load balancer or DNS round-robin.
 
