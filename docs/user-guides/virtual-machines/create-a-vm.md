@@ -26,11 +26,23 @@ The AZ is final. To run the same workload elsewhere, create a new VM in the othe
 
 ## Step 2: Compute
 
-1. Choose a **RunStrategy**. `Manual` (the default) creates the VM stopped, and you start it yourself. `Always` boots the VM as soon as its disks are ready and restarts it if it stops. The guide uses `Always`.
+1. Choose a **RunStrategy**. It decides what happens when the VM stops:
+
+    | RunStrategy | At creation | When the VM stops |
+    | :--- | :--- | :--- |
+    | `Manual` (default) | Started once | Stays stopped until you click **Start** |
+    | `Always` | Started | Restarted automatically, whatever the reason |
+    | `RerunOnFailure` | Started | Restarted only if it crashed, not after a clean shutdown |
+    | `Once` | Started | Never restarted |
+    | `Halted` | Not started | Stays stopped until you click **Start** |
+
+    In every case except `Halted`, the VM boots as soon as its disks are ready. The guide uses `Always`.
 2. Keep **Instance Type** on `linux`.
 3. Pick **Cores** (1 to 32) and **RAM** (1 to 64 GB). The guide uses 2 cores and 4 GB.
 
 ![Compute step with RunStrategy Always, 2 cores and 4 GB](../../assets/screenshots/virtual-machines/create-vm-compute.png)
+
+If the AZ has GPU servers, a **GPU** card appears below **Compute Resources**. Keep it on **None** for this guide, or pick a GPU class to attach a dedicated GPU. See [GPU](../../features/compute/gpu.md) for how it works.
 
 **Advanced options** lets you set CPU topology and other KubeVirt settings. Leave it collapsed for a first VM.
 
@@ -92,7 +104,7 @@ You can add several subnets. Each one becomes a network interface on the VM, num
 
 The console opens the instance details page. The status starts at `Pending` while the disk imports the image. Open the **Storage** tab to follow the **Progress** column.
 
-With RunStrategy `Always`, the VM boots on its own once the disk is ready and the status turns to `Running`. With `Manual`, click **Start** at the top of the page when the disk is ready.
+The VM boots on its own once the disk is ready, and the status turns to `Running`. This is true for every RunStrategy except `Halted`: with `Halted`, click **Start** at the top of the page when the disk is ready.
 
 ![Instance details page with status Running](../../assets/screenshots/virtual-machines/vm-details-general.png)
 
