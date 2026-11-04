@@ -70,6 +70,8 @@ The other source types are `Snapshot` (restore from an instance snapshot), `Clon
 
 The **CloudInit Configuration** card carries the first-boot configuration. The default one creates a `spx` user with passwordless `sudo`, sets a generated password that expires at first login, enables SSH password authentication, and points DNS at `1.1.1.1`. You read the generated password later on the instance details page.
 
+You can [change this default](../../operations/management/default-cloud-init.md) globally or for a specific availability zone. Select **View configuration** to read the one that applies to the selected zone.
+
 Switch on **Customize configuration** to write your own cloud-init user data instead.
 
 ### SSH key
