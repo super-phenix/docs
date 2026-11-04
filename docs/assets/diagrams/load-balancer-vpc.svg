@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="660" viewBox="0 0 960 660" role="img" aria-labelledby="lbvpc-title lbvpc-desc">
+  <title id="lbvpc-title">Load balancer pinned to a subnet and VPC</title>
+  <desc id="lbvpc-desc">A client on the Internet reaches a load balancer in VPC A through an Elastic IP. The load balancer selects the VMs labeled app:web in its subnet, and a client VM on a second subnet of the VPC reaches it through the virtual IP. VPC B reuses the same virtual IP for its own load balancer.</desc>
+  <defs>
+    <marker id="lbvpc-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#52606d"/>
+    </marker>
+    <style>
+      .vpc { fill: #ffffff; stroke: #93a4b5; stroke-width: 2; stroke-dasharray: 6 4; }
+      .subnet { fill: #f0f4f8; stroke: #52606d; stroke-width: 2; }
+      .box { fill: #ffffff; stroke: #52606d; stroke-width: 2; }
+      .lb { fill: #e8f1ff; stroke: #2563eb; stroke-width: 2; }
+      .title { font: 600 18px system-ui, sans-serif; fill: #172b4d; }
+      .text { font: 15px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #172b4d; }
+      .tag { font: 14px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #1d4ed8; }
+      .label { font: 14px system-ui, sans-serif; fill: #334e68; }
+      .mask { fill: #f0f4f8; }
+      .arrow { fill: none; stroke: #52606d; stroke-width: 2; marker-end: url(#lbvpc-arrow); }
+    </style>
+  </defs>
+
+  <rect class="vpc" x="330" y="20" width="610" height="400" rx="12"/>
+  <text class="title" x="350" y="48">VPC A</text>
+  <rect class="vpc" x="330" y="450" width="610" height="190" rx="12"/>
+  <text class="title" x="350" y="478">VPC B</text>
+  <text class="label" x="920" y="478" text-anchor="end">Same VIP, separate VPC</text>
+
+  <rect class="subnet" x="350" y="64" width="340" height="336" rx="10"/>
+  <text class="label" x="366" y="90">Subnet 1 · 10.20.0.0/24</text>
+  <rect class="subnet" x="710" y="64" width="210" height="336" rx="10"/>
+  <text class="label" x="726" y="90">Subnet 2 · 10.20.1.0/24</text>
+  <rect class="subnet" x="350" y="494" width="570" height="126" rx="10"/>
+  <text class="label" x="366" y="518">Subnet 3 · 10.30.0.0/24</text>
+
+  <line class="arrow" x1="130" y1="158" x2="168" y2="158"/>
+  <line class="arrow" x1="300" y1="158" x2="368" y2="158"/>
+  <line class="arrow" x1="730" y1="158" x2="672" y2="158"/>
+  <rect class="mask" x="684" y="134" width="30" height="20"/>
+  <text class="label" x="699" y="149" text-anchor="middle">VIP</text>
+  <path class="arrow" d="M 470 206 V 230 Q 470 238 462 238 H 448 Q 440 238 440 246 V 268"/>
+  <path class="arrow" d="M 570 206 V 230 Q 570 238 578 238 H 592 Q 600 238 600 246 V 268"/>
+  <line class="arrow" x1="620" y1="570" x2="698" y2="570"/>
+
+  <rect class="box" x="20" y="118" width="110" height="80" rx="10"/>
+  <text class="title" x="75" y="150" text-anchor="middle">Internet</text>
+  <text class="label" x="75" y="176" text-anchor="middle">Client</text>
+
+  <rect class="box" x="170" y="118" width="130" height="80" rx="10"/>
+  <text class="title" x="235" y="150" text-anchor="middle">Elastic IP</text>
+  <text class="text" x="235" y="176" text-anchor="middle">203.0.113.10</text>
+
+  <rect class="lb" x="370" y="110" width="300" height="96" rx="10"/>
+  <text class="title" x="520" y="140" text-anchor="middle">Load balancer</text>
+  <text class="text" x="520" y="166" text-anchor="middle">VIP 198.18.1.1</text>
+  <text class="tag" x="520" y="190" text-anchor="middle">selector app:web</text>
+
+  <rect class="box" x="370" y="270" width="140" height="100" rx="10"/>
+  <text class="title" x="440" y="300" text-anchor="middle">VM1</text>
+  <text class="text" x="440" y="326" text-anchor="middle">10.20.0.2</text>
+  <text class="tag" x="440" y="350" text-anchor="middle">app:web</text>
+  <rect class="box" x="530" y="270" width="140" height="100" rx="10"/>
+  <text class="title" x="600" y="300" text-anchor="middle">VM2</text>
+  <text class="text" x="600" y="326" text-anchor="middle">10.20.0.3</text>
+  <text class="tag" x="600" y="350" text-anchor="middle">app:web</text>
+
+  <rect class="box" x="730" y="110" width="170" height="96" rx="10"/>
+  <text class="title" x="815" y="146" text-anchor="middle">Client VM</text>
+  <text class="text" x="815" y="176" text-anchor="middle">10.20.1.2</text>
+
+  <rect class="lb" x="370" y="530" width="250" height="80" rx="10"/>
+  <text class="title" x="495" y="560" text-anchor="middle">Load balancer</text>
+  <text class="text" x="495" y="586" text-anchor="middle">VIP 198.18.1.1</text>
+  <rect class="box" x="700" y="530" width="200" height="80" rx="10"/>
+  <text class="title" x="800" y="560" text-anchor="middle">VM3</text>
+  <text class="text" x="800" y="586" text-anchor="middle">10.30.0.2</text>
+</svg>
