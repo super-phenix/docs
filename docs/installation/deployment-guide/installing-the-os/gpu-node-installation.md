@@ -177,17 +177,14 @@ kubectl run \
     ```
 
 ### Step 4: Configure Kubevirt
-Edit the Kubevirt CRD to add the following feature gates and permitted host devices:
+Edit the Kubevirt CRD to add your GPUs to the list of permitted host devices:
 ```yaml
 spec:
   configuration:
-    developerConfiguration:
-      featureGates:
-      - GPU
-      - DisableMDEVConfiguration
     permittedHostDevices:
       pciHostDevices:
       - externalResourceProvider: true
+        # The following two values depend on your hardware; adjust accordingly
         pciVendorSelector: "10DE:2BB5"
         resourceName: "nvidia.com/GB202GL_RTX_PRO_6000_BLACKWELL_SERVER_EDITION"
 ```
