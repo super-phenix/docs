@@ -17,15 +17,14 @@ Before enabling `talos-backup`, you will need to:
 - Apply the following patch to your Talos **controlplane nodes** to allow Pod access to the Talos API:
     ```yaml
     # Talos machine configuration patch
-    spec:
-      machine:
-        features:
-          kubernetesTalosAPIAccess:
-            enabled: true
-            allowedRoles:
-            - os:etcd:backup
-            allowedKubernetesNamespaces:
-            - talos-backup # Namespace in which talos-backup is deployed
+    machine:
+      features:
+        kubernetesTalosAPIAccess:
+          enabled: true
+          allowedRoles:
+          - os:etcd:backup
+          allowedKubernetesNamespaces:
+          - talos-backup # Namespace in which talos-backup is deployed
     ```
 
 ## Enable `talos-backup`
@@ -45,17 +44,18 @@ systemConfiguration:
           bucket: "" # Base64-encoded bucket name
           accessKey: "" # Base64-encoded S3 access key
           secretKey: "" # Base64-encoded S3 secret key
+          region: "" # Base64-encoded S3 region
 ```
 
 ### Schedule
 The CronJob is configured to run **every day at 07:00 UTC** by default. You can adjust this schedule by overriding the `cronjob.schedule` value.
 
 ### Snapshot encryption
-Snapshots are encrypted with **age** using your public key; it needs to be stored in the  `cronjob.agePubKey` value.
+Before being pushed to S3, snapshots are encrypted with **age** using your public key; it needs to be stored in the  `cronjob.agePubKey` value.
 
-You can then decrypt your backups with your private key by running the following command:
+When you retrieve a backup from S3 (using any tool of your choice), you can then decrypt it with your private key by running the following command:
 ```sh
-age --decrypt -i <private-key-text-file> <file>.snap.zst.age > <file>.snap.zst
+age --decrypt -i <private-key-text-file> <file>.age > <file>
 ```
 !!! note "Don't lose your keys"
     Make sure to keep your keys safe to avoid losing access to your backups.
