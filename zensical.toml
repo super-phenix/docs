@@ -67,6 +67,7 @@ nav = [
     { "PaaS" = [
       { "KaaS" = [
         { "Overview" = "paas/kaas/index.md" },
+        { "Initial setup" = "paas/kaas/initial-setup.md" },
         { "Basic operations" = "paas/kaas/basic-operations.md" },
         { "Advanced configuration" = "paas/kaas/advanced-configuration.md" },
         { "Disaster recovery" = "paas/kaas/disaster-recovery.md" },
