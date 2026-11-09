@@ -5,22 +5,21 @@ for each AZ and set those entries in your configuration file. You need to define
 *superphenix-api* deployment controlls.
 
 ```yaml
-clusters:
-  local:
-    systemConfiguration:
-      apps:
-        superphenix-api:
-          values:
-            config:
-              productsConfig:
-                argoApp:
-                  kubernetes:
-                    azDomains:
-                      # add domains for all AZs which are controlled
-                      # by this superphenix-api instance
-                      local:
-                        external: "%s.kaas.local.example.org"
-                        internal: "azs.my-region.example.org"
+management:
+  systemConfiguration:
+    apps:
+      superphenix-api:
+        values:
+          config:
+            productsConfig:
+              argoApp:
+                kubernetes:
+                  azDomains:
+                    # add domains for all AZs which are controlled
+                    # by this superphenix-api instance
+                    local:
+                      external: "%s.kaas.local.example.org"
+                      internal: "azs.my-region.example.org"
 ```
 
 ## External domain
