@@ -55,7 +55,8 @@ Before being pushed to S3, snapshots are encrypted with **age** using your publi
 
 When you retrieve a backup from S3 (using any tool of your choice), you can then decrypt it with your private key by running the following command:
 ```sh
-age --decrypt -i <private-key-text-file> <file>.age > <file>
+# Assuming the snapshot is compressed with zstd:
+age --decrypt -i <private-key-text-file> <file>.snap.zst.age > <file>.snap.zst
 ```
 !!! note "Don't lose your keys"
     Make sure to keep your keys safe to avoid losing access to your backups.
@@ -66,4 +67,4 @@ Before encryption, snapshots are compressed with the **ztsd** algorithm. After d
 zstd --decompress ./<file>.snap.zst
 ```
 
-You can turn off compression by switching the `cronjob.enableCompression` value to `false`.
+You can turn off compression by switching the `cronjob.enableCompression` value to `false`. In that case, the decrypted file will be uncompressed already (no `.zst` extension) and you can skip this step.
