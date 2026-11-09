@@ -148,6 +148,9 @@
         <loc>https://docs.superphenix.net/operations/applying-configuration-changes/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/operations/etcd-talos-backup/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/operations/kernel-optimization/automated-tuning/</loc>
       </url>
       <url>
