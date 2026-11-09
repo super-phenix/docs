@@ -105,7 +105,8 @@ nav = [
       { "Sending emails" = "operations/management/sending-emails.md" },
       { "Validating users manually" = "operations/management/validating-users.md" },
       { "Auto-creating resources for users on project creation" = "operations/management/default-project-resources.md" },
-      { "MFA and recovery" = "operations/management/mfa-and-recovery.md" },
+      { "Account recovery and login codes" = "operations/management/recovery-and-login-codes.md" },
+      { "Multi-factor authentication" = "operations/management/mfa.md" },
       { "Setting super-admins" = "operations/management/super-admins.md" },
       { "Private availability zones" = "operations/management/private-azs.md" },
       { "Default cloud-init" = "operations/management/default-cloud-init.md" },
@@ -191,6 +192,7 @@ authors_profiles = true
 
 [project.plugins.redirects.redirect_maps]
 "index.md" = "home.md"
+"operations/management/mfa-and-recovery.md" = "operations/management/recovery-and-login-codes.md"
 
 # SEO and meta tags
 [[project.extra.meta]]
