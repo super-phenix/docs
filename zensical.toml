@@ -187,6 +187,10 @@ authors_profiles = true
 
 [project.plugins.redirects.redirect_maps]
 "index.md" = "home.md"
+"paas/kaas/basic-operations.md" = "paas/kaas/user-guides/basic-operations.md"
+"paas/kaas/advanced-configuration.md" = "paas/kaas/user-guides/advanced-configuration.md"
+"paas/kaas/disaster-recovery.md" = "paas/kaas/user-guides/disaster-recovery.md"
+"paas/kaas/network-configuration.md" = "paas/kaas/user-guides/network-configuration.md"
 
 # SEO and meta tags
 [[project.extra.meta]]

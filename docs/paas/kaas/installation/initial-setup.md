@@ -30,6 +30,8 @@ The DNS record needs to point to the public IP of your AZ.
 !!! tip "No DNS?"
     Use **[nip.io](https://nip.io)** against your AZ's public IP, for example `%s.1.2.3.4.nip.io`.
 
+    If you only want to access controlplanes locally, you can use a local node IP, but beware of [current limitations](../../../operations/limitations.md#nat-gateway-traffic-to-its-host-node).
+
 ## Internal domain
 
 This domain is used by the kubernetes nodes to find their controlplane, even if the cluster was migrated to another AZ (in case of disaster recovery). The DNS record consists of a list containing
@@ -37,4 +39,6 @@ the public IPs of all AZs in your region. The internal proxy running on each Kaa
 
 !!! tip "No DNS?"
     You can use **[nip.io](https://nip.io)** against your AZ's public IP, for example `local.1.2.3.4.nip.io`.  
-    Keep in mind that if you have multiple AZ's, the disaster recovery function will not work in this configuration.
+    Using a local node IP is also possible, but beware of [current limitations](../../../operations/limitations.md#nat-gateway-traffic-to-its-host-node).
+
+    If you have multiple AZ's, keep in mind that the disaster recovery function will not work in these configurations.

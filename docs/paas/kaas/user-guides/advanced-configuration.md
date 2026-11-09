@@ -87,6 +87,6 @@ ArgoCD connection and git repository. To assist in such endeavours, KaaS cluster
 This configmap is called `spx-cluster-info` and can be found in the `kube-system` namespace. It provides the following information under a `cluster` key:
 
 - **clusterID**: The unique SPXID of the cluster.
-- **friendlyName**: User-defined, humand readable name.
+- **friendlyName**: User-defined, human-readable name.
 - **kubeVersion**: Kubernetes release version.
 - **name**: Name of the cluster, used to generate its ID. Either UUIDv4 for console deployment or same as *friendlyName* for GitOps clusters.
