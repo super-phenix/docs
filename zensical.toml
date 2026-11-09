@@ -130,6 +130,7 @@ nav = [
       { "Configuring backups" = "operations/storage/configuring-backups.md" },
       { "Using local storage" = "operations/storage/using-local-storage.md" }
     ]},
+    { "Cluster backup and recovery" = "operations/etcd-talos-backup.md" },
     { "Limitations" = "operations/limitations.md" }
   ]},
   { "Reference" = [
