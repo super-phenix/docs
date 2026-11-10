@@ -3359,6 +3359,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../operations/management/default-cloud-init/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Default cloud-init
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../operations/management/custom-css/" class="md-nav__link">
         
   
@@ -5712,6 +5739,7 @@
 <p>The other source types are <code>Snapshot</code> (restore from an instance snapshot), <code>Clone</code> (copy an existing disk) and <code>Registry</code> (pull a container disk image).</p>
 <h3 id="cloud-init">Cloud-init</h3>
 <p>The <strong>CloudInit Configuration</strong> card carries the first-boot configuration. The default one creates a <code>spx</code> user with passwordless <code>sudo</code>, sets a generated password that expires at first login, enables SSH password authentication, and points DNS at <code>1.1.1.1</code>. You read the generated password later on the instance details page.</p>
+<p>You can <a data-preview="" href="../../../operations/management/default-cloud-init/">change this default</a> globally or for a specific availability zone. Select <strong>View configuration</strong> to read the one that applies to the selected zone.</p>
 <p>Switch on <strong>Customize configuration</strong> to write your own cloud-init user data instead.</p>
 <h3 id="ssh-key">SSH key</h3>
 <p>Pick a key in <strong>Add an SSH key</strong> to inject it into the VM. You manage keys under <strong>SSH Keys</strong> in the sidenav. Skip this if you plan to log in with the password.</p>
