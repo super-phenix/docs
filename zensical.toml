@@ -107,6 +107,7 @@ nav = [
       { "MFA and recovery" = "operations/management/mfa-and-recovery.md" },
       { "Setting super-admins" = "operations/management/super-admins.md" },
       { "Private availability zones" = "operations/management/private-azs.md" },
+      { "Default cloud-init" = "operations/management/default-cloud-init.md" },
       { "Custom CSS" = "operations/management/custom-css.md" },
       { "Hardening exposed dashboards" = "operations/management/hardening-dashboards.md" }
     ]},
