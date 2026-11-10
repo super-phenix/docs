@@ -24,7 +24,7 @@
       
       
       <link rel="icon" href="../../../assets/favicon.svg">
-      <meta name="generator" content="zensical-0.1.0">
+      <meta name="generator" content="zensical-0.1.1">
     
     
       
@@ -35,7 +35,7 @@
       
         
       
-      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.4ab2de0c.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.ebb7f775.min.css">
       
         
           
@@ -1747,6 +1747,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#subnet-and-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Subnet and VPC
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#virtual-ip-range" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -2649,6 +2660,33 @@
     
   
   Create a subnet with a NAT gateway
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../user-guides/network/create-a-load-balancer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Create a load balancer
 
     
   </span>
@@ -5343,6 +5381,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#subnet-and-vpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Subnet and VPC
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#virtual-ip-range" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -5521,12 +5570,21 @@
 
 <h1 id="load-balancer">Load Balancer</h1>
 <p>A <strong>Load Balancer</strong> is a Layer 3/Layer 4 (TCP/UDP) reverse proxy and traffic distributor. It exposes a dedicated <strong>Virtual IP (VIP)</strong> within an Availability Zone (AZ) and forwards incoming connections to pools of backend VMs or pods using <strong>TCP</strong>, <strong>UDP</strong>, or <strong>SCTP</strong> (protocol availability may vary by release). Listeners can reference <strong>named ports</strong> for clarity in larger configs.</p>
+<h2 id="subnet-and-vpc">Subnet and VPC</h2>
+<p>Every load balancer takes a <strong>subnet</strong> when you create it. The platform pins the load balancer to that subnet and to the <strong>VPC</strong> that owns the subnet.</p>
+<ul>
+<li>Pick a subnet of a VPC you own or that is shared with your project.- Any VM in the VPC reaches the VIP, whatever its subnet, as long as the VPC routes between the subnets.</li>
+<li>The subnet cannot change after creation. To move a load balancer to another subnet, delete it and create it again.</li>
+<li>Health check <strong>source</strong> addresses come from this subnet.</li>
+<li>To reach the load balancer from the Internet, map an <a data-preview="" href="../eip/">Elastic IP</a> to its VIP. The subnet needs a NAT gateway.</li>
+</ul>
+<p><img alt="A load balancer pinned to a subnet, reached from the Internet through an Elastic IP and from another subnet through its VIP, with the same VIP reused in a second VPC" src="../../../assets/diagrams/load-balancer-vpc.svg" /></p>
 <h2 id="virtual-ip-range">Virtual IP range</h2>
 <ul>
-<li>The front <strong>virtual IP</strong> is chosen by you from <strong><code>198.18.0.0/16</code></strong> (IPv4 only at the time of writing).</li>
-<li><strong>Do not</strong> reuse the same virtual IP on two load balancers.</li>
+<li>You choose the front <strong>virtual IP</strong> from <strong><code>198.18.0.0/16</code></strong> (IPv4 only at the time of writing).</li>
+<li>A VIP is <strong>unique within a VPC</strong>. The platform checks every load balancer of the AZ and rejects a second one on the same VIP with an error.</li>
+<li>Two load balancers in <strong>different VPCs</strong> can use the same VIP.</li>
 </ul>
-<p>A load balancer is tied to a <strong>subnet</strong>; routing inside the <strong>VPC</strong> lets <strong>any VM in that VPC</strong> reach the VIP when the VPC routes to the subnet that owns it. The <strong>subnet</strong> is inferred from <strong>load balancer mapping</strong> (see below).</p>
 <h2 id="mapping-backends">Mapping (backends)</h2>
 <p><strong>Mapping</strong> defines where traffic is sent:</p>
 <table>
@@ -5548,10 +5606,10 @@
 </tbody>
 </table>
 <p>You then define <strong>ports</strong> (for example <strong>80</strong> / <strong>443</strong>) for forwarding.</p>
-<p><strong>Health checks</strong> probe backends; failing members are removed. Health check <strong>source</strong> addresses come from the <strong>subnet</strong> attached to the load balancer.</p>
+<p><strong>Health checks</strong> probe backends; failing members are removed.</p>
 <div class="admonition warning">
-<p class="admonition-title">Same subnet for all backends</p>
-<p>Selector or endpoint configuration must resolve to backends on a <strong>single subnet</strong>. Only the <strong>first network interface</strong> of each VM participates in load balancing: <strong>secondary NICs</strong> are not used. <strong>All VMs behind one load balancer should sit in the same subnet.</strong></p>
+<p class="admonition-title">Backends must sit in the load balancer's subnet</p>
+<p>Every backend must be in the subnet you chose for the load balancer. The platform refuses endpoints and matching VMs from any other subnet. Only the <strong>first network interface</strong> of each VM participates in load balancing: <strong>secondary NICs</strong> are not used.</p>
 </div>
 <hr />
 <h2 id="backend-pool-strategies">Backend Pool Strategies</h2>
@@ -5601,9 +5659,12 @@
 <h2 id="operational-constraints">Operational Constraints</h2>
 <ul>
 <li><strong>AZ Scoping</strong>: The Virtual IP and its target backends must reside within the same Availability Zone.</li>
+<li><strong>Pinned subnet</strong>: A load balancer keeps the subnet it was created with. Updates cannot change it.</li>
+<li><strong>Earlier load balancers</strong>: Load balancers created before subnet pinning keep running and you can delete them. An update returns an error until you delete the load balancer and create it again with a subnet. Their VIPs still count toward the uniqueness check.</li>
 <li><strong>Cluster Locks</strong>: Load balancers created and managed by Kubernetes-as-a-Service (KaaS) clusters (such as Ingress controller LBs) are protected against destructive manual modifications in the console.</li>
 <li><strong>GitOps Tracking</strong>: Load Balancers managed declaratively display synchronization status and links to their associated ArgoCD applications.</li>
 </ul>
+<p>For a step-by-step walkthrough, see <a data-preview="" href="../../../user-guides/network/create-a-load-balancer/">Create a load balancer</a>.</p>
 
 
 
@@ -5692,7 +5753,7 @@
       <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.copy","navigation.tabs","navigation.path"],"redirect":"../../../redirect.json","search":"../../../assets/javascripts/workers/search.719e0d91.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.d31f0ffa.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.3cb411a8.min.js"></script>
       
         <script src="../../../javascripts/swagger.js"></script>
       
