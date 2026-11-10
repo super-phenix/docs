@@ -90,3 +90,8 @@ This configmap is called `spx-cluster-info` and can be found in the `kube-system
 - **friendlyName**: User-defined, human-readable name.
 - **kubeVersion**: Kubernetes release version.
 - **name**: Name of the cluster, used to generate its ID. Either UUIDv4 for console deployment or same as *friendlyName* for GitOps clusters.
+- **organizationID**: SPXID of the organization.
+- **projectID**: SPXID of the project.
+- **location**: AZ in which the cluster is deployed.
+
+You can also find those values here: [kaas-essentials](https://github.com/super-phenix/superphenix/blob/main/components/dependencies/kaas-essentials/values.yaml).
