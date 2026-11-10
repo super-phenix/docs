@@ -37,6 +37,9 @@
         <loc>https://docs.superphenix.net/features/compute/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/features/compute/gpu/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/features/compute/instance-snapshot/</loc>
       </url>
       <url>
@@ -146,6 +149,9 @@
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/applying-configuration-changes/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/compute/gpu-passthrough/</loc>
       </url>
       <url>
         <loc>https://docs.superphenix.net/operations/etcd-talos-backup/</loc>

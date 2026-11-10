@@ -1595,6 +1595,33 @@
 
                 
               
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./gpu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  GPU
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
             </ul>
           </nav>
         
@@ -3514,7 +3541,7 @@
   <span class="md-ellipsis">
     
   
-  Network
+  Compute
 
     
   </span>
@@ -3527,6 +3554,91 @@
         
           <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
             <label class="md-nav__title" for="__nav_6_7">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Compute
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/compute/gpu-passthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Enabling GPU passthrough
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Network
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_8">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -3670,10 +3782,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_9" >
         
           
-          <label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="0">
             
   
   
@@ -3691,8 +3803,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_8">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_9">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -5456,6 +5568,12 @@
 <p>Point-in-time snapshots of virtual machine configuration and attached disks for rollbacks and state capture.</p>
 <p><a data-preview="" href="instance-snapshot/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> Instance snapshots</a></p>
 </li>
+<li>
+<p><strong><a data-preview="" href="gpu/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 7v1.5h1V17h1.5V7zm4 0v9h1v1h7v-1h8V7zm11.5 2a2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5 2.5 2.5 0 0 1-2.5-2.5A2.5 2.5 0 0 1 17.5 9"/></svg></span> GPU</a></strong></p>
+<hr />
+<p>Dedicated GPUs attached to virtual machines with PCI passthrough, chosen by GPU class.</p>
+<p><a data-preview="" href="gpu/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> GPU</a></p>
+</li>
 </ul>
 </div>
 <h2 id="core-capabilities">Core Capabilities</h2>
@@ -5464,6 +5582,7 @@
 <li><strong>Multi-Interface Networking</strong>: Attach multiple isolated L2 subnets with automatic IPAM or static IP assignment.</li>
 <li><strong>Persistent Storage</strong>: Attach bootable root volumes, secondary block disks, CD-ROM ISOs, or OCI container disks.</li>
 <li><strong>Access and Consoles</strong>: Connect via SSH, or use the browser-based web serial terminal and graphical VNC console.</li>
+<li><strong>GPU Passthrough</strong>: Attach a dedicated GPU to a VM, chosen from the GPU classes available in the AZ.</li>
 <li><strong>Firmware Options</strong>: Support for legacy BIOS, UEFI, Secure Boot, persistent EFI variables, and vTPM 2.0.</li>
 <li><strong>Cloud-Init Initialization</strong>: Automatic user creation, SSH key injection, and custom user data execution on first boot.</li>
 </ul>

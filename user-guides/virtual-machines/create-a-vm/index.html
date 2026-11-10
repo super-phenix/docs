@@ -1508,6 +1508,33 @@
 
                 
               
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../features/compute/gpu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  GPU
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
             </ul>
           </nav>
         
@@ -3636,7 +3663,7 @@
   <span class="md-ellipsis">
     
   
-  Network
+  Compute
 
     
   </span>
@@ -3649,6 +3676,91 @@
         
           <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_7_label" aria-expanded="false">
             <label class="md-nav__title" for="__nav_6_7">
+              <span class="md-nav__icon md-icon"></span>
+              
+  
+  Compute
+
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operations/compute/gpu-passthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Enabling GPU passthrough
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+            </ul>
+          </nav>
+        
+      
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Network
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_8">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -3792,10 +3904,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_9" >
         
           
-          <label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6_9" id="__nav_6_9_label" tabindex="0">
             
   
   
@@ -3813,8 +3925,8 @@
           </label>
         
         
-          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_8_label" aria-expanded="false">
-            <label class="md-nav__title" for="__nav_6_8">
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_9_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6_9">
               <span class="md-nav__icon md-icon"></span>
               
   
@@ -5706,11 +5818,51 @@
 <p>The AZ is final. To run the same workload elsewhere, create a new VM in the other AZ.</p>
 <h2 id="step-2-compute">Step 2: Compute</h2>
 <ol>
-<li>Choose a <strong>RunStrategy</strong>. <code>Manual</code> (the default) creates the VM stopped, and you start it yourself. <code>Always</code> boots the VM as soon as its disks are ready and restarts it if it stops. The guide uses <code>Always</code>.</li>
-<li>Keep <strong>Instance Type</strong> on <code>linux</code>.</li>
-<li>Pick <strong>Cores</strong> (1 to 32) and <strong>RAM</strong> (1 to 64 GB). The guide uses 2 cores and 4 GB.</li>
+<li>
+<p>Choose a <strong>RunStrategy</strong>. It decides what happens when the VM stops:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">RunStrategy</th>
+<th style="text-align: left;">At creation</th>
+<th style="text-align: left;">When the VM stops</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Manual</code> (default)</td>
+<td style="text-align: left;">Started once by the API (not when deployed with GitOps)</td>
+<td style="text-align: left;">Stays stopped until you click <strong>Start</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Always</code></td>
+<td style="text-align: left;">Started</td>
+<td style="text-align: left;">Restarted automatically, whatever the reason</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>RerunOnFailure</code></td>
+<td style="text-align: left;">Started</td>
+<td style="text-align: left;">Restarted if it fails (for example, its node goes down), not after a shutdown from inside the guest</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Once</code></td>
+<td style="text-align: left;">Started</td>
+<td style="text-align: left;">Never restarted</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Halted</code></td>
+<td style="text-align: left;">Not started</td>
+<td style="text-align: left;">Stays stopped until you click <strong>Start</strong></td>
+</tr>
+</tbody>
+</table>
+<p>In every case except <code>Halted</code>, the VM boots as soon as its disks are ready. The guide uses <code>Always</code>.
+2. Keep <strong>Instance Type</strong> on <code>linux</code>.
+3. Pick <strong>Cores</strong> (1 to 32) and <strong>RAM</strong> (1 to 64 GB). The guide uses 2 cores and 4 GB.</p>
+</li>
 </ol>
 <p><img alt="Compute step with RunStrategy Always, 2 cores and 4 GB" src="../../../assets/screenshots/virtual-machines/create-vm-compute.png" /></p>
+<p>If an administrator has published GPU classes for the AZ, a <strong>GPU</strong> card appears below <strong>Compute Resources</strong>. Keep it on <strong>None</strong> for this guide, or pick a GPU class to attach a dedicated GPU. See <a data-preview="" href="../../../features/compute/gpu/">GPU</a> for how it works.</p>
 <p><strong>Advanced options</strong> lets you set CPU topology and other KubeVirt settings. Leave it collapsed for a first VM.</p>
 <h2 id="step-3-storage-ssh">Step 3: Storage &amp; SSH</h2>
 <p>This step has three cards: <strong>CloudInit Configuration</strong>, <strong>Disk Configuration</strong> and <strong>SSH Key</strong>.</p>
@@ -5755,7 +5907,8 @@
 <p>You can add several subnets. Each one becomes a network interface on the VM, numbered from <code>Interface 0</code>. The first interface (<code>Interface 0</code>) acts as the primary network interface.</p>
 <h2 id="start-and-access-the-vm">Start and access the VM</h2>
 <p>The console opens the instance details page. The status starts at <code>Pending</code> while the disk imports the image. Open the <strong>Storage</strong> tab to follow the <strong>Progress</strong> column.</p>
-<p>With RunStrategy <code>Always</code>, the VM boots on its own once the disk is ready and the status turns to <code>Running</code>. With <code>Manual</code>, click <strong>Start</strong> at the top of the page when the disk is ready.</p>
+<p>The VM boots on its own once the disk is ready, and the status turns to <code>Running</code>. This is true for every RunStrategy except <code>Halted</code>: with <code>Halted</code>, click <strong>Start</strong> at the top of the page when the disk is ready.</p>
+<p>If you picked a GPU class and no card of that class is free, the VM shows <code>ErrorUnschedulable</code> until one is released. See <a data-preview="" href="../../../features/compute/gpu/">GPU</a>.</p>
 <p><img alt="Instance details page with status Running" src="../../../assets/screenshots/virtual-machines/vm-details-general.png" /></p>
 <h3 id="find-the-private-ip-and-inspect-network-interfaces">Find the private IP and inspect network interfaces</h3>
 <p>Open the <strong>Network</strong> tab to inspect attached interfaces. Each interface is organized into a dedicated card with clear visual sections:</p>
