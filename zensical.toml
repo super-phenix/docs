@@ -68,10 +68,15 @@ nav = [
     { "PaaS" = [
       { "KaaS" = [
         { "Overview" = "paas/kaas/index.md" },
-        { "Basic operations" = "paas/kaas/basic-operations.md" },
-        { "Advanced configuration" = "paas/kaas/advanced-configuration.md" },
-        { "Disaster recovery" = "paas/kaas/disaster-recovery.md" },
-        { "Network configuration" = "paas/kaas/network-configuration.md" }
+        { "Installation" = [
+          { "Initial setup" = "paas/kaas/installation/initial-setup.md" },
+        ]},
+        { "User Guides" = [
+          { "Basic operations" = "paas/kaas/user-guides/basic-operations.md" },
+          { "Advanced configuration" = "paas/kaas/user-guides/advanced-configuration.md" },
+          { "Disaster recovery" = "paas/kaas/user-guides/disaster-recovery.md" },
+          { "Network configuration" = "paas/kaas/user-guides/network-configuration.md" },
+        ]},
       ]}
     ]},
     { "Multi-tenancy" = [
@@ -189,6 +194,10 @@ authors_profiles = true
 
 [project.plugins.redirects.redirect_maps]
 "index.md" = "home.md"
+"paas/kaas/basic-operations.md" = "paas/kaas/user-guides/basic-operations.md"
+"paas/kaas/advanced-configuration.md" = "paas/kaas/user-guides/advanced-configuration.md"
+"paas/kaas/disaster-recovery.md" = "paas/kaas/user-guides/disaster-recovery.md"
+"paas/kaas/network-configuration.md" = "paas/kaas/user-guides/network-configuration.md"
 
 # SEO and meta tags
 [[project.extra.meta]]
