@@ -3025,6 +3025,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Lifecycle
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#apply-a-change" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -3324,6 +3335,60 @@
     
   
   Hardening exposed dashboards
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/changing-the-ingress-class/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Changing the ingress class
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../management/configuring-postgres-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuring Postgres storage
 
     
   </span>
@@ -5462,6 +5527,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Lifecycle
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#apply-a-change" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -5499,9 +5575,9 @@
 
 
 <h1 id="applying-configuration-changes">Applying configuration changes</h1>
-<p>Changes to the management plane and to an availability zone are values on the <code>superphenix-operator</code> release. The operator writes those values onto a <code>Cluster</code> resource, and Argo CD syncs the applications on that cluster.</p>
+<p>Changes to the management plane and to an availability zone are values on the <code>superphenix-operator</code> release. Add them to the values file, then upgrade the release. Argo CD applies the applications.</p>
 <h2 id="management-plane">Management plane</h2>
-<p>Management applications (the console, the API, Kratos, Permify, and PostgreSQL) are set under <code>management.systemConfiguration</code>. That object is copied onto the management <code>Cluster</code>.</p>
+<p>Management applications (the console, the API, Kratos, Permify, and PostgreSQL) are set under <code>management.systemConfiguration</code>.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">management</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
@@ -5526,18 +5602,55 @@
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">                </span><span class="nt">host</span><span class="p">:</span>
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">                  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ceph.admin.example.org</span>
 </span></code></pre></div>
+<h2 id="lifecycle">Lifecycle</h2>
+<p><code>lifecycle</code> decides whether an upgrade is applied on its own. The same three switches exist for the management plane (<code>management.lifecycle</code>) and for each availability zone (<code>clusters.&lt;code&gt;.lifecycle</code>). All three default to <code>false</code>. <a data-preview="" href="../../installation/deployment-guide/installing-an-az/configuring-a-cluster/#lifecycle">Configure a cluster</a> is the same list on an availability-zone entry.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">management</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">lifecycle</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">pause</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">cleanupOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nt">clusters</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">paris-1</span><span class="p">:</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">lifecycle</span><span class="p">:</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">      </span><span class="nt">pause</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">      </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">      </span><span class="nt">cleanupOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pause</code></td>
+<td>Synchronization stops. Automatic and manual sync both wait until you set it back to <code>false</code>. The cluster is reported as <strong>Paused</strong>.</td>
+</tr>
+<tr>
+<td><code>manual</code></td>
+<td>Automatic sync is off. The applications stay as they are until you sync them in Argo CD, or set this back to <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>cleanupOnDeletion</code></td>
+<td>Removing this cluster also deletes the applications it installed. Leave it <code>false</code> unless you intend to remove the stack.</td>
+</tr>
+</tbody>
+</table>
+<p>Set <code>manual</code> to <code>true</code> when the values should be saved and the applications left untouched until you sync them. Set <code>pause</code> to <code>true</code> when nothing should sync, including a sync you start by hand. Set the switch back to <code>false</code> and upgrade again to resume.</p>
 <h2 id="apply-a-change">Upgrade the release</h2>
 <p>Add the keys to the values file you already pass for this release, then upgrade:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">OPERATOR_VERSION</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s1">'%{url_effective}'</span><span class="w"> </span>https://github.com/super-phenix/superphenix/releases/latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s#.*/v##'</span><span class="k">)</span><span class="s2">"</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="s2">"oci://ghcr.io/super-phenix/charts/superphenix-operator:</span><span class="si">${</span><span class="nv">OPERATOR_VERSION</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>-f<span class="w"> </span>values.yaml
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">OPERATOR_VERSION</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s1">'%{url_effective}'</span><span class="w"> </span>https://github.com/super-phenix/superphenix/releases/latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s#.*/v##'</span><span class="k">)</span><span class="s2">"</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>helm<span class="w"> </span>upgrade<span class="w"> </span>superphenix-operator<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="s2">"oci://ghcr.io/super-phenix/charts/superphenix-operator:</span><span class="si">${</span><span class="nv">OPERATOR_VERSION</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--namespace<span class="w"> </span>superphenix-system<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span>-f<span class="w"> </span>values.yaml
 </span></code></pre></div>
 <p>Replace <code>OPERATOR_VERSION</code> by your vesion of Superphenix or use the latest to upgrade your version.</p>
 <p>Helm merges that file with the chart defaults. A later upgrade still needs the same <code>-f</code> file, or the keys you added are dropped.</p>
-<p>Wait until the application you changed is <strong>Synced</strong> and <strong>Healthy</strong> in Argo CD before you test. <a data-preview="" href="../accessing-superphenix/">Accessing Superphenix</a> covers opening Argo CD.</p>
+<p>With <code>pause</code> and <code>manual</code> left at <code>false</code>, wait until the application you changed is <strong>Synced</strong> and <strong>Healthy</strong> in Argo CD before you test. While <code>manual</code> is <code>true</code>, sync that application yourself. While <code>pause</code> is <code>true</code>, the sync waits until you turn it off. <a data-preview="" href="../accessing-superphenix/">Accessing Superphenix</a> covers opening Argo CD.</p>
 
 
 

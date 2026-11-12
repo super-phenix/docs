@@ -992,17 +992,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-the-management-cluster-must-provide" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        What the management cluster must provide
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#values-file" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1018,6 +1007,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         DNS
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingress-class-and-storage-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ingress class and storage class
       </span>
     </span>
   </a>
@@ -3456,6 +3456,60 @@
 
                 
               
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operations/management/changing-the-ingress-class/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Changing the ingress class
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operations/management/configuring-postgres-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuring Postgres storage
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
             </ul>
           </nav>
         
@@ -5560,17 +5614,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-the-management-cluster-must-provide" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        What the management cluster must provide
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#values-file" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -5586,6 +5629,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         DNS
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingress-class-and-storage-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ingress class and storage class
       </span>
     </span>
   </a>
@@ -5808,44 +5862,15 @@
 
 
 <h1 id="configuring-the-management-stack">Configuring the management stack</h1>
-<p>The management plane is configured once, through the <code>superphenix-operator</code> Helm values, whether it runs <a data-preview="" href="../management-inside-az/">inside an AZ</a> or <a data-preview="" href="../management-outside-az/">outside an AZ</a>. Both install procedures use the file described here.</p>
-<p>The operator installs two things on the management cluster:</p>
-<ul>
-<li><strong>ArgoCD</strong>, from the operator chart, which synchronizes every Superphenix application.</li>
-<li>A <code>Cluster</code> of type <code>Management</code>. Its <code>systemConfiguration</code> is passed to the <a href="https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system">superphenix-system</a> chart, which renders one ArgoCD <code>Application</code> per management component.</li>
-</ul>
+<p>The management plane is configured through the <code>superphenix-operator</code> Helm values, whether it runs <a data-preview="" href="../management-inside-az/">inside an AZ</a> or <a data-preview="" href="../management-outside-az/">outside an AZ</a>. Both install procedures use the file described here.</p>
+<p>The console, the API, Kratos, Permify, and PostgreSQL are set under <code>management.systemConfiguration</code>. Argo CD is set under <code>config.argocd</code>.</p>
 <p>Full upstream values:</p>
 <ul>
-<li><a data-preview="" href="../management-outside-az/">Installing outside an AZ</a>: placement model and operator install.</li>
-<li><a data-preview="" href="../../installing-an-az/configuring-a-cluster/">Configure a cluster</a>: <code>Cluster</code> resource fields for workload AZs.</li>
+<li><a data-preview="" href="../../installing-an-az/configuring-a-cluster/">Configure a cluster</a>: operator values for a workload availability zone.</li>
 <li><a data-preview="" href="../../../../operations/accessing-superphenix/#use-the-cluster-toolbox">Cluster toolbox</a>: enable a shell with access to every managed cluster.</li>
 <li><a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-operator/values.yaml">superphenix-operator <code>values.yaml</code></a></li>
 <li><a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-system/values.yaml">superphenix-system <code>values.yaml</code></a></li>
 </ul>
-<h2 id="what-the-management-cluster-must-provide">What the management cluster must provide</h2>
-<p>The management applications expect a <strong>storage class</strong> and an <strong>ingress controller</strong> on the cluster where they run.</p>
-<table>
-<thead>
-<tr>
-<th>Need</th>
-<th>Used by</th>
-<th>Where it comes from</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Persistent volume</td>
-<td>PostgreSQL (default <strong>8Gi</strong>)</td>
-<td>A default <code>StorageClass</code> on the management cluster</td>
-</tr>
-<tr>
-<td>HTTP on ports 80 and 443</td>
-<td>Console, API, Kratos, and ArgoCD</td>
-<td>An ingress controller. Superphenix AZs use Traefik from the system chart</td>
-</tr>
-</tbody>
-</table>
-<p>On a dedicated management cluster, provide both before you rely on the console. When management runs inside an AZ, Rook and Traefik are installed with that AZ, so the console stays unavailable until the AZ is installed. See <a data-preview="" href="../management-inside-az/#console-availability">Installing inside an AZ</a>.</p>
 <h2 id="values-file">Values file</h2>
 <p>Create <code>values.yaml</code> and pass it to Helm from the placement guide you are following. Replace every example secret and hostname.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Set to true only while the management cluster has no CNI yet.</span>
@@ -5861,33 +5886,29 @@
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">          </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">argocd.example.org</span><span class="w"> </span><span class="c1"># or argocd.192.168.1.10.nip.io</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nt">management</span><span class="p">:</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="c1"># Optional. Defaults to "management".</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">management</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">availabilityZone</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">management</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">lifecycle</span><span class="p">:</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="c1"># Set true to disable autosync of every management application.</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">pause</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">cleanupOnDeletion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="nt">superphenix-console</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">lifecycle</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="c1"># Set true to disable autosync of every management application.</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="c1"># You'll have to apply any modification through ArgoCD by yourself.</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nt">manual</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">systemConfiguration</span><span class="p">:</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nt">apps</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">      </span><span class="nt">superphenix-console</span><span class="p">:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">          </span><span class="c1"># Public domain for the console, the API, and Kratos.</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">          </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console.example.org</span><span class="w"> </span><span class="c1"># or console.192.168.1.10.nip.io</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="nt">kratos</span><span class="p">:</span>
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">          </span><span class="c1"># Public domain for the console, the API, and Kratos.</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">          </span><span class="nt">domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">console.example.org</span><span class="w"> </span><span class="c1"># or console.192.168.1.10.nip.io</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="nt">kratos</span><span class="p">:</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">          </span><span class="c1"># Random string, at least 16 characters. Set before the first sync.</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">          </span><span class="nt">globalSecret</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-random-string-at-least-16-characters"</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
 </span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">          </span><span class="c1"># Random string, at least 16 characters. Set before the first sync.</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">          </span><span class="nt">globalSecret</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-random-string-at-least-16-characters"</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">postgres</span><span class="p">:</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">        </span><span class="nt">values</span><span class="p">:</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">          </span><span class="nt">auth</span><span class="p">:</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">            </span><span class="c1"># Shared by the API, Kratos, and Permify. Replace before the first sync.</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">            </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-unique-password"</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">          </span><span class="nt">persistence</span><span class="p">:</span>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8Gi</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">          </span><span class="nt">auth</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">            </span><span class="c1"># Shared by the API, Kratos, and Permify. Replace before the first sync.</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">            </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s">"replace-with-a-unique-password"</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">          </span><span class="nt">persistence</span><span class="p">:</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">            </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8Gi</span>
 </span></code></pre></div>
-<p><code>management.systemConfiguration</code> is copied onto the management <code>Cluster</code> and becomes the Helm values of <code>superphenix-system</code>. Per-application overrides live under <code>apps.&lt;name&gt;</code>, matching the keys in the system chart.</p>
+<p>Each application is configured under <code>apps.&lt;name&gt;.values</code>.</p>
 <h2 id="dns">DNS</h2>
 <p>The console domain and the ArgoCD hostname must resolve to the management cluster.</p>
 <p>On a Superphenix AZ, Traefik listens on <strong>every node</strong> on ports <strong>80</strong> and <strong>443</strong>, so DNS only needs to point at <strong>one</strong> node. For high availability, use a load balancer or DNS round-robin.</p>
@@ -5899,35 +5920,10 @@
 <p class="admonition-title">NAT gateway traffic to a node</p>
 <p>Due to a macvlan limitation, traffic from a NAT gateway is blackholed when its destination is an address on the node hosting that gateway. VMs and Kubernetes as a Service clusters can therefore lose access to the console when DNS points directly at a node. Put a load balancer in front of the nodes and point DNS at the load balancer. See <a data-preview="" href="../../../../operations/limitations/#nat-gateway-traffic-to-its-host-node">Limitations</a>.</p>
 </div>
-<p>One hostname serves the whole console stack. The system chart publishes:</p>
-<table>
-<thead>
-<tr>
-<th>Path</th>
-<th>Component</th>
-<th>TLS secret</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/</code></td>
-<td>Web console</td>
-<td><code>superphenix-console-tls</code></td>
-</tr>
-<tr>
-<td><code>/api</code></td>
-<td>API</td>
-<td><code>superphenix-api-tls</code></td>
-</tr>
-<tr>
-<td><code>/accounts</code></td>
-<td>Kratos (login, registration, recovery)</td>
-<td><code>kratos-public-tls</code></td>
-</tr>
-</tbody>
-</table>
-<p>Ingress TLS annotations for cert-manager (<code>cert-manager.io/cluster-issuer: letsencrypt</code>) are present in the chart and commented out. Cert-manager is installed with an AZ (hyperconverged, storage, or workload), not with the management components.</p>
-<p>If you're installing the management on a standalone cluster and wish for certificates to be auto-generated, you need to install cert-manager.</p>
+<p>TLS certificates are generated and updated automatically if the management is installed within an AZ.
+If you're installing the management on a standalone cluster and wish for certificates to be auto-generated, you need to install cert-manager.</p>
+<h2 id="ingress-class-and-storage-class">Ingress class and storage class</h2>
+<p>The console, API, Kratos, and Argo CD use the cluster's default ingress class. PostgreSQL uses the cluster's default storage class. Name a different ingress class in <a data-preview="" href="../../../../operations/management/changing-the-ingress-class/">Changing the ingress class</a>. The database volume is covered in <a data-preview="" href="../../../../operations/management/configuring-postgres-storage/">Configuring Postgres storage</a>.</p>
 <h2 id="management-components">Management components</h2>
 <p>The system chart deploys an application on a cluster only when that cluster's effective mode is listed in the application's <code>modes</code>. The management <code>Cluster</code> has effective mode <code>Management</code>. These are the applications selected for that mode.</p>
 <table>
@@ -5985,7 +5981,7 @@
 <li>Database, username: <code>superphenix</code></li>
 </ul>
 <p><code>userIsActiveOnCreate</code> defaults to <code>true</code>, so a self-service registration can sign in immediately. <a data-preview="" href="../../../../operations/management/validating-users/">Validating users manually</a> holds new accounts until an administrator activates them. <a data-preview="" href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a> describes the login page.</p>
-<p>The chart's local AZ entry (<code>config.azs.local</code>) points the API at an in-cluster Superphenix controller named "Local AZ". Keep it when a hyperconverged AZ runs on this cluster. Set it to <code>null</code> when it does not. See <a data-preview="" href="../#the-default-local-az">The default local AZ</a>. Register any other AZ with <a data-preview="" href="../../../../operations/adding-an-az/">Add an availability zone</a>.</p>
+<p>The chart's local AZ entry (<code>config.azs.local</code>) points the API at an in-cluster Superphenix controller named "Local AZ". Keep it when a hyperconverged AZ runs on this cluster. Set it to <code>null</code> when it does not, as in <a data-preview="" href="../management-outside-az/#prepare-the-operator-values">Installing outside an AZ</a>. Register any other AZ with <a data-preview="" href="../../../../operations/adding-an-az/">Add an availability zone</a>.</p>
 <h3 id="kratos">Kratos</h3>
 <p><code>apps.kratos.values.globalSecret</code> derives the default, cookie, and cipher secrets. Use a random string of at least 16 characters and set it before the first sync. Rotating it invalidates existing sessions.</p>
 <p>Kratos stores identities and sessions in the <code>kratos</code> database on the same PostgreSQL instance. The DSN is rendered from <code>apps.postgres.values.auth.password</code>.</p>
@@ -6001,19 +5997,19 @@
 <h3 id="postgresql">PostgreSQL</h3>
 <p>One instance backs the three databases used by Superphenix components.</p>
 <p>Override <code>apps.postgres.values.auth.password</code>. The chart default is a public placeholder. The same value is substituted into the API, Kratos, and Permify configuration, so it only needs to be set on the <code>postgres</code> application.</p>
-<p><code>apps.postgres.values.persistence.size</code> defaults to <code>8Gi</code>, which the chart describes as enough for most deployments. The volume uses the cluster default storage class. No storage class name is set in the chart.</p>
+<p>The volume size defaults to <strong>8Gi</strong> and the volume uses the cluster default storage class. <a data-preview="" href="../../../../operations/management/configuring-postgres-storage/">Configuring Postgres storage</a> changes the size and the class.</p>
 <p>The operator connects to this database itself when <code>config.database.autoConnect</code> is <code>true</code> (the default): it reads the <code>postgres</code> secret. To point the operator at another database, set <code>config.database.host</code>, <code>port</code>, <code>user</code>, <code>password</code>, and <code>name</code>, and set <code>autoConnect</code> to <code>false</code>.</p>
 <h3 id="talos-operator">Talos operator</h3>
 <p>Disabled by default (<code>apps.talos-operator.enabled: false</code>). Enable it when this management cluster should run the Talos operator for PXE boot and machine configuration. The chart turns on <code>featureFlags.enablePxeBootStack</code>. How an AZ is provisioned through BMC is covered in <a data-preview="" href="../../installing-the-os/automated-os-installation/">Automated OS installation</a>.</p>
 <h3 id="idrac-exporter">iDRAC exporter</h3>
 <p>Disabled by default (<code>apps.idrac-exporter.enabled: false</code>). Enable it to scrape Dell iDRAC metrics. The chart ships empty Helm values; add the exporter's own settings under <code>apps.idrac-exporter.values</code>.</p>
 <h2 id="argocd">ArgoCD</h2>
-<p>ArgoCD is installed by the operator chart. <code>config.argocd.values</code> is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under <code>server.ingress.hostname</code>, as in the example above.</p>
+<p>ArgoCD is installed by the operator chart. <code>config.argocd.values</code> is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under <code>server.ingress.hostname</code>, as in the example above. <a data-preview="" href="../../../../operations/management/changing-the-ingress-class/">Changing the ingress class</a> names the class for this route and for the console, the API, and Kratos.</p>
 <p><code>config.argocd.ha.enabled: true</code> turns on Redis HA and autoscaling for the server and repo server.</p>
 <p><code>config.argocd.chart.url</code> and <code>config.argocd.chart.version</code> override the ArgoCD chart location. Leave them empty to use the chart built into the operator.</p>
 <p>After the ingress controller is serving traffic, sign in as described in <a data-preview="" href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>. The initial admin password is in the <code>argocd-initial-admin-secret</code> secret in <code>superphenix-system</code>.</p>
 <h2 id="operator-lifecycle">Operator lifecycle</h2>
-<p>These fields are copied onto the management <code>Cluster</code>:</p>
+<p>Set these fields in the same values file:</p>
 <table>
 <thead>
 <tr>
@@ -6040,7 +6036,7 @@
 </tr>
 <tr>
 <td><code>management.version</code></td>
-<td>Superphenix version for the management <code>Cluster</code>. Empty inherits the operator chart version. Must be a semantic version.</td>
+<td>Superphenix version of the management stack. Empty inherits the operator chart version. Must be a semantic version.</td>
 </tr>
 <tr>
 <td><code>management.systemLocation.repoURL</code>, <code>management.systemLocation.chartName</code></td>

@@ -3368,6 +3368,60 @@
 
                 
               
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operations/management/changing-the-ingress-class/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Changing the ingress class
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operations/management/configuring-postgres-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuring Postgres storage
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
             </ul>
           </nav>
         
@@ -5640,7 +5694,7 @@
 <li>Hardware sized for <strong>combined</strong> Ceph and hypervisor needs. See <a data-preview="" href="../../../../architecture/hardware-requirements/">Hardware requirements</a>.</li>
 </ul>
 <h2 id="az-on-the-management-cluster">AZ on the management cluster</h2>
-<p>When this hyperconverged AZ runs on the same Kubernetes cluster as the management plane, the operator chart key is <strong><code>local</code></strong>. The API already lists that AZ. See <a data-preview="" href="../../installing-management/#the-default-local-az">The default local AZ</a>. Do not add a second <code>clusters</code> entry for that same cluster.</p>
+<p>When this hyperconverged AZ runs on the same Kubernetes cluster as the management plane, the operator chart key is <strong><code>local</code></strong>. The API already lists that AZ, displayed as <strong>Local AZ</strong>. Do not add a second <code>clusters</code> entry for that same cluster.</p>
 <h2 id="install-with-the-operator-chart">Install with the operator chart</h2>
 <p>Add the AZ to the operator values file you used to install management, then upgrade the release. The chart embeds the cluster settings; you do not apply a separate manifest.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">OPERATOR_VERSION</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s1">'%{url_effective}'</span><span class="w"> </span>https://github.com/super-phenix/superphenix/releases/latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s#.*/v##'</span><span class="k">)</span><span class="s2">"</span>
@@ -5749,7 +5803,7 @@
 </span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="nt">keyData</span><span class="p">:</span><span class="w"> </span><span class="s">""</span>
 </span></code></pre></div>
 <p>After the stack is installed, register that AZ with the console. The <code>local</code> entry is already registered. Every other AZ needs an API and controller entry: <a data-preview="" href="../../../../operations/adding-an-az/">Add an availability zone</a>.</p>
-<p>The full field list is in <a data-preview="" href="../configuring-a-cluster/">Configure a cluster</a> and the <a href="https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-operator/values.yaml">operator chart values</a>.</p>
+<p>The fields on a cluster entry are in <a data-preview="" href="../configuring-a-cluster/">Configure a cluster</a>. The applications you can set are in the <a data-preview="" href="../../../../reference/helm/superphenix-system/">superphenix-system</a> reference.</p>
 <h2 id="related">Related</h2>
 <ul>
 <li><a data-preview="" href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>: open the console and monitor the deployment in ArgoCD.</li>

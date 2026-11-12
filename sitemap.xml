@@ -169,6 +169,12 @@
         <loc>https://docs.superphenix.net/operations/management/accepting-new-users/</loc>
       </url>
       <url>
+        <loc>https://docs.superphenix.net/operations/management/changing-the-ingress-class/</loc>
+      </url>
+      <url>
+        <loc>https://docs.superphenix.net/operations/management/configuring-postgres-storage/</loc>
+      </url>
+      <url>
         <loc>https://docs.superphenix.net/operations/management/custom-css/</loc>
       </url>
       <url>

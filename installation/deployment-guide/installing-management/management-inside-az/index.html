@@ -3362,6 +3362,60 @@
 
                 
               
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operations/management/changing-the-ingress-class/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Changing the ingress class
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
+                
+                  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../operations/management/configuring-postgres-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuring Postgres storage
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+                
+              
             </ul>
           </nav>
         
@@ -5636,7 +5690,6 @@
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Set back to false after that AZ is healthy.</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">installOnClusterWithoutCNI</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></code></pre></div>
-<p>While the local AZ is still absent, you can hold GitOps synchronization of the management applications by setting <code>management.lifecycle.manual: true</code> in the same file. Set it back to <code>false</code> once storage and ingress from that AZ are healthy. The field is described in <a data-preview="" href="../full-configuration/#operator-lifecycle">Configuring the management stack</a>.</p>
 <h2 id="2-install-the-operator">2. Install the operator</h2>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">OPERATOR_VERSION</span><span class="o">=</span><span class="s2">"</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s1">'%{url_effective}'</span><span class="w"> </span>https://github.com/super-phenix/superphenix/releases/latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">'s#.*/v##'</span><span class="k">)</span><span class="s2">"</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -5664,7 +5717,7 @@
 </div>
 <h2 id="next-steps">Next steps</h2>
 <ol>
-<li><a data-preview="" href="../../installing-an-az/installing-hyperconverged/">Installing hyperconverged</a> on this cluster, using the operator chart key <code>clusters.local</code>. That AZ is already registered with the API. Do not add a second one. See <a data-preview="" href="../#the-default-local-az">The default local AZ</a>.</li>
+<li><a data-preview="" href="../../installing-an-az/installing-hyperconverged/">Installing hyperconverged</a> on this cluster, using the operator chart key <code>clusters.local</code>. That AZ is already registered with the API under the code <strong><code>local</code></strong>, displayed as <strong>Local AZ</strong>. Do not add a second one.</li>
 <li>When Kube-OVN is healthy, set <code>installOnClusterWithoutCNI</code> back to <code>false</code> (and <code>management.lifecycle.manual</code> back to <code>false</code> if you enabled it) and run the Helm command again with the same values file.</li>
 <li><a data-preview="" href="../../../../operations/accessing-superphenix/">Accessing Superphenix</a>: open the console, retrieve the initial ArgoCD password, and follow synchronization.</li>
 </ol>
