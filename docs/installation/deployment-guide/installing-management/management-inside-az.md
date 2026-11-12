@@ -24,8 +24,6 @@ This cluster has no CNI yet, so the operator and its ArgoCD instance must schedu
 installOnClusterWithoutCNI: true
 ```
 
-While the local AZ is still absent, you can hold GitOps synchronization of the management applications by setting `management.lifecycle.manual: true` in the same file. Set it back to `false` once storage and ingress from that AZ are healthy. The field is described in [Configuring the management stack](full-configuration.md#operator-lifecycle).
-
 ## 2. Install the operator
 
 ```bash
@@ -61,6 +59,6 @@ The `management` cluster should be listed. PostgreSQL stays pending until a stor
 
 ## Next steps
 
-1. [Installing hyperconverged](../installing-an-az/installing-hyperconverged.md) on this cluster, using the operator chart key `clusters.local`. That AZ is already registered with the API. Do not add a second one. See [The default local AZ](index.md#the-default-local-az).
+1. [Installing hyperconverged](../installing-an-az/installing-hyperconverged.md) on this cluster, using the operator chart key `clusters.local`. That AZ is already registered with the API under the code **`local`**, displayed as **Local AZ**. Do not add a second one.
 2. When Kube-OVN is healthy, set `installOnClusterWithoutCNI` back to `false` (and `management.lifecycle.manual` back to `false` if you enabled it) and run the Helm command again with the same values file.
 3. [Accessing Superphenix](../../../operations/accessing-superphenix.md): open the console, retrieve the initial ArgoCD password, and follow synchronization.

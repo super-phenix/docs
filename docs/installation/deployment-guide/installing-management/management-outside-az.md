@@ -12,14 +12,30 @@ Provide a Kubernetes cluster that will host only the management plane. From the 
 - **Helm** is installed ([install Helm](https://helm.sh/docs/intro/install/)).
 - The cluster is Kubernetes **v1.28+**. It can be Talos, another distribution, or a cluster hosted on another cloud.
 - The cluster can reach the **Kubernetes API** of every Superphenix AZ it will manage.
-- A default **StorageClass** and an **ingress controller** are already running. PostgreSQL, the console, and ArgoCD use them, and the management components do not install Rook or Traefik.
+- A default **StorageClass** and an **ingress controller** are already running. PostgreSQL, the console, and ArgoCD use them.
 - A CNI to operate the network of the cluster
 
-## 1. Prepare the operator values
+## 1. Prepare the operator values {#prepare-the-operator-values}
 
 Create a `values.yaml` for the `superphenix-operator` chart. Copy the management settings from [Configuring the management stack](full-configuration.md): console domain, Kratos secret, PostgreSQL password, and ArgoCD hostname.
 
-This cluster does not host an AZ. Disable the default `local` AZ as described in [The default local AZ](index.md#the-default-local-az).
+This cluster does not host an AZ. The system chart would otherwise register one with the API under the code **`local`**, displayed as **Local AZ**. Disable that default. Set `local` to `null` in the API configuration:
+
+```yaml
+management:
+  systemConfiguration:
+    apps:
+      superphenix-api:
+        values:
+          config:
+            azs:
+              local: null
+            productsConfig:
+              argoApp:
+                kubernetes:
+                  azDomains:
+                    local: null
+```
 
 ## 2. Install the operator
 
@@ -33,7 +49,7 @@ helm upgrade --install superphenix-operator \
   -f values.yaml
 ```
 
-The chart creates a `Cluster` named `management`. The operator then installs the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) management components on this cluster: the web console, API, Kratos, Permify, and PostgreSQL, together with ArgoCD. Optional components stay disabled unless you enable them in the configuration file.
+The chart creates a `Cluster` named `management`. The operator then installs the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) management components on this cluster: the web console, API, Kratos, Permify, and PostgreSQL, together with ArgoCD.
 
 Confirm the operator is up:
 

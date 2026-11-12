@@ -10,7 +10,7 @@ In a **hyperconverged** AZ, **storage** and **workload** run on the same Superph
 
 ## AZ on the management cluster
 
-When this hyperconverged AZ runs on the same Kubernetes cluster as the management plane, the operator chart key is **`local`**. The API already lists that AZ. See [The default local AZ](../installing-management/index.md#the-default-local-az). Do not add a second `clusters` entry for that same cluster.
+When this hyperconverged AZ runs on the same Kubernetes cluster as the management plane, the operator chart key is **`local`**. The API already lists that AZ, displayed as **Local AZ**. Do not add a second `clusters` entry for that same cluster.
 
 ## Install with the operator chart
 
@@ -104,7 +104,7 @@ clusters:
 
 After the stack is installed, register that AZ with the console. The `local` entry is already registered. Every other AZ needs an API and controller entry: [Add an availability zone](../../../operations/adding-an-az.md).
 
-The full field list is in [Configure a cluster](configuring-a-cluster.md) and the [operator chart values](https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-operator/values.yaml).
+The fields on a cluster entry are in [Configure a cluster](configuring-a-cluster.md). The applications you can set are in the [superphenix-system](../../../reference/helm/superphenix-system.md) reference.
 
 ## Related
 

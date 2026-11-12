@@ -354,7 +354,7 @@ true
 {
   "availabilityZone": "",
   "lifecycle": {
-    "cleanupOnDeletion": true,
+    "cleanupOnDeletion": false,
     "manual": false,
     "pause": false
   },
@@ -384,7 +384,7 @@ true
 			<td>object</td>
 			<td><pre lang="json">
 {
-  "cleanupOnDeletion": true,
+  "cleanupOnDeletion": false,
   "manual": false,
   "pause": false
 }
@@ -396,7 +396,7 @@ true
 			<td>management.lifecycle.cleanupOnDeletion</td>
 			<td>bool</td>
 			<td><pre lang="json">
-true
+false
 </pre>
 </td>
 			<td>Whether to clean up resources deployed by the management stack applications when they get deleted.</td>

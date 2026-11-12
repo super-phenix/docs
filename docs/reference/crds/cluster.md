@@ -10,7 +10,7 @@ A **Cluster** is one Superphenix Kubernetes cluster. The operator uses it to con
 | **Plural** | `clusters` |
 | **Scope** | Namespaced |
 
-An install example is in [Configure a cluster](../../installation/deployment-guide/installing-an-az/configuring-a-cluster.md). Talos provisioning values passed through `spec.talosManagerConfiguration` are documented on the [talos-manager chart](../helm/talos-manager.md). Values passed through `spec.systemConfiguration` are the [superphenix-system chart](../helm/superphenix-system.md).
+The operator values for an install are in [Configure a cluster](../../installation/deployment-guide/installing-an-az/configuring-a-cluster.md). Talos provisioning values in `talosManagerConfiguration` are the [talos-manager chart](../helm/talos-manager.md). Values in `systemConfiguration` are the [superphenix-system chart](../helm/superphenix-system.md).
 
 ## Spec
 

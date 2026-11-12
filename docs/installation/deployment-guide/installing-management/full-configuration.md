@@ -1,30 +1,15 @@
 # Configuring the management stack
 
-The management plane is configured once, through the `superphenix-operator` Helm values, whether it runs [inside an AZ](management-inside-az.md) or [outside an AZ](management-outside-az.md). Both install procedures use the file described here.
+The management plane is configured through the `superphenix-operator` Helm values, whether it runs [inside an AZ](management-inside-az.md) or [outside an AZ](management-outside-az.md). Both install procedures use the file described here.
 
-The operator installs two things on the management cluster:
-
-- **ArgoCD**, from the operator chart, which synchronizes every Superphenix application.
-- A `Cluster` of type `Management`. Its `systemConfiguration` is passed to the [superphenix-system](https://github.com/super-phenix/superphenix/tree/main/components/system/superphenix-system) chart, which renders one ArgoCD `Application` per management component.
+The console, the API, Kratos, Permify, and PostgreSQL are set under `management.systemConfiguration`. Argo CD is set under `config.argocd`.
 
 Full upstream values:
 
-- [Installing outside an AZ](management-outside-az.md): placement model and operator install.
-- [Configure a cluster](../installing-an-az/configuring-a-cluster.md): `Cluster` resource fields for workload AZs.
+- [Configure a cluster](../installing-an-az/configuring-a-cluster.md): operator values for a workload availability zone.
 - [Cluster toolbox](../../../operations/accessing-superphenix.md#use-the-cluster-toolbox): enable a shell with access to every managed cluster.
 - [superphenix-operator `values.yaml`](https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-operator/values.yaml)
 - [superphenix-system `values.yaml`](https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-system/values.yaml)
-
-## What the management cluster must provide
-
-The management applications expect a **storage class** and an **ingress controller** on the cluster where they run.
-
-| Need | Used by | Where it comes from |
-|------|---------|---------------------|
-| Persistent volume | PostgreSQL (default **8Gi**) | A default `StorageClass` on the management cluster |
-| HTTP on ports 80 and 443 | Console, API, Kratos, and ArgoCD | An ingress controller. Superphenix AZs use Traefik from the system chart |
-
-On a dedicated management cluster, provide both before you rely on the console. When management runs inside an AZ, Rook and Traefik are installed with that AZ, so the console stays unavailable until the AZ is installed. See [Installing inside an AZ](management-inside-az.md#console-availability).
 
 ## Values file
 
@@ -44,14 +29,10 @@ config:
           hostname: argocd.example.org # or argocd.192.168.1.10.nip.io
 
 management:
-  # Optional. Defaults to "management".
-  region: management
-  availabilityZone: management
   lifecycle:
     # Set true to disable autosync of every management application.
+    # You'll have to apply any modification through ArgoCD by yourself.
     manual: false
-    pause: false
-    cleanupOnDeletion: false
   systemConfiguration:
     apps:
       superphenix-console:
@@ -71,7 +52,7 @@ management:
             size: 8Gi
 ```
 
-`management.systemConfiguration` is copied onto the management `Cluster` and becomes the Helm values of `superphenix-system`. Per-application overrides live under `apps.<name>`, matching the keys in the system chart.
+Each application is configured under `apps.<name>.values`.
 
 ## DNS
 
@@ -85,17 +66,13 @@ On a Superphenix AZ, Traefik listens on **every node** on ports **80** and **443
 !!! warning "NAT gateway traffic to a node"
     Due to a macvlan limitation, traffic from a NAT gateway is blackholed when its destination is an address on the node hosting that gateway. VMs and Kubernetes as a Service clusters can therefore lose access to the console when DNS points directly at a node. Put a load balancer in front of the nodes and point DNS at the load balancer. See [Limitations](../../../operations/limitations.md#nat-gateway-traffic-to-its-host-node).
 
-One hostname serves the whole console stack. The system chart publishes:
 
-| Path | Component | TLS secret |
-|------|-----------|------------|
-| `/` | Web console | `superphenix-console-tls` |
-| `/api` | API | `superphenix-api-tls` |
-| `/accounts` | Kratos (login, registration, recovery) | `kratos-public-tls` |
-
-Ingress TLS annotations for cert-manager (`cert-manager.io/cluster-issuer: letsencrypt`) are present in the chart and commented out. Cert-manager is installed with an AZ (hyperconverged, storage, or workload), not with the management components.
-
+TLS certificates are generated and updated automatically if the management is installed within an AZ.
 If you're installing the management on a standalone cluster and wish for certificates to be auto-generated, you need to install cert-manager.
+
+## Ingress class and storage class
+
+The console, API, Kratos, and Argo CD use the cluster's default ingress class. PostgreSQL uses the cluster's default storage class. Name a different ingress class in [Changing the ingress class](../../../operations/management/changing-the-ingress-class.md). The database volume is covered in [Configuring Postgres storage](../../../operations/management/configuring-postgres-storage.md).
 
 ## Management components
 
@@ -124,7 +101,7 @@ The API ingress is enabled on the console domain at `/api`. It connects to Postg
 
 `userIsActiveOnCreate` defaults to `true`, so a self-service registration can sign in immediately. [Validating users manually](../../../operations/management/validating-users.md) holds new accounts until an administrator activates them. [Accessing Superphenix](../../../operations/accessing-superphenix.md) describes the login page.
 
-The chart's local AZ entry (`config.azs.local`) points the API at an in-cluster Superphenix controller named "Local AZ". Keep it when a hyperconverged AZ runs on this cluster. Set it to `null` when it does not. See [The default local AZ](index.md#the-default-local-az). Register any other AZ with [Add an availability zone](../../../operations/adding-an-az.md).
+The chart's local AZ entry (`config.azs.local`) points the API at an in-cluster Superphenix controller named "Local AZ". Keep it when a hyperconverged AZ runs on this cluster. Set it to `null` when it does not, as in [Installing outside an AZ](management-outside-az.md#prepare-the-operator-values). Register any other AZ with [Add an availability zone](../../../operations/adding-an-az.md).
 
 ### Kratos
 
@@ -149,7 +126,7 @@ One instance backs the three databases used by Superphenix components.
 
 Override `apps.postgres.values.auth.password`. The chart default is a public placeholder. The same value is substituted into the API, Kratos, and Permify configuration, so it only needs to be set on the `postgres` application.
 
-`apps.postgres.values.persistence.size` defaults to `8Gi`, which the chart describes as enough for most deployments. The volume uses the cluster default storage class. No storage class name is set in the chart.
+The volume size defaults to **8Gi** and the volume uses the cluster default storage class. [Configuring Postgres storage](../../../operations/management/configuring-postgres-storage.md) changes the size and the class.
 
 The operator connects to this database itself when `config.database.autoConnect` is `true` (the default): it reads the `postgres` secret. To point the operator at another database, set `config.database.host`, `port`, `user`, `password`, and `name`, and set `autoConnect` to `false`.
 
@@ -163,7 +140,7 @@ Disabled by default (`apps.idrac-exporter.enabled: false`). Enable it to scrape 
 
 ## ArgoCD
 
-ArgoCD is installed by the operator chart. `config.argocd.values` is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under `server.ingress.hostname`, as in the example above.
+ArgoCD is installed by the operator chart. `config.argocd.values` is merged into the ArgoCD Helm values. The setting you need at install time is the ingress hostname, under `server.ingress.hostname`, as in the example above. [Changing the ingress class](../../../operations/management/changing-the-ingress-class.md) names the class for this route and for the console, the API, and Kratos.
 
 `config.argocd.ha.enabled: true` turns on Redis HA and autoscaling for the server and repo server.
 
@@ -173,7 +150,7 @@ After the ingress controller is serving traffic, sign in as described in [Access
 
 ## Operator lifecycle
 
-These fields are copied onto the management `Cluster`:
+Set these fields in the same values file:
 
 | Field | Effect |
 |-------|--------|
@@ -181,7 +158,7 @@ These fields are copied onto the management `Cluster`:
 | `management.lifecycle.pause` | Pauses synchronization of the management stack. |
 | `management.lifecycle.cleanupOnDeletion` | Cascade-deletes managed resources when the management cluster object is removed. |
 | `management.region`, `management.availabilityZone` | Labels stored on the management cluster. Default `management`. End users do not see this cluster as an AZ. |
-| `management.version` | Superphenix version for the management `Cluster`. Empty inherits the operator chart version. Must be a semantic version. |
+| `management.version` | Superphenix version of the management stack. Empty inherits the operator chart version. Must be a semantic version. |
 | `management.systemLocation.repoURL`, `management.systemLocation.chartName` | Override the system chart repository and name. The operator default is `ghcr.io/super-phenix/charts` and `superphenix-system`. There is no version field on `systemLocation`. |
 
 `installOnClusterWithoutCNI` is an operator-chart flag, not a system-chart value. When `true`, the operator and ArgoCD tolerate `NotReady` nodes and use the host network, so they can run before a CNI exists. [Installing inside an AZ](management-inside-az.md) sets it to `true` until Kube-OVN is healthy, then back to `false`. A management cluster that already has a CNI leaves it `false`.

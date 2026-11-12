@@ -2,7 +2,7 @@
 
 Each page lists the chart's values and the documentation that ships with that chart in the [Superphenix repository](https://github.com/super-phenix/superphenix), under `components/`. A default is the chart default. Replace placeholder secrets before use. The pages call those placeholders out when the chart says they must be overridden.
 
-The operator installs clusters by rendering **superphenix-system**. Per-cluster overrides go in `Cluster.spec.systemConfiguration`, documented on [Cluster](../crds/cluster.md).
+The operator installs clusters by rendering **superphenix-system**. Per-cluster settings go in `clusters.<code>.systemConfiguration` in the operator values. Those settings are the [superphenix-system](superphenix-system.md) values. The other fields on a cluster entry are on [Cluster](../crds/cluster.md).
 
 ## Platform
 
