@@ -8,7 +8,7 @@ Install the [management plane](../installation/deployment-guide/installing-manag
 
 A hyperconverged AZ on the management cluster is already registered. The system chart defines it under the code **`local`**, with destination `in-cluster`. Install that AZ as `clusters.local`. Do not add a second code for the same cluster.
 
-See [The default local AZ](../installation/deployment-guide/installing-management/index.md#the-default-local-az). Set `local` to `null` there when the management cluster should not host an AZ.
+When the management cluster should not host an AZ, set `local` to `null` while [preparing the operator values](../installation/deployment-guide/installing-management/management-outside-az.md#prepare-the-operator-values).
 
 ## Add any other AZ
 

@@ -65,7 +65,7 @@ Superphenix supports two provisioning models: bootstrap Talos clusters yourself,
 
 ## Installing an Availability Zone
 
-Each **availability zone** runs the full Superphenix stack on Talos Kubernetes clusters. Choose how storage and workloads are deployed within the AZ. You can install multiple AZs with different topologies under the same management plane.
+Each **availability zone** runs the full Superphenix stack on Kubernetes clusters. Choose how storage and workloads are deployed within the AZ. You can install multiple AZs with different topologies under the same management plane.
 
 Superphenix supports both **hyperconverged** (with the storage and workload running on the same cluster) and **decoupled** (separate clusters for the storage and the workload) installations. 
 

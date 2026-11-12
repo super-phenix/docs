@@ -163,7 +163,7 @@ Set `connection.mode: Local` when the cluster being defined is the same Kubernet
 
 Set `talosManagementMode: Full` to let talos-operator boot, install and configure Talos automatically, or `talosManagementMode: Import` to import an already installed Talos cluster and let talos-operator manage its lifecycle.
 
-See [Configure a cluster](../installing-an-az/configuring-a-cluster.md) for the full field reference.
+See [Configure a cluster](../installing-an-az/configuring-a-cluster.md) for where these values sit on a cluster entry, and the [talos-manager chart](../../../reference/helm/talos-manager.md) for every key.
 
 ## Step 3: Reconcile and verify
 

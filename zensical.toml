@@ -110,7 +110,9 @@ nav = [
       { "Private availability zones" = "operations/management/private-azs.md" },
       { "Default cloud-init" = "operations/management/default-cloud-init.md" },
       { "Custom CSS" = "operations/management/custom-css.md" },
-      { "Hardening exposed dashboards" = "operations/management/hardening-dashboards.md" }
+      { "Hardening exposed dashboards" = "operations/management/hardening-dashboards.md" },
+      { "Changing the ingress class" = "operations/management/changing-the-ingress-class.md" },
+      { "Configuring Postgres storage" = "operations/management/configuring-postgres-storage.md" }
     ]},
     { "Add an availability zone" = "operations/adding-an-az.md" },
     { "Add an organization quota" = "operations/adding-an-organization-quota.md" },

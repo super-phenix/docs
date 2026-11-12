@@ -11,5 +11,5 @@ You then describe the AZ in the `superphenix-operator` Helm values, under `clust
 
 - **[Installing hyperconverged](installing-hyperconverged.md)**: storage and virtualization on the same cluster.
 - **[Installing decoupled](installing-decoupled.md)**: dedicated storage and workload clusters.
-- **[Configure a cluster](configuring-a-cluster.md)**: geography, connection mode, and system configuration for a `Cluster` resource.
+- **[Configure a cluster](configuring-a-cluster.md)**: operator values for an availability zone, including system configuration and lifecycle.
 - **[Adding a storage class](../../../operations/storage/adding-a-storage-class.md)**: attach storage to hyperconverged or decoupled clusters.
