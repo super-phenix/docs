@@ -8,6 +8,44 @@ It turns Kubernetes into a platform capable of handling **virtual machines, netw
 
 To install a first cluster, see [Getting started](installation/getting-started.md). For complete and advanced deployment paths, see the [deployment guide](installation/deployment-guide/index.md).
 
+<div class="spx-carousel" data-carousel aria-roledescription="carousel" aria-label="Superphenix console" markdown="1">
+
+<div class="spx-carousel__viewport" id="spx-home-carousel" data-carousel-viewport tabindex="0" markdown="1">
+
+<div class="spx-carousel__track" markdown="1">
+
+<figure class="spx-carousel__slide" markdown="1" role="group" aria-roledescription="slide" aria-label="1 of 4">
+
+![Superphenix sign-in page with email and password fields](assets/screenshots/home/login.png)
+
+</figure>
+
+<figure class="spx-carousel__slide" markdown="1" role="group" aria-roledescription="slide" aria-label="2 of 4">
+
+![Project dashboard with resource counts, quota usage, and recently created objects](assets/screenshots/home/dashboard.png)
+
+</figure>
+
+<figure class="spx-carousel__slide" markdown="1" role="group" aria-roledescription="slide" aria-label="3 of 4">
+
+![Create Kubernetes cluster form on the general information step](assets/screenshots/home/kubernetes.png)
+
+</figure>
+
+<figure class="spx-carousel__slide" markdown="1" role="group" aria-roledescription="slide" aria-label="4 of 4">
+
+![Organization quotas for CPU, RAM, and disk split across projects](assets/screenshots/home/quota.png)
+
+</figure>
+
+</div>
+</div>
+<div class="spx-carousel__navs">
+<button type="button" class="spx-carousel__nav spx-carousel__nav--prev" data-carousel-prev aria-controls="spx-home-carousel" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path d="M14.5 5.25 8 11.75l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+<button type="button" class="spx-carousel__nav spx-carousel__nav--next" data-carousel-next aria-controls="spx-home-carousel" aria-label="Next screenshot"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path d="M9.5 5.25 16 11.75l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+</div>
+
 ## About the name
 
 The project is named **Superphenix** (SPX) after the [Superphénix](https://en.wikipedia.org/wiki/Superph%C3%A9nix) nuclear power plant in France. The name is a nod to building something ambitious and innovative on open, sovereign infrastructure. We spell the project Superphenix (without the accent) so it works on all keyboard layouts.

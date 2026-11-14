@@ -8,7 +8,7 @@ repo_name = "super-phenix/superphenix"
 docs_dir = "docs"
 site_dir = "site"
 extra_css = ["stylesheets/extra.css"]
-extra_javascript = ["javascripts/swagger.js"]
+extra_javascript = ["javascripts/swagger.js", "javascripts/home-carousel.js"]
 
 nav = [
   { "Home" = "home.md" },
