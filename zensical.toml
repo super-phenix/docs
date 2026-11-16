@@ -106,6 +106,7 @@ nav = [
       { "Validating users manually" = "operations/management/validating-users.md" },
       { "Auto-creating resources for users on project creation" = "operations/management/default-project-resources.md" },
       { "MFA and recovery" = "operations/management/mfa-and-recovery.md" },
+      { "Multi-factor authentication" = "operations/management/mfa.md" },
       { "Setting super-admins" = "operations/management/super-admins.md" },
       { "Private availability zones" = "operations/management/private-azs.md" },
       { "Default cloud-init" = "operations/management/default-cloud-init.md" },

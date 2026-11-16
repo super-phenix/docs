@@ -1,6 +1,6 @@
 # MFA and recovery
 
-Account recovery is enabled in the management chart. TOTP and backup codes stay off until you enable them in [Second factors](#second-factors). Recovery codes and one-time login codes are delivered by the Kratos courier, so set [Sending emails](sending-emails.md) first.
+Account recovery is enabled in the management chart. Second factors stay off until you enable them, see [Multi-factor authentication](mfa.md). Recovery codes and one-time login codes are delivered by the Kratos courier, so set [Sending emails](sending-emails.md) first.
 
 The console serves the Kratos flows at these paths:
 
@@ -39,43 +39,8 @@ management:
 
 ## One-time login codes
 
-`selfservice.methods.code` is enabled with a **15-minute** lifespan. The login page shows a code step when Kratos offers that method. The code is emailed through the same courier as recovery. That code signs the user in on its own. A second factor is the TOTP method below.
+`selfservice.methods.code` is enabled with a **15-minute** lifespan. The login page shows a code step when Kratos offers that method. The code is emailed through the same courier as recovery. That code signs the user in on its own. It is not a second factor.
 
 ## Second factors
 
-TOTP, backup codes, and WebAuthn are off by default.
-
-You can enable with the following configuration.
-Field names are the [Kratos self-hosted MFA configuration](https://www.ory.sh/docs/kratos/self-hosted/mfa).
-
-```yaml
-management:
-  systemConfiguration:
-    apps:
-      kratos:
-        values:
-          kratos:
-            config:
-              selfservice:
-                methods:
-                  totp:
-                    enabled: true
-                    config:
-                      issuer: Superphenix
-                  lookup_secret:
-                    enabled: true
-                  webauthn:
-                    enabled: true
-                    config:
-                      passwordless: false
-                      rp:
-                        display_name: Superphenix
-                        # Parent domain of the console host.
-                        id: example.org
-                        # Scheme and host of the page that starts the WebAuthn prompt.
-                        origin: https://console.example.org
-```
-
-`issuer` is the name shown in the authenticator app. [TOTP](https://www.ory.sh/docs/kratos/mfa/totp) and [WebAuthn](https://www.ory.sh/docs/kratos/mfa/webauthn-fido-yubikey) describe the credentials. `origin` has to match the scheme and host of that page. The chart's registration flow already includes a `webauthn` hook that shows the verification UI. The method stays disabled until this block sets `enabled: true`.
-
-The shipped identity schema marks `email` as the password identifier and as the recovery address. It has no `credentials.totp.account_name`, so the authenticator app has no account label from that schema.
+TOTP, security keys and backup codes have their own page: see [Multi-factor authentication](mfa.md).
