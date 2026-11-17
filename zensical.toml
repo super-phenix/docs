@@ -38,6 +38,10 @@ nav = [
         { "Installing hyperconverged" = "installation/deployment-guide/installing-an-az/installing-hyperconverged.md" },
         { "Installing decoupled" = "installation/deployment-guide/installing-an-az/installing-decoupled.md" },
         { "Configure a cluster" = "installation/deployment-guide/installing-an-az/configuring-a-cluster.md" }
+      ]},
+      { "Installing PaaS systems" = [
+        { "Overview" = "installation/deployment-guide/installing-paas/index.md" },
+        { "KaaS" = "installation/deployment-guide/installing-paas/kaas.md" },
       ]}
     ]},
     { "Production recommendations" = "installation/production-recommendations.md" }
@@ -65,18 +69,8 @@ nav = [
       { "Object Storage" = "features/storage/bucket.md" },
     ]},
     { "PaaS" = [
-      { "KaaS" = [
-        { "Overview" = "paas/kaas/index.md" },
-        { "Installation" = [
-          { "Initial setup" = "paas/kaas/installation/initial-setup.md" },
-        ]},
-        { "User Guides" = [
-          { "Basic operations" = "paas/kaas/user-guides/basic-operations.md" },
-          { "Advanced configuration" = "paas/kaas/user-guides/advanced-configuration.md" },
-          { "Disaster recovery" = "paas/kaas/user-guides/disaster-recovery.md" },
-          { "Network configuration" = "paas/kaas/user-guides/network-configuration.md" },
-        ]},
-      ]}
+      { "Overview" = "features/paas/index.md" },
+      { "KaaS" = "features/paas/kaas.md" },
     ]},
     { "Multi-tenancy" = [
       { "Overview" = "features/multi-tenancy/index.md" },
@@ -99,6 +93,15 @@ nav = [
     { "Organization" = [
       { "Overview" = "user-guides/organization/index.md" },
       { "Read the audit log" = "user-guides/organization/audit-log.md" }
+    ]},
+    { "PaaS" = [
+      { "KaaS" = [
+        { "Overview" = "user-guides/paas/kaas/index.md" },
+        { "Basic operations" = "user-guides/paas/kaas/basic-operations.md" },
+        { "Advanced configuration" = "user-guides/paas/kaas/advanced-configuration.md" },
+        { "Disaster recovery" = "user-guides/paas/kaas/disaster-recovery.md" },
+        { "Network configuration" = "user-guides/paas/kaas/network-configuration.md" },
+      ]}
     ]}
   ]},
   { "Operations" = [
@@ -187,10 +190,6 @@ authors_profiles = true
 
 [project.plugins.redirects.redirect_maps]
 "index.md" = "home.md"
-"paas/kaas/basic-operations.md" = "paas/kaas/user-guides/basic-operations.md"
-"paas/kaas/advanced-configuration.md" = "paas/kaas/user-guides/advanced-configuration.md"
-"paas/kaas/disaster-recovery.md" = "paas/kaas/user-guides/disaster-recovery.md"
-"paas/kaas/network-configuration.md" = "paas/kaas/user-guides/network-configuration.md"
 
 # SEO and meta tags
 [[project.extra.meta]]

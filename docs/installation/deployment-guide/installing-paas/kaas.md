@@ -1,4 +1,4 @@
-# Initial setup
+# KaaS setup
 
 For the *Kubernetes as a service* system to function, you need to pick and configure 2 DNS entries on your DNS server
 for each AZ and set those entries in your configuration file. You need to define those domains for every AZ that your
