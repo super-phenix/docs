@@ -11,7 +11,7 @@ For the concepts behind VPCs, subnets and gateways, read [Network](../../feature
 - Select your organization and project in the top bar.
 - Have a VPC in the target AZ. Each AZ ships with a `default` VPC.
 - Choose a CIDR.
-- Keep the CIDR clear of the other subnets in the VPC, and stay at `/24` or larger. The guide uses `10.20.0.0/24`, which does not overlap the `default` subnet at `10.16.0.0/16`.
+- Keep the CIDR clear of the other subnets in the VPC, and stay at `/24` or larger. The guide uses `10.20.0.0/24`, which does not overlap the `default` subnet at `10.32.0.0/16`.
 
 ## Open the wizard
 

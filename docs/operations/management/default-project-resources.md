@@ -37,8 +37,8 @@ The API defaults for the subnet, used when the system chart does not override th
 | Field | Default | Effect |
 |-------|---------|--------|
 | `protocol` | `Dual` | IPv4 and IPv6 |
-| `ipv4` | `10.16.0.0/16` | IPv4 CIDR |
-| `ipv6` | `fd00:10:16::/64` | IPv6 CIDR |
+| `ipv4` | `10.32.0.0/16` | IPv4 CIDR |
+| `ipv6` | `fd00:10:32::/64` | IPv6 CIDR |
 | `natGatewayEnabled` | `false` | No NAT gateway on the default subnet |
 | `private` | `false` | The subnet stays reachable from other subnets in the VPC. `true` isolates it. See [Subnet](../../features/network/subnet.md#nat-gateway-and-fully-private-subnets). |
 | `dnsV4` | `1.1.1.1` | IPv4 resolver |

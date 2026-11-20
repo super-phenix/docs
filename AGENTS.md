@@ -97,7 +97,7 @@ Use these names. They are the platform's, not generic cloud synonyms.
 - **GitOps** (Argo CD) is how installs, upgrades, and many resources are applied. The **web console** is the tenant and operator UI.
 - Networking stack names already used in Features: **Kube-OVN**, **Multus**, **Cilium**. Storage is **Ceph**.
 
-Lab conventions, when a page needs an example: bootstrap host on the node switch, external interface `ext0` (same name on every node), network `192.168.1.0/24`, gateway `192.168.1.254`, demo objects prefixed `docs-demo-` (`docs-demo-vm`, `docs-demo-subnet`, `docs-demo-disk`). User-guide CIDRs already used include `10.20.0.0/24` against a `default` subnet of `10.16.0.0/16`.
+Lab conventions, when a page needs an example: bootstrap host on the node switch, external interface `ext0` (same name on every node), network `192.168.1.0/24`, gateway `192.168.1.254`, demo objects prefixed `docs-demo-` (`docs-demo-vm`, `docs-demo-subnet`, `docs-demo-disk`). User-guide CIDRs already used include `10.20.0.0/24` against a `default` subnet of `10.32.0.0/16`.
 
 ## Markdown on this site
 
