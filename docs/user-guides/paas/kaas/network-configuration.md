@@ -14,7 +14,7 @@ Worker nodes need to talk to each other and therefore need at least one shared s
         - `10.96.0.0/16`
         - `fd00:100:ffff::/112`
     
-    To avoid issues your node's subnet CIDR should not overlap with the pod CIDR.
+    To avoid issues your node's subnet should not overlap with the pod or service CIDR.
 
 ## Network policies
 

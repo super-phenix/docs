@@ -2,6 +2,11 @@
 
 Superphenix is designed to offer **Kubernetes as a Service (KaaS)** so tenants can run **managed Kubernetes clusters** on the same **virtualization**, **storage**, and **network** stack as your IaaS workloads.
 
+Here are the links to the different KaaS documentation sections if you are looking for specific information:
+
+- [Installation](../../installation/deployment-guide/installing-paas/kaas.md)
+- [User guides](../../user-guides/paas/kaas/index.md)
+
 ## Main features
 
 ### VM pools (worker nodes)
