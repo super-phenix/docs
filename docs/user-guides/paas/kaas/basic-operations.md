@@ -10,7 +10,7 @@ This section details the most common actions regarding Kubernetes clusters on Su
     This can be achieved by creating an EIP with the SNAT option enabled and attaching it to your subnet.
 
 ???+ warning "Subnet ranges"
-    Avoid using subnets within the `10.0.0.0/12` and `10.96.0.0/16` ranges for your cluster nodes, as those ranges are already assigned as pod and service CIDR inside the clusters.
+    Avoid using subnets overlapping with the `10.0.0.0/12` and `10.96.0.0/16` ranges for your cluster nodes, as those ranges are already assigned as pod and service CIDR inside the clusters.
     Same thing goes for `fd00:100::/96` and `fd00:100:ffff::/112` if you are using IPv6.
     See [Network configuration](network-configuration.md#node-subnets) for more details.
 
