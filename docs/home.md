@@ -46,10 +46,6 @@ To install a first cluster, see [Getting started](installation/getting-started.m
 </div>
 </div>
 
-## About the name
-
-The project is named **Superphenix** (SPX) after the [Superphénix](https://en.wikipedia.org/wiki/Superph%C3%A9nix) nuclear power plant in France. The name is a nod to building something ambitious and innovative on open, sovereign infrastructure. We spell the project Superphenix (without the accent) so it works on all keyboard layouts.
-
 ## What Superphenix offers
 
 - **Hypervisor**: VMs, live migration, snapshots, workload scheduling and load balancing
