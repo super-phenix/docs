@@ -162,6 +162,10 @@ clusters:
       mode: Local
     systemConfiguration:
       apps:
+        superphenix-api:
+          values:
+            config:
+              argoCdUrl: "argocd.example.org" # or argocd.192.168.1.10.nip.io
         misc:
           values:
             objects:
