@@ -36,10 +36,10 @@ Tenant clusters are backed by **pools of VMs** where you define:
 | Foundation    | How Kubernetes uses it |
 |---------------|-------------------------|
 | Virtualization | **VM pools** for nodes ([Compute](../../features/compute/index.md)) |
-| Network        | VPCs, subnets, NAT, LB, firewall ([Network](../../features/network/index.md)) |
+| Network        | VPCs, subnets, NAT, LB, Security groups ([Network](../../features/network/index.md)) |
 | Storage        | CSI-backed volumes ([Storage](../../features/storage/index.md)) |
 
 ## Version support
 
 Each version of Superphenix will support 3 minor Kubernetes versions at a time. As some AZs might be more up to date than others,
-you may face a different list of supported K8s versions depending on which AZ you deploy.
+you may face a different list of supported K8s versions depending on which AZ you deploy on.

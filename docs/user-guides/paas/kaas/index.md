@@ -8,7 +8,7 @@ A Kubernetes cluster in Superphenix is built from three things you pick in the c
 
 - **An availability zone (AZ).** The controlplane, worker VMs and all other building blocks of a cluster live in the AZ you select. You cannot move a cluster to another AZ afterwards.
 - **A subnet.** At least one subnet is required for the worker nodes. The subnet's IPAM hands the VMs private IPv4 and IPv6 addresses.
-- **An EIP with SNAT.** Worker nodes need internet access, which is provided by attaching an EIP to your subnet and configuring the SNAT functionnality.
+- **An EIP with SNAT.** Worker nodes need internet access, which is provided by attaching an EIP to your subnet and configuring the SNAT functionality.
 
 ## Before you start
 
