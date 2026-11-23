@@ -160,6 +160,7 @@ nav = [
         { "superphenix-operator" = "reference/helm/superphenix-operator.md" },
         { "superphenix-system" = "reference/helm/superphenix-system.md" },
         { "superphenix-api" = "reference/helm/superphenix-api.md" },
+        { "superphenix-console" = "reference/helm/superphenix-console.md" },
         { "superphenix-controller" = "reference/helm/superphenix-controller.md" }
       ]},
       { "Components" = [
