@@ -112,7 +112,7 @@ Kratos stores identities and sessions in the `kratos` database on the same Postg
 Defaults that matter at install time:
 
 - Code-based login is enabled (15-minute lifespan). Account recovery is enabled. Email verification is disabled.
-- Courier SMTP is required by Kratos even when you are not sending mail. The chart default is a placeholder (`smtps://dummy@example.org` on localhost). To send recovery mail, set `apps.kratos.values.kratos.config.courier.smtp` (`connection_uri`, `from_address`, `from_name`). [Sending emails](../../../operations/management/sending-emails.md) is the procedure. Recovery and second factors are in [MFA and recovery](../../../operations/management/mfa-and-recovery.md).
+- Courier SMTP is required by Kratos even when you are not sending mail. The chart default is a placeholder (`smtps://dummy@example.org` on localhost). To send recovery mail, set `apps.kratos.values.kratos.config.courier.smtp` (`connection_uri`, `from_address`, `from_name`). [Sending emails](../../../operations/management/sending-emails.md) is the procedure. Recovery is in [Account recovery and login codes](../../../operations/management/recovery-and-login-codes.md), and second factors are in [Multi-factor authentication](../../../operations/management/mfa.md).
 - The public listener is `https://<console-domain>/accounts`. The ingress strips the `/accounts` prefix before the request reaches Kratos.
 - Database migrations run automatically on upgrade (`automigration.enabled: true`).
 

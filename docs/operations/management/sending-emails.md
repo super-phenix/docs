@@ -1,6 +1,6 @@
 # Sending emails
 
-Kratos sends password-recovery codes and one-time login codes through its courier. This page sets the SMTP server those messages use. Account recovery itself is covered in [MFA and recovery](mfa-and-recovery.md).
+Kratos sends password-recovery codes and one-time login codes through its courier. This page sets the SMTP server those messages use. Account recovery itself is covered in [Account recovery and login codes](recovery-and-login-codes.md).
 
 The management chart always sets a courier block. The default connection is a placeholder, `smtps://dummy@example.org:password@localhost:465/`, so a fresh install does not deliver mail. Replace it before anyone depends on recovery or a login code.
 
