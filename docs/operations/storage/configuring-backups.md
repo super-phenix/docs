@@ -63,19 +63,24 @@ systemConfiguration:
             #   provider: aws
             #   bucket: "[bucket name]"
             #   prefix: velero
+            #   credential:
+            #     name: velero
+            #     key: my-remote-az # Has to match the 'secretContents' key
             #   config:
             #     region: "[az name]"
             #     s3Url: https://s3.other.example.org
             #     s3ForcePathStyle: true
-        # Credentials for the S3 bucket. The secretContents key is "cloud".
-        # The profile heading matches backupStorageLocation.name.
+        # Credentials for the S3 bucket.
+        # If you're adding more than one backupStorageLocation, add a new secretContent and reference it above.
+        # The credential header stays [default] no matter the name of the backup storage location.
         credentials:
           secretContents:
             cloud: |
-              [location name]
+              [default]
               aws_access_key_id=[access key]
               aws_secret_access_key=[secret key]
-            # [remote az]
+          # my-remote-az: |
+            # [default]
             # aws_access_key_id=[access key]
             # aws_secret_access_key=[secret key]
 ```
