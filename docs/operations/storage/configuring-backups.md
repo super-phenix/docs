@@ -90,7 +90,7 @@ systemConfiguration:
 - **`bucket`** and **`prefix`**: bucket name, and the path inside it (`velero`).
 - **`config.region`**: region identifier sent to S3. For a bucket on the opposite AZ, use that AZ's name.
 - **`config.s3Url`**: S3 endpoint, for example the object store hostname from [Adding an object store](adding-an-object-store.md).
-- **`secretContents.cloud`**: credentials file for the backup location. The profile heading, `[location name]`, is the backup location `name`. The keys need read and write access to the bucket.
+- **`secretContents`**: credentials files for the storage locations. It is referenced using the 'credential' key in the backup storage locations. The default credentials are stored in the 'cloud' document.
 - **`accessMode: ReadOnly`**: use this on extra locations. Those locations are restore sources and do not receive this AZ's backups.
 
 For advanced options, see the [Velero](https://github.com/vmware-tanzu/helm-charts/tree/main/charts/velero) Helm chart values.
