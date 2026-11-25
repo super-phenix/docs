@@ -5670,7 +5670,7 @@ Configure a backup location on <strong>every AZ</strong>. Until that location ex
 <li><strong><code>bucket</code></strong> and <strong><code>prefix</code></strong>: bucket name, and the path inside it (<code>velero</code>).</li>
 <li><strong><code>config.region</code></strong>: region identifier sent to S3. For a bucket on the opposite AZ, use that AZ's name.</li>
 <li><strong><code>config.s3Url</code></strong>: S3 endpoint, for example the object store hostname from <a data-preview="" href="../adding-an-object-store/">Adding an object store</a>.</li>
-<li><strong><code>secretContents.cloud</code></strong>: credentials file for the backup location. The profile heading, <code>[location name]</code>, is the backup location <code>name</code>. The keys need read and write access to the bucket.</li>
+<li><strong><code>secretContents</code></strong>: credentials files for the storage locations. It is referenced using the 'credential' key in the backup storage locations. The default credentials are stored in the 'cloud' document.</li>
 <li><strong><code>accessMode: ReadOnly</code></strong>: use this on extra locations. Those locations are restore sources and do not receive this AZ's backups.</li>
 </ul>
 <p>For advanced options, see the <a href="https://github.com/vmware-tanzu/helm-charts/tree/main/charts/velero">Velero</a> Helm chart values.</p>
