@@ -80,3 +80,18 @@ To accomplish this follow these steps:
     ```
 
     Full chart values: [sfs-kaas](https://github.com/super-phenix/superphenix/blob/main/components/dependencies/sfs-kaas/values.yaml).
+
+For example, this feature can be leveraged to automatically enroll the cluster to an ArgoCD instance. A custom chart deploys a job that sets up the service account,
+ArgoCD connection and git repository. To assist in such endeavours, KaaS clusters contain a configmap which presents details about the cluster.
+
+This configmap is called `spx-cluster-info` and can be found in the `kube-system` namespace. It provides the following information under a `cluster` key:
+
+- **clusterID**: The unique SPXID of the cluster.
+- **friendlyName**: User-defined, human-readable name.
+- **kubeVersion**: Kubernetes release version.
+- **name**: Name of the cluster, used to generate its ID. Either UUIDv4 for console deployment or same as *friendlyName* for GitOps clusters.
+- **organizationID**: SPXID of the organization.
+- **projectID**: SPXID of the project.
+- **location**: AZ in which the cluster is deployed.
+
+You can also find those values here: [kaas-essentials](https://github.com/super-phenix/superphenix/blob/main/components/dependencies/kaas-essentials/values.yaml).
