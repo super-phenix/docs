@@ -92,6 +92,8 @@ The system chart deploys an application on a cluster only when that cluster's ef
 
 `apps.superphenix-console.values.domain` is the public name of the console. Ingress is enabled and serves `/` on that host.
 
+The full list of configuration options can be found here: [Helm Reference](../../../reference/helm/superphenix-console.md) - [Values.yaml](https://github.com/super-phenix/console-ui/blob/main/deployment/superphenix-console/values.yaml)
+
 ### API
 
 The API ingress is enabled on the console domain at `/api`. It connects to PostgreSQL with the password from the `postgres` application:
@@ -102,6 +104,8 @@ The API ingress is enabled on the console domain at `/api`. It connects to Postg
 `userIsActiveOnCreate` defaults to `true`, so a self-service registration can sign in immediately. [Validating users manually](../../../operations/management/validating-users.md) holds new accounts until an administrator activates them. [Accessing Superphenix](../../../operations/accessing-superphenix.md) describes the login page.
 
 The chart's local AZ entry (`config.azs.local`) points the API at an in-cluster Superphenix controller named "Local AZ". Keep it when a hyperconverged AZ runs on this cluster. Set it to `null` when it does not, as in [Installing outside an AZ](management-outside-az.md#prepare-the-operator-values). Register any other AZ with [Add an availability zone](../../../operations/adding-an-az.md).
+
+The full list of configuration options can be found here: [Helm Reference](../../../reference/helm/superphenix-api.md) - [Values.yaml](https://github.com/super-phenix/superphenix/blob/main/components/system/superphenix-api/values.yaml)
 
 ### Kratos
 
